@@ -1,0 +1,22 @@
+.DS_Store
+
+# dependencies and build output
+node_modules/
+.next/
+out/
+
+# local tooling
+.venv/
+.codex-artifacts/
+
+# design sources and exported deliverables
+웹디자인/
+수정전단지/
+수정파일_가맹문의교체_v4/
+작업산출물/
+집 에있는 자료/
+집 에있는 자료.zip
+최강피자---choigang-pizza/
+
+# local reference photos
+KakaoTalk_Photo_*.jpeg
