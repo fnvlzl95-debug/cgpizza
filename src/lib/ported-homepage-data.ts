@@ -75,7 +75,7 @@ export const portedHomepageData = {
       "최고의 재료, 최강의 맛! 부천본점의 특별함을 만나보세요.",
     highlight: "",
     backgroundImage: "",
-    clusterImage: "/assets/user/hero-pizza-main-object-trim.webp",
+    clusterImage: "/assets/user/hero-main-image-pizza.webp",
     clusterAlt: "최강피자 대표 메뉴 실사 이미지",
     primaryCta: {
       label: "대표 메뉴 보기",

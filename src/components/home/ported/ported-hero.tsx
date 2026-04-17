@@ -154,7 +154,7 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
           </div>
 
           <div className="relative mx-auto mb-8 w-full max-w-[25rem] md:hidden">
-            <div className="pointer-events-none absolute right-2 top-3 z-10 flex h-[4.5rem] w-[4.5rem] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
+            <div className="pointer-events-none absolute right-[8%] top-[6%] z-10 flex h-[4.5rem] w-[4.5rem] translate-x-[10%] -translate-y-[2%] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
               <span className="text-[8px] font-bold tracking-widest">★★★</span>
               <span className="text-[0.95rem] font-black">{hero.badge}</span>
             </div>
@@ -205,12 +205,12 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
               }}
               className="h-auto w-full object-contain drop-shadow-[0_42px_44px_rgba(0,0,0,0.58)] will-change-transform"
             />
+          </div>
 
-            <div className="absolute right-[11%] top-[8%] z-10 flex h-24 w-24 rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:h-28 lg:w-28">
-              <span className="text-[10px] font-bold tracking-widest">★★★</span>
-              <span className="text-xl font-black lg:text-2xl">{hero.badge}</span>
-              <div className="mt-1 h-0.5 w-12 bg-white/30" />
-            </div>
+          <div className="absolute right-[2.4rem] top-[5.8rem] z-20 flex h-24 w-24 rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:right-[3rem] lg:top-[6.2rem] lg:h-28 lg:w-28 xl:right-[4rem] xl:top-[6.4rem]">
+            <span className="text-[10px] font-bold tracking-widest">★★★</span>
+            <span className="text-xl font-black lg:text-2xl">{hero.badge}</span>
+            <div className="mt-1 h-0.5 w-12 bg-white/30" />
           </div>
         </div>
       </div>
