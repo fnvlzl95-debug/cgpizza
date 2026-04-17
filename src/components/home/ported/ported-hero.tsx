@@ -153,19 +153,19 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
             </motion.button>
           </div>
 
-          <div className="relative mx-auto mb-8 w-full max-w-[25rem] md:hidden">
-            <div className="pointer-events-none absolute right-[8%] top-[6%] z-10 flex h-[4.5rem] w-[4.5rem] translate-x-[10%] -translate-y-[2%] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
+          <div className="relative mx-auto mb-8 w-[102vw] max-w-[26rem] md:hidden">
+            <div className="pointer-events-none absolute right-[10%] top-[12%] z-10 flex h-[4.75rem] w-[4.75rem] translate-x-[6%] -translate-y-[8%] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
               <span className="text-[8px] font-bold tracking-widest">★★★</span>
-              <span className="text-[0.95rem] font-black">{hero.badge}</span>
+              <span className="text-[1rem] font-black">{hero.badge}</span>
             </div>
-            <div className="relative mx-auto aspect-[1.08/1] w-full max-w-[22rem]">
+            <div className="relative aspect-square w-full">
               <Image
                 src={hero.clusterImage}
                 alt={hero.clusterAlt}
                 fill
                 priority
                 sizes="(max-width: 767px) 88vw, 0px"
-                className="object-contain drop-shadow-[0_24px_28px_rgba(0,0,0,0.42)]"
+                className="object-cover object-center drop-shadow-[0_28px_32px_rgba(0,0,0,0.42)]"
               />
             </div>
           </div>
@@ -193,24 +193,25 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
         <div aria-hidden="true" className="hidden min-h-[36rem] md:block lg:min-h-[43rem]" />
 
         <div className="pointer-events-none absolute inset-0 hidden md:block">
-          <div className="absolute right-[-22%] top-[46%] z-0 w-[42rem] -translate-y-[47%] lg:right-[-18%] lg:w-[50rem] xl:right-[-16%] xl:w-[56rem]">
-            <motion.img
-              src={hero.clusterImage}
-              alt={hero.clusterAlt}
-              style={{
-                rotateX: smoothRotateX,
-                rotateY: smoothRotateY,
-                rotateZ: smoothRotateZ,
-                transformPerspective: 1600,
-              }}
-              className="h-auto w-full object-contain drop-shadow-[0_42px_44px_rgba(0,0,0,0.58)] will-change-transform"
-            />
-          </div>
-
-          <div className="absolute right-[2.4rem] top-[5.8rem] z-20 flex h-24 w-24 rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:right-[3rem] lg:top-[6.2rem] lg:h-28 lg:w-28 xl:right-[4rem] xl:top-[6.4rem]">
-            <span className="text-[10px] font-bold tracking-widest">★★★</span>
-            <span className="text-xl font-black lg:text-2xl">{hero.badge}</span>
-            <div className="mt-1 h-0.5 w-12 bg-white/30" />
+          <div className="absolute right-[-12%] top-[49%] z-0 w-[35rem] -translate-y-[49%] lg:right-[-8%] lg:w-[39rem] xl:right-[1%] xl:w-[42rem] 2xl:right-[-12%] 2xl:top-[48%] 2xl:w-[50rem]">
+            <div className="relative ml-auto w-fit max-w-full">
+              <motion.img
+                src={hero.clusterImage}
+                alt={hero.clusterAlt}
+                style={{
+                  rotateX: smoothRotateX,
+                  rotateY: smoothRotateY,
+                  rotateZ: smoothRotateZ,
+                  transformPerspective: 1600,
+                }}
+                className="h-auto w-auto max-h-[min(76vh,43rem)] max-w-full object-contain drop-shadow-[0_42px_44px_rgba(0,0,0,0.58)] will-change-transform lg:max-h-[min(78vh,46rem)] 2xl:max-h-[min(82vh,54rem)]"
+              />
+              <div className="absolute right-[20%] top-[15%] z-20 flex h-24 w-24 translate-x-[6%] -translate-y-[10%] rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:right-[18%] lg:top-[14%] lg:h-28 lg:w-28 xl:right-[17%] xl:top-[14%] 2xl:right-[24%] 2xl:top-[13%]">
+                <span className="text-[10px] font-bold tracking-widest">★★★</span>
+                <span className="text-xl font-black lg:text-2xl">{hero.badge}</span>
+                <div className="mt-1 h-0.5 w-12 bg-white/30" />
+              </div>
+            </div>
           </div>
         </div>
       </div>
