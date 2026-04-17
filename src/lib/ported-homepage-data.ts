@@ -56,7 +56,7 @@ export const portedHomepageData = {
   metadata: {
     title: "최강피자 | 소화가 잘되는 맛있는 피자",
     description: "소화가 잘되는 맛있는 피자. 최강피자 브랜드 소개와 가맹 상담 안내.",
-    ogImage: "/assets/user/share-preview-og-1200x630.png",
+    ogImage: "/assets/user/share-preview-og-v2-1200x630.png",
   },
   navItems: [
     { label: "메뉴", href: "#menu-section" },
