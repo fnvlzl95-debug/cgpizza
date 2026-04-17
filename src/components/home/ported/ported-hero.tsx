@@ -1,23 +1,14 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import type { ReactNode } from "react";
-import { motion } from "framer-motion";
-import { ChevronRightIcon, PlayIcon } from "@/components/home/reference/reference-primitives";
+import type { MouseEvent, ReactNode } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { PlayIcon } from "@/components/home/reference/reference-primitives";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedHeroProps = {
   hero: typeof portedHomepageData.hero;
   onOpenBrandModal: () => void;
 };
-
-const particles = [
-  { left: "20%", top: "62%", duration: 5.2, delay: 0.2, x: 0 },
-  { left: "35%", top: "70%", duration: 5.8, delay: 0.8, x: 18 },
-  { left: "50%", top: "64%", duration: 6.4, delay: 1.1, x: -16 },
-  { left: "65%", top: "72%", duration: 5.6, delay: 0.5, x: 22 },
-  { left: "80%", top: "66%", duration: 6.1, delay: 1.3, x: -14 },
-] as const;
 
 function StoreIcon() {
   return (
@@ -73,34 +64,53 @@ function InfoBox({
 }
 
 export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const rotateZ = useMotionValue(0);
+
+  const smoothRotateX = useSpring(rotateX, {
+    stiffness: 90,
+    damping: 18,
+    mass: 0.7,
+  });
+  const smoothRotateY = useSpring(rotateY, {
+    stiffness: 90,
+    damping: 18,
+    mass: 0.7,
+  });
+  const smoothRotateZ = useSpring(rotateZ, {
+    stiffness: 80,
+    damping: 16,
+    mass: 0.75,
+  });
+
+  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
+    if (window.innerWidth < 768) return;
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const relativeX = (event.clientX - rect.left) / rect.width;
+    const relativeY = (event.clientY - rect.top) / rect.height;
+
+    rotateY.set((relativeX - 0.5) * 18);
+    rotateX.set((0.5 - relativeY) * 14);
+    rotateZ.set((relativeX - 0.5) * 22);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+    rotateZ.set(0);
+  };
+
   return (
-    <section id="top" className="relative flex min-h-screen items-center overflow-hidden bg-[#001540] pt-20">
-      <div className="absolute inset-0 z-0">
-        <img src={hero.backgroundImage} alt="" className="h-full w-full object-cover opacity-40 scale-105" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#001540] via-[#001540]/80 to-transparent" />
-      </div>
-
-      <div className="pointer-events-none absolute inset-0 z-[1]">
-        {particles.map((particle, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 0 }}
-            animate={{ opacity: [0, 1, 0], y: -100, x: particle.x }}
-            transition={{
-              duration: particle.duration,
-              repeat: Number.POSITIVE_INFINITY,
-              delay: particle.delay,
-            }}
-            className="absolute text-[#ffcf00]"
-            style={{ left: particle.left, top: particle.top }}
-          >
-            ✦
-          </motion.div>
-        ))}
-      </div>
-
+    <section
+      id="top"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className="relative flex min-h-screen items-center overflow-hidden bg-[#08215d] pt-20"
+    >
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 px-4 md:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:gap-12">
-        <div>
+        <div className="relative z-20">
           <div className="mb-6 flex gap-2">
             {[1, 2, 3, 4].map((item) => (
               <span key={item} className="text-2xl text-[#ffcf00]">
@@ -109,7 +119,7 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
             ))}
           </div>
 
-          <h1 className="mb-8 text-5xl font-black leading-[0.92] text-white md:text-[5.4rem] lg:text-[6rem]">
+          <h1 className="mb-8 text-5xl font-black leading-[1.04] text-white md:text-[5.4rem] lg:text-[6rem]">
             {hero.title[0]} <span className="text-[#ffcf00]">{hero.title[1]}</span>
             <br />
             {hero.title[2]}
@@ -120,18 +130,6 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
           </p>
 
           <div className="mb-12 flex flex-wrap gap-4">
-            <motion.a
-              whileHover={{ scale: 1.05, backgroundColor: "#E6BA00" }}
-              whileTap={{ scale: 0.95 }}
-              href={hero.primaryCta.href}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center gap-2 rounded-full bg-[#ffcf00] px-8 py-4 text-lg font-black text-[#001540] shadow-2xl shadow-[#ffcf00]/30"
-            >
-              {hero.primaryCta.label}
-              <ChevronRightIcon className="h-5 w-5" />
-            </motion.a>
-
             <motion.button
               whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
               whileTap={{ scale: 0.95 }}
@@ -166,31 +164,26 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
           </div>
         </div>
 
-        <div className="relative hidden min-h-[34rem] items-center justify-end md:flex lg:min-h-[40rem]">
-          <div className="absolute right-12 top-6 h-40 w-40 rounded-full bg-white/12 blur-3xl lg:h-56 lg:w-56" />
-          <div className="absolute right-28 top-12 h-28 w-28 rounded-full bg-white/10 blur-2xl lg:h-40 lg:w-40" />
+        <div aria-hidden="true" className="hidden min-h-[36rem] md:block lg:min-h-[43rem]" />
 
-          <motion.div
-            animate={{ rotate: 360 }}
-            transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-            className="absolute right-[6.5rem] top-2 z-20 lg:right-[7.5rem] lg:top-6"
-          >
-            <div className="flex h-24 w-24 flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl">
-              <span className="text-[10px] font-bold tracking-widest">★★★</span>
-              <span className="text-xl font-black">{hero.badge}</span>
-              <div className="mt-1 h-0.5 w-12 bg-white/30" />
-            </div>
-          </motion.div>
-
-          <div className="relative h-[30rem] w-[30rem] lg:h-[36rem] lg:w-[36rem] xl:h-[39rem] xl:w-[39rem]">
-            <img
+        <div className="pointer-events-none absolute inset-0 hidden md:block">
+          <div className="absolute right-[-22%] top-[46%] z-0 w-[42rem] -translate-y-[47%] lg:right-[-18%] lg:w-[50rem] xl:right-[-16%] xl:w-[56rem]">
+            <motion.img
               src={hero.clusterImage}
               alt={hero.clusterAlt}
-              className="h-full w-full rounded-full border-8 border-white/5 object-cover drop-shadow-[0_35px_35px_rgba(0,0,0,0.6)]"
+              style={{
+                rotateX: smoothRotateX,
+                rotateY: smoothRotateY,
+                rotateZ: smoothRotateZ,
+                transformPerspective: 1600,
+              }}
+              className="h-auto w-full object-contain drop-shadow-[0_42px_44px_rgba(0,0,0,0.58)] will-change-transform"
             />
 
-            <div className="absolute right-0 top-0 w-44 lg:w-52 xl:-right-4">
-              <img src={hero.clusterOverlayImage} alt="" className="h-auto w-full rotate-12 rounded-3xl drop-shadow-xl" />
+            <div className="absolute right-[11%] top-[8%] z-10 flex h-24 w-24 rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:h-28 lg:w-28">
+              <span className="text-[10px] font-bold tracking-widest">★★★</span>
+              <span className="text-xl font-black lg:text-2xl">{hero.badge}</span>
+              <div className="mt-1 h-0.5 w-12 bg-white/30" />
             </div>
           </div>
         </div>

@@ -56,7 +56,7 @@ export const referenceHomepageData = {
         body: "SINCE 2010",
       },
       {
-        title: "방문포장 5,000원 할인",
+        title: "방문포장 할인",
         body: "가성비 최고",
       },
       {
@@ -137,7 +137,7 @@ export const referenceHomepageData = {
     phoneDisplay: "032-724-8845",
     phoneHref: "tel:0327248845",
     title: "지금 바로 주문하세요!",
-    chips: ["배달 30분 내외", "방문포장 5,000원 할인"],
+    chips: ["배달 30분 내외", "방문포장 할인"],
   },
   modal: {
     title: "최강피자 브랜드 소개",

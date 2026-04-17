@@ -1,9 +1,9 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useCallback, useRef, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowLeftIcon, ArrowRightIcon, BrandMark, ChevronRightIcon } from "@/components/home/reference/reference-primitives";
+import Image from "next/image";
+import { useEffect, useMemo, useState } from "react";
+import { ArrowLeftIcon, ArrowRightIcon } from "@/components/home/reference/reference-primitives";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedMenuSectionProps = {
@@ -21,8 +21,8 @@ function MenuArrow({
     <button
       type="button"
       onClick={onClick}
-      className={`absolute top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#001540] shadow-xl transition-colors hover:bg-[#002266] hover:text-white ${
-        direction === "left" ? "left-0" : "right-0"
+      className={`absolute top-[47%] z-20 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#001540] shadow-xl transition-colors hover:bg-[#002266] hover:text-white md:h-14 md:w-14 ${
+        direction === "left" ? "left-0 md:-left-2" : "right-0 md:-right-2"
       }`}
       aria-label={direction === "left" ? "이전 메뉴 보기" : "다음 메뉴 보기"}
     >
@@ -33,60 +33,64 @@ function MenuArrow({
 
 function MenuCard({
   item,
-  index,
-  register,
 }: {
   item: (typeof portedHomepageData.menu.items)[number];
-  index: number;
-  register: (index: number, node: HTMLDivElement | null) => void;
 }) {
   const isSignature = item.badge === "SIGNATURE";
+  const hasBadge = Boolean(item.badge);
 
   return (
     <div
-      ref={(node) => register(index, node)}
-      className={`relative min-w-[180px] snap-center overflow-hidden rounded-3xl transition-all duration-300 sm:min-w-[200px] lg:min-w-[210px] ${
-        isSignature
-          ? "z-10 scale-105 ring-4 ring-[#ffcf00] shadow-2xl"
-          : "bg-white shadow-lg hover:-translate-y-2 hover:shadow-2xl"
+      className={`relative w-full px-1 py-12 transition-all duration-300 lg:px-2 lg:py-14 ${
+        isSignature ? "z-10 md:scale-[1.03]" : "hover:-translate-y-2"
       }`}
     >
-      <div className="absolute left-4 top-4 z-20 flex flex-col gap-1">
-            {!isSignature ? (
-              <div
-                className={`flex h-12 w-12 flex-col items-center justify-center rounded-full text-white shadow-lg ${
-                  item.badge === "BEST" ? "bg-[#ef4136]" : "bg-[#ffcf00] text-[#001540]"
-                }`}
-          >
-            <span className="text-[6px] font-bold">★★★</span>
-            <span className="text-[10px] font-black">{item.badge}</span>
-          </div>
-        ) : null}
-        {isSignature ? (
-          <div className="flex items-center gap-1 rounded-full border border-[#ffcf00]/30 bg-[#001540] px-3 py-1 text-[10px] font-black uppercase tracking-widest text-[#ffcf00] shadow-lg">
-            <BrandMark className="h-[10px] w-[10px] text-[#ffcf00]" />
-            SIGNATURE
-          </div>
-        ) : null}
-      </div>
-
       {isSignature ? (
-        <div className="absolute left-1/2 top-[-10px] z-30 -translate-x-1/2">
-          <BrandMark className="h-8 w-8 text-[#ffcf00] drop-shadow-md" />
+        <div className="absolute left-1/2 top-12 z-30 -translate-x-1/2 -translate-y-1/2">
+          <Image
+            src="/assets/user/logo-mark-blue.png"
+            alt="최강피자 로고"
+            width={108}
+            height={108}
+            className="h-20 w-20 object-contain drop-shadow-md lg:h-[108px] lg:w-[108px]"
+          />
         </div>
       ) : null}
 
-      <div className="relative h-52 overflow-hidden sm:h-56 lg:h-60">
-        <img src={item.image} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" />
-        {isSignature ? <div className="absolute inset-0 bg-gradient-to-t from-[#001540]/80 to-transparent" /> : null}
-      </div>
+      <div
+        className={`relative h-full overflow-hidden rounded-[2rem] transition-all duration-300 ${
+          isSignature
+            ? "bg-[#001540] ring-4 ring-[#ffcf00] shadow-2xl"
+            : "bg-white shadow-lg hover:shadow-2xl"
+        }`}
+      >
+        <div className="absolute left-5 top-5 z-20 flex flex-col gap-1.5">
+          {hasBadge && !isSignature ? (
+            <div
+              className={`flex h-14 w-14 flex-col items-center justify-center rounded-full text-white shadow-lg ${
+                item.badge === "BEST" ? "bg-[#ef4136]" : "bg-[#ffcf00] text-[#001540]"
+              }`}
+            >
+              <span className="text-[7px] font-bold">★★★</span>
+              <span className="text-[11px] font-black">{item.badge}</span>
+            </div>
+          ) : null}
+          {isSignature ? (
+            <div className="rounded-full border border-[#ffcf00]/30 bg-[#001540] px-5 py-2.5 text-[15px] font-black leading-none text-[#ffcf00] shadow-lg">
+              최강피자
+            </div>
+          ) : null}
+        </div>
 
-      <div className={`p-6 text-left ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
-        <h3 className={`mb-1 text-xl font-black ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>{item.title}</h3>
-        <p className={`mb-4 text-sm ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
-        <div className="flex items-end gap-1">
-          <span className={`text-2xl font-black ${isSignature ? "text-white" : "text-[#001540]"}`}>{item.price.replace("원", "")}</span>
-          <span className={`mb-1 text-sm font-bold ${isSignature ? "text-white/80" : "text-[#001540]/80"}`}>원</span>
+        <div className="relative h-[23rem] overflow-hidden sm:h-[25rem] lg:h-[28rem]">
+          <img src={item.image} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" />
+        </div>
+
+        <div className={`p-8 text-left sm:p-9 lg:p-10 ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
+          <h3 className={`mb-3 text-[1.8rem] font-black leading-tight lg:text-[2.1rem] ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
+            {item.title}
+          </h3>
+          <p className={`text-[1.05rem] leading-relaxed ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
         </div>
       </div>
     </div>
@@ -94,77 +98,99 @@ function MenuCard({
 }
 
 export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
-  const [activeIndex, setActiveIndex] = useState(2);
-  const carouselRef = useRef<HTMLDivElement | null>(null);
-  const cardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [visibleCount, setVisibleCount] = useState(1);
+  const [pageIndex, setPageIndex] = useState(0);
 
-  const scrollToCard = useCallback(
-    (index: number) => {
-      const nextIndex = (index + menu.items.length) % menu.items.length;
-      setActiveIndex(nextIndex);
+  useEffect(() => {
+    const syncVisibleCount = () => {
+      setVisibleCount(window.innerWidth >= 768 ? 3 : 1);
+    };
 
-      const viewport = carouselRef.current;
-      const target = cardRefs.current[nextIndex];
+    syncVisibleCount();
+    window.addEventListener("resize", syncVisibleCount);
+    return () => window.removeEventListener("resize", syncVisibleCount);
+  }, []);
 
-      if (viewport && target) {
-        const left = target.offsetLeft - (viewport.clientWidth - target.clientWidth) / 2;
-        viewport.scrollTo({ left, behavior: "smooth" });
-      }
-    },
-    [menu.items.length],
-  );
+  const pageStarts = useMemo(() => {
+    const maxStart = Math.max(0, menu.items.length - visibleCount);
+    const starts: number[] = [];
+
+    for (let start = 0; start <= maxStart; start += 1) {
+      starts.push(start);
+    }
+
+    return starts;
+  }, [menu.items.length, visibleCount]);
+
+  const safePageIndex = Math.min(pageIndex, Math.max(pageStarts.length - 1, 0));
+  const activeStart = pageStarts[safePageIndex] ?? 0;
+  const canSlide = pageStarts.length > 1;
+  const isAtStart = safePageIndex === 0;
+  const isAtEnd = safePageIndex === pageStarts.length - 1;
+  const gapPx = visibleCount === 3 ? 32 : 20;
+  const trackTransform = `translateX(calc(-${activeStart} * ((100% + ${gapPx}px) / ${visibleCount})))`;
+  const cardBasis = `calc((100% - (${gapPx}px * ${visibleCount - 1})) / ${visibleCount})`;
+
+  const movePage = (direction: -1 | 1) => {
+    if (!canSlide) return;
+
+    setPageIndex(Math.max(0, Math.min(safePageIndex + direction, pageStarts.length - 1)));
+  };
 
   return (
-    <section id="menu-section" className="relative overflow-hidden bg-white px-0 pb-24 pt-16 text-center">
+    <section id="menu-section" className="relative overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-screen md:items-center md:py-20">
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-20 w-[145%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white" />
-      <div id="review-section" className="block h-0 scroll-mt-24" />
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto w-full max-w-[1720px] px-4 lg:px-6">
         <div className="mb-4 inline-block rounded-full bg-[#ef4136] px-4 py-1 text-xs font-bold text-white">
           ♦ {menu.eyebrow}
         </div>
 
-        <h2 className="mb-4 text-4xl font-black text-[#001540] md:text-5xl">
-          {menu.title}
-        </h2>
+        <h2 className="mb-4 text-4xl font-black text-[#001540] md:text-5xl">{menu.title}</h2>
 
-        <p className="mb-16 font-medium text-gray-500">
-          {menu.description}
-        </p>
+        <p className="mb-10 font-medium text-gray-500 md:mb-12">{menu.description}</p>
 
-        <div className="group relative px-8 sm:px-12">
-          <MenuArrow direction="left" onClick={() => scrollToCard(activeIndex - 1)} />
-          <MenuArrow direction="right" onClick={() => scrollToCard(activeIndex + 1)} />
+        <div className="relative px-5 sm:px-8 lg:px-12">
+          {canSlide && !isAtStart ? <MenuArrow direction="left" onClick={() => movePage(-1)} /> : null}
+          {canSlide && !isAtEnd ? <MenuArrow direction="right" onClick={() => movePage(1)} /> : null}
 
-          <div
-            ref={carouselRef}
-            className="flex gap-4 overflow-x-auto pb-8 scroll-smooth snap-x md:justify-center lg:gap-5 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {menu.items.map((item, index) => (
-              <MenuCard
-                key={item.title}
-                item={item}
-                index={index}
-                register={(cardIndex, node) => {
-                  cardRefs.current[cardIndex] = node;
-                }}
-              />
-            ))}
+          <div className="overflow-hidden py-2">
+            <div
+              className="flex items-stretch transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              style={{
+                gap: `${gapPx}px`,
+                transform: trackTransform,
+              }}
+            >
+              {menu.items.map((item) => (
+                <div
+                  key={item.title}
+                  className="shrink-0"
+                  style={{
+                    flexBasis: cardBasis,
+                  }}
+                >
+                  <MenuCard item={item} />
+                </div>
+              ))}
+            </div>
           </div>
+
+          {canSlide ? (
+            <div className="mt-4 flex justify-center gap-2">
+              {pageStarts.map((start, index) => (
+                <button
+                  key={start}
+                  type="button"
+                  onClick={() => setPageIndex(index)}
+                  aria-label={`${index + 1}번째 메뉴 그룹 보기`}
+                  className={`h-2.5 rounded-full transition-all ${
+                    index === safePageIndex ? "w-8 bg-[#001540]" : "w-2.5 bg-[#001540]/18"
+                  }`}
+                />
+              ))}
+            </div>
+          ) : null}
         </div>
-
-        <motion.a
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          href={menu.buttonHref}
-          target="_blank"
-          rel="noreferrer"
-          className="mx-auto mt-12 inline-flex items-center gap-3 rounded-full bg-[#002266] px-10 py-4 font-bold text-white shadow-xl shadow-[#002266]/20"
-        >
-          {menu.buttonLabel}
-          <div className="flex h-6 w-6 items-center justify-center rounded-full bg-white/10">
-            <ChevronRightIcon className="h-4 w-4" />
-          </div>
-        </motion.a>
       </div>
     </section>
   );

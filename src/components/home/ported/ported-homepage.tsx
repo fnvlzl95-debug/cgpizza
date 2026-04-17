@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { PortedContactBand } from "@/components/home/ported/ported-contact-band";
+import { PortedFloatingKakaoButton } from "@/components/home/ported/ported-floating-kakao-button";
 import { PortedHeader } from "@/components/home/ported/ported-header";
 import { PortedHero } from "@/components/home/ported/ported-hero";
 import { PortedMenuSection } from "@/components/home/ported/ported-menu-section";
@@ -18,13 +19,11 @@ export function PortedHomepage() {
     <>
       <PortedHeader
         navItems={portedHomepageData.navItems}
-        ctaLabel={portedHomepageData.header.ctaLabel}
-        ctaHref={portedHomepageData.header.ctaHref}
         draftHref={portedHomepageData.header.draftHref}
       />
       <main className="overflow-x-hidden bg-[#041544] text-white">
         <PortedHero hero={portedHomepageData.hero} onOpenBrandModal={() => setBrandModalOpen(true)} />
-        <PortedValueStrip items={portedHomepageData.valueItems} />
+        <PortedValueStrip items={portedHomepageData.valueItems} sectionId="event-section" />
         <PortedMenuSection menu={portedHomepageData.menu} />
         <PortedContactBand contact={portedHomepageData.contact} />
       </main>
@@ -35,6 +34,7 @@ export function PortedHomepage() {
         reducedMotion={Boolean(reducedMotion)}
         modal={portedHomepageData.modal}
       />
+      <PortedFloatingKakaoButton />
     </>
   );
 }

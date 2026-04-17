@@ -1,7 +1,9 @@
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedValueStripProps = {
-  items: typeof portedHomepageData.valueItems;
+  items?: typeof portedHomepageData.valueItems;
+  message?: string;
+  sectionId?: string;
 };
 
 function FeatureIcon({ type }: { type: (typeof portedHomepageData.valueItems)[number]["icon"] }) {
@@ -39,9 +41,26 @@ function FeatureIcon({ type }: { type: (typeof portedHomepageData.valueItems)[nu
   );
 }
 
-export function PortedValueStrip({ items }: PortedValueStripProps) {
+export function PortedValueStrip({ items, message, sectionId }: PortedValueStripProps) {
+  if (message) {
+    return (
+      <section id={sectionId} className="border-y-2 border-black/5 bg-[#ffcf00] py-7 text-[#001540]">
+        <div className="mx-auto max-w-7xl px-4">
+          <div className="flex items-center justify-center gap-4 text-center">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#001540] text-[#ffcf00] shadow-lg">
+              <FeatureIcon type="simple" />
+            </div>
+            <p className="text-lg font-black leading-tight md:text-[1.6rem]">{message}</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  if (!items) return null;
+
   return (
-    <section id="event-section" className="border-y-2 border-black/5 bg-[#ffcf00] py-8 text-[#001540]">
+    <section id={sectionId} className="border-y-2 border-black/5 bg-[#ffcf00] py-8 text-[#001540]">
       <div className="mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
           {items.map((item, index) => (

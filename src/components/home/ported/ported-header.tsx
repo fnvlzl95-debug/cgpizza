@@ -1,23 +1,28 @@
+import Image from "next/image";
 import Link from "next/link";
-import { BrandMark, ChevronRightIcon } from "@/components/home/reference/reference-primitives";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedHeaderProps = {
   navItems: typeof portedHomepageData.navItems;
-  ctaLabel: string;
-  ctaHref: string;
   draftHref: string;
 };
 
-export function PortedHeader({ navItems, ctaLabel, ctaHref, draftHref }: PortedHeaderProps) {
+export function PortedHeader({ navItems, draftHref }: PortedHeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#002266]/30 bg-[#002266]/80 text-white backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4">
-        <Link href="#top" className="group flex items-center gap-2 text-white">
-          <div className="relative">
-            <BrandMark className="h-8 w-8 text-[#ffcf00]" />
-          </div>
-          <span className="text-2xl font-black tracking-[-0.04em]">최강피자</span>
+        <Link href="#top" className="group flex items-center gap-0 text-white">
+          <span className="relative h-[68px] w-[68px] overflow-hidden">
+            <Image
+              src="/assets/user/logo-mark-gold.png"
+              alt="최강피자 로고"
+              width={170}
+              height={170}
+              className="absolute left-1/2 top-1/2 h-[170px] w-[170px] -translate-x-1/2 -translate-y-1/2 object-contain"
+              priority
+            />
+          </span>
+          <span className="-ml-3 text-[1.95rem] font-black leading-none tracking-[-0.04em]">최강피자</span>
         </Link>
 
         <nav className="hidden items-center gap-8 font-medium md:flex">
@@ -33,15 +38,6 @@ export function PortedHeader({ navItems, ctaLabel, ctaHref, draftHref }: PortedH
           <Link href={draftHref} className="hidden text-sm font-semibold text-white/65 transition hover:text-white xl:inline-flex">
             드래프트 비교
           </Link>
-          <a
-            href={ctaHref}
-            target="_blank"
-            rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#ffcf00] px-6 py-2.5 font-bold text-[#001540] shadow-lg shadow-[#ffcf00]/20 transition-transform duration-300 hover:scale-105"
-          >
-            {ctaLabel}
-            <ChevronRightIcon className="h-[18px] w-[18px]" />
-          </a>
         </div>
       </div>
     </header>
