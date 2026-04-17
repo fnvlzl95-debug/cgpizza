@@ -3,13 +3,19 @@
 import { useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { BrandMark, revealEase } from "@/components/home/reference/reference-primitives";
-import { referenceHomepageData } from "@/lib/reference-homepage-data";
+
+type ReferenceBrandModalContent = {
+  title: string;
+  description: string;
+  points: readonly string[];
+  closeLabel: string;
+};
 
 type ReferenceBrandModalProps = {
   isOpen: boolean;
   onClose: () => void;
   reducedMotion: boolean;
-  modal: typeof referenceHomepageData.modal;
+  modal: ReferenceBrandModalContent;
 };
 
 export function ReferenceBrandModal({ isOpen, onClose, reducedMotion, modal }: ReferenceBrandModalProps) {

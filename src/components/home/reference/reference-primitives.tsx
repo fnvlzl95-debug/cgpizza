@@ -1,5 +1,4 @@
 import type { CSSProperties, ReactNode } from "react";
-import { referenceHomepageData } from "@/lib/reference-homepage-data";
 
 export const revealEase = [0.22, 1, 0.36, 1] as const;
 
@@ -94,7 +93,7 @@ export function ValueIcon({
   type,
   className = "h-4 w-4",
 }: {
-  type: (typeof referenceHomepageData.valueItems)[number]["icon"];
+  type: "leaf" | "chef" | "layers" | "thumb";
   className?: string;
 }) {
   if (type === "leaf") {

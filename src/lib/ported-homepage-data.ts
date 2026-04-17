@@ -1,4 +1,4 @@
-import { ctaLinks } from "@/lib/landing-data";
+import { ctaLinks } from "@/lib/site-config";
 
 export type PortedNavItem = {
   label: string;
@@ -51,7 +51,7 @@ export type PortedReviewShowcase = {
 };
 
 const reviewShowcaseSlides = Array.from({ length: 17 }, (_, index) => ({
-  image: `/assets/user/reviews/live/review-live-${String(index + 1).padStart(2, "0")}.png`,
+  image: `/assets/user/reviews/live/review-live-${String(index + 1).padStart(2, "0")}.webp`,
   alt: `최강피자 고객 리뷰 캡처 ${index + 1}`,
   objectPosition: "left top",
 })) satisfies PortedReviewShowcaseSlide[];
@@ -61,7 +61,7 @@ export const portedHomepageData = {
     title: "최강피자 | 소화가 잘되는 맛있는 피자",
     description:
       "소화가 잘되는 맛있는 피자, 최고의 재료와 최강의 맛을 선사하는 최강피자 부천본점 랜딩페이지입니다.",
-    ogImage: "/assets/user/hero-collage.png",
+    ogImage: "/assets/user/hero-collage.webp",
   },
   navItems: [
     { label: "메뉴", href: "#menu-section" },
@@ -70,9 +70,6 @@ export const portedHomepageData = {
     { label: "리뷰", href: "#review-section" },
     { label: "가맹문의", href: "#contact-section" },
   ] satisfies PortedNavItem[],
-  header: {
-    draftHref: "/drafts/01",
-  },
   hero: {
     badge: "BEST",
     eyebrow: "CHOIGANG PIZZA",
@@ -81,7 +78,7 @@ export const portedHomepageData = {
       "최고의 재료, 최강의 맛! 부천본점의 특별함을 만나보세요.",
     highlight: "",
     backgroundImage: "",
-    clusterImage: "/assets/user/hero-pizza-main-object-trim.png",
+    clusterImage: "/assets/user/hero-pizza-main-object-trim.webp",
     clusterAlt: "최강피자 대표 메뉴 실사 이미지",
     primaryCta: {
       label: "메뉴 주문하기",
@@ -142,7 +139,7 @@ export const portedHomepageData = {
         description: "짭짤한 페퍼로니의 클래식",
         price: "17,900원",
         note: "페퍼로니의 풍미",
-        image: "/assets/user/menu/pepperoni-pizza.png",
+        image: "/assets/user/menu/pepperoni-pizza.webp",
       },
       {
         badge: "SIGNATURE",
@@ -150,7 +147,7 @@ export const portedHomepageData = {
         description: "최강피자 대표 토핑 조합을 한 판에 담은 시그니처",
         price: "가격 문의",
         note: "브랜드 시그니처",
-        image: "/assets/user/menu/choigang-combination.png",
+        image: "/assets/user/menu/choigang-combination.webp",
         featured: true,
       },
       {
@@ -158,14 +155,14 @@ export const portedHomepageData = {
         description: "고소한 감자와 베이컨이 꽉 찬 든든한 조합",
         price: "18,900원",
         note: "포만감 좋은 조합",
-        image: "/assets/user/menu/bacon-potato.png",
+        image: "/assets/user/menu/bacon-potato.webp",
       },
       {
         title: "포테이토 피자",
         description: "감자 토핑이 가득한 든든한 한 판",
         price: "18,900원",
         note: "담백한 감자 토핑",
-        image: "/assets/user/menu/potato-pizza.png",
+        image: "/assets/user/menu/potato-pizza.webp",
       },
       {
         badge: "NEW",
@@ -173,49 +170,49 @@ export const portedHomepageData = {
         description: "진한 치즈와 베이컨 풍미를 묵직하게 담은 메뉴",
         price: "가격 문의",
         note: "딥치즈 조합",
-        image: "/assets/user/menu/deep-cheese-bacon.png",
+        image: "/assets/user/menu/deep-cheese-bacon.webp",
       },
       {
         title: "베이컨 할라피뇨",
         description: "베이컨과 할라피뇨가 만드는 매콤한 밸런스",
         price: "가격 문의",
         note: "매콤한 인기 메뉴",
-        image: "/assets/user/menu/bacon-jalapeno.png",
+        image: "/assets/user/menu/bacon-jalapeno.webp",
       },
       {
         title: "수제 소불고기",
         description: "달콤짭짤한 소불고기 풍미를 듬뿍 올린 한 판",
         price: "가격 문의",
         note: "불고기 풍미",
-        image: "/assets/user/menu/handmade-bulgogi.png",
+        image: "/assets/user/menu/handmade-bulgogi.webp",
       },
       {
         title: "수제 고추 소불고기",
         description: "고추의 매콤함과 소불고기의 감칠맛을 함께 담은 메뉴",
         price: "가격 문의",
         note: "매콤한 불고기",
-        image: "/assets/user/menu/handmade-hot-bulgogi.png",
+        image: "/assets/user/menu/handmade-hot-bulgogi.webp",
       },
       {
         title: "고르곤졸라",
         description: "고르곤졸라의 진한 풍미를 깔끔하게 즐기는 피자",
         price: "가격 문의",
         note: "치즈 풍미",
-        image: "/assets/user/menu/gorgonzola.png",
+        image: "/assets/user/menu/gorgonzola.webp",
       },
       {
         title: "딥치즈",
         description: "치즈 풍미를 진하게 채운 클래식 치즈 메뉴",
         price: "가격 문의",
         note: "치즈 클래식",
-        image: "/assets/user/menu/deep-cheese.png",
+        image: "/assets/user/menu/deep-cheese.webp",
       },
       {
         title: "파인애플 피자",
         description: "달콤한 파인애플이 살아있는 한 판",
         price: "18,900원",
         note: "상큼한 단맛 포인트",
-        image: "/assets/user/menu/pineapple-pizza.png",
+        image: "/assets/user/menu/pineapple-pizza.webp",
       },
     ] satisfies PortedMenuItem[],
     reviews: [
@@ -270,7 +267,7 @@ export const portedHomepageData = {
         title: "소형 매장 최적화",
         lines: ["10평 남짓한 공간이면 충분합니다.", "배달·포장 중심 레이아웃으로 운영 부담을 낮췄습니다."],
         icon: "store",
-        image: "/assets/user/franchise/small-store-front-updated.png",
+        image: "/assets/user/franchise/small-store-front-updated.webp",
       },
       {
         title: "샵인샵 매출 펌핑",

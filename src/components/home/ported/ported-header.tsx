@@ -4,10 +4,9 @@ import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedHeaderProps = {
   navItems: typeof portedHomepageData.navItems;
-  draftHref: string;
 };
 
-export function PortedHeader({ navItems, draftHref }: PortedHeaderProps) {
+export function PortedHeader({ navItems }: PortedHeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#002266]/30 bg-[#002266]/80 text-white backdrop-blur-md">
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4">
@@ -34,11 +33,7 @@ export function PortedHeader({ navItems, draftHref }: PortedHeaderProps) {
           ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <Link href={draftHref} className="hidden text-sm font-semibold text-white/65 transition hover:text-white xl:inline-flex">
-            드래프트 비교
-          </Link>
-        </div>
+        <div className="w-[68px] shrink-0 md:w-0" />
       </div>
     </header>
   );

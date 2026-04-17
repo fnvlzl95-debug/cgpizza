@@ -1,4 +1,4 @@
-import { ctaLinks } from "@/lib/landing-data";
+import { ctaLinks } from "@/lib/site-config";
 
 export function PortedFloatingKakaoButton() {
   return (

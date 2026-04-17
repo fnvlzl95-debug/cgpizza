@@ -17,10 +17,7 @@ export function PortedHomepage() {
 
   return (
     <>
-      <PortedHeader
-        navItems={portedHomepageData.navItems}
-        draftHref={portedHomepageData.header.draftHref}
-      />
+      <PortedHeader navItems={portedHomepageData.navItems} />
       <main className="overflow-x-hidden bg-[#041544] text-white">
         <PortedHero hero={portedHomepageData.hero} onOpenBrandModal={() => setBrandModalOpen(true)} />
         <PortedValueStrip items={portedHomepageData.valueItems} sectionId="event-section" />

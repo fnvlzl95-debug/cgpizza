@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import Image from "next/image";
@@ -83,7 +82,13 @@ function MenuCard({
         </div>
 
         <div className="relative h-[23rem] overflow-hidden sm:h-[25rem] lg:h-[28rem]">
-          <img src={item.image} alt={item.title} className="h-full w-full object-cover transition-transform duration-500 hover:scale-110" />
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            sizes="(min-width: 1024px) 30vw, (min-width: 640px) 48vw, 92vw"
+            className="object-cover transition-transform duration-500 hover:scale-110"
+          />
         </div>
 
         <div className={`p-8 text-left sm:p-9 lg:p-10 ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
