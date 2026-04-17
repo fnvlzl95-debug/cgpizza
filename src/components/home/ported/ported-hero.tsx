@@ -108,7 +108,7 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
       id="top"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#08215d] pt-[4.5rem] pb-20 md:min-h-screen md:pt-20 md:pb-0"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#08215d] pt-[4.75rem] pb-20 md:min-h-screen md:pt-[5.25rem] md:pb-0"
     >
       <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 md:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:gap-12">
         <div className="relative z-20 min-w-0 py-7 md:py-0">

@@ -14,23 +14,23 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#002266]/30 bg-[#002266]/84 text-white backdrop-blur-md">
-      <div className="mx-auto flex h-[4.5rem] max-w-7xl items-center justify-between px-4 md:h-20">
+      <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between px-4 md:h-[5.25rem]">
         <Link
           href="#top"
           className="group flex min-w-0 items-center gap-0 text-white"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <span className="relative h-[56px] w-[56px] shrink-0 overflow-hidden md:h-[68px] md:w-[68px]">
+          <span className="relative h-[64px] w-[64px] shrink-0 overflow-hidden md:h-[82px] md:w-[82px]">
             <Image
               src="/assets/user/logo-mark-gold.png"
               alt="최강피자 로고"
               width={170}
               height={170}
-              className="absolute left-1/2 top-1/2 h-[138px] w-[138px] -translate-x-1/2 -translate-y-1/2 object-contain md:h-[170px] md:w-[170px]"
+              className="absolute left-1/2 top-1/2 h-[156px] w-[156px] -translate-x-1/2 -translate-y-1/2 object-contain md:h-[194px] md:w-[194px]"
               priority
             />
           </span>
-          <span className="-ml-2 truncate text-[1.7rem] font-black leading-none tracking-[-0.04em] md:-ml-3 md:text-[1.95rem]">
+          <span className="-ml-1 truncate text-[1.9rem] font-black leading-none tracking-[-0.04em] md:-ml-2 md:text-[2.3rem]">
             최강피자
           </span>
         </Link>
@@ -44,7 +44,7 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
           ))}
         </nav>
 
-        <div className="hidden md:block md:w-[68px]" />
+        <div className="hidden md:block md:w-[82px]" />
 
         <div className="flex items-center gap-2 md:hidden">
           <a

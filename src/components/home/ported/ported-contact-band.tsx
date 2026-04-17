@@ -99,13 +99,13 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
           </div>
 
           <div className="mx-auto mt-8 grid max-w-[1200px] gap-4 lg:grid-cols-12 xl:gap-5">
-            <article className="relative aspect-[4/3] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] lg:col-span-7">
+            <article className="relative aspect-[1.06/1] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] sm:aspect-[4/3] lg:col-span-7">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
                   alt={smallStoreCard.title}
                   fill
-                  className="object-cover object-center"
+                  className="object-cover object-[center_82%] sm:object-[center_76%]"
                   sizes="(min-width: 1024px) 58vw, 100vw"
                 />
               ) : null}
