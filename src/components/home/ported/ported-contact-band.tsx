@@ -175,7 +175,9 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
           <div className="mx-auto grid max-w-[1560px] gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
             <div className="max-w-4xl">
               <p className="text-[1.15rem] font-black tracking-[0.1em] text-[#ffcf00] md:text-[2rem]">{contact.ctaEyebrow}</p>
-              <h3 className="mt-4 text-5xl font-black leading-[0.95] md:text-7xl">{contact.ctaTitle}</h3>
+              <h3 className="text-balance mt-4 max-w-[9ch] text-[2.95rem] font-black leading-[0.95] md:max-w-none md:text-7xl">
+                {contact.ctaTitle}
+              </h3>
               <p className="mt-5 max-w-3xl text-base font-medium leading-relaxed text-white/72 md:text-xl">
                 {contact.ctaDescription}
               </p>
@@ -188,18 +190,20 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
               >
                 <PhoneIcon />
                 <span className="flex flex-col">
-                  <span className="text-sm font-bold tracking-[0.06em] text-[#071d55]/58 md:text-[0.95rem]">{contact.primaryCta.label}</span>
-                  <span className="text-[1.95rem] font-black leading-none md:text-[2.15rem]">{contact.phoneDisplay}</span>
+                  <span className="inline-flex w-fit items-center rounded-full bg-white/92 px-3 py-1 text-[0.78rem] font-black tracking-[0.08em] text-[#071d55] shadow-[0_6px_18px_rgba(7,29,85,0.12)] md:text-[0.85rem]">
+                    {contact.primaryCta.label}
+                  </span>
+                  <span className="mt-2 text-[1.95rem] font-black leading-none text-[#071d55] md:text-[2.15rem]">{contact.phoneDisplay}</span>
                 </span>
               </a>
               <a
                 href={contact.secondaryCta.href}
-                className="flex min-h-[6.5rem] items-center gap-4 rounded-[8px] border border-white/14 bg-white/6 px-6 py-5 text-white transition-colors duration-300 hover:bg-white/10"
+                className="flex min-h-[6.5rem] items-center gap-4 rounded-[8px] border border-[#dce4f0] bg-white px-6 py-5 text-[#071d55] transition-colors duration-300 hover:bg-[#f6f8fc]"
               >
                 <MailIcon />
                 <span className="flex flex-col">
-                  <span className="text-sm font-bold tracking-[0.06em] text-white/48 md:text-[0.95rem]">{contact.secondaryCta.label}</span>
-                  <span className="text-[1.12rem] font-bold leading-snug md:text-[1.28rem]">{contact.emailDisplay}</span>
+                  <span className="text-sm font-bold tracking-[0.06em] text-[#071d55]/58 md:text-[0.95rem]">{contact.secondaryCta.label}</span>
+                  <span className="text-[1.12rem] font-bold leading-snug text-[#071d55] md:text-[1.28rem]">{contact.emailDisplay}</span>
                 </span>
               </a>
             </div>

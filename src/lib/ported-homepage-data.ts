@@ -1,5 +1,3 @@
-import { ctaLinks } from "@/lib/site-config";
-
 export type PortedNavItem = {
   label: string;
   href: string;
@@ -81,8 +79,8 @@ export const portedHomepageData = {
     clusterImage: "/assets/user/hero-pizza-main-object-trim.webp",
     clusterAlt: "최강피자 대표 메뉴 실사 이미지",
     primaryCta: {
-      label: "메뉴 주문하기",
-      href: ctaLinks.websiteHref,
+      label: "대표 메뉴 보기",
+      href: "#menu-section",
     },
     secondaryCta: {
       label: "브랜드 영상 보기",

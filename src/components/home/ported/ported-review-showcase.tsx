@@ -73,8 +73,8 @@ function ReviewSlideRow({
   const baseSlides = reduceMotion ? slides.slice(0, 5) : slides;
 
   const renderCard = (slide: PortedReviewShowcaseData["slides"][number], index: number, group: string) => (
-    <div key={`${group}-${slide.image}-${index}`} className="w-[24rem] shrink-0 sm:w-[27rem] lg:w-[31rem] xl:w-[33.5rem]">
-      <div className="relative h-[18.5rem] overflow-hidden rounded-[8px] border border-[#dde4ee] bg-white shadow-[0_16px_44px_rgba(34,45,66,0.08)] sm:h-[21rem] lg:h-[24rem] xl:h-[25rem]">
+    <div key={`${group}-${slide.image}-${index}`} className="w-[17.5rem] shrink-0 sm:w-[22rem] lg:w-[31rem] xl:w-[33.5rem]">
+      <div className="relative h-[13.6rem] overflow-hidden rounded-[8px] border border-[#dde4ee] bg-white shadow-[0_16px_44px_rgba(34,45,66,0.08)] sm:h-[17rem] lg:h-[24rem] xl:h-[25rem]">
         <Image
           src={slide.image}
           alt=""
@@ -143,37 +143,37 @@ export function PortedReviewShowcase({
       className="relative isolate scroll-mt-24 overflow-hidden bg-[#edf2f8] text-white"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-        <div className="absolute inset-x-[-44rem] top-1/2 -translate-y-1/2 lg:inset-x-[-52rem]">
-          <div className="flex flex-col gap-6 sm:gap-7 lg:gap-8">
+        <div className="absolute inset-x-[-27rem] top-1/2 -translate-y-1/2 sm:inset-x-[-36rem] lg:inset-x-[-52rem]">
+          <div className="flex flex-col gap-4 sm:gap-7 lg:gap-8">
             <ReviewSlideRow
               slides={topRowSlides}
               direction="left"
               duration={92}
               reduceMotion={Boolean(shouldReduceMotion)}
-              offsetClass="translate-x-[6rem] sm:translate-x-[8rem] lg:translate-x-[10rem]"
+              offsetClass="translate-x-[2.75rem] sm:translate-x-[6rem] lg:translate-x-[10rem]"
             />
             <ReviewSlideRow
               slides={bottomRowSlides}
               direction="right"
               duration={100}
               reduceMotion={Boolean(shouldReduceMotion)}
-              offsetClass="-translate-x-[12rem] sm:-translate-x-[14rem] lg:-translate-x-[16rem]"
+              offsetClass="-translate-x-[6rem] sm:-translate-x-[12rem] lg:-translate-x-[16rem]"
             />
           </div>
         </div>
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(237,242,248,0.18)_0%,rgba(237,242,248,0.24)_100%),radial-gradient(circle_at_24%_46%,rgba(7,29,85,0.1),transparent_25%),radial-gradient(circle_at_82%_24%,rgba(239,65,54,0.08),transparent_22%)]" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[74vh] w-full max-w-[1680px] items-center justify-center px-4 py-14 md:min-h-[80vh] md:px-6 md:py-16 lg:min-h-[88vh] lg:py-20">
-        <div className="w-full max-w-[31rem] rounded-[8px] border border-[#ffcf00]/22 bg-[#071d55] px-6 py-7 text-center text-white shadow-[0_34px_80px_rgba(7,29,85,0.28)] md:px-8 md:py-8 lg:max-w-[33rem] lg:px-9 lg:py-9">
+      <div className="relative mx-auto flex min-h-[62vh] w-full max-w-[1680px] items-center justify-center px-4 py-14 md:min-h-[80vh] md:px-6 md:py-16 lg:min-h-[88vh] lg:py-20">
+        <div className="w-full max-w-[22rem] rounded-[8px] border border-[#ffcf00]/22 bg-[#071d55] px-5 py-6 text-center text-white shadow-[0_34px_80px_rgba(7,29,85,0.28)] md:max-w-[31rem] md:px-8 md:py-8 lg:max-w-[33rem] lg:px-9 lg:py-9">
           <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#ef4136]">{headlineTop}</p>
 
-          <h3 className="mt-4 text-[2.8rem] font-black leading-[0.92] text-white md:text-[4.2rem] lg:text-[4.7rem]">
+          <h3 className="mt-4 text-[2.35rem] font-black leading-[0.92] text-white md:text-[4.2rem] lg:text-[4.7rem]">
             <span className="block">{bottomLead}</span>
             <span className="mt-2 block text-[#ef4136]">2억 달성</span>
           </h3>
 
-          <p className="mx-auto mt-5 max-w-[23rem] text-[0.98rem] font-medium leading-relaxed text-white/74 md:text-[1.04rem]">
+          <p className="mx-auto mt-5 max-w-[18rem] text-[0.9rem] font-medium leading-relaxed text-white/74 md:max-w-[23rem] md:text-[1.04rem]">
             {reviewShowcase.description.split(" 최강피자의 ").map((part, index) => (
               <span key={index}>
                 {index === 0 ? `${part} ` : `최강피자의 ${part}`}

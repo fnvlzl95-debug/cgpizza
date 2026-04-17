@@ -60,17 +60,22 @@ export function PortedValueStrip({ items, message, sectionId }: PortedValueStrip
   if (!items) return null;
 
   return (
-    <section id={sectionId} className="border-y-2 border-black/5 bg-[#ffcf00] py-8 text-[#001540]">
+    <section id={sectionId} className="scroll-mt-24 border-y-2 border-black/5 bg-[#ffcf00] py-6 text-[#001540] md:py-8">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-8">
           {items.map((item, index) => (
-            <div key={item.title} className="group relative flex items-center justify-center gap-4 md:justify-start">
-              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#001540] text-[#ffcf00] shadow-lg transition-transform group-hover:scale-110">
+            <div
+              key={item.title}
+              className="group relative flex min-h-[8.4rem] flex-col items-center justify-center rounded-[8px] bg-white/20 px-3 py-4 text-center md:min-h-0 md:flex-row md:justify-start md:gap-4 md:bg-transparent md:px-0 md:py-0 md:text-left"
+            >
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#001540] text-[#ffcf00] shadow-lg transition-transform group-hover:scale-110">
                 <FeatureIcon type={item.icon} />
               </div>
-              <div className="hidden sm:block">
-                <h4 className="text-lg font-black leading-none">{item.title}</h4>
-                <p className="mt-1 text-xs font-medium italic text-[#001540]/60">{item.description}</p>
+              <div className="mt-3 md:mt-0">
+                <h4 className="text-[0.98rem] font-black leading-tight md:text-lg md:leading-none">{item.title}</h4>
+                <p className="mt-1 text-[0.76rem] font-medium leading-snug text-[#001540]/72 md:text-xs md:italic md:text-[#001540]/60">
+                  {item.description}
+                </p>
               </div>
               {index < items.length - 1 ? <div className="absolute right-[-1rem] hidden h-8 w-px rotate-12 bg-[#001540]/10 md:block" /> : null}
             </div>

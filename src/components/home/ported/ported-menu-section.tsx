@@ -32,26 +32,28 @@ function MenuArrow({
 
 function MenuCard({
   item,
+  compact = false,
 }: {
   item: (typeof portedHomepageData.menu.items)[number];
+  compact?: boolean;
 }) {
   const isSignature = item.badge === "SIGNATURE";
   const hasBadge = Boolean(item.badge);
 
   return (
     <div
-      className={`relative w-full px-1 py-12 transition-all duration-300 lg:px-2 lg:py-14 ${
+      className={`relative w-full px-1 py-8 transition-all duration-300 lg:px-2 lg:py-14 ${
         isSignature ? "z-10 md:scale-[1.03]" : "hover:-translate-y-2"
       }`}
     >
       {isSignature ? (
-        <div className="absolute left-1/2 top-12 z-30 -translate-x-1/2 -translate-y-1/2">
+        <div className="absolute left-1/2 top-8 z-30 -translate-x-1/2 -translate-y-1/2 lg:top-12">
           <Image
             src="/assets/user/logo-mark-blue.png"
             alt="최강피자 로고"
             width={108}
             height={108}
-            className="h-20 w-20 object-contain drop-shadow-md lg:h-[108px] lg:w-[108px]"
+            className="h-[4.6rem] w-[4.6rem] object-contain drop-shadow-md lg:h-[108px] lg:w-[108px]"
           />
         </div>
       ) : null}
@@ -63,10 +65,10 @@ function MenuCard({
             : "bg-white shadow-lg hover:shadow-2xl"
         }`}
       >
-        <div className="absolute left-5 top-5 z-20 flex flex-col gap-1.5">
+        <div className="absolute left-4 top-4 z-20 flex flex-col gap-1.5 lg:left-5 lg:top-5">
           {hasBadge && !isSignature ? (
             <div
-              className={`flex h-14 w-14 flex-col items-center justify-center rounded-full text-white shadow-lg ${
+              className={`flex h-12 w-12 flex-col items-center justify-center rounded-full text-white shadow-lg lg:h-14 lg:w-14 ${
                 item.badge === "BEST" ? "bg-[#ef4136]" : "bg-[#ffcf00] text-[#001540]"
               }`}
             >
@@ -75,13 +77,13 @@ function MenuCard({
             </div>
           ) : null}
           {isSignature ? (
-            <div className="rounded-full border border-[#ffcf00]/30 bg-[#001540] px-5 py-2.5 text-[15px] font-black leading-none text-[#ffcf00] shadow-lg">
+            <div className="rounded-full border border-[#ffcf00]/30 bg-[#001540] px-4 py-2 text-[13px] font-black leading-none text-[#ffcf00] shadow-lg lg:px-5 lg:py-2.5 lg:text-[15px]">
               최강피자
             </div>
           ) : null}
         </div>
 
-        <div className="relative h-[23rem] overflow-hidden sm:h-[25rem] lg:h-[28rem]">
+        <div className={`relative overflow-hidden ${compact ? "h-[17.5rem] sm:h-[20rem]" : "h-[23rem] sm:h-[25rem] lg:h-[28rem]"}`}>
           <Image
             src={item.image}
             alt={item.title}
@@ -91,11 +93,19 @@ function MenuCard({
           />
         </div>
 
-        <div className={`p-8 text-left sm:p-9 lg:p-10 ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
-          <h3 className={`mb-3 text-[1.8rem] font-black leading-tight lg:text-[2.1rem] ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
+        <div className={`text-left ${compact ? "p-6 sm:p-7" : "p-8 sm:p-9 lg:p-10"} ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
+          <h3 className={`mb-3 font-black leading-tight ${compact ? "text-[1.55rem] sm:text-[1.8rem]" : "text-[1.8rem] lg:text-[2.1rem]"} ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
             {item.title}
           </h3>
-          <p className={`text-[1.05rem] leading-relaxed ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
+          <p className={`text-[0.98rem] leading-relaxed sm:text-[1.02rem] ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
+          <div className="mt-5 flex items-end justify-between gap-4">
+            <p className={`text-[1.2rem] font-black leading-none sm:text-[1.4rem] ${isSignature ? "text-white" : "text-[#001540]"}`}>
+              {item.price}
+            </p>
+            <p className={`text-right text-[0.76rem] font-semibold leading-snug sm:text-[0.82rem] ${isSignature ? "text-[#ffcf00]/78" : "text-[#001540]/48"}`}>
+              {item.note}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -143,18 +153,24 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
   };
 
   return (
-    <section id="menu-section" className="relative overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-screen md:items-center md:py-20">
+    <section id="menu-section" className="relative scroll-mt-24 overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-screen md:items-center md:py-20">
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-20 w-[145%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white" />
       <div className="mx-auto w-full max-w-[1720px] px-4 lg:px-6">
         <div className="mb-4 inline-block rounded-full bg-[#ef4136] px-4 py-1 text-xs font-bold text-white">
           ♦ {menu.eyebrow}
         </div>
 
-        <h2 className="mb-4 text-4xl font-black text-[#001540] md:text-5xl">{menu.title}</h2>
+        <h2 className="text-balance mx-auto mb-4 max-w-[9.5ch] text-[2.2rem] font-black leading-[1.02] text-[#001540] md:max-w-none md:text-5xl">
+          {menu.title}
+        </h2>
 
-        <p className="mb-10 font-medium text-gray-500 md:mb-12">{menu.description}</p>
+        <p className="mx-auto mb-4 max-w-[20rem] text-sm font-medium leading-relaxed text-gray-500 sm:max-w-xl sm:text-base md:mb-12">
+          {menu.description}
+        </p>
 
-        <div className="relative px-5 sm:px-8 lg:px-12">
+        <p className="mb-6 text-[0.82rem] font-semibold text-[#001540]/42 md:hidden">좌우로 넘겨서 메뉴를 확인하세요</p>
+
+        <div className="relative hidden px-5 md:block md:px-8 lg:px-12">
           {canSlide && !isAtStart ? <MenuArrow direction="left" onClick={() => movePage(-1)} /> : null}
           {canSlide && !isAtEnd ? <MenuArrow direction="right" onClick={() => movePage(1)} /> : null}
 
@@ -195,6 +211,16 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
               ))}
             </div>
           ) : null}
+        </div>
+
+        <div className="-mx-4 overflow-x-auto px-4 pb-2 md:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex w-max snap-x snap-mandatory gap-4 pr-4">
+            {menu.items.map((item) => (
+              <div key={item.title} className="w-[min(84vw,22rem)] shrink-0 snap-center">
+                <MenuCard item={item} compact />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

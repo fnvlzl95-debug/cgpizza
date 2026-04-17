@@ -1,6 +1,7 @@
 "use client";
 
 import type { MouseEvent, ReactNode } from "react";
+import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { PlayIcon } from "@/components/home/reference/reference-primitives";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
@@ -51,7 +52,7 @@ function InfoBox({
   body: string;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
+    <div className="flex min-h-[5.3rem] items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
       <div className="rounded-lg bg-[#001540]/40 p-2">
         {icon}
       </div>
@@ -107,35 +108,43 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
       id="top"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#08215d] pt-20"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#08215d] pt-[4.5rem] pb-20 md:min-h-screen md:pt-20 md:pb-0"
     >
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 px-4 md:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:gap-12">
-        <div className="relative z-20">
-          <div className="mb-6 flex gap-2">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 md:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:gap-12">
+        <div className="relative z-20 min-w-0 py-7 md:py-0">
+          <div className="mb-5 flex gap-2">
             {[1, 2, 3, 4].map((item) => (
-              <span key={item} className="text-2xl text-[#ffcf00]">
+              <span key={item} className="text-xl text-[#ffcf00] md:text-2xl">
                 ✦
               </span>
             ))}
           </div>
 
-          <h1 className="mb-8 text-5xl font-black leading-[1.04] text-white md:text-[5.4rem] lg:text-[6rem]">
+          <h1 className="mb-6 max-w-[8ch] text-[3.75rem] font-black leading-[0.95] text-white sm:text-[4.25rem] md:mb-8 md:max-w-none md:text-[5.4rem] lg:text-[6rem]">
             {hero.title[0]} <span className="text-[#ffcf00]">{hero.title[1]}</span>
             <br />
             {hero.title[2]}
           </h1>
 
-          <p className="mb-10 max-w-lg text-lg font-medium leading-relaxed text-[#ffcf00]/80 md:text-xl">
+          <p className="mb-8 max-w-[18rem] text-[1.05rem] font-medium leading-[1.65] text-[#ffcf00]/80 sm:max-w-lg sm:text-lg md:mb-10 md:text-xl">
             {hero.description}
           </p>
 
-          <div className="mb-12 flex flex-wrap gap-4">
+          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mb-12">
+            <motion.a
+              whileHover={{ scale: 1.03, backgroundColor: "#ffe066" }}
+              whileTap={{ scale: 0.98 }}
+              href={hero.primaryCta.href}
+              className="inline-flex min-h-[3.7rem] items-center justify-center rounded-full bg-[#ffcf00] px-7 py-4 text-base font-black text-[#001540] shadow-[0_18px_40px_rgba(255,207,0,0.2)] md:min-h-[4rem] md:px-8 md:text-lg"
+            >
+              {hero.primaryCta.label}
+            </motion.a>
             <motion.button
-              whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,0.1)" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.08)" }}
+              whileTap={{ scale: 0.98 }}
               type="button"
               onClick={onOpenBrandModal}
-              className="flex items-center gap-3 rounded-full border-2 border-white/30 px-8 py-4 text-lg font-bold text-white backdrop-blur-sm"
+              className="flex min-h-[3.7rem] items-center justify-center gap-3 rounded-full border-2 border-white/22 px-6 py-4 text-base font-bold text-white backdrop-blur-sm md:min-h-[4rem] md:px-8 md:text-lg"
             >
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#002266]">
                 <PlayIcon className="ml-0.5 h-4 w-4 text-white" />
@@ -144,7 +153,24 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
             </motion.button>
           </div>
 
-          <div id="store-section" className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+          <div className="relative mx-auto mb-8 w-full max-w-[25rem] md:hidden">
+            <div className="pointer-events-none absolute right-2 top-3 z-10 flex h-[4.5rem] w-[4.5rem] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
+              <span className="text-[8px] font-bold tracking-widest">★★★</span>
+              <span className="text-[0.95rem] font-black">{hero.badge}</span>
+            </div>
+            <div className="relative mx-auto aspect-[1.08/1] w-full max-w-[22rem]">
+              <Image
+                src={hero.clusterImage}
+                alt={hero.clusterAlt}
+                fill
+                priority
+                sizes="(max-width: 767px) 88vw, 0px"
+                className="object-contain drop-shadow-[0_24px_28px_rgba(0,0,0,0.42)]"
+              />
+            </div>
+          </div>
+
+          <div id="store-section" className="scroll-mt-24 grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
             {hero.infoCards.map((card) => (
               <InfoBox
                 key={card.title}
