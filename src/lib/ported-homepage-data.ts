@@ -22,8 +22,6 @@ export type PortedMenuItem = {
   badge?: PortedMenuBadge;
   title: string;
   description: string;
-  price: string;
-  note: string;
   image: string;
   featured?: boolean;
 };
@@ -134,81 +132,59 @@ export const portedHomepageData = {
         badge: "BEST",
         title: "페퍼로니 피자",
         description: "짭짤한 페퍼로니의 클래식",
-        price: "17,900원",
-        note: "페퍼로니의 풍미",
         image: "/assets/user/menu/pepperoni-pizza.webp",
       },
       {
         badge: "SIGNATURE",
         title: "최강 콤비네이션",
         description: "최강피자 대표 토핑 조합을 한 판에 담은 시그니처",
-        price: "가격 문의",
-        note: "브랜드 시그니처",
         image: "/assets/user/menu/choigang-combination.webp",
         featured: true,
       },
       {
         title: "베이컨 포테이토",
         description: "고소한 감자와 베이컨이 꽉 찬 든든한 조합",
-        price: "18,900원",
-        note: "포만감 좋은 조합",
         image: "/assets/user/menu/bacon-potato.webp",
       },
       {
         title: "포테이토 피자",
         description: "감자 토핑이 가득한 든든한 한 판",
-        price: "18,900원",
-        note: "담백한 감자 토핑",
         image: "/assets/user/menu/potato-pizza.webp",
       },
       {
         badge: "NEW",
         title: "딥치즈 베이컨",
         description: "진한 치즈와 베이컨 풍미를 묵직하게 담은 메뉴",
-        price: "가격 문의",
-        note: "딥치즈 조합",
         image: "/assets/user/menu/deep-cheese-bacon.webp",
       },
       {
         title: "베이컨 할라피뇨",
         description: "베이컨과 할라피뇨가 만드는 매콤한 밸런스",
-        price: "가격 문의",
-        note: "매콤한 인기 메뉴",
         image: "/assets/user/menu/bacon-jalapeno.webp",
       },
       {
         title: "수제 소불고기",
         description: "달콤짭짤한 소불고기 풍미를 듬뿍 올린 한 판",
-        price: "가격 문의",
-        note: "불고기 풍미",
         image: "/assets/user/menu/handmade-bulgogi.webp",
       },
       {
         title: "수제 고추 소불고기",
         description: "고추의 매콤함과 소불고기의 감칠맛을 함께 담은 메뉴",
-        price: "가격 문의",
-        note: "매콤한 불고기",
         image: "/assets/user/menu/handmade-hot-bulgogi.webp",
       },
       {
         title: "고르곤졸라",
         description: "고르곤졸라의 진한 풍미를 깔끔하게 즐기는 피자",
-        price: "가격 문의",
-        note: "치즈 풍미",
         image: "/assets/user/menu/gorgonzola.webp",
       },
       {
         title: "딥치즈",
         description: "치즈 풍미를 진하게 채운 클래식 치즈 메뉴",
-        price: "가격 문의",
-        note: "치즈 클래식",
         image: "/assets/user/menu/deep-cheese.webp",
       },
       {
         title: "파인애플 피자",
         description: "달콤한 파인애플이 살아있는 한 판",
-        price: "18,900원",
-        note: "상큼한 단맛 포인트",
         image: "/assets/user/menu/pineapple-pizza.webp",
       },
     ] satisfies PortedMenuItem[],

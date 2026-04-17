@@ -42,12 +42,12 @@ function MenuCard({
 
   return (
     <div
-      className={`relative w-full px-1 py-8 transition-all duration-300 lg:px-2 lg:py-14 ${
+      className={`relative w-full px-1 py-6 transition-all duration-300 lg:px-2 lg:py-10 ${
         isSignature ? "z-10 md:scale-[1.03]" : "hover:-translate-y-2"
       }`}
     >
       {isSignature ? (
-        <div className="absolute left-1/2 top-8 z-30 -translate-x-1/2 -translate-y-1/2 lg:top-12">
+        <div className="absolute left-1/2 top-7 z-30 -translate-x-1/2 -translate-y-1/2 lg:top-10">
           <Image
             src="/assets/user/logo-mark-blue.png"
             alt="최강피자 로고"
@@ -59,7 +59,7 @@ function MenuCard({
       ) : null}
 
       <div
-        className={`relative h-full overflow-hidden rounded-[2rem] transition-all duration-300 ${
+        className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] transition-all duration-300 ${
           isSignature
             ? "bg-[#001540] ring-4 ring-[#ffcf00] shadow-2xl"
             : "bg-white shadow-lg hover:shadow-2xl"
@@ -83,7 +83,7 @@ function MenuCard({
           ) : null}
         </div>
 
-        <div className={`relative overflow-hidden ${compact ? "h-[17.5rem] sm:h-[20rem]" : "h-[23rem] sm:h-[25rem] lg:h-[28rem]"}`}>
+        <div className={`relative overflow-hidden ${compact ? "h-[17.5rem] sm:h-[19rem]" : "h-[22rem] sm:h-[24rem] lg:h-[26.5rem]"}`}>
           <Image
             src={item.image}
             alt={item.title}
@@ -93,18 +93,12 @@ function MenuCard({
           />
         </div>
 
-        <div className={`text-left ${compact ? "p-6 sm:p-7" : "p-8 sm:p-9 lg:p-10"} ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
-          <h3 className={`mb-3 font-black leading-tight ${compact ? "text-[1.55rem] sm:text-[1.8rem]" : "text-[1.8rem] lg:text-[2.1rem]"} ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
-            {item.title}
-          </h3>
-          <p className={`text-[0.98rem] leading-relaxed sm:text-[1.02rem] ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
-          <div className="mt-5 flex items-end justify-between gap-4">
-            <p className={`text-[1.2rem] font-black leading-none sm:text-[1.4rem] ${isSignature ? "text-white" : "text-[#001540]"}`}>
-              {item.price}
-            </p>
-            <p className={`text-right text-[0.76rem] font-semibold leading-snug sm:text-[0.82rem] ${isSignature ? "text-[#ffcf00]/78" : "text-[#001540]/48"}`}>
-              {item.note}
-            </p>
+        <div className={`flex min-h-[9.75rem] flex-1 flex-col justify-center text-left ${compact ? "p-5 sm:p-6" : "p-7 sm:p-8 lg:min-h-[11rem] lg:p-9"} ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
+          <div>
+            <h3 className={`mb-3 font-black leading-tight ${compact ? "text-[1.55rem] sm:text-[1.8rem]" : "text-[1.8rem] lg:text-[2.1rem]"} ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
+              {item.title}
+            </h3>
+            <p className={`min-h-[3.2em] text-[0.98rem] leading-relaxed sm:text-[1.02rem] ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
           </div>
         </div>
       </div>
@@ -216,7 +210,7 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
         <div className="-mx-4 overflow-x-auto px-4 pb-2 md:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
           <div className="flex w-max snap-x snap-mandatory gap-4 pr-4">
             {menu.items.map((item) => (
-              <div key={item.title} className="w-[min(84vw,22rem)] shrink-0 snap-center">
+              <div key={item.title} className="w-[min(88vw,23.5rem)] shrink-0 snap-center">
                 <MenuCard item={item} compact />
               </div>
             ))}
