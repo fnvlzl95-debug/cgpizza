@@ -61,7 +61,7 @@ export const portedHomepageData = {
     title: "최강피자 | 소화가 잘되는 맛있는 피자",
     description:
       "소화가 잘되는 맛있는 피자, 최고의 재료와 최강의 맛을 선사하는 최강피자 부천본점 랜딩페이지입니다.",
-    ogImage: "/assets/user/hero-collage.webp",
+    ogImage: "/assets/user/share-preview-navy-logo.jpg",
   },
   navItems: [
     { label: "메뉴", href: "#menu-section" },
