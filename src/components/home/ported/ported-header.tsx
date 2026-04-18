@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedHeaderProps = {
@@ -10,16 +9,10 @@ type PortedHeaderProps = {
 };
 
 export function PortedHeader({ navItems }: PortedHeaderProps) {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#002266]/30 bg-[#002266]/84 text-white backdrop-blur-md">
       <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between px-4 md:h-[5.25rem]">
-        <Link
-          href="#top"
-          className="group flex min-w-0 items-center gap-0 text-white"
-          onClick={() => setMobileMenuOpen(false)}
-        >
+        <Link href="#top" className="group flex min-w-0 items-center gap-0 text-white">
           <span className="relative h-[64px] w-[64px] shrink-0 overflow-hidden md:h-[82px] md:w-[82px]">
             <Image
               src="/assets/user/logo-mark-gold.png"
@@ -46,47 +39,15 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
 
         <div className="hidden md:block md:w-[82px]" />
 
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center md:hidden">
           <a
-            href="#contact-section"
-            className="inline-flex h-10 items-center rounded-full bg-[#ffcf00] px-4 text-sm font-black text-[#001540] shadow-[0_8px_22px_rgba(255,207,0,0.25)]"
+            href="#contact-cta-section"
+            className="inline-flex h-10 items-center rounded-full bg-[#ffcf00] px-4 text-sm font-black text-[#041544] shadow-[0_8px_22px_rgba(255,207,0,0.25)] hover:text-[#041544]"
           >
             가맹문의
           </a>
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen((open) => !open)}
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-global-nav"
-            aria-label={mobileMenuOpen ? "메뉴 닫기" : "메뉴 열기"}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-white/8 text-white"
-          >
-            <span className="flex flex-col gap-1.5">
-              <span className={`block h-0.5 w-4 rounded-full bg-current transition-transform ${mobileMenuOpen ? "translate-y-2 rotate-45" : ""}`} />
-              <span className={`block h-0.5 w-4 rounded-full bg-current transition-opacity ${mobileMenuOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-0.5 w-4 rounded-full bg-current transition-transform ${mobileMenuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
-            </span>
-          </button>
         </div>
       </div>
-
-      {mobileMenuOpen ? (
-        <div id="mobile-global-nav" className="border-t border-white/10 bg-[#03184c]/96 px-4 py-4 md:hidden">
-          <nav className="grid gap-2">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-[8px] border border-white/10 bg-white/6 px-4 py-3 text-sm font-bold text-white"
-              >
-                <span>{item.label}</span>
-                <span className="text-[#ffcf00]">→</span>
-              </a>
-            ))}
-          </nav>
-        </div>
-      ) : null}
     </header>
   );
 }

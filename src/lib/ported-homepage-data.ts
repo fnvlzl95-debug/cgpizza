@@ -59,11 +59,11 @@ export const portedHomepageData = {
     ogImage: "/assets/user/share-preview-og-v2-1200x630.png",
   },
   navItems: [
-    { label: "메뉴", href: "#menu-section" },
-    { label: "이벤트", href: "#event-section" },
+    { label: "브랜드", href: "#top" },
     { label: "매장안내", href: "#store-section" },
-    { label: "리뷰", href: "#review-section" },
-    { label: "가맹문의", href: "#contact-section" },
+    { label: "대표 메뉴", href: "#menu-section" },
+    { label: "고객 리뷰", href: "#review-section" },
+    { label: "가맹문의", href: "#contact-cta-section" },
   ] satisfies PortedNavItem[],
   hero: {
     badge: "BEST",

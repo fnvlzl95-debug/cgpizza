@@ -135,7 +135,8 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
               whileHover={{ scale: 1.03, backgroundColor: "#ffe066" }}
               whileTap={{ scale: 0.98 }}
               href={hero.primaryCta.href}
-              className="inline-flex min-h-[3.7rem] items-center justify-center rounded-full bg-[#ffcf00] px-7 py-4 text-base font-black text-[#001540] shadow-[0_18px_40px_rgba(255,207,0,0.2)] md:min-h-[4rem] md:px-8 md:text-lg"
+              className="inline-flex min-h-[3.7rem] items-center justify-center rounded-full bg-[#ffcf00] px-7 py-4 text-base font-black text-[#041544] shadow-[0_18px_40px_rgba(255,207,0,0.2)] hover:text-[#041544] md:min-h-[4rem] md:px-8 md:text-lg"
+              style={{ color: "#041544" }}
             >
               {hero.primaryCta.label}
             </motion.a>
@@ -170,7 +171,7 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
             </div>
           </div>
 
-          <div id="store-section" className="scroll-mt-24 grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
+          <div id="store-section" className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
             {hero.infoCards.map((card) => (
               <InfoBox
                 key={card.title}

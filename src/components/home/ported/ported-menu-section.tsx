@@ -68,8 +68,8 @@ function MenuCard({
         <div className="absolute left-4 top-4 z-20 flex flex-col gap-1.5 lg:left-5 lg:top-5">
           {hasBadge && !isSignature ? (
             <div
-              className={`flex h-12 w-12 flex-col items-center justify-center rounded-full text-white shadow-lg lg:h-14 lg:w-14 ${
-                item.badge === "BEST" ? "bg-[#ef4136]" : "bg-[#ffcf00] text-[#001540]"
+              className={`flex h-12 w-12 flex-col items-center justify-center rounded-full shadow-lg lg:h-14 lg:w-14 ${
+                item.badge === "BEST" ? "bg-[#ef4136] text-white" : "bg-[#ffcf00] text-[#041544]"
               }`}
             >
               <span className="text-[7px] font-bold">★★★</span>
@@ -147,7 +147,7 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
   };
 
   return (
-    <section id="menu-section" className="relative scroll-mt-24 overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-screen md:items-center md:py-20">
+    <section id="menu-section" className="relative overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-screen md:items-center md:py-20">
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-20 w-[145%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white" />
       <div className="mx-auto w-full max-w-[1720px] px-4 lg:px-6">
         <div className="mb-4 inline-block rounded-full bg-[#ef4136] px-4 py-1 text-xs font-bold text-white">
