@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion, useInView, useReducedMotion, type Transition } from "framer-motion";
+import { PortedBrandVideoSection } from "@/components/home/ported/ported-brand-video-section";
 import { useEffect, useRef, useState } from "react";
 import { PortedReviewShowcase } from "@/components/home/ported/ported-review-showcase";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
@@ -526,14 +527,27 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
 
       <PortedReviewShowcase reviewShowcase={contact.reviewShowcase} />
 
-      <div id="contact-cta-section" className="bg-[#071d55] text-white">
-        <div className="mx-auto w-full max-w-[1680px] px-4 py-20 md:px-6 md:py-24">
+      <PortedBrandVideoSection />
+
+      <div id="contact-cta-section" className="relative overflow-hidden bg-[#03060c] text-white">
+        {contact.ctaBackgroundImage ? (
+          <Image
+            src={contact.ctaBackgroundImage}
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        ) : null}
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.6)_0%,rgba(0,0,0,0.48)_24%,rgba(0,0,0,0.72)_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_30%,rgba(0,0,0,0.02)_0%,rgba(0,0,0,0.22)_56%,rgba(0,0,0,0.44)_100%)]" />
+        <div className="relative mx-auto w-full max-w-[1680px] px-4 py-20 md:px-6 md:py-24">
           <div className="mx-auto max-w-5xl text-center">
             <h3 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-white sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.ctaEyebrow} </span>
               <span className="text-[#ffcf00]">가맹 문의</span>
             </h3>
-            <p className="mx-auto mt-2.5 max-w-[21rem] text-[0.95rem] font-medium leading-relaxed text-white/72 md:mt-3 md:max-w-3xl md:text-[1.08rem]">
+            <p className="mx-auto mt-2.5 max-w-[21rem] text-[0.95rem] font-medium leading-relaxed text-white/78 md:mt-3 md:max-w-3xl md:text-[1.08rem]">
               {contact.ctaDescription}
             </p>
           </div>
@@ -555,7 +569,7 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
               </a>
               <a
                 href={contact.secondaryCta.href}
-                className="flex min-h-[6.5rem] items-center gap-4 rounded-[8px] border border-[#dce4f0] bg-white px-6 py-5 text-[#041544] transition-colors duration-300 hover:bg-[#f6f8fc] hover:text-[#041544]"
+                className="flex min-h-[6.5rem] items-center gap-4 rounded-[8px] bg-white px-6 py-5 text-[#041544] transition-colors duration-300 hover:bg-[#f6f8fc] hover:text-[#041544]"
               >
                 <span className="shrink-0 text-[#041544]">
                   <MailIcon />
@@ -569,7 +583,7 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
         </div>
       </div>
 
-      <footer className="border-t border-white/10 bg-[#061433] text-white">
+      <footer className="bg-[#03060c] text-white">
         <div className="mx-auto max-w-[1680px] px-4 py-7 md:px-6 md:py-8">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-3 text-left text-sm leading-relaxed text-white/62 md:text-[0.94rem]">
