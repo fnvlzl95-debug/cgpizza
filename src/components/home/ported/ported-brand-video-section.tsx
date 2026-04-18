@@ -128,8 +128,7 @@ export function PortedBrandVideoSection() {
         <div className="relative mx-auto flex h-full w-full max-w-[1680px] flex-col justify-center gap-6 px-4 py-5 md:px-6 md:py-6 lg:flex-row lg:items-center lg:gap-4 xl:gap-5">
           <div className="relative z-10 mx-auto max-w-[22rem] text-center lg:mx-0 lg:max-w-[35rem] lg:flex-[0_0_41%] lg:text-left">
             <h3 className="text-balance text-[2.16rem] font-black leading-[0.94] tracking-[-0.06em] text-white sm:text-[2.48rem] md:text-[3rem] lg:text-[4rem] xl:text-[4.45rem]">
-              <span className="block">예쁜 광고 대신,</span>
-              <span className="mt-1.5 block text-[#ffcf00]">진짜 주방을</span>
+              <span className="block text-[#ffcf00]">진짜 주방을</span>
               <span className="mt-1.5 block">보여드립니다.</span>
             </h3>
 
@@ -138,7 +137,7 @@ export function PortedBrandVideoSection() {
             </p>
 
             <p className="mx-auto mt-4 max-w-[19.5rem] text-[0.88rem] font-medium leading-[1.7] text-white/64 md:max-w-[22rem] md:text-[0.95rem] lg:mx-0 lg:max-w-[30rem] lg:text-[1.02rem]">
-              사장님들이 핸드폰으로 대충 찍은 흔들리는 화면들. 하지만 그 안에는 꾸미지 않은 진짜 현장의 땀방울과 넘칠 듯 담아내는 재료들의 무게가 있습니다.
+              그 안에는 꾸미지 않은 진짜 현장의 땀방울과 넘칠 듯 담아내는 재료들의 무게가 있습니다.
             </p>
 
             <p className="mx-auto mt-4 max-w-[19rem] text-[0.92rem] font-black leading-[1.56] text-[#ffcf00] md:max-w-[22rem] md:text-[0.98rem] lg:mx-0 lg:max-w-[28rem] lg:text-[1.08rem]">
