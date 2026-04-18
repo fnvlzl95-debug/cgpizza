@@ -28,7 +28,7 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-8 font-medium md:flex">
+        <nav className="hidden items-center gap-5 text-[0.95rem] font-medium md:flex lg:gap-7 lg:text-base">
           {navItems.map((item) => (
             <a key={item.label} href={item.href} className="group relative transition-colors hover:text-[#ffcf00]">
               {item.label}

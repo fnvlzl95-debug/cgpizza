@@ -64,25 +64,83 @@ function HandshakeIcon() {
   );
 }
 
-function ExpandIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" aria-hidden="true">
-      <path d="M5 6.5h9v11H5z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
-      <path d="M14 10h5.5M16.8 7.2v5.6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-      <path d="M7.5 10h4M7.5 13.5h4" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 function FranchiseFeatureIcon({ type }: { type: (typeof portedHomepageData.contact.featureCards)[number]["icon"] }) {
   if (type === "store") return <StoreIcon />;
   if (type === "scooter") return <ScooterIcon />;
-  if (type === "handshake") return <HandshakeIcon />;
-  return <ExpandIcon />;
+  return <HandshakeIcon />;
+}
+
+function ShopInShopSection({
+  section,
+}: {
+  section: typeof portedHomepageData.contact.shopInShopSection;
+}) {
+  return (
+    <section id="shopinshop-section" className="border-t border-white/10 bg-[#061433] text-white">
+      <div className="mx-auto w-full max-w-[1680px] px-4 py-16 md:px-6 md:py-20">
+        <div className="mx-auto max-w-[1560px]">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-start">
+            <div className="max-w-xl">
+              <p className="text-[0.88rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.95rem]">{section.eyebrow}</p>
+              <h3 className="mt-4 max-w-[11ch] text-[2.45rem] font-black leading-[0.94] text-white md:max-w-none md:text-[3.8rem]">
+                {section.title}
+              </h3>
+              <p className="mt-5 max-w-[32rem] text-[1rem] font-medium leading-relaxed text-white/74 md:text-[1.08rem]">
+                {section.description}
+              </p>
+              <p className="mt-6 max-w-[32rem] text-[0.98rem] font-medium leading-relaxed text-white/62 md:text-[1.02rem]">
+                {section.closingNote}
+              </p>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-2">
+              <article className="rounded-[8px] border border-white/10 bg-[#071d55] p-6 shadow-[0_24px_64px_rgba(7,29,85,0.22)]">
+                <p className="text-sm font-black tracking-[0.1em] text-[#ffcf00]">{section.headquartersTitle}</p>
+                <div className="mt-5 space-y-4">
+                  {section.headquartersItems.map((item) => (
+                    <div key={item} className="flex gap-3">
+                      <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#ef4136]" />
+                      <p className="text-base font-medium leading-relaxed text-white/88">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <article className="rounded-[8px] border border-[#d2d9e8] bg-[#f4f5f7] p-6 text-[#111217] shadow-[0_22px_58px_rgba(17,18,23,0.12)]">
+                <p className="text-sm font-black tracking-[0.1em] text-[#071d55]">{section.ownerTitle}</p>
+                <div className="mt-5 space-y-4">
+                  {section.ownerItems.map((item) => (
+                    <div key={item} className="flex gap-3">
+                      <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#ffcf00]" />
+                      <p className="text-base font-medium leading-relaxed text-[#111217]/82">{item}</p>
+                    </div>
+                  ))}
+                </div>
+              </article>
+
+              <div className="border-t border-white/10 pt-5 md:col-span-2">
+                <p className="text-[0.82rem] font-black tracking-[0.14em] text-white/46">공통 효과</p>
+                <div className="mt-4 flex flex-wrap gap-3">
+                  {section.effects.map((effect) => (
+                    <span
+                      key={effect}
+                      className="inline-flex items-center rounded-full bg-[#ffcf00] px-4 py-2 text-[0.92rem] font-black text-[#041544]"
+                    >
+                      {effect}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export function PortedContactBand({ contact }: PortedContactBandProps) {
-  const [smallStoreCard, shopInShopCard, focusedStartupCard, beginnerCard] = contact.featureCards;
+  const [smallStoreCard, focusedStartupCard, beginnerCard] = contact.featureCards;
 
   return (
     <section id="contact-section" className="bg-[#061433]">
@@ -98,8 +156,8 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
             </p>
           </div>
 
-          <div className="mx-auto mt-8 grid max-w-[1200px] gap-4 lg:grid-cols-12 xl:gap-5">
-            <article className="relative aspect-[1.06/1] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] sm:aspect-[4/3] lg:col-span-7">
+          <div className="mx-auto mt-10 grid max-w-[1240px] gap-4 lg:grid-cols-[minmax(0,1.16fr)_minmax(20rem,0.84fr)] lg:items-stretch xl:gap-5">
+            <article className="relative isolate overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] min-h-[24rem] sm:min-h-[29rem] lg:min-h-[36rem]">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
@@ -110,11 +168,12 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,40,0.06)_0%,rgba(15,22,40,0.18)_48%,rgba(15,22,40,0.92)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-5 md:p-7">
+              <div className="relative flex h-full flex-col justify-end p-5 md:p-7 lg:p-8">
                 <div className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_12px_28px_rgba(239,65,54,0.35)]">
                   <FranchiseFeatureIcon type={smallStoreCard.icon} />
                 </div>
-                <h3 className="mt-5 max-w-[16ch] text-[1.9rem] font-black leading-[1.02] text-white md:text-[2.8rem]">
+                <p className="mt-5 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">01</p>
+                <h3 className="mt-3 max-w-[13ch] text-[1.9rem] font-black leading-[1.02] text-white md:text-[2.7rem]">
                   {smallStoreCard.title}
                 </h3>
                 <div className="mt-3 max-w-[28rem] space-y-2 text-sm font-medium leading-relaxed text-white/82 md:text-[1.02rem]">
@@ -125,48 +184,40 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
               </div>
             </article>
 
-            <article className="rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] p-5 text-[#181a21] shadow-[0_24px_58px_rgba(7,29,85,0.12)] lg:col-span-5 md:p-6">
-              <div className="flex h-[64px] w-[64px] items-center justify-center rounded-[18px] bg-[#071d55] text-[#ffcf00]">
-                <FranchiseFeatureIcon type={shopInShopCard.icon} />
-              </div>
-              <h3 className="mt-8 text-[1.9rem] font-black leading-[1.05] md:text-[2.2rem]">{shopInShopCard.title}</h3>
-              <div className="mt-4 space-y-3 text-sm font-medium leading-relaxed text-[#5d606b] md:text-[1.02rem]">
-                {shopInShopCard.lines.map((line) => (
-                  <p key={line}>{line}</p>
-                ))}
-              </div>
-            </article>
+            <div className="grid gap-4 lg:grid-rows-2">
+              <article className="flex h-full min-h-[14rem] flex-col rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] p-5 text-[#181a21] shadow-[0_24px_58px_rgba(7,29,85,0.12)] md:p-6 lg:p-7">
+                <div className="flex h-[64px] w-[64px] items-center justify-center rounded-[18px] bg-[#071d55] text-[#ffcf00]">
+                  <FranchiseFeatureIcon type={focusedStartupCard.icon} />
+                </div>
+                <p className="mt-6 text-[0.84rem] font-black tracking-[0.14em] text-[#ef4136]">02</p>
+                <h3 className="mt-3 max-w-[12ch] text-[1.7rem] font-black leading-[1.06] md:text-[2.1rem]">{focusedStartupCard.title}</h3>
+                <div className="mt-4 space-y-3 text-sm font-medium leading-relaxed text-[#5d606b] md:text-[1.01rem]">
+                  {focusedStartupCard.lines.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                </div>
+              </article>
 
-            <article className="rounded-[8px] bg-[#17181d] p-5 text-white shadow-[0_22px_56px_rgba(17,18,23,0.18)] lg:col-span-5 lg:min-h-[16.5rem] md:p-6">
-              <div className="flex h-[64px] w-[64px] items-center justify-center rounded-[18px] bg-white/8 text-white">
-                <FranchiseFeatureIcon type={focusedStartupCard.icon} />
-              </div>
-              <h3 className="mt-6 text-[1.85rem] font-black leading-[1.05] md:text-[2.15rem]">{focusedStartupCard.title}</h3>
-              <div className="mt-4 space-y-3 text-sm font-medium leading-relaxed text-white/72 md:text-[1rem]">
-                {focusedStartupCard.lines.map((line) => (
-                  <p key={line}>{line}</p>
-                ))}
-              </div>
-            </article>
-
-            <article className="rounded-[8px] bg-[#071d55] p-5 text-white shadow-[0_24px_64px_rgba(7,29,85,0.22)] lg:col-span-7 lg:min-h-[16.5rem] md:p-6">
-              <div className="flex h-full flex-col gap-5 lg:flex-row lg:items-center">
-                <div className="flex h-[78px] w-[78px] shrink-0 items-center justify-center rounded-full bg-white/14 text-white">
+              <article className="flex h-full min-h-[14rem] flex-col rounded-[8px] bg-[#071d55] p-5 text-white shadow-[0_24px_64px_rgba(7,29,85,0.22)] md:p-6 lg:p-7">
+                <div className="flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-white/12 text-white">
                   <FranchiseFeatureIcon type={beginnerCard.icon} />
                 </div>
-                <div className="max-w-4xl">
-                  <h3 className="text-[1.95rem] font-black leading-[1.04] md:text-[2.45rem]">{beginnerCard.title}</h3>
-                  <div className="mt-4 space-y-3 text-sm font-medium leading-relaxed text-white/88 md:text-[1.04rem]">
+                <p className="mt-6 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">03</p>
+                <div className="mt-3 max-w-[28rem]">
+                  <h3 className="max-w-[12ch] text-[1.7rem] font-black leading-[1.06] md:text-[2.1rem]">{beginnerCard.title}</h3>
+                  <div className="mt-4 space-y-3 text-sm font-medium leading-relaxed text-white/86 md:text-[1.01rem]">
                     {beginnerCard.lines.map((line) => (
                       <p key={line}>{line}</p>
                     ))}
                   </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
           </div>
         </div>
       </div>
+
+      <ShopInShopSection section={contact.shopInShopSection} />
 
       <PortedReviewShowcase reviewShowcase={contact.reviewShowcase} />
 
