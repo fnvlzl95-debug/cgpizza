@@ -46,6 +46,27 @@ export type PortedReviewShowcase = {
   slides: PortedReviewShowcaseSlide[];
 };
 
+export type PortedContactFeatureIcon = "store" | "scooter" | "handshake";
+
+export type PortedContactFeatureCard = {
+  title: string;
+  lines: string[];
+  icon: PortedContactFeatureIcon;
+  image?: string;
+};
+
+export type PortedShopInShopSection = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  headquartersTitle: string;
+  headquartersItems: string[];
+  ownerTitle: string;
+  ownerItems: string[];
+  effects: string[];
+  closingNote: string;
+};
+
 const reviewShowcaseSlides = Array.from({ length: 17 }, (_, index) => ({
   image: `/assets/user/reviews/live/review-live-${String(index + 1).padStart(2, "0")}.webp`,
   alt: `최강피자 고객 리뷰 캡처 ${index + 1}`,
@@ -59,11 +80,12 @@ export const portedHomepageData = {
     ogImage: "/assets/user/share-preview-og-v2-1200x630.png",
   },
   navItems: [
-    { label: "메뉴", href: "#menu-section" },
-    { label: "이벤트", href: "#event-section" },
+    { label: "브랜드", href: "#top" },
     { label: "매장안내", href: "#store-section" },
-    { label: "리뷰", href: "#review-section" },
-    { label: "가맹문의", href: "#contact-section" },
+    { label: "대표 메뉴", href: "#menu-section" },
+    { label: "샵인샵", href: "#shopinshop-section" },
+    { label: "고객 리뷰", href: "#review-section" },
+    { label: "가맹문의", href: "#contact-cta-section" },
   ] satisfies PortedNavItem[],
   hero: {
     badge: "BEST",
@@ -196,8 +218,27 @@ export const portedHomepageData = {
   },
   contact: {
     reasonTitle: "최강피자의",
-    reasonHighlight: "성공 비결 4가지",
+    reasonHighlight: "성공 비결 3가지",
     reasonDescription: "거품은 빼고, 실속만 확실하게 채웠습니다.",
+    shopInShopSection: {
+      eyebrow: "샵인샵 운영 구조",
+      title: "본사와 점주가 함께 키우는 샵인샵 구조",
+      description: "기존 공간과 운영 흐름을 크게 흔들지 않으면서, 피자 메뉴를 더해 추가 매출 동선을 만드는 방식입니다.",
+      headquartersTitle: "본사",
+      headquartersItems: [
+        "도입 동선과 운영 흐름 정리",
+        "원팩 기반 조리 매뉴얼 제공",
+        "초기 안착과 판매 운영 지원",
+      ],
+      ownerTitle: "점주",
+      ownerItems: [
+        "기존 장비와 공간 최대 활용",
+        "추가 인력 부담 최소화",
+        "기존 고객 기반에서 부가 매출 확장",
+      ],
+      effects: ["기존 매장 활용", "부가 매출 확대", "운영 부담 최소화"],
+      closingNote: "혼자 버티는 확장이 아니라, 본사 지원과 현장 운영이 함께 맞물리는 구조로 설계합니다.",
+    } satisfies PortedShopInShopSection,
     reviewShowcase: {
       eyebrow: "리뷰로 증명된 최강피자",
       title: "2026년 매출 2억 달성",
@@ -243,21 +284,16 @@ export const portedHomepageData = {
         image: "/assets/user/franchise/small-store-front-updated.webp",
       },
       {
-        title: "샵인샵 매출 펌핑",
-        lines: ["기존 장비를 최대한 활용하고", "피자 메뉴만 더해 부가 매출을 빠르게 만듭니다."],
-        icon: "plus",
-      },
-      {
-        title: "실전형 집중 창업",
-        lines: ["불필요한 인테리어와 홀 운영 부담 없이", "맛과 배달 시스템에만 집중하는 구조입니다."],
+        title: "배달·포장 집중 운영",
+        lines: ["홀 운영보다 회전과 동선에 집중해", "작은 인원으로도 운영 효율을 끌어올릴 수 있습니다."],
         icon: "scooter",
       },
       {
-        title: "초보 창업 무조건 OK",
-        lines: ["정량화된 원팩 시스템과 조리 매뉴얼로", "처음 시작해도 안정적으로 운영할 수 있습니다."],
+        title: "초보 창업 운영 안정성",
+        lines: ["정량화된 원팩 시스템과 조리 매뉴얼로", "처음 시작해도 같은 품질과 속도로 운영할 수 있습니다."],
         icon: "handshake",
       },
-    ],
+    ] satisfies PortedContactFeatureCard[],
     footerRows: [
       ["회사명 : 최강피자 본점", "대표자 : 김현화 / 대표이사 : 김진호"],
       ["주소 : 경기 부천시 원미구 도약로 105 (한라마을주공(3)아파트) 105호"],

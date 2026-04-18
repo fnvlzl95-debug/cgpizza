@@ -2,6 +2,13 @@
 
 :root {
   color-scheme: dark;
+  --header-offset: 76px;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-offset: 84px;
+  }
 }
 
 * {
@@ -10,7 +17,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scroll-padding-top: var(--header-offset);
 }
 
 body {

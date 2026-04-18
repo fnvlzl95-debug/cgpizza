@@ -60,7 +60,7 @@ export function PortedValueStrip({ items, message, sectionId }: PortedValueStrip
   if (!items) return null;
 
   return (
-    <section id={sectionId} className="scroll-mt-24 border-y-2 border-black/5 bg-[#ffcf00] py-6 text-[#001540] md:py-8">
+    <section id={sectionId} className="border-y-2 border-black/5 bg-[#ffcf00] py-6 text-[#001540] md:py-8">
       <div className="mx-auto max-w-7xl px-4">
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-8">
           {items.map((item, index) => (
