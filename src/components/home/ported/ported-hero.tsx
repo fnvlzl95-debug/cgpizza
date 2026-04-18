@@ -154,7 +154,7 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
           </div>
 
           <div className="relative mx-auto mb-8 w-[102vw] max-w-[26rem] md:hidden">
-            <div className="pointer-events-none absolute right-[10%] top-[12%] z-10 flex h-[4.75rem] w-[4.75rem] translate-x-[6%] -translate-y-[8%] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
+            <div className="pointer-events-none absolute right-[5%] top-[9%] z-10 flex h-[4.75rem] w-[4.75rem] translate-x-[14%] -translate-y-[14%] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
               <span className="text-[8px] font-bold tracking-widest">★★★</span>
               <span className="text-[1rem] font-black">{hero.badge}</span>
             </div>
@@ -206,7 +206,7 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
                 }}
                 className="h-auto w-auto max-h-[min(81vh,46rem)] max-w-full object-contain drop-shadow-[0_42px_44px_rgba(0,0,0,0.58)] will-change-transform lg:max-h-[min(82vh,49rem)] 2xl:max-h-[min(90vh,62rem)]"
               />
-              <div className="absolute right-[18%] top-[15%] z-20 flex h-24 w-24 translate-x-[6%] -translate-y-[10%] rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:right-[16%] lg:top-[14%] lg:h-28 lg:w-28 xl:right-[15%] xl:top-[14%] 2xl:right-[14%] 2xl:top-[12%] 2xl:translate-x-[14%] 2xl:-translate-y-[18%]">
+              <div className="absolute right-[24%] top-[16%] z-20 flex h-24 w-24 translate-x-[4%] -translate-y-[4%] rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:right-[23%] lg:top-[15%] lg:h-28 lg:w-28 xl:right-[21%] xl:top-[14%] 2xl:right-[18%] 2xl:top-[12%] 2xl:translate-x-[6%] 2xl:-translate-y-[8%]">
                 <span className="text-[10px] font-bold tracking-widest">★★★</span>
                 <span className="text-xl font-black lg:text-2xl">{hero.badge}</span>
                 <div className="mt-1 h-0.5 w-12 bg-white/30" />
