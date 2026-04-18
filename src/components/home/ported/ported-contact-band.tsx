@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView, useReducedMotion, type Transition } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { PortedReviewShowcase } from "@/components/home/ported/ported-review-showcase";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
@@ -89,7 +89,6 @@ function ThreeWayPanelIcon({
   icon?: (typeof portedHomepageData.contact.threeWaySection.panels)[number]["icon"];
   className: string;
 }) {
-  if (icon === "store") return <StoreIcon className={className} />;
   if (icon === "delivery") return <ScooterIcon className={className} />;
   return <BagIcon className={className} />;
 }
@@ -128,7 +127,7 @@ function ThreeWayPlusCircle({
       transition={{
         duration: stackedLayout ? 0.46 : 0.46,
         delay,
-        ease: "linear",
+        ease: "linear" as const,
       }}
       className="flex h-12 w-12 items-center justify-center self-center rounded-full bg-[#041544] text-[1.9rem] font-black leading-none text-[#ffcf00] shadow-[0_18px_38px_rgba(4,21,68,0.2)] md:h-16 md:w-16 md:text-[2.1rem] xl:h-20 xl:w-20 xl:-translate-y-[0.35rem] xl:text-[2.25rem] xl:place-self-center"
       aria-hidden="true"
@@ -148,7 +147,7 @@ function ShopInShopSection({
     amount: 0.35,
     margin: "0px 0px -12% 0px",
   });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(useReducedMotion());
   const [isMobileStack, setIsMobileStack] = useState(false);
 
   useEffect(() => {
@@ -199,36 +198,38 @@ function ShopInShopSection({
       id="shopinshop-section"
       className="scroll-mt-[5.25rem] border-t border-white/10 bg-[#061433] text-white flex min-h-[calc(100svh-4.75rem)] items-center md:min-h-[calc(100svh-5.25rem)]"
     >
-      <div className="relative mx-auto w-full max-w-[1680px] overflow-hidden px-4 py-8 md:px-6 md:py-20">
+      <div className="relative mx-auto w-full max-w-[1680px] overflow-hidden px-4 py-8 md:px-6 md:py-12 xl:py-14">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-[14%] h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,207,0,0.16)_0%,rgba(255,207,0,0.08)_28%,rgba(255,207,0,0)_72%)] blur-2xl md:top-[16%] md:h-[30rem] md:w-[30rem]"
         />
 
-        <div className="relative mx-auto max-w-6xl text-center">
-          <span className="inline-flex rounded-full border border-[#ffcf00]/18 bg-[#ffcf00]/10 px-4 py-1.5 text-[0.82rem] font-black text-[#ffcf00]">
-            {section.eyebrow}
-          </span>
-
-          <h3 className="mt-5 text-balance text-[2.2rem] font-black leading-[0.96] text-white md:mt-7 md:text-[4.8rem]">
-            <span className="block">{section.titleLead}</span>
-            <span className="mt-2 block bg-[linear-gradient(180deg,#ffcf00_0%,#f5a000_100%)] bg-clip-text text-transparent md:mt-3">
-              {section.titleHighlight}
+        <div className="relative mx-auto max-w-6xl md:grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center md:gap-10">
+          <div className="text-center md:text-left">
+            <span className="inline-flex rounded-full border border-[#ffcf00]/18 bg-[#ffcf00]/10 px-4 py-1.5 text-[0.82rem] font-black text-[#ffcf00]">
+              {section.eyebrow}
             </span>
-          </h3>
+
+            <h3 className="mt-5 text-balance text-[2.2rem] font-black leading-[0.96] text-white md:mt-6 md:text-[3.6rem] xl:text-[4.1rem]">
+              <span className="block">{section.titleLead}</span>
+              <span className="mt-2 block bg-[linear-gradient(180deg,#ffcf00_0%,#f5a000_100%)] bg-clip-text text-transparent md:mt-3">
+                {section.titleHighlight}
+              </span>
+            </h3>
+          </div>
 
           <div
             ref={shopInShopSequenceRef}
-            className="mx-auto mt-7 grid max-w-5xl gap-2.5 md:mt-14 md:gap-5"
+            className="mx-auto mt-7 grid max-w-5xl gap-2.5 md:mt-0 md:max-w-none md:grid-cols-1 md:gap-3.5"
           >
             {section.features.map((feature, index) => {
               const mobileSequenceActive = isMobileStack && (reduceMotion || shopInShopInView);
-              const mobileTransition = reduceMotion
+              const mobileTransition: Transition = reduceMotion
                 ? { duration: 0 }
                 : {
                     duration: 0.52,
                     delay: shopInShopInView ? 0.32 + index * 0.42 : 0,
-                    ease: [0.22, 1, 0.36, 1],
+                    ease: "easeOut",
                   };
 
               return (
@@ -251,7 +252,7 @@ function ShopInShopSection({
                       : undefined
                   }
                   transition={isMobileStack ? mobileTransition : undefined}
-                  className="group relative flex min-h-[5.4rem] flex-row items-center justify-start gap-3 rounded-[8px] border border-transparent px-4 py-3 text-left transition-all duration-300 md:min-h-[12rem] md:flex-col md:items-center md:justify-center md:gap-0 md:px-6 md:py-8 md:text-center md:hover:border-white/8 md:hover:bg-white/[0.04] md:hover:shadow-[0_18px_40px_rgba(0,0,0,0.24)]"
+                  className="group relative flex min-h-[5.4rem] flex-row items-center justify-start gap-3 rounded-[8px] border border-transparent px-4 py-3 text-left transition-all duration-300 md:min-h-[7.4rem] md:flex-row md:items-center md:justify-start md:gap-5 md:px-6 md:py-5 md:text-left md:hover:border-white/8 md:hover:bg-white/[0.04] md:hover:shadow-[0_18px_40px_rgba(0,0,0,0.24)]"
                 >
                   <motion.div
                     initial={false}
@@ -263,7 +264,7 @@ function ShopInShopSection({
                         : undefined
                     }
                     transition={isMobileStack ? mobileTransition : undefined}
-                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] transition-all duration-300 md:mb-7 md:h-14 md:w-14 md:rounded-[14px] md:group-hover:bg-[#ffcf00]/10"
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] transition-all duration-300 md:h-14 md:w-14 md:rounded-[14px] md:group-hover:bg-[#ffcf00]/10"
                   >
                     <FeatureIcon
                       icon={feature.icon}
@@ -282,7 +283,7 @@ function ShopInShopSection({
                           : undefined
                       }
                       transition={isMobileStack ? mobileTransition : undefined}
-                      className="text-[1.08rem] font-black leading-tight text-white/84 transition-colors duration-300 md:text-[1.95rem] md:group-hover:text-white"
+                      className="text-[1.08rem] font-black leading-tight text-white/84 transition-colors duration-300 md:text-[1.5rem] md:group-hover:text-white"
                     >
                       {feature.title}
                     </motion.p>
@@ -296,7 +297,7 @@ function ShopInShopSection({
                           : undefined
                       }
                       transition={isMobileStack ? mobileTransition : undefined}
-                      className="mt-1 text-[0.82rem] font-black text-[#ffcf00]/88 transition-colors duration-300 md:mt-4 md:text-[1rem] md:group-hover:text-[#ffcf00]"
+                      className="mt-1 text-[0.82rem] font-black text-[#ffcf00]/88 transition-colors duration-300 md:mt-1.5 md:text-[0.95rem] md:group-hover:text-[#ffcf00]"
                     >
                       {feature.accent}
                     </motion.p>
@@ -324,7 +325,7 @@ function ThreeWaySection({
     amount: isXlLayout ? 0.32 : 0.08,
     margin: isXlLayout ? "0px 0px -12% 0px" : "0px 0px -6% 0px",
   });
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = Boolean(useReducedMotion());
   const [introPanel, deliveryPanel, takeoutPanel] = section.panels;
 
   useEffect(() => {
@@ -356,7 +357,7 @@ function ThreeWaySection({
     transition: {
       duration: stackedLayout ? 0.46 : 0.46,
       delay,
-      ease: "linear",
+      ease: "linear" as const,
     },
   });
 
