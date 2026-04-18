@@ -1,7 +1,6 @@
 "use client";
 
-import type { MouseEvent, PointerEvent } from "react";
-import { useRef } from "react";
+import type { MouseEvent } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
@@ -11,7 +10,6 @@ type PortedHeroProps = {
 };
 
 export function PortedHero({ hero }: PortedHeroProps) {
-  const isMobileDraggingRef = useRef(false);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
   const rotateZ = useMotionValue(0);
@@ -71,43 +69,6 @@ export function PortedHero({ hero }: PortedHeroProps) {
     resetTilt();
   };
 
-  const handlePizzaPointerDown = (event: PointerEvent<HTMLDivElement>) => {
-    if (window.innerWidth >= 768) return;
-
-    isMobileDraggingRef.current = true;
-    event.currentTarget.setPointerCapture?.(event.pointerId);
-
-    applyTilt({
-      clientX: event.clientX,
-      clientY: event.clientY,
-      rect: event.currentTarget.getBoundingClientRect(),
-      mobile: true,
-    });
-  };
-
-  const handlePizzaPointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (window.innerWidth >= 768 || !isMobileDraggingRef.current) return;
-
-    applyTilt({
-      clientX: event.clientX,
-      clientY: event.clientY,
-      rect: event.currentTarget.getBoundingClientRect(),
-      mobile: true,
-    });
-  };
-
-  const handlePizzaPointerEnd = (event: PointerEvent<HTMLDivElement>) => {
-    if (window.innerWidth >= 768) return;
-
-    isMobileDraggingRef.current = false;
-
-    if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
-      event.currentTarget.releasePointerCapture(event.pointerId);
-    }
-
-    resetTilt();
-  };
-
   return (
     <section
       id="top"
@@ -141,21 +102,7 @@ export function PortedHero({ hero }: PortedHeroProps) {
               <span className="text-[8px] font-bold tracking-widest">★★★</span>
               <span className="text-[1rem] font-black">{hero.badge}</span>
             </div>
-            <motion.div
-              style={{
-                rotateX: smoothRotateX,
-                rotateY: smoothRotateY,
-                rotateZ: smoothRotateZ,
-                transformPerspective: 1200,
-                touchAction: "none",
-              }}
-              onPointerDown={handlePizzaPointerDown}
-              onPointerMove={handlePizzaPointerMove}
-              onPointerUp={handlePizzaPointerEnd}
-              onPointerCancel={handlePizzaPointerEnd}
-              onPointerLeave={handlePizzaPointerEnd}
-              className="relative aspect-square w-full will-change-transform"
-            >
+            <div className="relative aspect-square w-full">
               <Image
                 src={hero.clusterImage}
                 alt={hero.clusterAlt}
@@ -164,7 +111,7 @@ export function PortedHero({ hero }: PortedHeroProps) {
                 sizes="(max-width: 767px) 122vw, 0px"
                 className="-translate-x-[2%] scale-[1.14] object-contain object-[47%_50%] drop-shadow-[0_28px_32px_rgba(0,0,0,0.42)]"
               />
-            </motion.div>
+            </div>
           </div>
         </div>
 
