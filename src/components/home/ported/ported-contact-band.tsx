@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 import { PortedReviewShowcase } from "@/components/home/ported/ported-review-showcase";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
@@ -31,9 +33,9 @@ function MailIcon() {
   );
 }
 
-function StoreIcon() {
+function StoreIcon({ className = "h-9 w-9" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
       <path d="M4 9.5h16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
       <path d="M6 9.5v8.5h12V9.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M7 6h10l1 3.5H6L7 6Z" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
@@ -42,9 +44,9 @@ function StoreIcon() {
   );
 }
 
-function ScooterIcon() {
+function ScooterIcon({ className = "h-9 w-9" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" aria-hidden="true">
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
       <path d="M6.5 6.5h3v4.3l3.5 1.4" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
       <path d="M13.2 7h2.6l2.2 3.1" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
       <circle cx="7" cy="17.5" r="2.2" stroke="currentColor" strokeWidth="1.9" />
@@ -54,12 +56,22 @@ function ScooterIcon() {
   );
 }
 
-function HandshakeIcon() {
+function HandshakeIcon({ className = "h-9 w-9" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className="h-9 w-9" fill="none" aria-hidden="true">
-      <path d="m7 12 3.3 3.3a2.2 2.2 0 0 0 3.1 0l3.6-3.6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="m3.8 9.8 2.8-2.8a2.5 2.5 0 0 1 3.5 0l1.8 1.8a2.5 2.5 0 0 0 3.5 0l1-1a2.5 2.5 0 0 1 3.5 0l1.3 1.3" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M2.8 10.7 6 13.9M18 13.3l3.2-3.2" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path d="M7.5 4.8h9A1.7 1.7 0 0 1 18.2 6.5v12a1.7 1.7 0 0 1-1.7 1.7h-9a1.7 1.7 0 0 1-1.7-1.7v-12a1.7 1.7 0 0 1 1.7-1.7Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
+      <path d="M9 8.2h6M9 11.6h6M9 15h3.2" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+      <path d="m14.6 15.7 1.4 1.4 2.7-3" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function BagIcon({ className = "h-9 w-9" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path d="M7 9h10l1 10H6L7 9Z" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M9.5 9V7.8A2.5 2.5 0 0 1 12 5.3a2.5 2.5 0 0 1 2.5 2.5V9" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+      <path d="M10 13.5h4" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
     </svg>
   );
 }
@@ -70,80 +82,354 @@ function FranchiseFeatureIcon({ type }: { type: (typeof portedHomepageData.conta
   return <HandshakeIcon />;
 }
 
+function ThreeWayPanelIcon({
+  icon,
+  className,
+}: {
+  icon?: (typeof portedHomepageData.contact.threeWaySection.panels)[number]["icon"];
+  className: string;
+}) {
+  if (icon === "store") return <StoreIcon className={className} />;
+  if (icon === "delivery") return <ScooterIcon className={className} />;
+  return <BagIcon className={className} />;
+}
+
+function ThreeWayPlusCircle({
+  symbol = "+",
+  delay,
+  reduceMotion,
+  threeWayInView,
+  stackedLayout,
+}: {
+  symbol?: string;
+  delay: number;
+  reduceMotion: boolean;
+  threeWayInView: boolean;
+  stackedLayout: boolean;
+}) {
+  return (
+    <motion.div
+      initial={
+        reduceMotion
+          ? false
+          : stackedLayout
+            ? { opacity: 0, y: -10, scale: 0.88 }
+            : { opacity: 0, x: -44 }
+      }
+      animate={
+        reduceMotion || threeWayInView
+          ? stackedLayout
+            ? { opacity: 1, y: 0, scale: 1 }
+            : { opacity: 1, x: 0 }
+          : stackedLayout
+            ? { opacity: 0, y: -10, scale: 0.88 }
+            : { opacity: 0, x: -44 }
+      }
+      transition={{
+        duration: stackedLayout ? 0.46 : 0.46,
+        delay,
+        ease: "linear",
+      }}
+      className="flex h-12 w-12 items-center justify-center self-center rounded-full bg-[#041544] text-[1.9rem] font-black leading-none text-[#ffcf00] shadow-[0_18px_38px_rgba(4,21,68,0.2)] md:h-16 md:w-16 md:text-[2.1rem] xl:h-20 xl:w-20 xl:-translate-y-[0.35rem] xl:text-[2.25rem] xl:place-self-center"
+      aria-hidden="true"
+    >
+      <span className="block leading-none">{symbol}</span>
+    </motion.div>
+  );
+}
+
 function ShopInShopSection({
   section,
 }: {
   section: typeof portedHomepageData.contact.shopInShopSection;
 }) {
+  const shopInShopSequenceRef = useRef<HTMLDivElement | null>(null);
+  const shopInShopInView = useInView(shopInShopSequenceRef, {
+    amount: 0.35,
+    margin: "0px 0px -12% 0px",
+  });
+  const reduceMotion = useReducedMotion();
+  const [isMobileStack, setIsMobileStack] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const syncMobile = () => setIsMobileStack(mediaQuery.matches);
+
+    syncMobile();
+    mediaQuery.addEventListener("change", syncMobile);
+
+    return () => mediaQuery.removeEventListener("change", syncMobile);
+  }, []);
+
+  const FeatureIcon = ({
+    icon,
+    className,
+  }: {
+    icon: (typeof section.features)[number]["icon"];
+    className: string;
+  }) => {
+    if (icon === "space") {
+      return (
+        <svg viewBox="0 0 24 24" className={`h-9 w-9 ${className}`} fill="none" aria-hidden="true">
+          <path d="M8 4H5a1 1 0 0 0-1 1v3M16 4h3a1 1 0 0 1 1 1v3M20 16v3a1 1 0 0 1-1 1h-3M8 20H5a1 1 0 0 1-1-1v-3" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+        </svg>
+      );
+    }
+
+    if (icon === "cook") {
+      return (
+        <svg viewBox="0 0 24 24" className={`h-9 w-9 ${className}`} fill="none" aria-hidden="true">
+          <path d="M8 20v-6.2A4.3 4.3 0 0 1 12.3 9a4.3 4.3 0 0 1 4.2 4.3V20" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+          <path d="M6.6 11.2A4.6 4.6 0 0 1 11 6.5c.8-2 2.2-3 4.2-3 2.6 0 4.7 2 4.8 4.6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+          <path d="M8.8 20h7" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
+        </svg>
+      );
+    }
+
+    return (
+      <svg viewBox="0 0 24 24" className={`h-9 w-9 ${className}`} fill="none" aria-hidden="true">
+        <path d="m5 16 4.5-4.5 3.2 3.2L19 8.4" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M14.5 8.4H19v4.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  };
+
   return (
     <section
       id="shopinshop-section"
-      className="scroll-mt-[5.25rem] border-t border-white/10 bg-[#061433] text-white md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center"
+      className="scroll-mt-[5.25rem] border-t border-white/10 bg-[#061433] text-white flex min-h-[calc(100svh-4.75rem)] items-center md:min-h-[calc(100svh-5.25rem)]"
     >
-      <div className="mx-auto w-full max-w-[1680px] px-4 py-16 md:px-6 md:py-16">
-        <div className="mx-auto max-w-6xl">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
-            <div className="max-w-xl">
-              <p className="text-[0.86rem] font-black tracking-[0.16em] text-[#ffcf00] md:text-[0.92rem]">{section.eyebrow}</p>
-              <h3 className="mt-4 text-balance text-[2.5rem] font-black leading-[0.94] text-white md:text-[4rem]">
-                {section.title}
-              </h3>
-              <p className="mt-5 max-w-[32rem] text-[1rem] font-medium leading-relaxed text-white/74 md:text-[1.08rem]">
-                {section.description}
-              </p>
-              <p className="mt-6 text-[1.1rem] font-black leading-snug text-[#ffcf00] md:text-[1.35rem]">
-                기존 공간 안에서 추가 매출을 만드는 방식
-              </p>
-              <p className="mt-3 max-w-[30rem] text-[0.98rem] font-medium leading-relaxed text-white/58 md:text-[1.02rem]">
-                {section.closingNote}
-              </p>
-            </div>
+      <div className="relative mx-auto w-full max-w-[1680px] overflow-hidden px-4 py-8 md:px-6 md:py-20">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[14%] h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,207,0,0.16)_0%,rgba(255,207,0,0.08)_28%,rgba(255,207,0,0)_72%)] blur-2xl md:top-[16%] md:h-[30rem] md:w-[30rem]"
+        />
 
-            <div className="overflow-hidden rounded-[8px] border border-white/10 bg-white text-[#111217] shadow-[0_26px_70px_rgba(7,29,85,0.22)]">
-              <div className="grid md:grid-cols-2">
-                <article className="p-6 md:p-8">
-                  <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#071d55]/52">{section.headquartersTitle}</p>
-                  <div className="mt-6 space-y-5">
-                    {section.headquartersItems.map((item, index) => (
-                      <div key={item} className="flex gap-4">
-                        <span className="mt-0.5 text-[1.6rem] font-black leading-none text-[#ef4136]">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <p className="text-[1rem] font-semibold leading-relaxed text-[#111217]/84 md:text-[1.08rem]">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </article>
+        <div className="relative mx-auto max-w-6xl text-center">
+          <span className="inline-flex rounded-full border border-[#ffcf00]/18 bg-[#ffcf00]/10 px-4 py-1.5 text-[0.82rem] font-black text-[#ffcf00]">
+            {section.eyebrow}
+          </span>
 
-                <article className="border-t border-[#e3e6ec] bg-[#ffcf00] p-6 text-[#041544] md:border-l md:border-t-0 md:p-8">
-                  <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#041544]/62">{section.ownerTitle}</p>
-                  <div className="mt-6 space-y-5">
-                    {section.ownerItems.map((item, index) => (
-                      <div key={item} className="flex gap-4">
-                        <span className="mt-0.5 text-[1.6rem] font-black leading-none text-[#041544]">
-                          {String(index + 1).padStart(2, "0")}
-                        </span>
-                        <p className="text-[1rem] font-semibold leading-relaxed text-[#041544]/84 md:text-[1.08rem]">{item}</p>
-                      </div>
-                    ))}
-                  </div>
-                </article>
-              </div>
+          <h3 className="mt-5 text-balance text-[2.2rem] font-black leading-[0.96] text-white md:mt-7 md:text-[4.8rem]">
+            <span className="block">{section.titleLead}</span>
+            <span className="mt-2 block bg-[linear-gradient(180deg,#ffcf00_0%,#f5a000_100%)] bg-clip-text text-transparent md:mt-3">
+              {section.titleHighlight}
+            </span>
+          </h3>
 
-              <div className="border-t border-[#e3e6ec] bg-[#f4f5f7] px-6 py-6 md:px-8">
-                <p className="text-[0.78rem] font-black tracking-[0.16em] text-[#071d55]/48">핵심 효과</p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-3">
-                  {section.effects.map((effect) => (
-                    <div
-                      key={effect}
-                      className="rounded-[8px] bg-[#071d55] px-4 py-4 text-center text-[0.96rem] font-black text-white md:text-[1rem]"
+          <div
+            ref={shopInShopSequenceRef}
+            className="mx-auto mt-7 grid max-w-5xl gap-2.5 md:mt-14 md:gap-5"
+          >
+            {section.features.map((feature, index) => {
+              const mobileSequenceActive = isMobileStack && (reduceMotion || shopInShopInView);
+              const mobileTransition = reduceMotion
+                ? { duration: 0 }
+                : {
+                    duration: 0.52,
+                    delay: shopInShopInView ? 0.32 + index * 0.42 : 0,
+                    ease: [0.22, 1, 0.36, 1],
+                  };
+
+              return (
+                <motion.div
+                  key={feature.title}
+                  initial={false}
+                  animate={
+                    isMobileStack
+                      ? mobileSequenceActive
+                        ? {
+                            backgroundColor: "rgba(255,255,255,0.04)",
+                            borderColor: "rgba(255,255,255,0.08)",
+                            boxShadow: "0 18px 40px rgba(0,0,0,0.18)",
+                          }
+                        : {
+                            backgroundColor: "rgba(255,255,255,0)",
+                            borderColor: "rgba(255,255,255,0)",
+                            boxShadow: "0 0 0 rgba(0,0,0,0)",
+                          }
+                      : undefined
+                  }
+                  transition={isMobileStack ? mobileTransition : undefined}
+                  className="group relative flex min-h-[5.4rem] flex-row items-center justify-start gap-3 rounded-[8px] border border-transparent px-4 py-3 text-left transition-all duration-300 md:min-h-[12rem] md:flex-col md:items-center md:justify-center md:gap-0 md:px-6 md:py-8 md:text-center md:hover:border-white/8 md:hover:bg-white/[0.04] md:hover:shadow-[0_18px_40px_rgba(0,0,0,0.24)]"
+                >
+                  <motion.div
+                    initial={false}
+                    animate={
+                      isMobileStack
+                        ? mobileSequenceActive
+                          ? { backgroundColor: "rgba(255,207,0,0.1)", color: "#ffcf00" }
+                          : { backgroundColor: "rgba(255,207,0,0)", color: "rgba(255,255,255,0.28)" }
+                        : undefined
+                    }
+                    transition={isMobileStack ? mobileTransition : undefined}
+                    className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[12px] transition-all duration-300 md:mb-7 md:h-14 md:w-14 md:rounded-[14px] md:group-hover:bg-[#ffcf00]/10"
+                  >
+                    <FeatureIcon
+                      icon={feature.icon}
+                      className={isMobileStack ? "h-7 w-7" : "text-white/28 transition-colors duration-300 md:group-hover:text-[#ffcf00]"}
+                    />
+                  </motion.div>
+
+                  <div className="min-w-0">
+                    <motion.p
+                      initial={false}
+                      animate={
+                        isMobileStack
+                          ? mobileSequenceActive
+                            ? { color: "rgba(255,255,255,1)" }
+                            : { color: "rgba(255,255,255,0.84)" }
+                          : undefined
+                      }
+                      transition={isMobileStack ? mobileTransition : undefined}
+                      className="text-[1.08rem] font-black leading-tight text-white/84 transition-colors duration-300 md:text-[1.95rem] md:group-hover:text-white"
                     >
-                      {effect}
-                    </div>
+                      {feature.title}
+                    </motion.p>
+                    <motion.p
+                      initial={false}
+                      animate={
+                        isMobileStack
+                          ? mobileSequenceActive
+                            ? { color: "#ffcf00" }
+                            : { color: "rgba(255,207,0,0.88)" }
+                          : undefined
+                      }
+                      transition={isMobileStack ? mobileTransition : undefined}
+                      className="mt-1 text-[0.82rem] font-black text-[#ffcf00]/88 transition-colors duration-300 md:mt-4 md:text-[1rem] md:group-hover:text-[#ffcf00]"
+                    >
+                      {feature.accent}
+                    </motion.p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function ThreeWaySection({
+  section,
+}: {
+  section: typeof portedHomepageData.contact.threeWaySection;
+}) {
+  const threeWayRef = useRef<HTMLElement | null>(null);
+  const threeWaySequenceRef = useRef<HTMLDivElement | null>(null);
+  const [isXlLayout, setIsXlLayout] = useState(false);
+  const threeWayInView = useInView(threeWaySequenceRef, {
+    once: true,
+    amount: isXlLayout ? 0.32 : 0.08,
+    margin: isXlLayout ? "0px 0px -12% 0px" : "0px 0px -6% 0px",
+  });
+  const reduceMotion = useReducedMotion();
+  const [introPanel, deliveryPanel, takeoutPanel] = section.panels;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(min-width: 1280px)");
+    const syncLayout = () => setIsXlLayout(mediaQuery.matches);
+
+    syncLayout();
+    mediaQuery.addEventListener("change", syncLayout);
+
+    return () => mediaQuery.removeEventListener("change", syncLayout);
+  }, []);
+
+  const stackedLayout = !isXlLayout;
+  const stackedPanelStyle = stackedLayout ? { originY: 0 } : undefined;
+
+  const panelMotion = (delay: number) => ({
+    initial: reduceMotion
+      ? false
+      : stackedLayout
+        ? { opacity: 0, y: -26, scaleY: 0.9, scaleX: 0.985 }
+        : { opacity: 0, x: -44 },
+    animate: reduceMotion || threeWayInView
+      ? stackedLayout
+        ? { opacity: 1, y: 0, scaleY: 1, scaleX: 1 }
+        : { opacity: 1, x: 0 }
+      : stackedLayout
+        ? { opacity: 0, y: -26, scaleY: 0.9, scaleX: 0.985 }
+        : { opacity: 0, x: -44 },
+    transition: {
+      duration: stackedLayout ? 0.46 : 0.46,
+      delay,
+      ease: "linear",
+    },
+  });
+
+  return (
+    <section
+      ref={threeWayRef}
+      id="threeway-section"
+      className="scroll-mt-[5.25rem] flex min-h-[calc(100svh-4.75rem)] items-center overflow-hidden bg-[#ffcf00] text-[#041544] md:min-h-[calc(100svh-5.25rem)]"
+    >
+      <div className="relative mx-auto w-full max-w-[1680px] px-4 pt-10 pb-8 md:px-6 md:py-16">
+        <div className="relative mx-auto max-w-[86rem]">
+          <div className="mx-auto max-w-5xl text-center">
+            <h3 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#041544] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
+              <span>최강피자 </span>
+              <span className="text-[#ef4136]">집중운영</span>
+              <span> 시스템</span>
+            </h3>
+            <p className="mx-auto mt-2.5 hidden max-w-3xl text-balance text-[1.04rem] font-medium leading-relaxed text-[#041544]/84 md:mt-3 md:block md:text-[1.45rem]">
+              {section.description}
+            </p>
+          </div>
+
+          <div
+            ref={threeWaySequenceRef}
+            className="mt-7 flex flex-col gap-2.5 md:mt-12 xl:mt-14 xl:grid xl:auto-rows-[18.5rem] xl:grid-cols-[17.5rem_4rem_17.5rem_4rem_17.5rem] xl:justify-center xl:items-stretch xl:gap-5"
+          >
+            <motion.article
+              {...panelMotion(0.16)}
+              style={stackedPanelStyle}
+              className="flex min-h-[6.6rem] flex-col items-center justify-center rounded-[8px] bg-[#041544] px-5 py-4 text-center text-[#ffcf00] shadow-[0_24px_58px_rgba(4,21,68,0.22)] md:min-h-[17rem] md:px-8 md:py-8 xl:mt-3 xl:h-[17.5rem] xl:min-h-0 xl:self-start"
+            >
+              <div>
+                <p className="text-[1.72rem] font-black leading-[1.02] md:text-[3.7rem]">
+                  {introPanel.title.split("\n").map((line) => (
+                    <span key={line} className="block">
+                      {line}
+                    </span>
                   ))}
-                </div>
+                </p>
               </div>
-            </div>
+            </motion.article>
+
+            <ThreeWayPlusCircle
+              symbol="="
+              delay={1.02}
+              reduceMotion={reduceMotion}
+              threeWayInView={threeWayInView}
+              stackedLayout={stackedLayout}
+            />
+
+            <motion.article
+              {...panelMotion(1.54)}
+              style={stackedPanelStyle}
+              className="group flex min-h-[5.7rem] flex-col items-center justify-center rounded-[8px] border-2 border-[#041544] bg-[#ffcf00] px-5 py-4 text-center transition-all duration-300 md:min-h-[17rem] md:px-7 md:py-8 md:hover:-translate-y-1 md:hover:bg-[#ffe165] md:hover:shadow-[0_22px_42px_rgba(4,21,68,0.12)] xl:mt-3 xl:h-[17.5rem] xl:min-h-0 xl:self-start"
+            >
+              <p className="text-[1.72rem] font-black leading-none md:text-[3.4rem]">{deliveryPanel.title}</p>
+              <div className="mt-3 text-[#041544] transition-colors duration-300 md:mt-6 md:group-hover:text-[#041544]">
+                <ThreeWayPanelIcon icon={deliveryPanel.icon} className="h-10 w-10 md:h-20 md:w-20" />
+              </div>
+            </motion.article>
+
+            <ThreeWayPlusCircle delay={2.06} reduceMotion={reduceMotion} threeWayInView={threeWayInView} stackedLayout={stackedLayout} />
+
+            <motion.article
+              {...panelMotion(2.58)}
+              style={stackedPanelStyle}
+              className="group flex min-h-[5.7rem] flex-col items-center justify-center rounded-[8px] border-2 border-[#041544] bg-[#ffcf00] px-5 py-4 text-center transition-all duration-300 md:min-h-[17rem] md:px-7 md:py-8 md:hover:-translate-y-1 md:hover:bg-[#ffe165] md:hover:shadow-[0_22px_42px_rgba(4,21,68,0.12)] xl:mt-3 xl:h-[17.5rem] xl:min-h-0 xl:self-start"
+            >
+              <p className="text-[1.72rem] font-black leading-none md:text-[3.4rem]">{takeoutPanel.title}</p>
+              <div className="mt-3 text-[#041544] md:mt-6">
+                <ThreeWayPanelIcon icon={takeoutPanel.icon} className="h-10 w-10 md:h-20 md:w-20" />
+              </div>
+            </motion.article>
           </div>
         </div>
       </div>
@@ -156,20 +442,20 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
 
   return (
     <section id="contact-section" className="scroll-mt-[5.25rem] bg-[#061433]">
-      <div className="bg-[#f4f5f7] text-[#111217] md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center">
-        <div className="mx-auto w-full max-w-[1680px] px-4 py-12 md:px-6 md:py-8 xl:py-10">
+      <div className="bg-[#f4f5f7] text-[#111217] flex min-h-[calc(100svh-4.75rem)] items-center md:min-h-[calc(100svh-5.25rem)]">
+        <div className="mx-auto w-full max-w-[1680px] px-4 py-8 md:px-6 md:py-8 xl:py-10">
           <div className="mx-auto max-w-5xl text-center">
-            <h2 className="text-[2.3rem] font-black leading-[0.94] tracking-[-0.03em] text-[#111217] md:text-[3.15rem] xl:text-[3.45rem]">
+            <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#111217] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.reasonTitle} </span>
               <span className="text-[#ef4136]">{contact.reasonHighlight}</span>
             </h2>
-            <p className="mx-auto mt-3 max-w-3xl text-sm font-medium leading-relaxed text-[#5d606b] md:text-[1rem]">
+            <p className="mx-auto mt-2.5 max-w-[20rem] text-[0.92rem] font-medium leading-relaxed text-[#5d606b] md:mt-3 md:max-w-3xl md:text-[1rem]">
               {contact.reasonDescription}
             </p>
           </div>
 
-          <div className="mx-auto mt-8 grid max-w-[1180px] gap-4 lg:grid-cols-[minmax(0,1.16fr)_minmax(20rem,0.84fr)] lg:items-stretch xl:gap-5">
-            <article className="relative isolate overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] min-h-[24rem] sm:min-h-[29rem] lg:min-h-[29rem] xl:min-h-[31rem]">
+          <div className="mx-auto mt-6 grid max-w-[1180px] gap-3 lg:mt-8 lg:grid-cols-[minmax(0,1.16fr)_minmax(20rem,0.84fr)] lg:items-stretch xl:gap-5">
+            <article className="relative isolate min-h-[17rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] sm:min-h-[22rem] lg:min-h-[29rem] xl:min-h-[31rem]">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
@@ -180,15 +466,15 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,40,0.06)_0%,rgba(15,22,40,0.18)_48%,rgba(15,22,40,0.92)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-5 md:p-6 lg:p-6 xl:p-7">
-                <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_12px_28px_rgba(239,65,54,0.35)] xl:h-[64px] xl:w-[64px]">
+              <div className="relative flex h-full flex-col justify-end p-4 md:p-6 lg:p-6 xl:p-7">
+                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_12px_28px_rgba(239,65,54,0.35)] xl:h-[64px] xl:w-[64px]">
                   <FranchiseFeatureIcon type={smallStoreCard.icon} />
                 </div>
-                <p className="mt-4 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">01</p>
-                <h3 className="mt-2 max-w-[13ch] text-[1.9rem] font-black leading-[1.02] text-white md:text-[2.25rem] xl:text-[2.5rem]">
+                <p className="mt-3 text-[0.78rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem]">01</p>
+                <h3 className="mt-1.5 max-w-[13ch] text-[1.55rem] font-black leading-[1.02] text-white md:mt-2 md:text-[2.25rem] xl:text-[2.5rem]">
                   {smallStoreCard.title}
                 </h3>
-                <div className="mt-3 max-w-[28rem] space-y-2 text-sm font-medium leading-relaxed text-white/82 md:text-[0.96rem] xl:text-[1rem]">
+                <div className="mt-2.5 max-w-[24rem] space-y-1.5 text-[0.84rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1rem]">
                   {smallStoreCard.lines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
@@ -196,28 +482,32 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
               </div>
             </article>
 
-            <div className="grid gap-4 lg:grid-rows-2">
-              <article className="flex h-full min-h-[12rem] flex-col rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] p-5 text-[#181a21] shadow-[0_24px_58px_rgba(7,29,85,0.12)] md:p-6 lg:p-6">
-                <div className="flex h-[56px] w-[56px] items-center justify-center rounded-[16px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px]">
+            <div className="grid grid-cols-1 gap-3 lg:grid-cols-1 lg:grid-rows-2 lg:gap-4">
+              <article className="flex h-full min-h-[6.9rem] flex-row items-center gap-4 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] p-4 text-[#181a21] shadow-[0_24px_58px_rgba(7,29,85,0.12)] md:p-6 lg:min-h-[12rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6">
+                <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[14px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px]">
                   <FranchiseFeatureIcon type={focusedStartupCard.icon} />
                 </div>
-                <p className="mt-5 text-[0.84rem] font-black tracking-[0.14em] text-[#ef4136]">02</p>
-                <h3 className="mt-2 max-w-[12ch] text-[1.55rem] font-black leading-[1.06] md:text-[1.8rem] xl:text-[1.95rem]">{focusedStartupCard.title}</h3>
-                <div className="mt-3 space-y-2.5 text-sm font-medium leading-relaxed text-[#5d606b] md:text-[0.95rem] xl:text-[0.98rem]">
+                <p className="mt-5 hidden text-[0.84rem] font-black tracking-[0.14em] text-[#ef4136] lg:block">02</p>
+                <h3 className="max-w-none text-[1.24rem] font-black leading-[1.12] md:text-[1.42rem] lg:mt-2 lg:max-w-[12ch] lg:text-[1.8rem] xl:text-[1.95rem]">
+                  {focusedStartupCard.title}
+                </h3>
+                <div className="mt-3 hidden space-y-2.5 text-sm font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.95rem] xl:text-[0.98rem]">
                   {focusedStartupCard.lines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
                 </div>
               </article>
 
-              <article className="flex h-full min-h-[12rem] flex-col rounded-[8px] bg-[#071d55] p-5 text-white shadow-[0_24px_64px_rgba(7,29,85,0.22)] md:p-6 lg:p-6">
-                <div className="flex h-[62px] w-[62px] items-center justify-center rounded-[18px] bg-white/12 text-white xl:h-[68px] xl:w-[68px]">
+              <article className="flex h-full min-h-[6.9rem] flex-row items-center gap-4 rounded-[8px] bg-[#071d55] p-4 text-white shadow-[0_24px_64px_rgba(7,29,85,0.22)] md:p-6 lg:min-h-[12rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6">
+                <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[14px] bg-white/12 text-white xl:h-[68px] xl:w-[68px]">
                   <FranchiseFeatureIcon type={beginnerCard.icon} />
                 </div>
-                <p className="mt-5 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">03</p>
-                <div className="mt-3 max-w-[28rem]">
-                  <h3 className="max-w-[12ch] text-[1.55rem] font-black leading-[1.06] md:text-[1.8rem] xl:text-[1.95rem]">{beginnerCard.title}</h3>
-                  <div className="mt-3 space-y-2.5 text-sm font-medium leading-relaxed text-white/86 md:text-[0.95rem] xl:text-[0.98rem]">
+                <p className="mt-5 hidden text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00] lg:block">03</p>
+                <div className="max-w-[28rem] lg:mt-3">
+                  <h3 className="max-w-none text-[1.24rem] font-black leading-[1.12] md:text-[1.42rem] lg:max-w-[12ch] lg:text-[1.8rem] xl:text-[1.95rem]">
+                    {beginnerCard.title}
+                  </h3>
+                  <div className="mt-3 hidden space-y-2.5 text-sm font-medium leading-relaxed text-white/86 lg:block lg:text-[0.95rem] xl:text-[0.98rem]">
                     {beginnerCard.lines.map((line) => (
                       <p key={line}>{line}</p>
                     ))}
@@ -231,22 +521,23 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
 
       <ShopInShopSection section={contact.shopInShopSection} />
 
+      <ThreeWaySection section={contact.threeWaySection} />
+
       <PortedReviewShowcase reviewShowcase={contact.reviewShowcase} />
 
       <div id="contact-cta-section" className="bg-[#071d55] text-white">
         <div className="mx-auto w-full max-w-[1680px] px-4 py-20 md:px-6 md:py-24">
-          <div className="mx-auto grid max-w-[1560px] gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
-            <div className="max-w-4xl">
-              <p className="text-[1.15rem] font-black tracking-[0.1em] text-[#ffcf00] md:text-[2rem]">{contact.ctaEyebrow}</p>
-              <h3 className="text-balance mt-4 max-w-[9ch] text-[2.95rem] font-black leading-[0.95] md:max-w-none md:text-7xl">
-                {contact.ctaTitle}
-              </h3>
-              <p className="mt-5 max-w-3xl text-base font-medium leading-relaxed text-white/72 md:text-xl">
-                {contact.ctaDescription}
-              </p>
-            </div>
+          <div className="mx-auto max-w-5xl text-center">
+            <h3 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-white sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
+              <span>{contact.ctaEyebrow} </span>
+              <span className="text-[#ffcf00]">가맹 문의</span>
+            </h3>
+            <p className="mx-auto mt-2.5 max-w-[21rem] text-[0.95rem] font-medium leading-relaxed text-white/72 md:mt-3 md:max-w-3xl md:text-[1.08rem]">
+              {contact.ctaDescription}
+            </p>
+          </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
+          <div className="mx-auto mt-8 grid max-w-[980px] gap-4 md:mt-10 md:grid-cols-2">
               <a
                 href={contact.primaryCta.href}
                 className="flex min-h-[6.5rem] items-center gap-4 rounded-[8px] bg-[#ffcf00] px-6 py-5 text-[#041544] transition-transform duration-300 hover:-translate-y-1 hover:text-[#041544]"
@@ -273,7 +564,6 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                   <span className="mt-2 whitespace-nowrap text-[1.08rem] font-black leading-[1.15] tracking-[-0.02em] text-[#041544] md:text-[1.22rem]">{contact.emailDisplay}</span>
                 </span>
               </a>
-            </div>
           </div>
         </div>
       </div>

@@ -57,14 +57,28 @@ export type PortedContactFeatureCard = {
 
 export type PortedShopInShopSection = {
   eyebrow: string;
+  titleLead: string;
+  titleHighlight: string;
+  features: Array<{
+    title: string;
+    accent: string;
+    icon: "space" | "cook" | "growth";
+  }>;
+};
+
+export type PortedThreeWayPanelIcon = "store" | "delivery" | "takeout";
+
+export type PortedThreeWayPanel = {
+  kind: "intro" | "hall" | "delivery" | "takeout";
+  title: string;
+  description?: string;
+  icon?: PortedThreeWayPanelIcon;
+};
+
+export type PortedThreeWaySection = {
   title: string;
   description: string;
-  headquartersTitle: string;
-  headquartersItems: string[];
-  ownerTitle: string;
-  ownerItems: string[];
-  effects: string[];
-  closingNote: string;
+  panels: PortedThreeWayPanel[];
 };
 
 const reviewShowcaseSlides = Array.from({ length: 17 }, (_, index) => ({
@@ -85,7 +99,6 @@ export const portedHomepageData = {
     { label: "대표 메뉴", href: "#menu-section" },
     { label: "샵인샵", href: "#shopinshop-section" },
     { label: "고객 리뷰", href: "#review-section" },
-    { label: "가맹문의", href: "#contact-cta-section" },
   ] satisfies PortedNavItem[],
   hero: {
     badge: "BEST",
@@ -143,10 +156,10 @@ export const portedHomepageData = {
       description: "한 번 맛보면 단골",
     },
   ] satisfies PortedValueItem[],
-  valueStatement: "최강피자는 파로로 만든 도우로 차별화를 완성합니다.",
+  valueStatement: "최강피자 강한 이유",
   menu: {
     eyebrow: "최강 메뉴",
-    title: "최강피자의 메뉴를 만나보세요",
+    title: "최강피자 대표 메뉴",
     description:
       "고객들이 사랑하는 최강피자만의 최강 메뉴",
     items: [
@@ -217,28 +230,53 @@ export const portedHomepageData = {
     ],
   },
   contact: {
-    reasonTitle: "최강피자의",
-    reasonHighlight: "성공 비결 3가지",
+    reasonTitle: "최강피자",
+    reasonHighlight: "성공 비결",
     reasonDescription: "거품은 빼고, 실속만 확실하게 채웠습니다.",
     shopInShopSection: {
-      eyebrow: "샵인샵 운영 구조",
-      title: "본사와 점주가 함께 키우는 샵인샵 구조",
-      description: "기존 공간과 운영 흐름을 크게 흔들지 않으면서, 피자 메뉴를 더해 추가 매출 동선을 만드는 방식입니다.",
-      headquartersTitle: "본사",
-      headquartersItems: [
-        "도입 동선과 운영 흐름 정리",
-        "원팩 기반 조리 매뉴얼 제공",
-        "초기 안착과 판매 운영 지원",
+      eyebrow: "최강피자 샵인샵",
+      titleLead: "공간은 그대로,",
+      titleHighlight: "수익만 더하세요.",
+      features: [
+        {
+          title: "1평 공간 활용",
+          accent: "추가 임대료 0원",
+          icon: "space",
+        },
+        {
+          title: "간편 오븐 조리",
+          accent: "복잡한 공정 최소화",
+          icon: "cook",
+        },
+        {
+          title: "객단가 수직 상승",
+          accent: "기존 고객 100% 흡수",
+          icon: "growth",
+        },
       ],
-      ownerTitle: "점주",
-      ownerItems: [
-        "기존 장비와 공간 최대 활용",
-        "추가 인력 부담 최소화",
-        "기존 고객 기반에서 부가 매출 확장",
-      ],
-      effects: ["기존 매장 활용", "부가 매출 확대", "운영 부담 최소화"],
-      closingNote: "혼자 버티는 확장이 아니라, 본사 지원과 현장 운영이 함께 맞물리는 구조로 설계합니다.",
     } satisfies PortedShopInShopSection,
+    threeWaySection: {
+      title: "최강피자 집중운영 시스템",
+      description: "배달과 포장에 집중해 운영 효율과 회전율을 함께 끌어올리는 구조",
+      panels: [
+        {
+          kind: "intro",
+          title: "최강피자\n집중운영\n시스템",
+        },
+        {
+          kind: "delivery",
+          title: "배달",
+          description: "근거리 주문 수요를 흡수하는 집중 운영 구조",
+          icon: "delivery",
+        },
+        {
+          kind: "takeout",
+          title: "포장",
+          description: "방문포장과 빠른 회전율을 살리는 집중 운영 구조",
+          icon: "takeout",
+        },
+      ],
+    } satisfies PortedThreeWaySection,
     reviewShowcase: {
       eyebrow: "리뷰로 증명된 최강피자",
       title: "2026년 매출 2억 달성",
@@ -260,9 +298,9 @@ export const portedHomepageData = {
       ] satisfies PortedReviewShowcaseHighlight[],
       slides: reviewShowcaseSlides,
     } satisfies PortedReviewShowcase,
-    ctaEyebrow: "성공의 시작",
-    ctaTitle: "지금 바로 연락하세요.",
-    ctaDescription: "맛있는 피자로 확실한 결과를 증명합니다.",
+    ctaEyebrow: "최강피자",
+    ctaTitle: "최강피자 가맹 문의",
+    ctaDescription: "브랜드 상담부터 운영 안내까지 빠르게 연결해드립니다.",
     location: "경기 부천시 원미구 도약로 105 (한라마을주공(3)아파트) 105호",
     phoneDisplay: "1866-1623",
     phoneHref: "tel:18661623",

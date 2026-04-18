@@ -67,10 +67,10 @@ export function PortedValueStrip({ items, headline, message, sectionId }: Ported
     >
       <div className="mx-auto w-full max-w-6xl px-4">
         {headline ? (
-          <div className="mx-auto mb-10 max-w-4xl text-center md:mb-14">
-            <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#001540]/52 md:text-[0.88rem]">WHY CHOIGANG</p>
-            <h2 className="mt-4 text-balance text-[2.1rem] font-black leading-[1] text-[#001540] md:text-[4.1rem]">
-              {headline}
+          <div className="mx-auto mb-8 max-w-5xl text-center md:mb-14">
+            <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#001540] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
+              <span>최강피자 </span>
+              <span className="text-[#ef4136]">강한 이유</span>
             </h2>
           </div>
         ) : null}

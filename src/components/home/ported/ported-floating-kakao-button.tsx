@@ -33,7 +33,7 @@ export function PortedFloatingKakaoButton() {
       }`}
     >
       <span className="text-[#041544]">
-        빠른 상담
+        가맹 문의
       </span>
     </a>
   );

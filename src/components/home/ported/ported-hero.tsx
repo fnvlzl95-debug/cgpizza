@@ -1,70 +1,17 @@
 "use client";
 
-import type { MouseEvent, ReactNode } from "react";
+import type { MouseEvent, PointerEvent } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { PlayIcon } from "@/components/home/reference/reference-primitives";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedHeroProps = {
   hero: typeof portedHomepageData.hero;
-  onOpenBrandModal: () => void;
 };
 
-function StoreIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-[#ffcf00]" fill="none" aria-hidden="true">
-      <path d="M4 9.5h16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-      <path d="M6 9.5v8.5h12V9.5" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M7 6h10l1 3.5H6L7 6Z" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M10 18v-4h4v4" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function GiftIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-[#ffcf00]" fill="none" aria-hidden="true">
-      <path d="M4 10h16v10H4z" stroke="currentColor" strokeWidth="1.9" />
-      <path d="M12 10v10M4 14h16" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-      <path d="M6 10c-1.1-1-1.5-2-.8-3 .8-1.1 2.2-.9 3.1.1.7.8 1.2 1.8 1.7 2.9M18 10c1.1-1 1.5-2 .8-3-.8-1.1-2.2-.9-3.1.1-.7.8-1.2 1.8-1.7 2.9" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function TruckIcon() {
-  return (
-    <svg viewBox="0 0 24 24" className="h-5 w-5 text-[#ffcf00]" fill="none" aria-hidden="true">
-      <path d="M3.5 7.5H13v7H3.5zM13 10h4l2 2.5V14H13z" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="8" cy="17.5" r="1.8" stroke="currentColor" strokeWidth="1.9" />
-      <circle cx="17" cy="17.5" r="1.8" stroke="currentColor" strokeWidth="1.9" />
-    </svg>
-  );
-}
-
-function InfoBox({
-  icon,
-  title,
-  body,
-}: {
-  icon: ReactNode;
-  title: string;
-  body: string;
-}) {
-  return (
-    <div className="flex min-h-[5.3rem] items-center gap-3 rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur-sm">
-      <div className="rounded-lg bg-[#001540]/40 p-2">
-        {icon}
-      </div>
-      <div>
-        <h4 className="text-sm font-bold leading-tight text-white">{title}</h4>
-        <p className="mt-0.5 text-xs text-[#ffcf00]/60">{body}</p>
-      </div>
-    </div>
-  );
-}
-
-export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
+export function PortedHero({ hero }: PortedHeroProps) {
+  const isMobileDraggingRef = useRef(false);
   const rotateX = useMotionValue(0);
   const rotateY = useMotionValue(0);
   const rotateZ = useMotionValue(0);
@@ -85,22 +32,80 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
     mass: 0.75,
   });
 
-  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
-    if (window.innerWidth < 768) return;
+  const applyTilt = ({
+    clientX,
+    clientY,
+    rect,
+    mobile = false,
+  }: {
+    clientX: number;
+    clientY: number;
+    rect: DOMRect;
+    mobile?: boolean;
+  }) => {
+    const relativeX = (clientX - rect.left) / rect.width;
+    const relativeY = (clientY - rect.top) / rect.height;
 
-    const rect = event.currentTarget.getBoundingClientRect();
-    const relativeX = (event.clientX - rect.left) / rect.width;
-    const relativeY = (event.clientY - rect.top) / rect.height;
-
-    rotateY.set((relativeX - 0.5) * 18);
-    rotateX.set((0.5 - relativeY) * 14);
-    rotateZ.set((relativeX - 0.5) * 22);
+    rotateY.set((relativeX - 0.5) * (mobile ? 14 : 18));
+    rotateX.set((0.5 - relativeY) * (mobile ? 11 : 14));
+    rotateZ.set((relativeX - 0.5) * (mobile ? 12 : 22));
   };
 
-  const handleMouseLeave = () => {
+  const resetTilt = () => {
     rotateX.set(0);
     rotateY.set(0);
     rotateZ.set(0);
+  };
+
+  const handleMouseMove = (event: MouseEvent<HTMLElement>) => {
+    if (window.innerWidth < 768) return;
+
+    applyTilt({
+      clientX: event.clientX,
+      clientY: event.clientY,
+      rect: event.currentTarget.getBoundingClientRect(),
+    });
+  };
+
+  const handleMouseLeave = () => {
+    resetTilt();
+  };
+
+  const handlePizzaPointerDown = (event: PointerEvent<HTMLDivElement>) => {
+    if (window.innerWidth >= 768) return;
+
+    isMobileDraggingRef.current = true;
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+
+    applyTilt({
+      clientX: event.clientX,
+      clientY: event.clientY,
+      rect: event.currentTarget.getBoundingClientRect(),
+      mobile: true,
+    });
+  };
+
+  const handlePizzaPointerMove = (event: PointerEvent<HTMLDivElement>) => {
+    if (window.innerWidth >= 768 || !isMobileDraggingRef.current) return;
+
+    applyTilt({
+      clientX: event.clientX,
+      clientY: event.clientY,
+      rect: event.currentTarget.getBoundingClientRect(),
+      mobile: true,
+    });
+  };
+
+  const handlePizzaPointerEnd = (event: PointerEvent<HTMLDivElement>) => {
+    if (window.innerWidth >= 768) return;
+
+    isMobileDraggingRef.current = false;
+
+    if (event.currentTarget.hasPointerCapture?.(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+
+    resetTilt();
   };
 
   return (
@@ -108,10 +113,11 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
       id="top"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative flex min-h-[100svh] items-center overflow-hidden bg-[#08215d] pt-[4.75rem] pb-20 md:min-h-screen md:pt-[5.25rem] md:pb-0"
+      className="relative flex h-[100svh] items-start overflow-hidden bg-[#08215d] pt-[4.75rem] pb-5 md:min-h-screen md:h-auto md:items-center md:pt-[5.25rem] md:pb-0"
     >
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-10 px-4 md:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] lg:gap-12">
-        <div className="relative z-20 min-w-0 py-7 md:py-0">
+      <div id="store-section" className="absolute top-0" />
+      <div className="relative z-10 mx-auto grid h-full w-full max-w-7xl items-start px-4 md:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] md:items-center lg:gap-12">
+        <div className="relative z-20 flex min-w-0 flex-col py-5 md:py-0">
           <div className="mb-5 flex gap-2">
             {[1, 2, 3, 4].map((item) => (
               <span key={item} className="text-xl text-[#ffcf00] md:text-2xl">
@@ -130,64 +136,35 @@ export function PortedHero({ hero, onOpenBrandModal }: PortedHeroProps) {
             {hero.description}
           </p>
 
-          <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap md:mb-12">
-            <motion.a
-              whileHover={{ scale: 1.03, backgroundColor: "#ffe066" }}
-              whileTap={{ scale: 0.98 }}
-              href={hero.primaryCta.href}
-              className="inline-flex min-h-[3.7rem] items-center justify-center rounded-full bg-[#ffcf00] px-7 py-4 text-base font-black text-[#041544] shadow-[0_18px_40px_rgba(255,207,0,0.2)] hover:text-[#041544] md:min-h-[4rem] md:px-8 md:text-lg"
-              style={{ color: "#041544" }}
-            >
-              {hero.primaryCta.label}
-            </motion.a>
-            <motion.button
-              whileHover={{ scale: 1.03, backgroundColor: "rgba(255,255,255,0.08)" }}
-              whileTap={{ scale: 0.98 }}
-              type="button"
-              onClick={onOpenBrandModal}
-              className="flex min-h-[3.7rem] items-center justify-center gap-3 rounded-full border-2 border-white/22 px-6 py-4 text-base font-bold text-white backdrop-blur-sm md:min-h-[4rem] md:px-8 md:text-lg"
-            >
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#002266]">
-                <PlayIcon className="ml-0.5 h-4 w-4 text-white" />
-              </div>
-              {hero.secondaryCta.label}
-            </motion.button>
-          </div>
-
-          <div className="relative mx-auto mb-8 w-[102vw] max-w-[26rem] md:hidden">
-            <div className="pointer-events-none absolute right-[5%] top-[9%] z-10 flex h-[4.75rem] w-[4.75rem] translate-x-[14%] -translate-y-[14%] rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
+          <div className="relative left-1/2 mt-auto w-[122vw] max-w-[33rem] -translate-x-1/2 md:hidden">
+            <div className="pointer-events-none absolute right-[13%] top-[20%] z-10 flex h-[4.75rem] w-[4.75rem] -translate-y-1/2 rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
               <span className="text-[8px] font-bold tracking-widest">★★★</span>
               <span className="text-[1rem] font-black">{hero.badge}</span>
             </div>
-            <div className="relative aspect-square w-full">
+            <motion.div
+              style={{
+                rotateX: smoothRotateX,
+                rotateY: smoothRotateY,
+                rotateZ: smoothRotateZ,
+                transformPerspective: 1200,
+                touchAction: "none",
+              }}
+              onPointerDown={handlePizzaPointerDown}
+              onPointerMove={handlePizzaPointerMove}
+              onPointerUp={handlePizzaPointerEnd}
+              onPointerCancel={handlePizzaPointerEnd}
+              onPointerLeave={handlePizzaPointerEnd}
+              className="relative aspect-square w-full will-change-transform"
+            >
               <Image
                 src={hero.clusterImage}
                 alt={hero.clusterAlt}
                 fill
                 priority
-                sizes="(max-width: 767px) 88vw, 0px"
-                className="object-cover object-center drop-shadow-[0_28px_32px_rgba(0,0,0,0.42)]"
+                sizes="(max-width: 767px) 122vw, 0px"
+                className="-translate-x-[2%] scale-[1.14] object-contain object-[47%_50%] drop-shadow-[0_28px_32px_rgba(0,0,0,0.42)]"
               />
-            </div>
-          </div>
-
-          <div id="store-section" className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4">
-            {hero.infoCards.map((card) => (
-              <InfoBox
-                key={card.title}
-                icon={
-                  card.title.includes("부천본점") ? (
-                    <StoreIcon />
-                  ) : card.title.includes("방문포장") ? (
-                    <GiftIcon />
-                  ) : (
-                    <TruckIcon />
-                  )
-                }
-                title={card.title}
-                body={card.body}
-              />
-            ))}
+            </motion.div>
           </div>
         </div>
 

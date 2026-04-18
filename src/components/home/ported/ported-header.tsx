@@ -39,14 +39,7 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
 
         <div className="hidden md:block md:w-[82px]" />
 
-        <div className="flex items-center md:hidden">
-          <a
-            href="#contact-cta-section"
-            className="inline-flex h-10 items-center rounded-full bg-[#ffcf00] px-4 text-sm font-black text-[#041544] shadow-[0_8px_22px_rgba(255,207,0,0.25)] hover:text-[#041544]"
-          >
-            가맹문의
-          </a>
-        </div>
+        <div className="w-[4.5rem] md:hidden" />
       </div>
     </header>
   );

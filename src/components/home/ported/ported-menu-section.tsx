@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/home/reference/reference-primitives";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
@@ -42,9 +42,7 @@ function MenuCard({
 
   return (
     <div
-      className={`relative w-full px-1 py-4 transition-all duration-300 lg:px-2 lg:py-5 xl:py-6 ${
-        isSignature ? "z-10 md:scale-[1.03]" : "hover:-translate-y-2"
-      }`}
+      className="relative w-full px-1 py-4 transition-all duration-300 lg:px-2 lg:py-5 xl:py-6"
     >
       {isSignature ? (
           <div className="absolute left-1/2 top-6 z-30 -translate-x-1/2 -translate-y-1/2 lg:top-7 xl:top-8">
@@ -61,8 +59,8 @@ function MenuCard({
       <div
         className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] transition-all duration-300 ${
           isSignature
-            ? "bg-[#001540] ring-4 ring-[#ffcf00] shadow-2xl"
-            : "bg-white shadow-lg hover:shadow-2xl"
+            ? "border border-[#0f2d75] bg-[#001540]"
+            : "border border-[#0f2d75] bg-white"
         }`}
       >
           <div className="absolute left-4 top-4 z-20 flex flex-col gap-1.5 lg:left-5 lg:top-5">
@@ -89,7 +87,7 @@ function MenuCard({
             alt={item.title}
             fill
             sizes="(min-width: 1024px) 30vw, (min-width: 640px) 48vw, 92vw"
-            className="object-cover transition-transform duration-500 hover:scale-110"
+            className="object-cover"
           />
         </div>
 
@@ -109,6 +107,11 @@ function MenuCard({
 export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
   const [visibleCount, setVisibleCount] = useState(1);
   const [pageIndex, setPageIndex] = useState(0);
+  const mobileScrollerRef = useRef<HTMLDivElement | null>(null);
+  const signatureIndex = useMemo(
+    () => menu.items.findIndex((item) => item.badge === "SIGNATURE"),
+    [menu.items],
+  );
 
   useEffect(() => {
     const syncVisibleCount = () => {
@@ -119,6 +122,28 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
     window.addEventListener("resize", syncVisibleCount);
     return () => window.removeEventListener("resize", syncVisibleCount);
   }, []);
+
+  useEffect(() => {
+    const centerSignatureCard = () => {
+      if (window.innerWidth >= 768 || signatureIndex < 0) return;
+
+      const scroller = mobileScrollerRef.current;
+      const targetCard = scroller?.querySelector<HTMLElement>(`[data-menu-card-index="${signatureIndex}"]`);
+
+      if (!scroller || !targetCard) return;
+
+      const targetLeft = targetCard.offsetLeft - (scroller.clientWidth - targetCard.offsetWidth) / 2;
+      scroller.scrollTo({ left: Math.max(0, targetLeft), behavior: "auto" });
+    };
+
+    const frame = window.requestAnimationFrame(centerSignatureCard);
+    window.addEventListener("resize", centerSignatureCard);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", centerSignatureCard);
+    };
+  }, [signatureIndex]);
 
   const pageStarts = useMemo(() => {
     const maxStart = Math.max(0, menu.items.length - visibleCount);
@@ -153,17 +178,16 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
     >
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-20 w-[145%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white" />
       <div className="mx-auto w-full max-w-[1720px] px-4 lg:px-6">
-        <div className="mb-2 inline-block rounded-full bg-[#ef4136] px-4 py-1 text-xs font-bold text-white">
-          ♦ {menu.eyebrow}
+        <div className="mx-auto max-w-5xl text-center">
+          <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#001540] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
+            <span>최강피자 </span>
+            <span className="text-[#ef4136]">대표 메뉴</span>
+          </h2>
+
+          <p className="mx-auto mt-2.5 max-w-[21rem] text-sm font-medium leading-relaxed text-gray-500 sm:max-w-xl sm:text-base md:mt-3 md:mb-5">
+            {menu.description}
+          </p>
         </div>
-
-        <h2 className="text-balance mx-auto mb-2 max-w-[9.5ch] text-[2.2rem] font-black leading-[1.02] text-[#001540] md:max-w-none md:text-[3rem] xl:text-[3.35rem]">
-          {menu.title}
-        </h2>
-
-        <p className="mx-auto mb-3 max-w-[20rem] text-sm font-medium leading-relaxed text-gray-500 sm:max-w-xl sm:text-base md:mb-5">
-          {menu.description}
-        </p>
 
         <p className="mb-6 text-[0.82rem] font-semibold text-[#001540]/42 md:hidden">좌우로 넘겨서 메뉴를 확인하세요</p>
 
@@ -193,27 +217,19 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
             </div>
           </div>
 
-          {canSlide ? (
-            <div className="mt-3 flex justify-center gap-2">
-              {pageStarts.map((start, index) => (
-                <button
-                  key={start}
-                  type="button"
-                  onClick={() => setPageIndex(index)}
-                  aria-label={`${index + 1}번째 메뉴 그룹 보기`}
-                  className={`h-2.5 rounded-full transition-all ${
-                    index === safePageIndex ? "w-8 bg-[#001540]" : "w-2.5 bg-[#001540]/18"
-                  }`}
-                />
-              ))}
-            </div>
-          ) : null}
         </div>
 
-        <div className="-mx-4 overflow-x-auto px-4 pb-2 md:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
+        <div
+          ref={mobileScrollerRef}
+          className="-mx-4 overflow-x-auto px-4 pb-2 md:hidden [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        >
           <div className="flex w-max snap-x snap-mandatory gap-4 pr-4">
-            {menu.items.map((item) => (
-              <div key={item.title} className="w-[min(88vw,23.5rem)] shrink-0 snap-center">
+            {menu.items.map((item, index) => (
+              <div
+                key={item.title}
+                data-menu-card-index={index}
+                className="w-[min(88vw,23.5rem)] shrink-0 snap-center"
+              >
                 <MenuCard item={item} compact />
               </div>
             ))}
