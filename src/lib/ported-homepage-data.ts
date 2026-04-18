@@ -249,7 +249,7 @@ export const portedHomepageData = {
       titleHighlight: "수익만 더하세요.",
       features: [
         {
-          title: "1평 공간 활용",
+          title: "10평 공간활용",
           accent: "추가 임대료 0원",
           icon: "space",
         },
