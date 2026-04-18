@@ -145,7 +145,7 @@ export const portedHomepageData = {
   ] satisfies PortedValueItem[],
   valueStatement: "최강피자는 파로로 만든 도우로 차별화를 완성합니다.",
   menu: {
-    eyebrow: "BEST MENU",
+    eyebrow: "최강 메뉴",
     title: "최강피자의 메뉴를 만나보세요",
     description:
       "고객들이 사랑하는 최강피자만의 최강 메뉴",

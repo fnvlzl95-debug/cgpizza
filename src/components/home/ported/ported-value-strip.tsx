@@ -2,6 +2,7 @@ import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 type PortedValueStripProps = {
   items?: typeof portedHomepageData.valueItems;
+  headline?: string;
   message?: string;
   sectionId?: string;
 };
@@ -41,7 +42,7 @@ function FeatureIcon({ type }: { type: (typeof portedHomepageData.valueItems)[nu
   );
 }
 
-export function PortedValueStrip({ items, message, sectionId }: PortedValueStripProps) {
+export function PortedValueStrip({ items, headline, message, sectionId }: PortedValueStripProps) {
   if (message) {
     return (
       <section id={sectionId} className="border-y-2 border-black/5 bg-[#ffcf00] py-7 text-[#001540]">
@@ -60,24 +61,36 @@ export function PortedValueStrip({ items, message, sectionId }: PortedValueStrip
   if (!items) return null;
 
   return (
-    <section id={sectionId} className="border-y-2 border-black/5 bg-[#ffcf00] py-6 text-[#001540] md:py-8">
-      <div className="mx-auto max-w-7xl px-4">
+    <section
+      id={sectionId}
+      className="scroll-mt-24 border-y-2 border-black/5 bg-[#ffcf00] py-14 text-[#001540] md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center md:py-16"
+    >
+      <div className="mx-auto w-full max-w-6xl px-4">
+        {headline ? (
+          <div className="mx-auto mb-10 max-w-4xl text-center md:mb-14">
+            <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#001540]/52 md:text-[0.88rem]">WHY CHOIGANG</p>
+            <h2 className="mt-4 text-balance text-[2.1rem] font-black leading-[1] text-[#001540] md:text-[4.1rem]">
+              {headline}
+            </h2>
+          </div>
+        ) : null}
+
         <div className="grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-8">
           {items.map((item, index) => (
             <div
               key={item.title}
-              className="group relative flex min-h-[8.4rem] flex-col items-center justify-center rounded-[8px] bg-white/20 px-3 py-4 text-center md:min-h-0 md:flex-row md:justify-start md:gap-4 md:bg-transparent md:px-0 md:py-0 md:text-left"
+              className="group relative flex min-h-[8.8rem] flex-col items-center justify-center rounded-[8px] bg-white/22 px-3 py-4 text-center md:min-h-[12.5rem] md:justify-start md:rounded-none md:bg-transparent md:px-0 md:py-0"
             >
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#001540] text-[#ffcf00] shadow-lg transition-transform group-hover:scale-110">
+              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-[#001540] text-[#ffcf00] shadow-lg transition-transform group-hover:scale-110 md:h-16 md:w-16">
                 <FeatureIcon type={item.icon} />
               </div>
-              <div className="mt-3 md:mt-0">
-                <h4 className="text-[0.98rem] font-black leading-tight md:text-lg md:leading-none">{item.title}</h4>
-                <p className="mt-1 text-[0.76rem] font-medium leading-snug text-[#001540]/72 md:text-xs md:italic md:text-[#001540]/60">
+              <div className="mt-3 md:mt-5">
+                <h4 className="text-[0.98rem] font-black leading-tight md:text-[1.2rem] md:leading-tight">{item.title}</h4>
+                <p className="mt-1.5 text-[0.76rem] font-medium leading-snug text-[#001540]/72 md:text-[0.95rem] md:leading-relaxed md:text-[#001540]/62">
                   {item.description}
                 </p>
               </div>
-              {index < items.length - 1 ? <div className="absolute right-[-1rem] hidden h-8 w-px rotate-12 bg-[#001540]/10 md:block" /> : null}
+              {index < items.length - 1 ? <div className="absolute right-[-1rem] top-1/2 hidden h-12 w-px -translate-y-1/2 rotate-12 bg-[#001540]/10 md:block" /> : null}
             </div>
           ))}
         </div>

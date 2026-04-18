@@ -140,7 +140,7 @@ export function PortedReviewShowcase({
   return (
     <section
       id="review-section"
-      className="relative isolate overflow-hidden bg-[#edf2f8] text-white"
+      className="relative isolate scroll-mt-24 overflow-hidden bg-[#edf2f8] text-white md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute inset-x-[-27rem] top-1/2 -translate-y-1/2 sm:inset-x-[-36rem] lg:inset-x-[-52rem]">
@@ -164,7 +164,7 @@ export function PortedReviewShowcase({
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(237,242,248,0.18)_0%,rgba(237,242,248,0.24)_100%),radial-gradient(circle_at_24%_46%,rgba(7,29,85,0.1),transparent_25%),radial-gradient(circle_at_82%_24%,rgba(239,65,54,0.08),transparent_22%)]" />
       </div>
 
-      <div className="relative mx-auto flex min-h-[62vh] w-full max-w-[1680px] items-center justify-center px-4 py-14 md:min-h-[80vh] md:px-6 md:py-16 lg:min-h-[88vh] lg:py-20">
+      <div className="relative mx-auto flex min-h-[62vh] w-full max-w-[1680px] items-center justify-center px-4 py-14 md:min-h-0 md:px-6 md:py-16">
         <div className="w-full max-w-[22rem] rounded-[8px] border border-[#ffcf00]/22 bg-[#071d55] px-5 py-6 text-center text-white shadow-[0_34px_80px_rgba(7,29,85,0.28)] md:max-w-[31rem] md:px-8 md:py-8 lg:max-w-[33rem] lg:px-9 lg:py-9">
           <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#ef4136]">{headlineTop}</p>
 

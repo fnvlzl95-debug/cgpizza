@@ -42,21 +42,21 @@ function MenuCard({
 
   return (
     <div
-      className={`relative w-full px-1 py-6 transition-all duration-300 lg:px-2 lg:py-10 ${
+      className={`relative w-full px-1 py-4 transition-all duration-300 lg:px-2 lg:py-5 xl:py-6 ${
         isSignature ? "z-10 md:scale-[1.03]" : "hover:-translate-y-2"
       }`}
     >
       {isSignature ? (
-        <div className="absolute left-1/2 top-7 z-30 -translate-x-1/2 -translate-y-1/2 lg:top-10">
-          <Image
-            src="/assets/user/logo-mark-blue.png"
-            alt="최강피자 로고"
-            width={108}
-            height={108}
-            className="h-[4.6rem] w-[4.6rem] object-contain drop-shadow-md lg:h-[108px] lg:w-[108px]"
-          />
-        </div>
-      ) : null}
+          <div className="absolute left-1/2 top-6 z-30 -translate-x-1/2 -translate-y-1/2 lg:top-7 xl:top-8">
+            <Image
+              src="/assets/user/logo-mark-blue.png"
+              alt="최강피자 로고"
+              width={108}
+              height={108}
+              className="h-[4.35rem] w-[4.35rem] object-contain drop-shadow-md lg:h-[76px] lg:w-[76px] xl:h-[84px] xl:w-[84px]"
+            />
+          </div>
+        ) : null}
 
       <div
         className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] transition-all duration-300 ${
@@ -65,7 +65,7 @@ function MenuCard({
             : "bg-white shadow-lg hover:shadow-2xl"
         }`}
       >
-        <div className="absolute left-4 top-4 z-20 flex flex-col gap-1.5 lg:left-5 lg:top-5">
+          <div className="absolute left-4 top-4 z-20 flex flex-col gap-1.5 lg:left-5 lg:top-5">
           {hasBadge && !isSignature ? (
             <div
               className={`flex h-12 w-12 flex-col items-center justify-center rounded-full shadow-lg lg:h-14 lg:w-14 ${
@@ -83,7 +83,7 @@ function MenuCard({
           ) : null}
         </div>
 
-        <div className={`relative overflow-hidden ${compact ? "h-[17.5rem] sm:h-[19rem]" : "h-[22rem] sm:h-[24rem] lg:h-[26.5rem]"}`}>
+        <div className={`relative overflow-hidden ${compact ? "h-[17.5rem] sm:h-[19rem]" : "h-[22rem] sm:h-[24rem] lg:h-[18.75rem] xl:h-[19.75rem] 2xl:h-[20.5rem]"}`}>
           <Image
             src={item.image}
             alt={item.title}
@@ -93,12 +93,12 @@ function MenuCard({
           />
         </div>
 
-        <div className={`flex min-h-[9.75rem] flex-1 flex-col justify-center text-left ${compact ? "p-5 sm:p-6" : "p-7 sm:p-8 lg:min-h-[11rem] lg:p-9"} ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
+        <div className={`flex min-h-[9.75rem] flex-1 flex-col justify-center text-left ${compact ? "p-5 sm:p-6" : "p-7 sm:p-8 lg:min-h-[7.6rem] lg:p-6 xl:min-h-[8rem] xl:p-7"} ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
           <div>
-            <h3 className={`mb-3 font-black leading-tight ${compact ? "text-[1.55rem] sm:text-[1.8rem]" : "text-[1.8rem] lg:text-[2.1rem]"} ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
+            <h3 className={`mb-2.5 font-black leading-tight ${compact ? "text-[1.55rem] sm:text-[1.8rem]" : "text-[1.8rem] lg:text-[1.72rem] xl:text-[1.82rem]"} ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
               {item.title}
             </h3>
-            <p className={`min-h-[3.2em] text-[0.98rem] leading-relaxed sm:text-[1.02rem] ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
+            <p className={`min-h-[3em] text-[0.98rem] leading-relaxed sm:text-[1.02rem] lg:text-[0.88rem] xl:text-[0.92rem] ${isSignature ? "text-white/60" : "text-gray-400"}`}>{item.description}</p>
           </div>
         </div>
       </div>
@@ -147,18 +147,21 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
   };
 
   return (
-    <section id="menu-section" className="relative overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-screen md:items-center md:py-20">
+    <section
+      id="menu-section"
+      className="relative scroll-mt-[5.25rem] overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-[calc(100svh-5.25rem)] md:items-start md:pt-9 md:pb-4 xl:pt-10 xl:pb-5"
+    >
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-20 w-[145%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white" />
       <div className="mx-auto w-full max-w-[1720px] px-4 lg:px-6">
-        <div className="mb-4 inline-block rounded-full bg-[#ef4136] px-4 py-1 text-xs font-bold text-white">
+        <div className="mb-2 inline-block rounded-full bg-[#ef4136] px-4 py-1 text-xs font-bold text-white">
           ♦ {menu.eyebrow}
         </div>
 
-        <h2 className="text-balance mx-auto mb-4 max-w-[9.5ch] text-[2.2rem] font-black leading-[1.02] text-[#001540] md:max-w-none md:text-5xl">
+        <h2 className="text-balance mx-auto mb-2 max-w-[9.5ch] text-[2.2rem] font-black leading-[1.02] text-[#001540] md:max-w-none md:text-[3rem] xl:text-[3.35rem]">
           {menu.title}
         </h2>
 
-        <p className="mx-auto mb-4 max-w-[20rem] text-sm font-medium leading-relaxed text-gray-500 sm:max-w-xl sm:text-base md:mb-12">
+        <p className="mx-auto mb-3 max-w-[20rem] text-sm font-medium leading-relaxed text-gray-500 sm:max-w-xl sm:text-base md:mb-5">
           {menu.description}
         </p>
 
@@ -191,7 +194,7 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
           </div>
 
           {canSlide ? (
-            <div className="mt-4 flex justify-center gap-2">
+            <div className="mt-3 flex justify-center gap-2">
               {pageStarts.map((start, index) => (
                 <button
                   key={start}

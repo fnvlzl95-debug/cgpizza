@@ -20,7 +20,11 @@ export function PortedHomepage() {
       <PortedHeader navItems={portedHomepageData.navItems} />
       <main className="overflow-x-hidden bg-[#041544] text-white">
         <PortedHero hero={portedHomepageData.hero} onOpenBrandModal={() => setBrandModalOpen(true)} />
-        <PortedValueStrip items={portedHomepageData.valueItems} sectionId="event-section" />
+        <PortedValueStrip
+          items={portedHomepageData.valueItems}
+          headline={portedHomepageData.valueStatement}
+          sectionId="event-section"
+        />
         <PortedMenuSection menu={portedHomepageData.menu} />
         <PortedContactBand contact={portedHomepageData.contact} />
       </main>

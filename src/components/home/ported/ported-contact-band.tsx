@@ -76,58 +76,70 @@ function ShopInShopSection({
   section: typeof portedHomepageData.contact.shopInShopSection;
 }) {
   return (
-    <section id="shopinshop-section" className="border-t border-white/10 bg-[#061433] text-white">
-      <div className="mx-auto w-full max-w-[1680px] px-4 py-16 md:px-6 md:py-20">
-        <div className="mx-auto max-w-[1560px]">
-          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.88fr)_minmax(0,1.12fr)] lg:items-start">
+    <section
+      id="shopinshop-section"
+      className="scroll-mt-[5.25rem] border-t border-white/10 bg-[#061433] text-white md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center"
+    >
+      <div className="mx-auto w-full max-w-[1680px] px-4 py-16 md:px-6 md:py-16">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(0,1.18fr)] lg:items-center">
             <div className="max-w-xl">
-              <p className="text-[0.88rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.95rem]">{section.eyebrow}</p>
-              <h3 className="mt-4 max-w-[11ch] text-[2.45rem] font-black leading-[0.94] text-white md:max-w-none md:text-[3.8rem]">
+              <p className="text-[0.86rem] font-black tracking-[0.16em] text-[#ffcf00] md:text-[0.92rem]">{section.eyebrow}</p>
+              <h3 className="mt-4 text-balance text-[2.5rem] font-black leading-[0.94] text-white md:text-[4rem]">
                 {section.title}
               </h3>
               <p className="mt-5 max-w-[32rem] text-[1rem] font-medium leading-relaxed text-white/74 md:text-[1.08rem]">
                 {section.description}
               </p>
-              <p className="mt-6 max-w-[32rem] text-[0.98rem] font-medium leading-relaxed text-white/62 md:text-[1.02rem]">
+              <p className="mt-6 text-[1.1rem] font-black leading-snug text-[#ffcf00] md:text-[1.35rem]">
+                기존 공간 안에서 추가 매출을 만드는 방식
+              </p>
+              <p className="mt-3 max-w-[30rem] text-[0.98rem] font-medium leading-relaxed text-white/58 md:text-[1.02rem]">
                 {section.closingNote}
               </p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
-              <article className="rounded-[8px] border border-white/10 bg-[#071d55] p-6 shadow-[0_24px_64px_rgba(7,29,85,0.22)]">
-                <p className="text-sm font-black tracking-[0.1em] text-[#ffcf00]">{section.headquartersTitle}</p>
-                <div className="mt-5 space-y-4">
-                  {section.headquartersItems.map((item) => (
-                    <div key={item} className="flex gap-3">
-                      <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#ef4136]" />
-                      <p className="text-base font-medium leading-relaxed text-white/88">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </article>
+            <div className="overflow-hidden rounded-[8px] border border-white/10 bg-white text-[#111217] shadow-[0_26px_70px_rgba(7,29,85,0.22)]">
+              <div className="grid md:grid-cols-2">
+                <article className="p-6 md:p-8">
+                  <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#071d55]/52">{section.headquartersTitle}</p>
+                  <div className="mt-6 space-y-5">
+                    {section.headquartersItems.map((item, index) => (
+                      <div key={item} className="flex gap-4">
+                        <span className="mt-0.5 text-[1.6rem] font-black leading-none text-[#ef4136]">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <p className="text-[1rem] font-semibold leading-relaxed text-[#111217]/84 md:text-[1.08rem]">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
 
-              <article className="rounded-[8px] border border-[#d2d9e8] bg-[#f4f5f7] p-6 text-[#111217] shadow-[0_22px_58px_rgba(17,18,23,0.12)]">
-                <p className="text-sm font-black tracking-[0.1em] text-[#071d55]">{section.ownerTitle}</p>
-                <div className="mt-5 space-y-4">
-                  {section.ownerItems.map((item) => (
-                    <div key={item} className="flex gap-3">
-                      <span className="mt-1.5 h-2.5 w-2.5 shrink-0 rounded-full bg-[#ffcf00]" />
-                      <p className="text-base font-medium leading-relaxed text-[#111217]/82">{item}</p>
-                    </div>
-                  ))}
-                </div>
-              </article>
+                <article className="border-t border-[#e3e6ec] bg-[#ffcf00] p-6 text-[#041544] md:border-l md:border-t-0 md:p-8">
+                  <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#041544]/62">{section.ownerTitle}</p>
+                  <div className="mt-6 space-y-5">
+                    {section.ownerItems.map((item, index) => (
+                      <div key={item} className="flex gap-4">
+                        <span className="mt-0.5 text-[1.6rem] font-black leading-none text-[#041544]">
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+                        <p className="text-[1rem] font-semibold leading-relaxed text-[#041544]/84 md:text-[1.08rem]">{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </article>
+              </div>
 
-              <div className="border-t border-white/10 pt-5 md:col-span-2">
-                <p className="text-[0.82rem] font-black tracking-[0.14em] text-white/46">공통 효과</p>
-                <div className="mt-4 flex flex-wrap gap-3">
+              <div className="border-t border-[#e3e6ec] bg-[#f4f5f7] px-6 py-6 md:px-8">
+                <p className="text-[0.78rem] font-black tracking-[0.16em] text-[#071d55]/48">핵심 효과</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
                   {section.effects.map((effect) => (
-                    <span
+                    <div
                       key={effect}
-                      className="inline-flex items-center rounded-full bg-[#ffcf00] px-4 py-2 text-[0.92rem] font-black text-[#041544]"
+                      className="rounded-[8px] bg-[#071d55] px-4 py-4 text-center text-[0.96rem] font-black text-white md:text-[1rem]"
                     >
                       {effect}
-                    </span>
+                    </div>
                   ))}
                 </div>
               </div>
@@ -143,21 +155,21 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
   const [smallStoreCard, focusedStartupCard, beginnerCard] = contact.featureCards;
 
   return (
-    <section id="contact-section" className="bg-[#061433]">
-      <div className="bg-[#f4f5f7] text-[#111217] md:flex md:min-h-screen md:items-center">
-        <div className="mx-auto w-full max-w-[1680px] px-4 py-12 md:px-6 md:py-16">
+    <section id="contact-section" className="scroll-mt-[5.25rem] bg-[#061433]">
+      <div className="bg-[#f4f5f7] text-[#111217] md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center">
+        <div className="mx-auto w-full max-w-[1680px] px-4 py-12 md:px-6 md:py-8 xl:py-10">
           <div className="mx-auto max-w-5xl text-center">
-            <h2 className="text-[2.3rem] font-black leading-[0.94] tracking-[-0.03em] text-[#111217] md:text-[3.7rem]">
+            <h2 className="text-[2.3rem] font-black leading-[0.94] tracking-[-0.03em] text-[#111217] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.reasonTitle} </span>
               <span className="text-[#ef4136]">{contact.reasonHighlight}</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-sm font-medium leading-relaxed text-[#5d606b] md:text-[1.08rem]">
+            <p className="mx-auto mt-3 max-w-3xl text-sm font-medium leading-relaxed text-[#5d606b] md:text-[1rem]">
               {contact.reasonDescription}
             </p>
           </div>
 
-          <div className="mx-auto mt-10 grid max-w-[1240px] gap-4 lg:grid-cols-[minmax(0,1.16fr)_minmax(20rem,0.84fr)] lg:items-stretch xl:gap-5">
-            <article className="relative isolate overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] min-h-[24rem] sm:min-h-[29rem] lg:min-h-[36rem]">
+          <div className="mx-auto mt-8 grid max-w-[1180px] gap-4 lg:grid-cols-[minmax(0,1.16fr)_minmax(20rem,0.84fr)] lg:items-stretch xl:gap-5">
+            <article className="relative isolate overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] min-h-[24rem] sm:min-h-[29rem] lg:min-h-[29rem] xl:min-h-[31rem]">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
@@ -168,15 +180,15 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,40,0.06)_0%,rgba(15,22,40,0.18)_48%,rgba(15,22,40,0.92)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-5 md:p-7 lg:p-8">
-                <div className="flex h-[64px] w-[64px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_12px_28px_rgba(239,65,54,0.35)]">
+              <div className="relative flex h-full flex-col justify-end p-5 md:p-6 lg:p-6 xl:p-7">
+                <div className="flex h-[58px] w-[58px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_12px_28px_rgba(239,65,54,0.35)] xl:h-[64px] xl:w-[64px]">
                   <FranchiseFeatureIcon type={smallStoreCard.icon} />
                 </div>
-                <p className="mt-5 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">01</p>
-                <h3 className="mt-3 max-w-[13ch] text-[1.9rem] font-black leading-[1.02] text-white md:text-[2.7rem]">
+                <p className="mt-4 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">01</p>
+                <h3 className="mt-2 max-w-[13ch] text-[1.9rem] font-black leading-[1.02] text-white md:text-[2.25rem] xl:text-[2.5rem]">
                   {smallStoreCard.title}
                 </h3>
-                <div className="mt-3 max-w-[28rem] space-y-2 text-sm font-medium leading-relaxed text-white/82 md:text-[1.02rem]">
+                <div className="mt-3 max-w-[28rem] space-y-2 text-sm font-medium leading-relaxed text-white/82 md:text-[0.96rem] xl:text-[1rem]">
                   {smallStoreCard.lines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
@@ -185,27 +197,27 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
             </article>
 
             <div className="grid gap-4 lg:grid-rows-2">
-              <article className="flex h-full min-h-[14rem] flex-col rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] p-5 text-[#181a21] shadow-[0_24px_58px_rgba(7,29,85,0.12)] md:p-6 lg:p-7">
-                <div className="flex h-[64px] w-[64px] items-center justify-center rounded-[18px] bg-[#071d55] text-[#ffcf00]">
+              <article className="flex h-full min-h-[12rem] flex-col rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] p-5 text-[#181a21] shadow-[0_24px_58px_rgba(7,29,85,0.12)] md:p-6 lg:p-6">
+                <div className="flex h-[56px] w-[56px] items-center justify-center rounded-[16px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px]">
                   <FranchiseFeatureIcon type={focusedStartupCard.icon} />
                 </div>
-                <p className="mt-6 text-[0.84rem] font-black tracking-[0.14em] text-[#ef4136]">02</p>
-                <h3 className="mt-3 max-w-[12ch] text-[1.7rem] font-black leading-[1.06] md:text-[2.1rem]">{focusedStartupCard.title}</h3>
-                <div className="mt-4 space-y-3 text-sm font-medium leading-relaxed text-[#5d606b] md:text-[1.01rem]">
+                <p className="mt-5 text-[0.84rem] font-black tracking-[0.14em] text-[#ef4136]">02</p>
+                <h3 className="mt-2 max-w-[12ch] text-[1.55rem] font-black leading-[1.06] md:text-[1.8rem] xl:text-[1.95rem]">{focusedStartupCard.title}</h3>
+                <div className="mt-3 space-y-2.5 text-sm font-medium leading-relaxed text-[#5d606b] md:text-[0.95rem] xl:text-[0.98rem]">
                   {focusedStartupCard.lines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
                 </div>
               </article>
 
-              <article className="flex h-full min-h-[14rem] flex-col rounded-[8px] bg-[#071d55] p-5 text-white shadow-[0_24px_64px_rgba(7,29,85,0.22)] md:p-6 lg:p-7">
-                <div className="flex h-[72px] w-[72px] items-center justify-center rounded-[20px] bg-white/12 text-white">
+              <article className="flex h-full min-h-[12rem] flex-col rounded-[8px] bg-[#071d55] p-5 text-white shadow-[0_24px_64px_rgba(7,29,85,0.22)] md:p-6 lg:p-6">
+                <div className="flex h-[62px] w-[62px] items-center justify-center rounded-[18px] bg-white/12 text-white xl:h-[68px] xl:w-[68px]">
                   <FranchiseFeatureIcon type={beginnerCard.icon} />
                 </div>
-                <p className="mt-6 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">03</p>
+                <p className="mt-5 text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00]">03</p>
                 <div className="mt-3 max-w-[28rem]">
-                  <h3 className="max-w-[12ch] text-[1.7rem] font-black leading-[1.06] md:text-[2.1rem]">{beginnerCard.title}</h3>
-                  <div className="mt-4 space-y-3 text-sm font-medium leading-relaxed text-white/86 md:text-[1.01rem]">
+                  <h3 className="max-w-[12ch] text-[1.55rem] font-black leading-[1.06] md:text-[1.8rem] xl:text-[1.95rem]">{beginnerCard.title}</h3>
+                  <div className="mt-3 space-y-2.5 text-sm font-medium leading-relaxed text-white/86 md:text-[0.95rem] xl:text-[0.98rem]">
                     {beginnerCard.lines.map((line) => (
                       <p key={line}>{line}</p>
                     ))}
