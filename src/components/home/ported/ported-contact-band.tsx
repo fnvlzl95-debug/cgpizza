@@ -67,6 +67,16 @@ function HandshakeIcon({ className = "h-9 w-9" }: { className?: string }) {
   );
 }
 
+function ClipboardIcon({ className = "h-9 w-9" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
+      <path d="M8 5.5h8a1.8 1.8 0 0 1 1.8 1.8v11.2a1.8 1.8 0 0 1-1.8 1.8H8a1.8 1.8 0 0 1-1.8-1.8V7.3A1.8 1.8 0 0 1 8 5.5Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
+      <path d="M9.2 4.2h5.6a1.1 1.1 0 0 1 1.1 1.1v1H8.1v-1a1.1 1.1 0 0 1 1.1-1.1Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
+      <path d="m9.4 12.2 1.7 1.7 3.8-3.9" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function BagIcon({ className = "h-9 w-9" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
@@ -80,6 +90,7 @@ function BagIcon({ className = "h-9 w-9" }: { className?: string }) {
 function FranchiseFeatureIcon({ type }: { type: (typeof portedHomepageData.contact.featureCards)[number]["icon"] }) {
   if (type === "store") return <StoreIcon />;
   if (type === "scooter") return <ScooterIcon />;
+  if (type === "clipboard") return <ClipboardIcon />;
   return <HandshakeIcon />;
 }
 
@@ -312,6 +323,217 @@ function ShopInShopSection({
   );
 }
 
+function ShopInShopIntroSection({
+  section,
+}: {
+  section: typeof portedHomepageData.contact.shopInShopIntro;
+}) {
+  const reduceMotion = Boolean(useReducedMotion());
+
+  return (
+    <section className="scroll-mt-[5.25rem] relative isolate flex min-h-[calc(100svh-4.75rem)] items-center overflow-hidden bg-[#061433] text-white md:min-h-[calc(100svh-5.25rem)]">
+      <Image
+        src={section.backgroundImage}
+        alt=""
+        fill
+        sizes="100vw"
+        quality={100}
+        priority
+        className="scale-[1.01] object-cover object-[center_58%]"
+      />
+      <div className="absolute inset-0 bg-[#061433]/58" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(6,20,51,0.48)_0%,rgba(6,20,51,0.54)_34%,rgba(6,20,51,0.72)_68%,rgba(4,21,68,0.9)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,21,68,0.34)_0%,rgba(4,21,68,0.12)_24%,rgba(4,21,68,0.12)_76%,rgba(4,21,68,0.34)_100%)]" />
+
+      <div className="relative z-10 mx-auto flex h-full w-full max-w-[1680px] flex-col items-center justify-center px-4 py-10 text-center md:px-6 md:py-14">
+        <span className="inline-flex rounded-full bg-[#ffcf00] px-5 py-2 text-[0.84rem] font-black tracking-[0.02em] text-[#041544] shadow-[0_18px_44px_rgba(255,207,0,0.24)] md:px-6 md:py-2.5 md:text-[0.96rem]">
+          {section.eyebrow}
+        </span>
+
+        <h3 className="mt-6 max-w-[13ch] text-balance text-[3rem] font-black leading-[0.94] tracking-[-0.06em] text-white [text-shadow:0_10px_28px_rgba(4,21,68,0.34)] sm:text-[3.5rem] md:mt-7 md:max-w-none md:text-[5.5rem] xl:text-[6.5rem]">
+          <span className="block">
+            매출의 <span className="text-[#ffcf00]">한계</span>를 넘는
+          </span>
+          <span className="block">
+            가장 확실한 <span className="text-[#ffcf00]">선택</span>
+          </span>
+        </h3>
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-7 z-20 flex justify-center md:bottom-8">
+        <motion.a
+          href="#shopinshop-section"
+          animate={
+            reduceMotion
+              ? undefined
+              : {
+                  y: [0, 18, 0, -6, 0],
+                  scale: [1, 1.1, 1, 1.03, 1],
+                }
+          }
+          transition={
+            reduceMotion
+              ? undefined
+              : {
+                  duration: 1.05,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }
+          }
+          className="pointer-events-auto inline-flex flex-col items-center gap-0 transition-transform duration-300 hover:-translate-y-1"
+        >
+          <span className="text-[0.86rem] font-black tracking-[0.28em] text-[#ffcf00] [text-shadow:0_6px_18px_rgba(4,21,68,0.32)] md:text-[0.94rem]">
+            {section.scrollLabel}
+          </span>
+          <span className="text-[1.8rem] leading-none text-[#ffcf00] [text-shadow:0_6px_18px_rgba(4,21,68,0.32)]">⌄</span>
+        </motion.a>
+      </div>
+    </section>
+  );
+}
+
+function renderTriptychText(text: string, highlight: string) {
+  const renderHighlightedLine = (line: string) => {
+    const parts = line.split(highlight);
+
+    if (parts.length < 2) {
+      return line;
+    }
+
+    return (
+      <>
+        {parts[0]}
+        <span className="text-[#ffcf00]">{highlight}</span>
+        {parts.slice(1).join(highlight)}
+      </>
+    );
+  };
+
+  return text.split("\n").map((line, index) => (
+    <span key={`${line}-${index}`} className="block">
+      {renderHighlightedLine(line)}
+    </span>
+  ));
+}
+
+function renderFeatureTitle(title: string) {
+  const lines = title.split("\n");
+
+  return lines.map((line, index) => (
+    <span key={`${line}-${index}`} className={index === 0 ? "" : "lg:block"}>
+      {index > 0 ? <span className="lg:hidden"> </span> : null}
+      {line}
+    </span>
+  ));
+}
+
+function ShopInShopImageTriptychSection({
+  section,
+}: {
+  section: typeof portedHomepageData.contact.shopInShopImageTriptych;
+}) {
+  return (
+    <section className="scroll-mt-[5.25rem] relative overflow-hidden bg-[#02050b] text-white">
+      <div className="pointer-events-none absolute inset-0 hidden lg:block bg-[linear-gradient(180deg,rgba(2,5,11,0.34)_0%,rgba(2,5,11,0.16)_16%,rgba(2,5,11,0.24)_52%,rgba(2,5,11,0.62)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 hidden lg:block bg-[radial-gradient(circle_at_50%_18%,rgba(255,207,0,0.04)_0%,rgba(255,207,0,0.012)_20%,rgba(255,207,0,0)_42%)]" />
+
+      <div className="hidden min-h-[calc(100svh-5.25rem)] grid-cols-3 lg:grid">
+        {section.panels.map((panel, index) => {
+          const toneClass =
+            panel.tone === "blue"
+              ? "bg-[linear-gradient(180deg,rgba(8,17,34,0.34)_0%,rgba(3,8,18,0.46)_34%,rgba(2,5,11,0.92)_100%)]"
+              : "bg-[linear-gradient(180deg,rgba(3,6,12,0.28)_0%,rgba(2,5,11,0.52)_38%,rgba(2,5,11,0.94)_100%)]";
+
+          return (
+            <article key={panel.text} className="group relative min-h-[calc(100svh-5.25rem)] overflow-hidden">
+              <Image
+                src={panel.image}
+                alt=""
+                fill
+                sizes="33vw"
+                quality={100}
+                className="object-cover brightness-[0.58] contrast-[1.06] saturate-[0.12] transition-all duration-700 ease-out group-hover:scale-[1.018] group-hover:brightness-[0.66]"
+                style={{ objectPosition: panel.objectPosition ?? "center center" }}
+              />
+              <div className={`absolute inset-0 ${toneClass}`} />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,11,0.04)_0%,rgba(2,5,11,0.18)_24%,rgba(2,5,11,0.46)_56%,rgba(2,5,11,0.94)_100%)]" />
+
+              <div className="relative flex min-h-[calc(100svh-5.25rem)] items-end px-9 py-10 xl:px-11 xl:py-11">
+                <div className="max-w-[23rem] transition-transform duration-500 ease-out group-hover:-translate-y-2 xl:max-w-[24.5rem]">
+                  <div className="mb-5 flex items-center gap-3">
+                    <span
+                      className={`h-px w-8 transition-all duration-500 ease-out group-hover:w-11 ${
+                        index === 1 ? "bg-[#ffcf00]" : "bg-white/80 group-hover:bg-[#ffcf00]"
+                      }`}
+                    />
+                    <span
+                      className={`text-[0.84rem] font-black tracking-[0.08em] transition-colors duration-500 ${
+                        index === 1 ? "text-[#ffcf00] group-hover:text-[#ffe27a]" : "text-white/92 group-hover:text-[#ffcf00]"
+                      }`}
+                    >
+                      {panel.label}
+                    </span>
+                  </div>
+                  <p className="text-[1.34rem] font-black leading-[1.16] tracking-[-0.05em] text-white transition-all duration-500 [text-shadow:0_10px_28px_rgba(2,5,11,0.48)] group-hover:text-[#fff8e1] group-hover:[text-shadow:0_14px_34px_rgba(2,5,11,0.62)] group-hover:[&_span]:text-[#ffd84d] xl:text-[1.52rem]">
+                    {renderTriptychText(panel.text, panel.highlight)}
+                  </p>
+                </div>
+              </div>
+
+              {index < section.panels.length - 1 ? (
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-px bg-[linear-gradient(180deg,rgba(255,255,255,0.02)_0%,rgba(255,255,255,0.12)_26%,rgba(255,255,255,0.12)_74%,rgba(255,255,255,0.02)_100%)]" />
+              ) : null}
+            </article>
+          );
+        })}
+      </div>
+
+      <div className="lg:hidden">
+        {section.panels.map((panel, index) => {
+          const toneClass =
+            panel.tone === "blue"
+              ? "bg-[linear-gradient(180deg,rgba(8,17,34,0.3)_0%,rgba(3,8,18,0.42)_32%,rgba(2,5,11,0.9)_100%)]"
+              : "bg-[linear-gradient(180deg,rgba(3,6,12,0.24)_0%,rgba(2,5,11,0.42)_32%,rgba(2,5,11,0.92)_100%)]";
+
+          return (
+            <article key={panel.text} className="relative min-h-[40svh] overflow-hidden border-t border-white/10 first:border-t-0">
+              <Image
+                src={panel.image}
+                alt=""
+                fill
+                sizes="100vw"
+                quality={100}
+                className="object-cover brightness-[0.58] contrast-[1.05] saturate-[0.14]"
+                style={{ objectPosition: panel.objectPosition ?? "center center" }}
+              />
+              <div className={`absolute inset-0 ${toneClass}`} />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,11,0.04)_0%,rgba(2,5,11,0.16)_24%,rgba(2,5,11,0.42)_52%,rgba(2,5,11,0.92)_100%)]" />
+
+              <div className="relative flex min-h-[40svh] items-end px-5 py-6">
+                <div className="max-w-[21.5rem] sm:max-w-[23rem]">
+                  <div className="mb-3.5 flex items-center gap-2.5">
+                    <span className={`h-px w-7 ${index === 1 ? "bg-[#ffcf00]" : "bg-white/80"}`} />
+                    <span className={`text-[0.72rem] font-black tracking-[0.08em] ${index === 1 ? "text-[#ffcf00]" : "text-white/92"}`}>
+                      {panel.label}
+                    </span>
+                  </div>
+                  <p className="text-[1.06rem] font-black leading-[1.18] tracking-[-0.04em] text-white [text-shadow:0_10px_24px_rgba(2,5,11,0.42)] sm:text-[1.22rem]">
+                    {renderTriptychText(panel.text, panel.highlight)}
+                  </p>
+                </div>
+              </div>
+
+              {index < section.panels.length - 1 ? (
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_0%,rgba(255,255,255,0.18)_18%,rgba(255,255,255,0.18)_82%,rgba(255,255,255,0.04)_100%)]" />
+              ) : null}
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function ThreeWaySection({
   section,
 }: {
@@ -439,24 +661,24 @@ function ThreeWaySection({
 }
 
 export function PortedContactBand({ contact }: PortedContactBandProps) {
-  const [smallStoreCard, focusedStartupCard, beginnerCard] = contact.featureCards;
+  const [smallStoreCard, ...secondaryFeatureCards] = contact.featureCards;
 
   return (
     <section id="contact-section" className="scroll-mt-[5.25rem] bg-[#061433]">
       <div className="bg-[#f4f5f7] text-[#111217] flex min-h-[calc(100svh-4.75rem)] items-center md:min-h-[calc(100svh-5.25rem)]">
-        <div className="mx-auto w-full max-w-[1680px] px-4 py-8 md:px-6 md:py-8 xl:py-10">
+        <div className="mx-auto w-full max-w-[1680px] px-4 py-5 md:px-6 md:py-8 xl:py-10">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#111217] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.reasonTitle} </span>
               <span className="text-[#ef4136]">{contact.reasonHighlight}</span>
             </h2>
-            <p className="mx-auto mt-2.5 max-w-[20rem] text-[0.92rem] font-medium leading-relaxed text-[#5d606b] md:mt-3 md:max-w-3xl md:text-[1rem]">
+            <p className="mx-auto mt-2 hidden max-w-3xl text-[0.92rem] font-medium leading-relaxed text-[#5d606b] md:block md:text-[1rem]">
               {contact.reasonDescription}
             </p>
           </div>
 
-          <div className="mx-auto mt-6 grid max-w-[1180px] gap-3 lg:mt-8 lg:grid-cols-[minmax(0,1.16fr)_minmax(20rem,0.84fr)] lg:items-stretch xl:gap-5">
-            <article className="relative isolate min-h-[17rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_24px_64px_rgba(17,18,23,0.14)] sm:min-h-[22rem] lg:min-h-[29rem] xl:min-h-[31rem]">
+          <div className="mx-auto mt-4 grid max-w-[1240px] gap-2.5 md:mt-6 md:gap-3 lg:mt-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-stretch xl:gap-5">
+            <article className="relative isolate min-h-[11.5rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_18px_44px_rgba(17,18,23,0.12)] sm:min-h-[15rem] lg:min-h-[27rem] lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)] xl:min-h-[29rem]">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
@@ -467,15 +689,15 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,40,0.06)_0%,rgba(15,22,40,0.18)_48%,rgba(15,22,40,0.92)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-4 md:p-6 lg:p-6 xl:p-7">
-                <div className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_12px_28px_rgba(239,65,54,0.35)] xl:h-[64px] xl:w-[64px]">
+              <div className="relative flex h-full flex-col justify-end p-3.5 md:p-6 lg:p-6 xl:p-7">
+                <div className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_10px_24px_rgba(239,65,54,0.32)] xl:h-[64px] xl:w-[64px]">
                   <FranchiseFeatureIcon type={smallStoreCard.icon} />
                 </div>
-                <p className="mt-3 text-[0.78rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem]">01</p>
-                <h3 className="mt-1.5 max-w-[13ch] text-[1.55rem] font-black leading-[1.02] text-white md:mt-2 md:text-[2.25rem] xl:text-[2.5rem]">
+                <p className="mt-2 text-[0.72rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem]">01</p>
+                <h3 className="mt-1 max-w-[10ch] text-[1.32rem] font-black leading-[1.02] text-white md:mt-2 md:max-w-[13ch] md:text-[2.25rem] xl:text-[2.5rem]">
                   {smallStoreCard.title}
                 </h3>
-                <div className="mt-2.5 max-w-[24rem] space-y-1.5 text-[0.84rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1rem]">
+                <div className="mt-2 max-w-[19rem] space-y-1 text-[0.76rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1rem]">
                   {smallStoreCard.lines.map((line) => (
                     <p key={line}>{line}</p>
                   ))}
@@ -483,42 +705,65 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
               </div>
             </article>
 
-            <div className="grid grid-cols-1 gap-3 lg:grid-cols-1 lg:grid-rows-2 lg:gap-4">
-              <article className="flex h-full min-h-[6.9rem] flex-row items-center gap-4 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] p-4 text-[#181a21] shadow-[0_24px_58px_rgba(7,29,85,0.12)] md:p-6 lg:min-h-[12rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6">
-                <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[14px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px]">
-                  <FranchiseFeatureIcon type={focusedStartupCard.icon} />
-                </div>
-                <p className="mt-5 hidden text-[0.84rem] font-black tracking-[0.14em] text-[#ef4136] lg:block">02</p>
-                <h3 className="max-w-none text-[1.24rem] font-black leading-[1.12] md:text-[1.42rem] lg:mt-2 lg:max-w-[12ch] lg:text-[1.8rem] xl:text-[1.95rem]">
-                  {focusedStartupCard.title}
-                </h3>
-                <div className="mt-3 hidden space-y-2.5 text-sm font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.95rem] xl:text-[0.98rem]">
-                  {focusedStartupCard.lines.map((line) => (
-                    <p key={line}>{line}</p>
-                  ))}
-                </div>
-              </article>
+            <div className="grid grid-cols-1 gap-2 lg:auto-rows-fr lg:grid-cols-2 lg:gap-4">
+              {secondaryFeatureCards.map((card, index) => {
+                const isDarkCard = index % 2 === 1;
+                const cardNumber = String(index + 2).padStart(2, "0");
 
-              <article className="flex h-full min-h-[6.9rem] flex-row items-center gap-4 rounded-[8px] bg-[#071d55] p-4 text-white shadow-[0_24px_64px_rgba(7,29,85,0.22)] md:p-6 lg:min-h-[12rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6">
-                <div className="flex h-[48px] w-[48px] shrink-0 items-center justify-center rounded-[14px] bg-white/12 text-white xl:h-[68px] xl:w-[68px]">
-                  <FranchiseFeatureIcon type={beginnerCard.icon} />
-                </div>
-                <p className="mt-5 hidden text-[0.84rem] font-black tracking-[0.14em] text-[#ffcf00] lg:block">03</p>
-                <div className="max-w-[28rem] lg:mt-3">
-                  <h3 className="max-w-none text-[1.24rem] font-black leading-[1.12] md:text-[1.42rem] lg:max-w-[12ch] lg:text-[1.8rem] xl:text-[1.95rem]">
-                    {beginnerCard.title}
-                  </h3>
-                  <div className="mt-3 hidden space-y-2.5 text-sm font-medium leading-relaxed text-white/86 lg:block lg:text-[0.95rem] xl:text-[0.98rem]">
-                    {beginnerCard.lines.map((line) => (
-                      <p key={line}>{line}</p>
-                    ))}
-                  </div>
-                </div>
-              </article>
+                return (
+                  <article
+                    key={card.title}
+                    className={
+                      isDarkCard
+                        ? "flex h-full min-h-[4.7rem] flex-row items-center gap-3 rounded-[8px] bg-[#071d55] px-3.5 py-2.5 text-white shadow-[0_14px_28px_rgba(7,29,85,0.14)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_64px_rgba(7,29,85,0.22)] xl:min-h-[14rem]"
+                        : "flex h-full min-h-[4.7rem] flex-row items-center gap-3 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] px-3.5 py-2.5 text-[#181a21] shadow-[0_14px_28px_rgba(7,29,85,0.08)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_58px_rgba(7,29,85,0.12)] xl:min-h-[14rem]"
+                    }
+                  >
+                    <div
+                      className={
+                        isDarkCard
+                          ? "flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[10px] bg-white/12 text-white xl:h-[60px] xl:w-[60px]"
+                          : "flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[10px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px]"
+                      }
+                    >
+                      <FranchiseFeatureIcon type={card.icon} />
+                    </div>
+                    <div className="min-w-0 lg:mt-3">
+                      <p
+                        className={
+                          isDarkCard
+                            ? "text-[0.68rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.78rem]"
+                            : "text-[0.68rem] font-black tracking-[0.14em] text-[#ef4136] md:text-[0.78rem]"
+                        }
+                      >
+                        {cardNumber}
+                      </p>
+                      <h3 className="mt-0.5 max-w-none text-[1rem] font-black leading-[1.02] md:text-[1.2rem] lg:mt-2 lg:min-h-[3.1rem] lg:max-w-[13ch] lg:text-[1.38rem] xl:min-h-[3.45rem] xl:text-[1.52rem]">
+                        {renderFeatureTitle(card.title)}
+                      </h3>
+                      <div
+                        className={
+                          isDarkCard
+                            ? "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-white/86 lg:block lg:text-[0.88rem]"
+                            : "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.88rem]"
+                        }
+                      >
+                        {card.lines.map((line) => (
+                          <p key={line}>{line}</p>
+                        ))}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
             </div>
           </div>
         </div>
       </div>
+
+      <ShopInShopIntroSection section={contact.shopInShopIntro} />
+
+      <ShopInShopImageTriptychSection section={contact.shopInShopImageTriptych} />
 
       <ShopInShopSection section={contact.shopInShopSection} />
 

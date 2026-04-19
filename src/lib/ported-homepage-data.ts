@@ -46,7 +46,7 @@ export type PortedReviewShowcase = {
   slides: PortedReviewShowcaseSlide[];
 };
 
-export type PortedContactFeatureIcon = "store" | "scooter" | "handshake";
+export type PortedContactFeatureIcon = "store" | "scooter" | "handshake" | "clipboard";
 
 export type PortedContactFeatureCard = {
   title: string;
@@ -64,6 +64,27 @@ export type PortedShopInShopSection = {
     accent: string;
     icon: "space" | "cook" | "growth";
   }>;
+};
+
+export type PortedShopInShopIntroSection = {
+  eyebrow: string;
+  titleLines: string[];
+  description: string;
+  scrollLabel: string;
+  backgroundImage: string;
+};
+
+export type PortedShopInShopImageTriptychPanel = {
+  image: string;
+  text: string;
+  highlight: string;
+  label: string;
+  tone: "blue" | "navy";
+  objectPosition?: string;
+};
+
+export type PortedShopInShopImageTriptychSection = {
+  panels: PortedShopInShopImageTriptychPanel[];
 };
 
 export type PortedThreeWayPanelIcon = "store" | "delivery" | "takeout";
@@ -243,6 +264,41 @@ export const portedHomepageData = {
     reasonTitle: "최강피자",
     reasonHighlight: "성공 비결",
     reasonDescription: "거품은 빼고, 실속만 확실하게 채웠습니다.",
+    shopInShopIntro: {
+      eyebrow: "최강 SHOP-IN-SHOP",
+      titleLines: ["매출의 한계를 넘는", "가장 확실한 선택"],
+      description: "스크롤을 내려 놀라운 해답을 확인하세요",
+      scrollLabel: "SCROLL",
+      backgroundImage: "/assets/user/franchise/shop-in-shop-message.jpeg",
+    } satisfies PortedShopInShopIntroSection,
+    shopInShopImageTriptych: {
+      panels: [
+        {
+          image: "/assets/user/franchise/shop-triptych-01.jpeg",
+          text: "인테리어 비용 0원,\n사장님의 주방은 이미 준비되어 있습니다.",
+          highlight: "0원",
+          label: "01 // READY KITCHEN",
+          tone: "blue",
+          objectPosition: "center 38%",
+        },
+        {
+          image: "/assets/user/franchise/shop-triptych-02.jpeg",
+          text: "숨어있던 월세 100만 원,\n샵인샵 수익으로 메우고 시작하십시오.",
+          highlight: "100만 원",
+          label: "02 // RENT COVER",
+          tone: "navy",
+          objectPosition: "center center",
+        },
+        {
+          image: "/assets/user/franchise/shop-triptych-03.jpeg",
+          text: "사장님의 동선은 그대로,\n매출의 곡선은 새롭게.",
+          highlight: "새롭게",
+          label: "03 // NEW CURVE",
+          tone: "navy",
+          objectPosition: "66% center",
+        },
+      ],
+    } satisfies PortedShopInShopImageTriptychSection,
     shopInShopSection: {
       eyebrow: "최강피자 샵인샵",
       titleLead: "공간은 그대로,",
@@ -333,13 +389,29 @@ export const portedHomepageData = {
         image: "/assets/user/franchise/front-store-front-edited.png",
       },
       {
-        title: "배달·포장 집중 운영",
-        lines: ["홀 운영보다 회전과 동선에 집중해", "작은 인원으로도 운영 효율을 끌어올릴 수 있습니다."],
+        title: "배달·포장\n집중 운영",
+        lines: ["회전과 동선에 집중한 구조로", "작은 인원으로도 운영 효율을 끌어올립니다."],
         icon: "scooter",
       },
       {
-        title: "초보 창업 운영 안정성",
-        lines: ["정량화된 원팩 시스템과 조리 매뉴얼로", "처음 시작해도 같은 품질과 속도로 운영할 수 있습니다."],
+        title: "초보 창업\n운영 안정성",
+        lines: ["정량화된 조리 시스템과 매뉴얼로", "처음 시작해도 같은 품질과 속도를 유지합니다."],
+        icon: "handshake",
+      },
+      {
+        title: "현장 중심의\n실전 시스템",
+        lines: [
+          "본사 직영점에서 1년간 테스트를 거친 시스템입니다.",
+          "검증된 동선과 레시피로 바로 운영에 집중하시면 됩니다.",
+        ],
+        icon: "clipboard",
+      },
+      {
+        title: "대표 직접 교육\n및 세팅 지원",
+        lines: [
+          "브랜드를 만든 대표가 직접 교육과 매장 세팅을 지원합니다.",
+          "담당자 변경 없이 초반 운영의 흔들림을 줄여드립니다.",
+        ],
         icon: "handshake",
       },
     ] satisfies PortedContactFeatureCard[],
