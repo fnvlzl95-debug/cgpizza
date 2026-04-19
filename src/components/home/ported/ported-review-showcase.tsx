@@ -70,7 +70,7 @@ function ReviewSlideRow({
   reduceMotion: boolean;
   offsetClass: string;
 }) {
-  const baseSlides = reduceMotion ? slides.slice(0, 5) : slides;
+  const baseSlides = slides;
 
   const renderCard = (slide: PortedReviewShowcaseData["slides"][number], index: number, group: string) => (
     <div key={`${group}-${slide.image}-${index}`} className="w-[17.5rem] shrink-0 sm:w-[22rem] lg:w-[31rem] xl:w-[33.5rem]">
@@ -93,26 +93,26 @@ function ReviewSlideRow({
     </div>
   );
 
-  if (reduceMotion) {
-    return (
-      <div className={offsetClass}>
-        {renderGroup("static")}
-      </div>
-    );
-  }
-
   return (
     <div className={offsetClass}>
       <motion.div
         className="flex w-max"
-        animate={{
-          x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
-        }}
-        transition={{
-          duration,
-          repeat: Infinity,
-          ease: "linear",
-        }}
+        animate={
+          reduceMotion
+            ? undefined
+            : {
+                x: direction === "left" ? ["0%", "-50%"] : ["-50%", "0%"],
+              }
+        }
+        transition={
+          reduceMotion
+            ? undefined
+            : {
+                duration,
+                repeat: Infinity,
+                ease: "linear",
+              }
+        }
       >
         {renderGroup("group-a")}
         {renderGroup("group-b")}

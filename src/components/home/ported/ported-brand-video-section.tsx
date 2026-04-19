@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useInView, useReducedMotion } from "framer-motion";
+import { useInView } from "framer-motion";
 
 type BrandVideoClip = {
   src: string;
@@ -65,7 +65,6 @@ export function PortedBrandVideoSection() {
   const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isInView = useInView(sectionRef, { amount: 0.32 });
-  const reduceMotion = Boolean(useReducedMotion());
   const [activeIndex, setActiveIndex] = useState(0);
 
   const clips = useMemo<readonly BrandVideoClip[]>(() => BRAND_VIDEO_CLIPS, []);
@@ -99,19 +98,26 @@ export function PortedBrandVideoSection() {
       }
     });
 
-    if (reduceMotion || !activeVideo) return;
+    if (!activeVideo) return;
+
+    const advanceClip = () => {
+      setActiveIndex((current) => (current + 1) % clips.length);
+    };
 
     timerRef.current = setTimeout(() => {
-      setActiveIndex((current) => (current + 1) % clips.length);
+      advanceClip();
     }, clips[activeIndex].durationMs);
 
+    activeVideo.addEventListener("ended", advanceClip);
+
     return () => {
+      activeVideo.removeEventListener("ended", advanceClip);
       if (timerRef.current) {
         clearTimeout(timerRef.current);
         timerRef.current = null;
       }
     };
-  }, [activeIndex, clips, isInView, reduceMotion]);
+  }, [activeIndex, clips, isInView]);
 
   return (
     <section
