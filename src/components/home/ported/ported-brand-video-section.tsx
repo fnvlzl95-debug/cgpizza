@@ -20,8 +20,8 @@ const BRAND_VIDEO_CLIPS = [
     titleLines: ["푸짐하게", "올리는 토핑"],
   },
   {
-    src: "/assets/user/brand-videos/2.mp4",
-    durationMs: 6700,
+    src: "/assets/user/brand-videos/2-revised.mp4",
+    durationMs: 7000,
     step: "02",
     titleLines: ["기본부터", "제대로"],
   },
