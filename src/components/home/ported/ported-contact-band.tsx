@@ -208,7 +208,7 @@ function ShopInShopSection({
   return (
     <section
       id="shopinshop-section"
-      className="scroll-mt-[5.25rem] border-t border-white/10 bg-[#061433] text-white flex min-h-[calc(100svh-4.75rem)] items-center md:min-h-[calc(100svh-5.25rem)]"
+      className="app-screen-min-offset scroll-mt-[5.25rem] border-t border-white/10 bg-[#061433] text-white flex items-center"
     >
       <div className="relative mx-auto w-full max-w-[1680px] overflow-hidden px-4 py-8 md:px-6 md:py-12 xl:py-14">
         <div
@@ -331,7 +331,7 @@ function ShopInShopIntroSection({
   const reduceMotion = Boolean(useReducedMotion());
 
   return (
-    <section className="scroll-mt-[5.25rem] relative isolate flex min-h-[calc(100svh-4.75rem)] items-center overflow-hidden bg-[#061433] text-white md:min-h-[calc(100svh-5.25rem)]">
+    <section className="app-screen-min-offset scroll-mt-[5.25rem] relative isolate flex items-center overflow-hidden bg-[#061433] text-white">
       <Image
         src={section.backgroundImage}
         alt=""
@@ -587,7 +587,7 @@ function ThreeWaySection({
     <section
       ref={threeWayRef}
       id="threeway-section"
-      className="scroll-mt-[5.25rem] flex min-h-[calc(100svh-4.75rem)] items-center overflow-hidden bg-[#ffcf00] text-[#041544] md:min-h-[calc(100svh-5.25rem)]"
+      className="app-screen-min-offset scroll-mt-[5.25rem] flex items-center overflow-hidden bg-[#ffcf00] text-[#041544]"
     >
       <div className="relative mx-auto w-full max-w-[1680px] px-4 pt-10 pb-8 md:px-6 md:py-16">
         <div className="relative mx-auto max-w-[86rem]">
@@ -665,7 +665,7 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
 
   return (
     <section id="contact-section" className="scroll-mt-[5.25rem] bg-[#061433]">
-      <div className="bg-[#f4f5f7] text-[#111217] flex min-h-[calc(100svh-4.75rem)] items-start md:min-h-[calc(100svh-5.25rem)] md:items-center">
+      <div className="app-screen-min-offset bg-[#f4f5f7] text-[#111217] flex items-start md:items-center">
         <div className="mx-auto w-full max-w-[1680px] px-4 pt-14 pb-4 md:px-6 md:py-8 xl:py-10">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#111217] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">

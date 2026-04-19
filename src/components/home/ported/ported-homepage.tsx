@@ -6,11 +6,13 @@ import { PortedHeader } from "@/components/home/ported/ported-header";
 import { PortedHero } from "@/components/home/ported/ported-hero";
 import { PortedMenuSection } from "@/components/home/ported/ported-menu-section";
 import { PortedValueStrip } from "@/components/home/ported/ported-value-strip";
+import { PortedViewportRuntimeFix } from "@/components/home/ported/ported-viewport-runtime-fix";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 
 export function PortedHomepage() {
   return (
     <>
+      <PortedViewportRuntimeFix />
       <PortedHeader navItems={portedHomepageData.navItems} />
       <main className="overflow-x-hidden bg-[#041544] text-white">
         <PortedHero hero={portedHomepageData.hero} />

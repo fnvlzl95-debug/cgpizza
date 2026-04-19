@@ -74,7 +74,7 @@ export function PortedHero({ hero }: PortedHeroProps) {
       id="top"
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
-      className="relative flex h-[100svh] items-start overflow-hidden bg-[#08215d] pt-[4.75rem] pb-5 md:min-h-screen md:h-auto md:items-center md:pt-[5.25rem] md:pb-0"
+      className="app-screen-height-mobile relative flex items-start overflow-hidden bg-[#08215d] pt-[4.75rem] pb-5 md:min-h-screen md:h-auto md:items-center md:pt-[5.25rem] md:pb-0"
     >
       <div id="store-section" className="absolute top-0" />
       <div className="relative z-10 mx-auto grid h-full w-full max-w-7xl items-start px-4 md:grid-cols-[minmax(0,0.96fr)_minmax(0,1.04fr)] md:items-center lg:gap-12">
