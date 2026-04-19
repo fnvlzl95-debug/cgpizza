@@ -142,7 +142,7 @@ export function PortedBrandVideoSection() {
             </p>
 
             <p className="mx-auto mt-2.5 max-w-[19.5rem] text-[0.88rem] font-medium leading-[1.7] text-white/64 md:max-w-[22rem] md:text-[0.95rem] lg:mx-0 lg:max-w-[30rem] lg:text-[1.02rem]">
-              그 안에는 꾸미지 않은 진짜 현장의 땀방울과 넘칠 듯 담아내는 재료들의 무게가 있습니다.
+              최강피자는 꾸미지 않은 진짜 현장의 땀방울과 넘칠 듯 담아내는 재료들의 무게가 있습니다.
             </p>
 
             <p className="mx-auto mt-4 max-w-[19rem] text-[0.92rem] font-black leading-[1.56] text-[#ffcf00] md:max-w-[22rem] md:text-[0.98rem] lg:mx-0 lg:max-w-[28rem] lg:text-[1.08rem]">

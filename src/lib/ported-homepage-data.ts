@@ -274,20 +274,20 @@ export const portedHomepageData = {
     shopInShopImageTriptych: {
       panels: [
         {
-          image: "/assets/user/franchise/shop-triptych-01.jpeg",
+          image: "/assets/user/franchise/shop-triptych-02.jpeg",
           text: "인테리어 비용 0원,\n사장님의 주방은 이미 준비되어 있습니다.",
           highlight: "0원",
           label: "01 // READY KITCHEN",
           tone: "blue",
-          objectPosition: "center 38%",
+          objectPosition: "center center",
         },
         {
-          image: "/assets/user/franchise/shop-triptych-02.jpeg",
+          image: "/assets/user/franchise/shop-triptych-01.jpeg",
           text: "숨어있던 월세 100만 원,\n샵인샵 수익으로 메우고 시작하십시오.",
           highlight: "100만 원",
           label: "02 // RENT COVER",
           tone: "navy",
-          objectPosition: "center center",
+          objectPosition: "center 38%",
         },
         {
           image: "/assets/user/franchise/shop-triptych-03.jpeg",
