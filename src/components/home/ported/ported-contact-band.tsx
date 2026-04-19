@@ -207,12 +207,11 @@ function ShopInShopSection({
 
         <div className="relative mx-auto max-w-6xl md:grid md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:items-center md:gap-10">
           <div className="text-center md:text-left">
-            <span className="inline-flex rounded-full border border-[#ffcf00]/18 bg-[#ffcf00]/10 px-4 py-1.5 text-[0.82rem] font-black text-[#ffcf00]">
-              {section.eyebrow}
-            </span>
-
-            <h3 className="mt-5 text-balance text-[2.2rem] font-black leading-[0.96] text-white md:mt-6 md:text-[3.6rem] xl:text-[4.1rem]">
-              <span className="block">{section.titleLead}</span>
+            <h3 className="text-balance text-[2.2rem] font-black leading-[0.92] tracking-[-0.05em] text-white md:text-[3.6rem] xl:text-[4.1rem]">
+              <span className="block bg-[linear-gradient(180deg,#ffcf00_0%,#f5a000_100%)] bg-clip-text leading-[0.98] text-transparent">
+                {section.eyebrow}
+              </span>
+              <span className="mt-3 block md:mt-4">{section.titleLead}</span>
               <span className="mt-2 block bg-[linear-gradient(180deg,#ffcf00_0%,#f5a000_100%)] bg-clip-text text-transparent md:mt-3">
                 {section.titleHighlight}
               </span>
