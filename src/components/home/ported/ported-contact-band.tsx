@@ -665,20 +665,20 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
 
   return (
     <section id="contact-section" className="scroll-mt-[5.25rem] bg-[#061433]">
-      <div className="bg-[#f4f5f7] text-[#111217] flex min-h-[calc(100svh-4.75rem)] items-center md:min-h-[calc(100svh-5.25rem)]">
-        <div className="mx-auto w-full max-w-[1680px] px-4 py-5 md:px-6 md:py-8 xl:py-10">
+      <div className="bg-[#f4f5f7] text-[#111217] flex min-h-[calc(100svh-4.75rem)] items-start md:min-h-[calc(100svh-5.25rem)] md:items-center">
+        <div className="mx-auto w-full max-w-[1680px] px-4 pt-14 pb-4 md:px-6 md:py-8 xl:py-10">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#111217] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.reasonTitle} </span>
               <span className="text-[#ef4136]">{contact.reasonHighlight}</span>
             </h2>
-            <p className="mx-auto mt-2 hidden max-w-3xl text-[0.92rem] font-medium leading-relaxed text-[#5d606b] md:block md:text-[1rem]">
+            <p className="mx-auto mt-2.5 max-w-[21rem] text-sm font-medium leading-relaxed text-[#5d606b] sm:max-w-xl sm:text-base md:mt-3 md:max-w-3xl">
               {contact.reasonDescription}
             </p>
           </div>
 
-          <div className="mx-auto mt-4 grid max-w-[1240px] gap-2.5 md:mt-6 md:gap-3 lg:mt-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-stretch xl:gap-5">
-            <article className="relative isolate min-h-[11.5rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_18px_44px_rgba(17,18,23,0.12)] sm:min-h-[15rem] lg:min-h-[27rem] lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)] xl:min-h-[29rem]">
+          <div className="mx-auto mt-6 grid max-w-[1240px] gap-2 md:mt-6 md:gap-3 lg:mt-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-stretch xl:gap-5 2xl:gap-4">
+            <article className="relative isolate min-h-[16.25rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_16px_36px_rgba(17,18,23,0.12)] sm:min-h-[16.75rem] lg:min-h-[27rem] lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)] xl:min-h-[29rem] 2xl:min-h-[24.75rem]">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
@@ -689,17 +689,19 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,40,0.06)_0%,rgba(15,22,40,0.18)_48%,rgba(15,22,40,0.92)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-3.5 md:p-6 lg:p-6 xl:p-7">
-                <div className="flex h-[44px] w-[44px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_10px_24px_rgba(239,65,54,0.32)] xl:h-[64px] xl:w-[64px]">
+              <div className="relative flex h-full flex-col justify-end p-3 md:p-6 lg:p-6 xl:p-7 2xl:p-6">
+                <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_8px_18px_rgba(239,65,54,0.3)] xl:h-[64px] xl:w-[64px] 2xl:h-[56px] 2xl:w-[56px]">
                   <FranchiseFeatureIcon type={smallStoreCard.icon} />
                 </div>
-                <p className="mt-2 text-[0.72rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem]">01</p>
-                <h3 className="mt-1 max-w-[10ch] text-[1.32rem] font-black leading-[1.02] text-white md:mt-2 md:max-w-[13ch] md:text-[2.25rem] xl:text-[2.5rem]">
+                <p className="mt-1.5 text-[0.68rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem] 2xl:mt-3 2xl:text-[0.78rem]">01</p>
+                <h3 className="mt-0.5 max-w-[10ch] text-[1.16rem] font-black leading-[1.02] text-white md:mt-2 md:max-w-[13ch] md:text-[2.25rem] xl:text-[2.5rem] 2xl:max-w-[12ch] 2xl:text-[2.15rem]">
                   {smallStoreCard.title}
                 </h3>
-                <div className="mt-2 max-w-[19rem] space-y-1 text-[0.76rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1rem]">
-                  {smallStoreCard.lines.map((line) => (
-                    <p key={line}>{line}</p>
+                <div className="mt-1.5 max-w-[19rem] space-y-0.5 text-[0.68rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1rem] 2xl:mt-2 2xl:max-w-[24rem] 2xl:space-y-1 2xl:text-[0.9rem]">
+                  {smallStoreCard.lines.map((line, index) => (
+                    <p key={line} className={index > 0 ? "hidden sm:block" : ""}>
+                      {line}
+                    </p>
                   ))}
                 </div>
               </div>
@@ -715,37 +717,37 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                     key={card.title}
                     className={
                       isDarkCard
-                        ? "flex h-full min-h-[4.7rem] flex-row items-center gap-3 rounded-[8px] bg-[#071d55] px-3.5 py-2.5 text-white shadow-[0_14px_28px_rgba(7,29,85,0.14)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_64px_rgba(7,29,85,0.22)] xl:min-h-[14rem]"
-                        : "flex h-full min-h-[4.7rem] flex-row items-center gap-3 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] px-3.5 py-2.5 text-[#181a21] shadow-[0_14px_28px_rgba(7,29,85,0.08)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_58px_rgba(7,29,85,0.12)] xl:min-h-[14rem]"
+                        ? "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] bg-[#071d55] px-3 py-2 text-white shadow-[0_12px_22px_rgba(7,29,85,0.14)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_64px_rgba(7,29,85,0.22)] xl:min-h-[14rem] 2xl:min-h-[11.25rem] 2xl:p-4"
+                        : "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] px-3 py-2 text-[#181a21] shadow-[0_12px_22px_rgba(7,29,85,0.08)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_58px_rgba(7,29,85,0.12)] xl:min-h-[14rem] 2xl:min-h-[11.25rem] 2xl:p-4"
                     }
                   >
                     <div
                       className={
                         isDarkCard
-                          ? "flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[10px] bg-white/12 text-white xl:h-[60px] xl:w-[60px]"
-                          : "flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-[10px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px]"
+                          ? "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-white/12 text-white xl:h-[60px] xl:w-[60px] 2xl:h-[48px] 2xl:w-[48px]"
+                          : "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px] 2xl:h-[48px] 2xl:w-[48px]"
                       }
                     >
                       <FranchiseFeatureIcon type={card.icon} />
                     </div>
-                    <div className="min-w-0 lg:mt-3">
+                    <div className="min-w-0 lg:mt-3 2xl:mt-2.5">
                       <p
                         className={
                           isDarkCard
-                            ? "text-[0.68rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.78rem]"
-                            : "text-[0.68rem] font-black tracking-[0.14em] text-[#ef4136] md:text-[0.78rem]"
+                            ? "text-[0.62rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.78rem] 2xl:text-[0.72rem]"
+                            : "text-[0.62rem] font-black tracking-[0.14em] text-[#ef4136] md:text-[0.78rem] 2xl:text-[0.72rem]"
                         }
                       >
                         {cardNumber}
                       </p>
-                      <h3 className="mt-0.5 max-w-none text-[1rem] font-black leading-[1.02] md:text-[1.2rem] lg:mt-2 lg:min-h-[3.1rem] lg:max-w-[13ch] lg:text-[1.38rem] xl:min-h-[3.45rem] xl:text-[1.52rem]">
+                      <h3 className="mt-0.5 max-w-none text-[0.92rem] font-black leading-[1] md:text-[1.2rem] lg:mt-2 lg:min-h-[3.1rem] lg:max-w-[13ch] lg:text-[1.38rem] xl:min-h-[3.45rem] xl:text-[1.52rem] 2xl:mt-1 2xl:min-h-[2.6rem] 2xl:max-w-[12ch] 2xl:text-[1.24rem]">
                         {renderFeatureTitle(card.title)}
                       </h3>
                       <div
                         className={
                           isDarkCard
-                            ? "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-white/86 lg:block lg:text-[0.88rem]"
-                            : "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.88rem]"
+                            ? "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-white/86 lg:block lg:text-[0.88rem] 2xl:mt-2 2xl:space-y-1 2xl:text-[0.8rem]"
+                            : "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.88rem] 2xl:mt-2 2xl:space-y-1 2xl:text-[0.8rem]"
                         }
                       >
                         {card.lines.map((line) => (
