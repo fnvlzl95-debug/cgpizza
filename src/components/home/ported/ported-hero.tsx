@@ -97,20 +97,22 @@ export function PortedHero({ hero }: PortedHeroProps) {
             {hero.description}
           </p>
 
-          <div className="relative left-1/2 mt-auto w-[103vw] max-w-[28.5rem] -translate-x-[52.5%] md:hidden">
-            <div className="pointer-events-none absolute right-[12.5%] top-[16%] z-10 flex h-[4.3rem] w-[4.3rem] -translate-y-1/2 rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
+          <div className="relative left-1/2 mt-auto w-[103vw] max-w-[28.5rem] translate-y-[1.5%] -translate-x-[49.5%] md:hidden">
+            <div className="pointer-events-none absolute right-[12.5%] top-[16.5%] z-10 flex h-[4.3rem] w-[4.3rem] -translate-y-1/2 rotate-[12deg] flex-col items-center justify-center rounded-full border-[3px] border-dashed border-white bg-[#ef4136] text-white shadow-xl">
               <span className="text-[8px] font-bold tracking-widest">★★★</span>
               <span className="text-[1rem] font-black">{hero.badge}</span>
             </div>
             <div className="relative aspect-square w-full">
-              <Image
-                src={hero.clusterImage}
-                alt={hero.clusterAlt}
-                fill
-                priority
-                sizes="(max-width: 767px) 103vw, 0px"
-                className="translate-x-[1.5%] scale-[0.95] object-contain object-center drop-shadow-[0_28px_32px_rgba(0,0,0,0.42)]"
-              />
+              <div className="relative h-full w-full rotate-90">
+                <Image
+                  src={hero.clusterImage}
+                  alt={hero.clusterAlt}
+                  fill
+                  priority
+                  sizes="(max-width: 767px) 103vw, 0px"
+                  className="translate-x-[4.5%] scale-[0.95] object-contain object-center drop-shadow-[0_28px_32px_rgba(0,0,0,0.42)]"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -120,17 +122,19 @@ export function PortedHero({ hero }: PortedHeroProps) {
         <div className="pointer-events-none absolute inset-0 hidden md:block">
           <div className="absolute right-[-15%] top-[49%] z-0 w-[37rem] -translate-x-[13%] -translate-y-[49%] lg:right-[-11%] lg:w-[42rem] lg:-translate-x-[14%] xl:right-0 xl:w-[44rem] xl:-translate-x-[15%] 2xl:right-[-15%] 2xl:top-[48%] 2xl:w-[58rem] 2xl:-translate-x-[14%]">
             <div className="relative ml-auto w-fit max-w-full">
-              <motion.img
-                src={hero.clusterImage}
-                alt={hero.clusterAlt}
-                style={{
-                  rotateX: smoothRotateX,
-                  rotateY: smoothRotateY,
-                  rotateZ: smoothRotateZ,
-                  transformPerspective: 1600,
-                }}
-                className="h-auto w-auto max-h-[min(78vh,44rem)] max-w-full object-contain drop-shadow-[0_42px_44px_rgba(0,0,0,0.58)] will-change-transform lg:max-h-[min(79vh,46rem)] 2xl:max-h-[min(86vh,58rem)]"
-              />
+              <div className="rotate-90">
+                <motion.img
+                  src={hero.clusterImage}
+                  alt={hero.clusterAlt}
+                  style={{
+                    rotateX: smoothRotateX,
+                    rotateY: smoothRotateY,
+                    rotateZ: smoothRotateZ,
+                    transformPerspective: 1600,
+                  }}
+                  className="h-auto w-auto max-h-[min(78vh,44rem)] max-w-full object-contain drop-shadow-[0_42px_44px_rgba(0,0,0,0.58)] will-change-transform lg:max-h-[min(79vh,46rem)] 2xl:max-h-[min(86vh,58rem)]"
+                />
+              </div>
               <div className="absolute right-[23%] top-[14%] z-20 flex h-24 w-24 translate-x-[4%] -translate-y-[4%] rotate-[14deg] flex-col items-center justify-center rounded-full border-4 border-dashed border-white bg-[#ef4136] text-white shadow-xl lg:right-[18%] lg:top-[12.25%] lg:h-28 lg:w-28 lg:translate-x-[7%] lg:-translate-y-[7%] xl:right-[16%] xl:top-[11.75%] xl:translate-x-[8%] xl:-translate-y-[8%] 2xl:right-[13%] 2xl:top-[10.75%] 2xl:translate-x-[9%] 2xl:-translate-y-[10%]">
                 <span className="text-[10px] font-bold tracking-widest">★★★</span>
                 <span className="text-xl font-black lg:text-2xl">{hero.badge}</span>
