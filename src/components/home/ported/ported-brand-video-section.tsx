@@ -123,7 +123,7 @@ export function PortedBrandVideoSection() {
     <section
       ref={sectionRef}
       id="brand-video-section"
-      className="app-screen-height-offset scroll-mt-[5.25rem] overflow-hidden border-t border-white/10 bg-[#061433] text-white"
+      className="app-screen-height-offset app-screen-snap-target overflow-hidden border-t border-white/10 bg-[#061433] text-white"
     >
       <div className="relative h-full w-full overflow-hidden">
         <div

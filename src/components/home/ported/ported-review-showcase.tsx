@@ -140,7 +140,7 @@ export function PortedReviewShowcase({
   return (
     <section
       id="review-section"
-      className="relative isolate scroll-mt-24 overflow-hidden bg-[#edf2f8] text-white md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center"
+      className="app-screen-min-offset app-screen-snap-target relative isolate overflow-hidden bg-[#edf2f8] text-white md:flex md:items-center"
     >
       <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
         <div className="absolute inset-x-[-27rem] top-1/2 -translate-y-1/2 sm:inset-x-[-36rem] lg:inset-x-[-52rem]">

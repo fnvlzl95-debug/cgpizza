@@ -63,7 +63,7 @@ export function PortedValueStrip({ items, headline, message, sectionId }: Ported
   return (
     <section
       id={sectionId}
-      className="scroll-mt-24 border-y-2 border-black/5 bg-[#ffcf00] py-14 text-[#001540] md:flex md:min-h-[calc(100svh-5.25rem)] md:items-center md:py-16"
+      className="app-screen-min-offset-desktop app-screen-snap-target border-y-2 border-black/5 bg-[#ffcf00] py-14 text-[#001540] md:flex md:items-center md:py-16"
     >
       <div className="mx-auto w-full max-w-6xl px-4">
         {headline ? (

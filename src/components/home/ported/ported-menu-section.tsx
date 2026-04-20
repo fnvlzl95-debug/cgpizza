@@ -174,7 +174,7 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
   return (
     <section
       id="menu-section"
-      className="relative scroll-mt-[5.25rem] overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:flex md:min-h-[calc(100svh-5.25rem)] md:items-start md:pt-9 md:pb-4 xl:pt-10 xl:pb-5"
+      className="relative overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:pt-10 md:pb-12 xl:pt-12 xl:pb-14"
     >
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-20 w-[145%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white" />
       <div className="mx-auto w-full max-w-[1720px] px-4 lg:px-6">

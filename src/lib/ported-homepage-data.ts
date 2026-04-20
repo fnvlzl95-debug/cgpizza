@@ -115,11 +115,9 @@ export const portedHomepageData = {
     ogImage: "/assets/user/share-preview-kakao-logo-1200x630.png",
   },
   navItems: [
-    { label: "브랜드", href: "#top" },
-    { label: "매장안내", href: "#store-section" },
-    { label: "대표 메뉴", href: "#menu-section" },
-    { label: "샵인샵", href: "#shopinshop-section" },
-    { label: "고객 리뷰", href: "#review-section" },
+    { label: "최강 메뉴", href: "#menu-section" },
+    { label: "최강샵인샵", href: "#shopinshop-intro-section" },
+    { label: "가맹 문의", href: "#contact-cta-section" },
   ] satisfies PortedNavItem[],
   hero: {
     badge: "BEST",
@@ -132,12 +130,12 @@ export const portedHomepageData = {
     clusterImage: "/assets/user/hero-choigang-half-half-pizza.png",
     clusterAlt: "최강피자 반반 피자 실사 이미지",
     primaryCta: {
-      label: "대표 메뉴 보기",
+      label: "최강 메뉴 보기",
       href: "#menu-section",
     },
     secondaryCta: {
       label: "브랜드 영상 보기",
-      href: "#brand-video",
+      href: "#brand-video-section",
     },
     infoCards: [
       {
@@ -300,7 +298,7 @@ export const portedHomepageData = {
       ],
     } satisfies PortedShopInShopImageTriptychSection,
     shopInShopSection: {
-      eyebrow: "최강피자 샵인샵",
+      eyebrow: "최강샵인샵",
       titleLead: "공간은 그대로,",
       titleHighlight: "수익만 더하세요.",
       features: [

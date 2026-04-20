@@ -208,7 +208,7 @@ function ShopInShopSection({
   return (
     <section
       id="shopinshop-section"
-      className="app-screen-min-offset scroll-mt-[5.25rem] border-t border-white/10 bg-[#061433] text-white flex items-center"
+      className="app-screen-min-offset app-screen-snap-target flex items-center border-t border-white/10 bg-[#061433] text-white"
     >
       <div className="relative mx-auto w-full max-w-[1680px] overflow-hidden px-4 py-8 md:px-6 md:py-12 xl:py-14">
         <div
@@ -331,7 +331,10 @@ function ShopInShopIntroSection({
   const reduceMotion = Boolean(useReducedMotion());
 
   return (
-    <section className="app-screen-min-offset scroll-mt-[5.25rem] relative isolate flex items-center overflow-hidden bg-[#061433] text-white">
+    <section
+      id="shopinshop-intro-section"
+      className="app-screen-min-offset app-screen-snap-target relative isolate flex items-center overflow-hidden bg-[#061433] text-white"
+    >
       <Image
         src={section.backgroundImage}
         alt=""
@@ -433,11 +436,11 @@ function ShopInShopImageTriptychSection({
   section: typeof portedHomepageData.contact.shopInShopImageTriptych;
 }) {
   return (
-    <section className="scroll-mt-[5.25rem] relative overflow-hidden bg-[#02050b] text-white">
+    <section className="app-screen-snap-target relative overflow-hidden bg-[#02050b] text-white">
       <div className="pointer-events-none absolute inset-0 hidden lg:block bg-[linear-gradient(180deg,rgba(2,5,11,0.34)_0%,rgba(2,5,11,0.16)_16%,rgba(2,5,11,0.24)_52%,rgba(2,5,11,0.62)_100%)]" />
       <div className="pointer-events-none absolute inset-0 hidden lg:block bg-[radial-gradient(circle_at_50%_18%,rgba(255,207,0,0.04)_0%,rgba(255,207,0,0.012)_20%,rgba(255,207,0,0)_42%)]" />
 
-      <div className="hidden min-h-[calc(100svh-5.25rem)] grid-cols-3 lg:grid">
+      <div className="app-screen-min-offset hidden grid-cols-3 lg:grid">
         {section.panels.map((panel, index) => {
           const toneClass =
             panel.tone === "blue"
@@ -445,7 +448,7 @@ function ShopInShopImageTriptychSection({
               : "bg-[linear-gradient(180deg,rgba(3,6,12,0.28)_0%,rgba(2,5,11,0.52)_38%,rgba(2,5,11,0.94)_100%)]";
 
           return (
-            <article key={panel.text} className="group relative min-h-[calc(100svh-5.25rem)] overflow-hidden">
+            <article key={panel.text} className="app-screen-min-offset group relative overflow-hidden">
               <Image
                 src={panel.image}
                 alt=""
@@ -458,7 +461,7 @@ function ShopInShopImageTriptychSection({
               <div className={`absolute inset-0 ${toneClass}`} />
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,11,0.04)_0%,rgba(2,5,11,0.18)_24%,rgba(2,5,11,0.46)_56%,rgba(2,5,11,0.94)_100%)]" />
 
-              <div className="relative flex min-h-[calc(100svh-5.25rem)] items-end px-9 py-10 xl:px-11 xl:py-11">
+              <div className="app-screen-min-offset relative flex items-end px-9 py-10 xl:px-11 xl:py-11">
                 <div className="max-w-[23rem] transition-transform duration-500 ease-out group-hover:-translate-y-2 xl:max-w-[24.5rem]">
                   <div className="mb-5 flex items-center gap-3">
                     <span
@@ -587,7 +590,7 @@ function ThreeWaySection({
     <section
       ref={threeWayRef}
       id="threeway-section"
-      className="app-screen-min-offset scroll-mt-[5.25rem] flex items-center overflow-hidden bg-[#ffcf00] text-[#041544]"
+      className="app-screen-min-offset app-screen-snap-target flex items-center overflow-hidden bg-[#ffcf00] text-[#041544]"
     >
       <div className="relative mx-auto w-full max-w-[1680px] px-4 pt-10 pb-8 md:px-6 md:py-16">
         <div className="relative mx-auto max-w-[86rem]">
@@ -664,9 +667,9 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
   const [smallStoreCard, ...secondaryFeatureCards] = contact.featureCards;
 
   return (
-    <section id="contact-section" className="scroll-mt-[5.25rem] bg-[#061433]">
-      <div className="app-screen-min-offset bg-[#f4f5f7] text-[#111217] flex items-start md:items-center">
-        <div className="mx-auto w-full max-w-[1680px] px-4 pt-14 pb-4 md:px-6 md:py-8 xl:py-10">
+    <section id="contact-section" className="bg-[#061433]">
+      <div className="app-screen-min-offset app-screen-snap-target flex items-start bg-[#f4f5f7] text-[#111217]">
+        <div className="mx-auto w-full max-w-[1680px] px-4 pt-14 pb-6 md:px-6 md:pt-10 md:pb-12 xl:pt-12 xl:pb-14">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#111217] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.reasonTitle} </span>
@@ -677,27 +680,27 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
             </p>
           </div>
 
-          <div className="mx-auto mt-6 grid max-w-[1240px] gap-2 md:mt-6 md:gap-3 lg:mt-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)] lg:items-stretch xl:gap-5 2xl:gap-4">
-            <article className="relative isolate min-h-[16.25rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_16px_36px_rgba(17,18,23,0.12)] sm:min-h-[16.75rem] lg:min-h-[27rem] lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)] xl:min-h-[29rem] 2xl:min-h-[24.75rem]">
+          <div className="mx-auto mt-6 grid max-w-[1240px] gap-2 md:mt-6 md:gap-3 lg:mt-8 lg:max-w-[1320px] lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:items-stretch xl:max-w-[1440px] xl:gap-5 2xl:max-w-[1520px] 2xl:gap-6 min-[1800px]:max-w-[1640px]">
+            <article className="relative isolate min-h-[16.25rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_16px_36px_rgba(17,18,23,0.12)] sm:min-h-[16.75rem] lg:min-h-[27rem] lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)] xl:min-h-[31rem] 2xl:min-h-[34rem] min-[1800px]:min-h-[37rem]">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
                   alt={smallStoreCard.title}
                   fill
                   className="object-cover object-[center_82%] sm:object-[center_76%]"
-                  sizes="(min-width: 1024px) 58vw, 100vw"
+                  sizes="(min-width: 1800px) 48vw, (min-width: 1280px) 52vw, (min-width: 1024px) 58vw, 100vw"
                 />
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,40,0.06)_0%,rgba(15,22,40,0.18)_48%,rgba(15,22,40,0.92)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-3 md:p-6 lg:p-6 xl:p-7 2xl:p-6">
-                <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_8px_18px_rgba(239,65,54,0.3)] xl:h-[64px] xl:w-[64px] 2xl:h-[56px] 2xl:w-[56px]">
+              <div className="relative flex h-full flex-col justify-end p-3 md:p-6 lg:p-7 xl:p-8 2xl:p-9 min-[1800px]:p-10">
+                <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_8px_18px_rgba(239,65,54,0.3)] xl:h-[68px] xl:w-[68px] 2xl:h-[76px] 2xl:w-[76px] min-[1800px]:h-[84px] min-[1800px]:w-[84px]">
                   <FranchiseFeatureIcon type={smallStoreCard.icon} />
                 </div>
-                <p className="mt-1.5 text-[0.68rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem] 2xl:mt-3 2xl:text-[0.78rem]">01</p>
-                <h3 className="mt-0.5 max-w-[10ch] text-[1.16rem] font-black leading-[1.02] text-white md:mt-2 md:max-w-[13ch] md:text-[2.25rem] xl:text-[2.5rem] 2xl:max-w-[12ch] 2xl:text-[2.15rem]">
+                <p className="mt-1.5 text-[0.68rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem] xl:text-[0.96rem] 2xl:mt-5 2xl:text-[1.02rem] min-[1800px]:text-[1.08rem]">01</p>
+                <h3 className="mt-0.5 max-w-[10ch] text-[1.16rem] font-black leading-[1.02] text-white md:mt-2 md:max-w-[13ch] md:text-[2.25rem] xl:text-[2.75rem] 2xl:max-w-[13ch] 2xl:text-[3.1rem] min-[1800px]:text-[3.35rem]">
                   {smallStoreCard.title}
                 </h3>
-                <div className="mt-1.5 max-w-[19rem] space-y-0.5 text-[0.68rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1rem] 2xl:mt-2 2xl:max-w-[24rem] 2xl:space-y-1 2xl:text-[0.9rem]">
+                <div className="mt-1.5 max-w-[19rem] space-y-0.5 text-[0.68rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1.04rem] 2xl:mt-4 2xl:max-w-[28rem] 2xl:space-y-2 2xl:text-[1.08rem] min-[1800px]:max-w-[30rem] min-[1800px]:text-[1.12rem]">
                   {smallStoreCard.lines.map((line, index) => (
                     <p key={line} className={index > 0 ? "hidden sm:block" : ""}>
                       {line}
@@ -707,7 +710,7 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
               </div>
             </article>
 
-            <div className="grid grid-cols-1 gap-2 lg:auto-rows-fr lg:grid-cols-2 lg:gap-4">
+            <div className="grid grid-cols-1 gap-2 lg:auto-rows-fr lg:grid-cols-2 lg:gap-4 xl:gap-5 2xl:gap-6">
               {secondaryFeatureCards.map((card, index) => {
                 const isDarkCard = index % 2 === 1;
                 const cardNumber = String(index + 2).padStart(2, "0");
@@ -717,37 +720,37 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                     key={card.title}
                     className={
                       isDarkCard
-                        ? "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] bg-[#071d55] px-3 py-2 text-white shadow-[0_12px_22px_rgba(7,29,85,0.14)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_64px_rgba(7,29,85,0.22)] xl:min-h-[14rem] 2xl:min-h-[11.25rem] 2xl:p-4"
-                        : "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] px-3 py-2 text-[#181a21] shadow-[0_12px_22px_rgba(7,29,85,0.08)] md:px-5 lg:min-h-[13rem] lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_58px_rgba(7,29,85,0.12)] xl:min-h-[14rem] 2xl:min-h-[11.25rem] 2xl:p-4"
+                        ? "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] bg-[#071d55] px-3 py-2 text-white shadow-[0_12px_22px_rgba(7,29,85,0.14)] md:px-5 lg:min-h-[14.5rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6 lg:shadow-[0_24px_64px_rgba(7,29,85,0.22)] xl:min-h-[16.5rem] 2xl:min-h-[18rem] 2xl:p-7 min-[1800px]:min-h-[19rem]"
+                        : "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] px-3 py-2 text-[#181a21] shadow-[0_12px_22px_rgba(7,29,85,0.08)] md:px-5 lg:min-h-[14.5rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6 lg:shadow-[0_24px_58px_rgba(7,29,85,0.12)] xl:min-h-[16.5rem] 2xl:min-h-[18rem] 2xl:p-7 min-[1800px]:min-h-[19rem]"
                     }
                   >
                     <div
                       className={
                         isDarkCard
-                          ? "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-white/12 text-white xl:h-[60px] xl:w-[60px] 2xl:h-[48px] 2xl:w-[48px]"
-                          : "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-[#071d55] text-[#ffcf00] xl:h-[60px] xl:w-[60px] 2xl:h-[48px] 2xl:w-[48px]"
+                          ? "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-white/12 text-white xl:h-[64px] xl:w-[64px] 2xl:h-[72px] 2xl:w-[72px] min-[1800px]:h-[80px] min-[1800px]:w-[80px]"
+                          : "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-[#071d55] text-[#ffcf00] xl:h-[64px] xl:w-[64px] 2xl:h-[72px] 2xl:w-[72px] min-[1800px]:h-[80px] min-[1800px]:w-[80px]"
                       }
                     >
                       <FranchiseFeatureIcon type={card.icon} />
                     </div>
-                    <div className="min-w-0 lg:mt-3 2xl:mt-2.5">
+                    <div className="min-w-0 lg:mt-4 2xl:mt-5">
                       <p
                         className={
                           isDarkCard
-                            ? "text-[0.62rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.78rem] 2xl:text-[0.72rem]"
-                            : "text-[0.62rem] font-black tracking-[0.14em] text-[#ef4136] md:text-[0.78rem] 2xl:text-[0.72rem]"
+                            ? "text-[0.62rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.78rem] xl:text-[0.86rem] 2xl:text-[0.94rem] min-[1800px]:text-[1rem]"
+                            : "text-[0.62rem] font-black tracking-[0.14em] text-[#ef4136] md:text-[0.78rem] xl:text-[0.86rem] 2xl:text-[0.94rem] min-[1800px]:text-[1rem]"
                         }
                       >
                         {cardNumber}
                       </p>
-                      <h3 className="mt-0.5 max-w-none text-[0.92rem] font-black leading-[1] md:text-[1.2rem] lg:mt-2 lg:min-h-[3.1rem] lg:max-w-[13ch] lg:text-[1.38rem] xl:min-h-[3.45rem] xl:text-[1.52rem] 2xl:mt-1 2xl:min-h-[2.6rem] 2xl:max-w-[12ch] 2xl:text-[1.24rem]">
+                      <h3 className="mt-0.5 max-w-none text-[0.92rem] font-black leading-[1] md:text-[1.2rem] lg:mt-2 lg:min-h-[3.3rem] lg:max-w-[12ch] lg:text-[1.52rem] xl:min-h-[3.75rem] xl:text-[1.72rem] 2xl:mt-2 2xl:min-h-[4.1rem] 2xl:max-w-[13ch] 2xl:text-[1.92rem] min-[1800px]:text-[2.1rem]">
                         {renderFeatureTitle(card.title)}
                       </h3>
                       <div
                         className={
                           isDarkCard
-                            ? "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-white/86 lg:block lg:text-[0.88rem] 2xl:mt-2 2xl:space-y-1 2xl:text-[0.8rem]"
-                            : "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.88rem] 2xl:mt-2 2xl:space-y-1 2xl:text-[0.8rem]"
+                            ? "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-white/86 lg:block lg:text-[0.94rem] xl:text-[0.98rem] 2xl:mt-3 2xl:space-y-1.5 2xl:text-[1.02rem] min-[1800px]:text-[1.08rem]"
+                            : "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.94rem] xl:text-[0.98rem] 2xl:mt-3 2xl:space-y-1.5 2xl:text-[1.02rem] min-[1800px]:text-[1.08rem]"
                         }
                       >
                         {card.lines.map((line) => (

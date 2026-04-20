@@ -21,6 +21,18 @@ html {
   scroll-padding-top: var(--header-offset);
 }
 
+@media (min-width: 1024px) {
+  html,
+  body {
+    scroll-snap-type: y mandatory;
+  }
+
+  .app-screen-snap-target {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 html[data-in-app-browser="kakao"] {
   scroll-behavior: auto;
 }
@@ -31,6 +43,7 @@ body {
   background: #04122b;
   color: #fff8eb;
   overflow-x: hidden;
+  scroll-padding-top: var(--header-offset);
   font-family:
     "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -58,11 +71,15 @@ img {
 }
 
 .app-screen-height-offset {
-  height: calc(100svh - 4.75rem);
+  height: calc(100svh - var(--header-offset));
 }
 
 .app-screen-min-offset {
-  min-height: calc(100svh - 4.75rem);
+  min-height: calc(100svh - var(--header-offset));
+}
+
+.app-screen-min-offset-desktop {
+  min-height: auto;
 }
 
 .app-screen-panel-40 {
@@ -73,13 +90,11 @@ img {
   .app-screen-height-mobile {
     height: auto;
   }
+}
 
-  .app-screen-height-offset {
-    height: calc(100svh - 5.25rem);
-  }
-
-  .app-screen-min-offset {
-    min-height: calc(100svh - 5.25rem);
+@media (min-width: 1024px) {
+  .app-screen-min-offset-desktop {
+    min-height: calc(100svh - var(--header-offset));
   }
 }
 
@@ -88,24 +103,24 @@ html[data-in-app-browser="kakao"] .app-screen-height-mobile {
 }
 
 html[data-in-app-browser="kakao"] .app-screen-height-offset {
-  height: calc(var(--app-height) - 4.75rem);
+  height: calc(var(--app-height) - var(--header-offset));
 }
 
 html[data-in-app-browser="kakao"] .app-screen-min-offset {
-  min-height: calc(var(--app-height) - 4.75rem);
+  min-height: calc(var(--app-height) - var(--header-offset));
+}
+
+html[data-in-app-browser="kakao"] .app-screen-min-offset-desktop {
+  min-height: auto;
 }
 
 html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   min-height: calc(var(--app-height) * 0.4);
 }
 
-@media (min-width: 768px) {
-  html[data-in-app-browser="kakao"] .app-screen-height-offset {
-    height: calc(var(--app-height) - 5.25rem);
-  }
-
-  html[data-in-app-browser="kakao"] .app-screen-min-offset {
-    min-height: calc(var(--app-height) - 5.25rem);
+@media (min-width: 1024px) {
+  html[data-in-app-browser="kakao"] .app-screen-min-offset-desktop {
+    min-height: calc(var(--app-height) - var(--header-offset));
   }
 }
 
