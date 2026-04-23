@@ -2,31 +2,33 @@
   <title id="title">최강피자 가맹 상담하기</title>
   <desc id="desc">노란 원형 배경 위에 TALK 말풍선과 최강피자 가맹 상담하기 문구가 들어간 버튼</desc>
   <circle cx="256" cy="256" r="248" fill="#FFE500" />
-  <path
-    fill="#4A2B27"
-    d="M256 95c-86.4 0-156.5 52.1-156.5 116.4 0 41 28.6 77.1 72.2 97l-19.1 62.5c-2 6.4 5.2 11.6 10.9 7.9l72.4-47.3c6.6.7 13.3 1 20.1 1 86.4 0 156.5-52.1 156.5-116.1C412.5 147.1 342.4 95 256 95Z"
-  />
+  <g transform="translate(20.5 6) scale(0.92)">
+    <path
+      fill="#4A2B27"
+      d="M256 95c-86.4 0-156.5 52.1-156.5 116.4 0 41 28.6 77.1 72.2 97l-19.1 62.5c-2 6.4 5.2 11.6 10.9 7.9l72.4-47.3c6.6.7 13.3 1 20.1 1 86.4 0 156.5-52.1 156.5-116.1C412.5 147.1 342.4 95 256 95Z"
+    />
+    <text
+      x="256"
+      y="230"
+      text-anchor="middle"
+      fill="#FFE500"
+      font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
+      font-size="66"
+      font-weight="900"
+      letter-spacing="-2"
+    >
+      TALK
+    </text>
+  </g>
   <text
     x="256"
-    y="230"
-    text-anchor="middle"
-    fill="#FFE500"
-    font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
-    font-size="72"
-    font-weight="900"
-    letter-spacing="-2.4"
-  >
-    TALK
-  </text>
-  <text
-    x="256"
-    y="382"
+    y="386"
     text-anchor="middle"
     fill="#4A2B27"
     font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
-    font-size="34"
+    font-size="40"
     font-weight="900"
-    letter-spacing="-0.8"
+    letter-spacing="-1"
   >
     최강피자
   </text>
@@ -36,9 +38,9 @@
     text-anchor="middle"
     fill="#4A2B27"
     font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
-    font-size="32"
+    font-size="37"
     font-weight="900"
-    letter-spacing="-0.7"
+    letter-spacing="-0.9"
   >
     가맹 상담하기
   </text>
