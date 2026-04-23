@@ -36,7 +36,7 @@ export function PortedFloatingKakaoButton() {
       <span className="sr-only">{ctaLinks.kakaoLabel}</span>
       <Image
         src="/assets/user/franchise/floating-kakao-inquiry.svg"
-        alt="카카오톡 가맹 상담하기"
+        alt="최강피자 가맹 상담하기"
         width={136}
         height={136}
         className="h-[4.9rem] w-auto object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.28)] md:h-[5.7rem]"

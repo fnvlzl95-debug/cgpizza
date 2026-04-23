@@ -8,6 +8,7 @@ out/
 # local tooling
 .venv/
 .codex-artifacts/
+.codex-next-dev*.log
 
 # design sources and exported deliverables
 웹디자인/
