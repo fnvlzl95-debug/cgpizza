@@ -22,25 +22,31 @@
   </g>
   <text
     x="256"
-    y="386"
+    y="388"
+    text-anchor="middle"
+    fill="#4A2B27"
+    font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
+    font-size="43"
+    font-weight="900"
+    letter-spacing="-1.1"
+    stroke="#4A2B27"
+    stroke-width="1.2"
+    paint-order="stroke fill"
+  >
+    최강피자
+  </text>
+  <text
+    x="256"
+    y="439"
     text-anchor="middle"
     fill="#4A2B27"
     font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
     font-size="40"
     font-weight="900"
     letter-spacing="-1"
-  >
-    최강피자
-  </text>
-  <text
-    x="256"
-    y="434"
-    text-anchor="middle"
-    fill="#4A2B27"
-    font-family="'Malgun Gothic', 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif"
-    font-size="37"
-    font-weight="900"
-    letter-spacing="-0.9"
+    stroke="#4A2B27"
+    stroke-width="1.1"
+    paint-order="stroke fill"
   >
     가맹 상담하기
   </text>
