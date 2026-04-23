@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">카카오톡 가맹 상담하기</title>
+  <desc id="desc">노란 원형 배경 위에 TALK 말풍선과 카카오톡 가맹 상담하기 문구가 들어간 버튼</desc>
+  <circle cx="256" cy="256" r="248" fill="#FFE500" />
+  <path
+    fill="#4A2B27"
+    d="M256 95c-86.4 0-156.5 52.1-156.5 116.4 0 41 28.6 77.1 72.2 97l-19.1 62.5c-2 6.4 5.2 11.6 10.9 7.9l72.4-47.3c6.6.7 13.3 1 20.1 1 86.4 0 156.5-52.1 156.5-116.1C412.5 147.1 342.4 95 256 95Z"
+  />
+  <text
+    x="256"
+    y="238"
+    text-anchor="middle"
+    fill="#FFE500"
+    font-family="Pretendard, 'Malgun Gothic', sans-serif"
+    font-size="82"
+    font-weight="900"
+    letter-spacing="-3"
+  >
+    TALK
+  </text>
+  <text
+    x="256"
+    y="384"
+    text-anchor="middle"
+    fill="#4A2B27"
+    font-family="Pretendard, 'Malgun Gothic', sans-serif"
+    font-size="48"
+    font-weight="900"
+    letter-spacing="-1.5"
+  >
+    카카오톡
+  </text>
+  <text
+    x="256"
+    y="438"
+    text-anchor="middle"
+    fill="#4A2B27"
+    font-family="Pretendard, 'Malgun Gothic', sans-serif"
+    font-size="48"
+    font-weight="900"
+    letter-spacing="-1.5"
+  >
+    가맹 상담하기
+  </text>
+</svg>

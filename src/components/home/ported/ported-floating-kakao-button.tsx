@@ -35,11 +35,11 @@ export function PortedFloatingKakaoButton() {
     >
       <span className="sr-only">{ctaLinks.kakaoLabel}</span>
       <Image
-        src="/assets/user/franchise/floating-kakao-inquiry.png"
-        alt=""
-        width={112}
-        height={112}
-        className="h-[3.95rem] w-auto object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.28)] md:h-[4.55rem]"
+        src="/assets/user/franchise/floating-kakao-inquiry.svg"
+        alt="카카오톡 가맹 상담하기"
+        width={136}
+        height={136}
+        className="h-[4.9rem] w-auto object-contain drop-shadow-[0_12px_22px_rgba(0,0,0,0.28)] md:h-[5.7rem]"
       />
     </a>
   );
