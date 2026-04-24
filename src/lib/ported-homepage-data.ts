@@ -76,14 +76,14 @@ export type PortedShopInShopIntroSection = {
 
 export type PortedShopInShopImageTriptychPanel = {
   image: string;
-  text: string;
-  highlight: string;
-  label: string;
+  title: string;
+  lines: string[];
   tone: "blue" | "navy";
   objectPosition?: string;
 };
 
 export type PortedShopInShopImageTriptychSection = {
+  note?: string;
   panels: PortedShopInShopImageTriptychPanel[];
 };
 
@@ -277,28 +277,33 @@ export const portedHomepageData = {
       backgroundImage: "/assets/user/franchise/shop-in-shop-message.jpeg",
     } satisfies PortedShopInShopIntroSection,
     shopInShopImageTriptych: {
+      note: "* 단, 비용은 매장 사정에 따라 상이할 수 있습니다",
       panels: [
         {
           image: "/assets/user/franchise/shop-triptych-02.jpeg",
-          text: "인테리어 비용 0원,\n사장님의 주방은 이미 준비되어 있습니다.",
-          highlight: "0원",
-          label: "01 // READY KITCHEN",
+          title: "가맹 비용",
+          lines: [
+            "가맹비 500만원 & 교육비 300만원 (부가세 별도)",
+            "로열티 (월 매출 2.2% 부과 *부가세 포함)",
+            "※ 단, 20호점까지 가맹비 + 로열티 면제",
+          ],
           tone: "blue",
           objectPosition: "center center",
         },
         {
           image: "/assets/user/franchise/shop-triptych-01.jpeg",
-          text: "숨어있던 월세 100만 원,\n샵인샵 수익으로 메우고 시작하십시오.",
-          highlight: "100만 원",
-          label: "02 // RENT COVER",
+          title: "인테리어 비용",
+          lines: [
+            "평당 최대 220만 원",
+            "에어컨 및 도시가스, 포스 및 키오스크(별도)",
+          ],
           tone: "navy",
           objectPosition: "center 38%",
         },
         {
           image: "/assets/user/franchise/shop-triptych-03.jpeg",
-          text: "사장님의 동선은 그대로,\n매출의 곡선은 새롭게.",
-          highlight: "새롭게",
-          label: "03 // NEW CURVE",
+          title: "주방기구 비용",
+          lines: ["집기 구매 시 2,500만 원 ~ 3,000만원"],
           tone: "navy",
           objectPosition: "66% center",
         },

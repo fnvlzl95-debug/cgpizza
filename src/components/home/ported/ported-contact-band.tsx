@@ -395,30 +395,6 @@ function ShopInShopIntroSection({
   );
 }
 
-function renderTriptychText(text: string, highlight: string) {
-  const renderHighlightedLine = (line: string) => {
-    const parts = line.split(highlight);
-
-    if (parts.length < 2) {
-      return line;
-    }
-
-    return (
-      <>
-        {parts[0]}
-        <span className="text-[#ffcf00]">{highlight}</span>
-        {parts.slice(1).join(highlight)}
-      </>
-    );
-  };
-
-  return text.split("\n").map((line, index) => (
-    <span key={`${line}-${index}`} className="block">
-      {renderHighlightedLine(line)}
-    </span>
-  ));
-}
-
 function renderFeatureTitle(title: string) {
   const lines = title.split("\n");
 
@@ -439,6 +415,11 @@ function ShopInShopImageTriptychSection({
     <section className="app-screen-snap-target relative overflow-hidden bg-[#02050b] text-white">
       <div className="pointer-events-none absolute inset-0 hidden lg:block bg-[linear-gradient(180deg,rgba(2,5,11,0.34)_0%,rgba(2,5,11,0.16)_16%,rgba(2,5,11,0.24)_52%,rgba(2,5,11,0.62)_100%)]" />
       <div className="pointer-events-none absolute inset-0 hidden lg:block bg-[radial-gradient(circle_at_50%_18%,rgba(255,207,0,0.04)_0%,rgba(255,207,0,0.012)_20%,rgba(255,207,0,0)_42%)]" />
+      {section.note ? (
+        <p className="absolute right-5 top-5 z-10 max-w-[18rem] text-right text-[0.72rem] font-bold leading-relaxed text-white/72 md:right-8 md:top-7 md:max-w-none md:text-[0.9rem]">
+          {section.note}
+        </p>
+      ) : null}
 
       <div className="app-screen-min-offset hidden grid-cols-3 lg:grid">
         {section.panels.map((panel, index) => {
@@ -448,7 +429,7 @@ function ShopInShopImageTriptychSection({
               : "bg-[linear-gradient(180deg,rgba(3,6,12,0.28)_0%,rgba(2,5,11,0.52)_38%,rgba(2,5,11,0.94)_100%)]";
 
           return (
-            <article key={panel.text} className="app-screen-min-offset group relative overflow-hidden">
+            <article key={panel.title} className="app-screen-min-offset group relative overflow-hidden">
               <Image
                 src={panel.image}
                 alt=""
@@ -462,24 +443,15 @@ function ShopInShopImageTriptychSection({
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,5,11,0.04)_0%,rgba(2,5,11,0.18)_24%,rgba(2,5,11,0.46)_56%,rgba(2,5,11,0.94)_100%)]" />
 
               <div className="app-screen-min-offset relative flex items-end px-9 py-10 xl:px-11 xl:py-11">
-                <div className="max-w-[23rem] transition-transform duration-500 ease-out group-hover:-translate-y-2 xl:max-w-[24.5rem]">
-                  <div className="mb-5 flex items-center gap-3">
-                    <span
-                      className={`h-px w-8 transition-all duration-500 ease-out group-hover:w-11 ${
-                        index === 1 ? "bg-[#ffcf00]" : "bg-white/80 group-hover:bg-[#ffcf00]"
-                      }`}
-                    />
-                    <span
-                      className={`text-[0.84rem] font-black tracking-[0.08em] transition-colors duration-500 ${
-                        index === 1 ? "text-[#ffcf00] group-hover:text-[#ffe27a]" : "text-white/92 group-hover:text-[#ffcf00]"
-                      }`}
-                    >
-                      {panel.label}
-                    </span>
+                <div className="max-w-[25rem] transition-transform duration-500 ease-out group-hover:-translate-y-2 xl:max-w-[27rem]">
+                  <h3 className="text-[1.52rem] font-black leading-tight tracking-[-0.03em] text-white transition-colors duration-500 [text-shadow:0_10px_28px_rgba(2,5,11,0.48)] group-hover:text-[#fff8e1] xl:text-[1.8rem]">
+                    {panel.title}
+                  </h3>
+                  <div className="mt-4 space-y-1.5 text-[0.98rem] font-semibold leading-[1.55] text-white/88 [text-shadow:0_8px_22px_rgba(2,5,11,0.52)] xl:text-[1.08rem]">
+                    {panel.lines.map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
                   </div>
-                  <p className="text-[1.34rem] font-black leading-[1.16] tracking-[-0.05em] text-white transition-all duration-500 [text-shadow:0_10px_28px_rgba(2,5,11,0.48)] group-hover:text-[#fff8e1] group-hover:[text-shadow:0_14px_34px_rgba(2,5,11,0.62)] group-hover:[&_span]:text-[#ffd84d] xl:text-[1.52rem]">
-                    {renderTriptychText(panel.text, panel.highlight)}
-                  </p>
                 </div>
               </div>
 
@@ -499,7 +471,7 @@ function ShopInShopImageTriptychSection({
               : "bg-[linear-gradient(180deg,rgba(3,6,12,0.24)_0%,rgba(2,5,11,0.42)_32%,rgba(2,5,11,0.92)_100%)]";
 
           return (
-            <article key={panel.text} className="relative min-h-[40svh] overflow-hidden border-t border-white/10 first:border-t-0">
+            <article key={panel.title} className="relative min-h-[40svh] overflow-hidden border-t border-white/10 first:border-t-0">
               <Image
                 src={panel.image}
                 alt=""
@@ -514,15 +486,14 @@ function ShopInShopImageTriptychSection({
 
               <div className="relative flex min-h-[40svh] items-end px-5 py-6">
                 <div className="max-w-[21.5rem] sm:max-w-[23rem]">
-                  <div className="mb-3.5 flex items-center gap-2.5">
-                    <span className={`h-px w-7 ${index === 1 ? "bg-[#ffcf00]" : "bg-white/80"}`} />
-                    <span className={`text-[0.72rem] font-black tracking-[0.08em] ${index === 1 ? "text-[#ffcf00]" : "text-white/92"}`}>
-                      {panel.label}
-                    </span>
+                  <h3 className="text-[1.18rem] font-black leading-tight tracking-[-0.03em] text-white [text-shadow:0_10px_24px_rgba(2,5,11,0.42)] sm:text-[1.34rem]">
+                    {panel.title}
+                  </h3>
+                  <div className="mt-3 space-y-1 text-[0.82rem] font-semibold leading-[1.55] text-white/88 [text-shadow:0_8px_20px_rgba(2,5,11,0.46)] sm:text-[0.94rem]">
+                    {panel.lines.map((line) => (
+                      <p key={line}>{line}</p>
+                    ))}
                   </div>
-                  <p className="text-[1.06rem] font-black leading-[1.18] tracking-[-0.04em] text-white [text-shadow:0_10px_24px_rgba(2,5,11,0.42)] sm:text-[1.22rem]">
-                    {renderTriptychText(panel.text, panel.highlight)}
-                  </p>
                 </div>
               </div>
 
