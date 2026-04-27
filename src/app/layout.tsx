@@ -4,7 +4,7 @@ import { siteUrl } from "@/lib/site-config";
 import "pretendard/dist/web/static/pretendard.css";
 import "./globals.css";
 
-const googleAnalyticsId = "G-Z1SJVQ6L22";
+const googleAnalyticsId = "G-G9ZWHC3L9L";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
