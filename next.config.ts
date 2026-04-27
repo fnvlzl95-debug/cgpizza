@@ -7,13 +7,13 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: "/pages/news",
+        source: "/pages",
         has: [{ type: "host", value: "ckpizza.co.kr" }],
         destination: "https://www.ckpizza.co.kr/",
         permanent: true,
       },
       {
-        source: "/pages/news/:path*",
+        source: "/pages/:path*",
         has: [{ type: "host", value: "ckpizza.co.kr" }],
         destination: "https://www.ckpizza.co.kr/",
         permanent: true,
@@ -25,12 +25,12 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/pages/news",
+        source: "/pages",
         destination: "/",
         permanent: true,
       },
       {
-        source: "/pages/news/:path*",
+        source: "/pages/:path*",
         destination: "/",
         permanent: true,
       },
