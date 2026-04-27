@@ -453,7 +453,7 @@ function renderLimitedStoreText(text: string) {
 }
 
 function renderTriptychLine(line: string) {
-  const highlightedText = "(가맹비 + 교육비) - 800만원 면제";
+  const highlightedText = "가맹비·교육비 800만원 전액 지원";
   const highlightedIndex = line.indexOf(highlightedText);
 
   if (highlightedIndex < 0) {
