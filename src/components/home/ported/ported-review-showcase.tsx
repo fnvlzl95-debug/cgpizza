@@ -133,9 +133,7 @@ export function PortedReviewShowcase({
     () => createLoopSlides([...reviewShowcase.slides].reverse(), 20),
     [reviewShowcase.slides],
   );
-  const [headlineTop = reviewShowcase.title, ...headlineRest] = reviewShowcase.title.split(" ");
-  const headlineBottom = headlineRest.join(" ");
-  const bottomLead = headlineBottom.replace("2억 달성", "").trim();
+  const [headlineTop = reviewShowcase.title] = reviewShowcase.title.split(" ");
 
   return (
     <section
@@ -168,8 +166,14 @@ export function PortedReviewShowcase({
         <div className="w-full max-w-[22rem] rounded-[8px] border border-[#ffcf00]/22 bg-[#071d55] px-5 py-6 text-center text-white shadow-[0_34px_80px_rgba(7,29,85,0.28)] md:max-w-[31rem] md:px-8 md:py-8 lg:max-w-[33rem] lg:px-9 lg:py-9">
           <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#ef4136]">{headlineTop}</p>
 
-          <h3 className="mt-4 text-[2.35rem] font-black leading-[0.92] text-white md:text-[4.2rem] lg:text-[4.7rem]">
-            <span className="block">{bottomLead}</span>
+          <h3 className="mt-4 font-black leading-[0.92] text-white">
+            <span className="flex items-center justify-center gap-3 md:gap-4">
+              <span className="text-[2.35rem] md:text-[4.2rem] lg:text-[4.7rem]">매출</span>
+              <span className="text-left text-[1.05rem] leading-[1.28] md:text-[1.48rem] lg:text-[1.62rem]">
+                <span className="block">고객님 성원에</span>
+                <span className="block">오픈 3개월</span>
+              </span>
+            </span>
             <span className="mt-2 block text-[#ef4136]">2억 달성</span>
           </h3>
 
