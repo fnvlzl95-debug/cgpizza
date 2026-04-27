@@ -406,6 +406,73 @@ function renderFeatureTitle(title: string) {
   ));
 }
 
+function renderTriptychLine(line: string) {
+  const highlightedText = "(가맹비 - 800만원) + 로열티 면제";
+  const highlightedIndex = line.indexOf(highlightedText);
+
+  if (highlightedIndex < 0) {
+    return line;
+  }
+
+  const before = line.slice(0, highlightedIndex);
+  const after = line.slice(highlightedIndex + highlightedText.length);
+
+  return (
+    <>
+      {before}
+      <span className="relative ml-[0.18em] inline-block whitespace-nowrap pb-[0.18em] font-black text-white">
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 28 24"
+          className="pointer-events-none absolute left-[0.04em] -top-[0.48em] h-[0.76em] w-[0.9em] -rotate-[6deg] overflow-visible text-[#ef4136] drop-shadow-[0_0_5px_rgba(239,65,54,0.55)]"
+        >
+          <path
+            d="M3.5 12.8 C6.5 15.7 8.9 18 11.3 20.1 C15.2 13.5 19.9 7.2 25 3.7"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="4.2"
+          />
+          <path
+            d="M4.8 12.6 C7.2 14.9 9.1 16.9 11.1 18.5"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeOpacity="0.32"
+            strokeWidth="1.25"
+          />
+        </svg>
+        <span className="relative z-10">{highlightedText}</span>
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 120 10"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute left-0 top-[calc(100%-0.16em)] h-[0.42em] w-full overflow-visible text-[#ef4136] drop-shadow-[0_0_5px_rgba(239,65,54,0.5)]"
+        >
+          <path
+            d="M1 6 C 21 2.2 46 2.1 68 3.7 C 88 5.1 105 5.4 119 4.4"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="2"
+          />
+          <path
+            d="M5 8.8 C 34 5.6 76 6.1 115 7.1"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeOpacity="0.68"
+            strokeWidth="1.2"
+          />
+        </svg>
+      </span>
+      {after}
+    </>
+  );
+}
+
 function ShopInShopImageTriptychSection({
   section,
 }: {
@@ -465,7 +532,7 @@ function ShopInShopImageTriptychSection({
                   </h3>
                   <div className="mt-4 min-h-[5.4rem] space-y-1.5 text-[0.98rem] font-semibold leading-[1.55] text-white/88 [text-shadow:0_8px_22px_rgba(2,5,11,0.52)] xl:min-h-[5.8rem] xl:text-[1.08rem]">
                     {panel.lines.map((line) => (
-                      <p key={line}>{line}</p>
+                      <p key={line}>{renderTriptychLine(line)}</p>
                     ))}
                   </div>
                 </div>
@@ -513,7 +580,7 @@ function ShopInShopImageTriptychSection({
                   </h3>
                   <div className="mt-3 min-h-[4.2rem] space-y-1 text-[0.82rem] font-semibold leading-[1.55] text-white/88 [text-shadow:0_8px_20px_rgba(2,5,11,0.46)] sm:text-[0.94rem]">
                     {panel.lines.map((line) => (
-                      <p key={line}>{line}</p>
+                      <p key={line}>{renderTriptychLine(line)}</p>
                     ))}
                   </div>
                 </div>

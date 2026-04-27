@@ -285,7 +285,7 @@ export const portedHomepageData = {
           lines: [
             "가맹비 500만원 & 교육비 300만원 (부가세 별도)",
             "로열티 (월 매출 2.2% 부과 *부가세 포함)",
-            "※ 단, 20호점까지 가맹비 + 로열티 면제",
+            "※ 단, 20호점까지 (가맹비 - 800만원) + 로열티 면제",
           ],
           tone: "blue",
           objectPosition: "center center",
