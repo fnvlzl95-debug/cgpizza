@@ -5,6 +5,7 @@ import "pretendard/dist/web/static/pretendard.css";
 import "./globals.css";
 
 const googleAnalyticsId = "G-G9ZWHC3L9L";
+const naverAnalyticsId = "1c48f0bc7c4f170";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -58,6 +59,23 @@ export default function RootLayout({
             function gtag(){window.dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${googleAnalyticsId}');
+          `}
+        </Script>
+        <Script id="naver-analytics" strategy="afterInteractive">
+          {`
+            window.wcs_add = window.wcs_add || {};
+            window.wcs_add["wa"] = "${naverAnalyticsId}";
+            (function() {
+              var script = document.createElement("script");
+              script.src = "https://wcs.pstatic.net/wcslog.js";
+              script.async = true;
+              script.onload = function() {
+                if (window.wcs && typeof window.wcs_do === "function") {
+                  window.wcs_do();
+                }
+              };
+              document.head.appendChild(script);
+            })();
           `}
         </Script>
       </body>
