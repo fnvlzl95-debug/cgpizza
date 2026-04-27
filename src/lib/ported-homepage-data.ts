@@ -379,13 +379,13 @@ export const portedHomepageData = {
     ctaDescription: "브랜드 상담부터 운영 안내까지 빠르게 연결해드립니다.",
     ctaBackgroundImage: "/assets/user/franchise/contact-section.jpeg",
     location: "경기 부천시 원미구 도약로 105 (한라마을주공(3)아파트) 105호",
-    phoneDisplay: "1866-1623",
-    phoneHref: "tel:18661623",
+    phoneDisplay: "1866-1622",
+    phoneHref: "tel:18661622",
     emailDisplay: "ckpizza8879@naver.com",
     emailHref: "mailto:ckpizza8879@naver.com",
     primaryCta: {
       label: "가맹 상담 전화",
-      href: "tel:18661623",
+      href: "tel:18661622",
     },
     secondaryCta: {
       label: "이메일 문의",
@@ -428,7 +428,7 @@ export const portedHomepageData = {
     footerRows: [
       ["회사명 : 최강피자 본점", "대표자 : 김현화 / 대표이사 : 김진호"],
       ["주소 : 경기 부천시 원미구 도약로 105 (한라마을주공(3)아파트) 105호"],
-      ["전화 : 1866-1623", "팩스 : 05040998879"],
+      ["전화 : 1866-1622", "팩스 : 05040998879"],
       ["사업자등록번호 : 3943301519", "통신판매업신고 : 0"],
     ],
     footerCopyright: "COPYRIGHT INFORMATION GABIACNS © 2021 ALL RIGHTS RESERVED.",
