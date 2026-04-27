@@ -1,5 +1,12 @@
 .DS_Store
 
+# env files
+.env*
+!.env.example
+
+# local source artwork over GitHub's file size limit
+메뉴작업/*.ai
+
 # dependencies and build output
 node_modules/
 .next/

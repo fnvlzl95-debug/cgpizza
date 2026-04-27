@@ -1,0 +1,29 @@
+{
+  "trimSizeMm": {
+    "width": 3000,
+    "height": 470
+  },
+  "panelTrimSizeMm": {
+    "width": 1500,
+    "height": 470
+  },
+  "bleedMm": 5,
+  "safeAreaInsetMm": 15,
+  "palette": {
+    "navy": "#08215D",
+    "navyDeep": "#041544",
+    "navyMid": "#0D2E77",
+    "gold": "#FFCF00",
+    "red": "#EF4136",
+    "white": "#FFFFFF",
+    "shadow": "#02102F"
+  },
+  "requiredText": [
+    "최강피자",
+    "소화가 잘되는 맛있는 피자",
+    "가맹문의",
+    "1866-1623",
+    "ckpizza.co.kr"
+  ],
+  "pizzaImageEffectiveDpi": 125.26
+}
