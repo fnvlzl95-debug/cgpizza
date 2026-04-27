@@ -774,8 +774,8 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
 
   return (
     <section id="contact-section" className="bg-[#061433]">
-      <div className="app-screen-min-offset app-screen-snap-target flex items-center bg-[#f4f5f7] text-[#111217] lg:overflow-hidden">
-        <div className="mx-auto w-full max-w-[1680px] px-4 py-8 md:px-6 md:py-10 xl:py-10">
+      <div className="app-screen-min-offset app-screen-snap-target flex items-center bg-[#f4f5f7] text-[#111217]">
+        <div className="mx-auto w-full max-w-[1680px] px-4 py-8 md:px-6 md:py-8 lg:py-6 xl:py-7">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#111217] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.reasonTitle} </span>
@@ -786,7 +786,7 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
             </p>
           </div>
 
-          <div className="mx-auto mt-5 grid max-w-[1240px] gap-2 md:mt-5 md:gap-3 lg:mt-6 lg:h-[clamp(24rem,calc(100svh-var(--header-offset)-12rem),34rem)] lg:max-w-[1320px] lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:items-stretch xl:max-w-[1440px] xl:gap-5 2xl:max-w-[1520px] 2xl:gap-6 min-[1800px]:max-w-[1640px]">
+          <div className="mx-auto mt-4 grid max-w-[1240px] gap-2 md:mt-4 md:gap-3 lg:mt-5 lg:h-[clamp(19rem,calc(100svh-var(--header-offset)-10.5rem),30rem)] lg:max-w-[1320px] lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:items-stretch xl:max-w-[1440px] xl:gap-5 2xl:max-w-[1520px] 2xl:gap-6 min-[1800px]:max-w-[1640px]">
             <article className="relative isolate min-h-[16.25rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_16px_36px_rgba(17,18,23,0.12)] sm:min-h-[16.75rem] lg:h-full lg:min-h-0 lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)]">
               {smallStoreCard.image ? (
                 <Image
@@ -798,15 +798,15 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                 />
               ) : null}
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(15,22,40,0.06)_0%,rgba(15,22,40,0.18)_48%,rgba(15,22,40,0.92)_100%)]" />
-              <div className="relative flex h-full flex-col justify-end p-3 md:p-6 lg:p-7 xl:p-8 2xl:p-9 min-[1800px]:p-10">
-                <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_8px_18px_rgba(239,65,54,0.3)] xl:h-[68px] xl:w-[68px] 2xl:h-[76px] 2xl:w-[76px] min-[1800px]:h-[84px] min-[1800px]:w-[84px]">
+              <div className="relative flex h-full flex-col justify-end p-3 md:p-5 lg:p-5 xl:p-6 2xl:p-7">
+                <div className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-[#ef4136] text-white shadow-[0_8px_18px_rgba(239,65,54,0.3)] xl:h-[56px] xl:w-[56px] 2xl:h-[62px] 2xl:w-[62px]">
                   <FranchiseFeatureIcon type={smallStoreCard.icon} />
                 </div>
-                <p className="mt-1.5 text-[0.68rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-4 md:text-[0.84rem] xl:text-[0.96rem] 2xl:mt-5 2xl:text-[1.02rem] min-[1800px]:text-[1.08rem]">01</p>
-                <h3 className="mt-0.5 max-w-[10ch] text-[1.16rem] font-black leading-[1.02] text-white md:mt-2 md:max-w-[13ch] md:text-[2.25rem] xl:text-[2.75rem] 2xl:max-w-[13ch] 2xl:text-[3.1rem] min-[1800px]:text-[3.35rem]">
+                <p className="mt-1.5 text-[0.68rem] font-black tracking-[0.14em] text-[#ffcf00] md:mt-3 md:text-[0.8rem] xl:text-[0.88rem] 2xl:mt-4 2xl:text-[0.94rem]">01</p>
+                <h3 className="mt-0.5 max-w-[10ch] text-[1.16rem] font-black leading-[1.02] text-white md:mt-2 md:max-w-[13ch] md:text-[2rem] xl:text-[2.35rem] 2xl:max-w-[13ch] 2xl:text-[2.55rem]">
                   {smallStoreCard.title}
                 </h3>
-                <div className="mt-1.5 max-w-[19rem] space-y-0.5 text-[0.68rem] font-medium leading-relaxed text-white/82 md:mt-3 md:max-w-[28rem] md:space-y-2 md:text-[0.96rem] xl:text-[1.04rem] 2xl:mt-4 2xl:max-w-[28rem] 2xl:space-y-2 2xl:text-[1.08rem] min-[1800px]:max-w-[30rem] min-[1800px]:text-[1.12rem]">
+                <div className="mt-1.5 max-w-[19rem] space-y-0.5 text-[0.68rem] font-medium leading-relaxed text-white/82 md:mt-2.5 md:max-w-[28rem] md:space-y-1.5 md:text-[0.9rem] xl:text-[0.96rem] 2xl:mt-3 2xl:max-w-[28rem] 2xl:text-[1rem]">
                   {smallStoreCard.lines.map((line, index) => (
                     <p key={line} className={index > 0 ? "hidden sm:block" : ""}>
                       {line}

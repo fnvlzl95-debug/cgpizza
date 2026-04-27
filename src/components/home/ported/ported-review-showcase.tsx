@@ -171,7 +171,10 @@ export function PortedReviewShowcase({
               고객님의 성원에 오픈 3개월
             </span>
             <span className="mt-2 block text-[2.35rem] md:mt-3 md:text-[4.2rem] lg:text-[4.7rem]">매출</span>
-            <span className="mt-2 block text-[#ef4136]">2억 달성</span>
+            <span className="mt-1 flex items-baseline justify-center gap-2 text-[#ef4136] md:mt-2 md:gap-3">
+              <span className="text-[3.35rem] tracking-[-0.06em] md:text-[5.6rem] lg:text-[6.1rem]">2억</span>
+              <span className="text-[2.55rem] tracking-[-0.05em] md:text-[4.55rem] lg:text-[5rem]">달성</span>
+            </span>
           </h3>
 
           <p className="mx-auto mt-5 max-w-[18rem] text-[0.9rem] font-medium leading-relaxed text-white/74 md:max-w-[23rem] md:text-[1.04rem]">
