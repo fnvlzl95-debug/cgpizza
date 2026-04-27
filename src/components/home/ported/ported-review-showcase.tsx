@@ -170,7 +170,7 @@ export function PortedReviewShowcase({
             <span className="flex items-center justify-center gap-3 md:gap-4">
               <span className="text-[2.35rem] md:text-[4.2rem] lg:text-[4.7rem]">매출</span>
               <span className="text-left text-[1.05rem] leading-[1.28] md:text-[1.48rem] lg:text-[1.62rem]">
-                <span className="block">고객님 성원에</span>
+                <span className="block">고객님의 성원에</span>
                 <span className="block">오픈 3개월</span>
               </span>
             </span>
