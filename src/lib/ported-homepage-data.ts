@@ -284,7 +284,7 @@ export const portedHomepageData = {
           title: "가맹 비용",
           lines: [
             "가맹비 500만원 & 교육비 300만원 (부가세 별도)",
-            "※ 단, 20호점까지 (가맹비 - 800만원) + 로열티 면제",
+            "※ 단, 20호점까지 (가맹비 + 교육비) - 800만원 면제",
           ],
           tone: "blue",
           objectPosition: "center center",
