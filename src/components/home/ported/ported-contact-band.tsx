@@ -406,6 +406,52 @@ function renderFeatureTitle(title: string) {
   ));
 }
 
+function renderLimitedStoreText(text: string) {
+  const limitedStoreText = "20호점";
+  const limitedStoreIndex = text.indexOf(limitedStoreText);
+
+  if (limitedStoreIndex < 0) {
+    return text;
+  }
+
+  const before = text.slice(0, limitedStoreIndex);
+  const after = text.slice(limitedStoreIndex + limitedStoreText.length);
+
+  return (
+    <>
+      {before}
+      <span className="relative inline-block whitespace-nowrap px-[0.12em] font-black text-[#ffcf00]">
+        <span className="relative z-10">{limitedStoreText}</span>
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 118 54"
+          preserveAspectRatio="none"
+          className="pointer-events-none absolute -inset-x-[0.26em] -inset-y-[0.22em] h-[calc(100%+0.44em)] w-[calc(100%+0.52em)] overflow-visible text-[#ef4136] drop-shadow-[0_0_5px_rgba(239,65,54,0.52)]"
+        >
+          <path
+            d="M9 28 C8 12 31 5 61 6 C95 7 114 19 109 35 C104 51 72 52 39 47 C17 43 5 37 9 28"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="5"
+          />
+          <path
+            d="M13 31 C15 16 38 9 67 10 C96 11 111 23 106 36 C101 48 73 50 43 45 C21 42 11 37 13 31"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeOpacity="0.5"
+            strokeWidth="2.2"
+          />
+        </svg>
+      </span>
+      {after}
+    </>
+  );
+}
+
 function renderTriptychLine(line: string) {
   const highlightedText = "(가맹비 - 800만원) + 로열티 면제";
   const highlightedIndex = line.indexOf(highlightedText);
@@ -419,7 +465,7 @@ function renderTriptychLine(line: string) {
 
   return (
     <>
-      {before}
+      {renderLimitedStoreText(before)}
       <span className="relative ml-[0.18em] inline-block whitespace-nowrap pb-[0.18em] font-black text-white">
         <svg
           aria-hidden="true"
