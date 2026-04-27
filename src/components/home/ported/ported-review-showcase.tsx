@@ -167,13 +167,10 @@ export function PortedReviewShowcase({
           <p className="text-[0.82rem] font-black tracking-[0.16em] text-[#ef4136]">{headlineTop}</p>
 
           <h3 className="mt-4 font-black leading-[0.92] text-white">
-            <span className="flex items-center justify-center gap-3 md:gap-4">
-              <span className="text-[2.35rem] md:text-[4.2rem] lg:text-[4.7rem]">매출</span>
-              <span className="text-left text-[1.05rem] leading-[1.28] md:text-[1.48rem] lg:text-[1.62rem]">
-                <span className="block">고객님의 성원에</span>
-                <span className="block">오픈 3개월</span>
-              </span>
+            <span className="block text-[1.1rem] leading-tight md:text-[1.56rem] lg:text-[1.68rem]">
+              고객님의 성원에 오픈 3개월
             </span>
+            <span className="mt-2 block text-[2.35rem] md:mt-3 md:text-[4.2rem] lg:text-[4.7rem]">매출</span>
             <span className="mt-2 block text-[#ef4136]">2억 달성</span>
           </h3>
 

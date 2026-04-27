@@ -774,8 +774,8 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
 
   return (
     <section id="contact-section" className="bg-[#061433]">
-      <div className="app-screen-min-offset app-screen-snap-target flex items-start bg-[#f4f5f7] text-[#111217]">
-        <div className="mx-auto w-full max-w-[1680px] px-4 pt-14 pb-6 md:px-6 md:pt-10 md:pb-12 xl:pt-12 xl:pb-14">
+      <div className="app-screen-min-offset app-screen-snap-target flex items-center bg-[#f4f5f7] text-[#111217] lg:overflow-hidden">
+        <div className="mx-auto w-full max-w-[1680px] px-4 py-8 md:px-6 md:py-10 xl:py-10">
           <div className="mx-auto max-w-5xl text-center">
             <h2 className="mx-auto whitespace-nowrap text-[1.72rem] font-black leading-[0.96] tracking-[-0.04em] text-[#111217] sm:text-[1.95rem] md:text-[3.15rem] xl:text-[3.45rem]">
               <span>{contact.reasonTitle} </span>
@@ -786,8 +786,8 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
             </p>
           </div>
 
-          <div className="mx-auto mt-6 grid max-w-[1240px] gap-2 md:mt-6 md:gap-3 lg:mt-8 lg:max-w-[1320px] lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:items-stretch xl:max-w-[1440px] xl:gap-5 2xl:max-w-[1520px] 2xl:gap-6 min-[1800px]:max-w-[1640px]">
-            <article className="relative isolate min-h-[16.25rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_16px_36px_rgba(17,18,23,0.12)] sm:min-h-[16.75rem] lg:min-h-[27rem] lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)] xl:min-h-[31rem] 2xl:min-h-[34rem] min-[1800px]:min-h-[37rem]">
+          <div className="mx-auto mt-5 grid max-w-[1240px] gap-2 md:mt-5 md:gap-3 lg:mt-6 lg:h-[clamp(24rem,calc(100svh-var(--header-offset)-12rem),34rem)] lg:max-w-[1320px] lg:grid-cols-[minmax(0,0.94fr)_minmax(0,1.06fr)] lg:items-stretch xl:max-w-[1440px] xl:gap-5 2xl:max-w-[1520px] 2xl:gap-6 min-[1800px]:max-w-[1640px]">
+            <article className="relative isolate min-h-[16.25rem] overflow-hidden rounded-[8px] bg-[#0f1628] shadow-[0_16px_36px_rgba(17,18,23,0.12)] sm:min-h-[16.75rem] lg:h-full lg:min-h-0 lg:shadow-[0_24px_64px_rgba(17,18,23,0.14)]">
               {smallStoreCard.image ? (
                 <Image
                   src={smallStoreCard.image}
@@ -826,15 +826,15 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                     key={card.title}
                     className={
                       isDarkCard
-                        ? "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] bg-[#071d55] px-3 py-2 text-white shadow-[0_12px_22px_rgba(7,29,85,0.14)] md:px-5 lg:min-h-[14.5rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6 lg:shadow-[0_24px_64px_rgba(7,29,85,0.22)] xl:min-h-[16.5rem] 2xl:min-h-[18rem] 2xl:p-7 min-[1800px]:min-h-[19rem]"
-                        : "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] px-3 py-2 text-[#181a21] shadow-[0_12px_22px_rgba(7,29,85,0.08)] md:px-5 lg:min-h-[14.5rem] lg:flex-col lg:items-start lg:gap-0 lg:p-6 lg:shadow-[0_24px_58px_rgba(7,29,85,0.12)] xl:min-h-[16.5rem] 2xl:min-h-[18rem] 2xl:p-7 min-[1800px]:min-h-[19rem]"
+                        ? "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] bg-[#071d55] px-3 py-2 text-white shadow-[0_12px_22px_rgba(7,29,85,0.14)] md:px-5 lg:min-h-0 lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_64px_rgba(7,29,85,0.22)] 2xl:p-6"
+                        : "flex h-full min-h-[4.15rem] flex-row items-center gap-2.5 rounded-[8px] border border-[#d2d9e8] bg-[#ffffff] px-3 py-2 text-[#181a21] shadow-[0_12px_22px_rgba(7,29,85,0.08)] md:px-5 lg:min-h-0 lg:flex-col lg:items-start lg:gap-0 lg:p-5 lg:shadow-[0_24px_58px_rgba(7,29,85,0.12)] 2xl:p-6"
                     }
                   >
                     <div
                       className={
                         isDarkCard
-                          ? "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-white/12 text-white xl:h-[64px] xl:w-[64px] 2xl:h-[72px] 2xl:w-[72px] min-[1800px]:h-[80px] min-[1800px]:w-[80px]"
-                          : "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-[#071d55] text-[#ffcf00] xl:h-[64px] xl:w-[64px] 2xl:h-[72px] 2xl:w-[72px] min-[1800px]:h-[80px] min-[1800px]:w-[80px]"
+                          ? "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-white/12 text-white xl:h-[56px] xl:w-[56px] 2xl:h-[62px] 2xl:w-[62px]"
+                          : "flex h-[32px] w-[32px] shrink-0 items-center justify-center rounded-[9px] bg-[#071d55] text-[#ffcf00] xl:h-[56px] xl:w-[56px] 2xl:h-[62px] 2xl:w-[62px]"
                       }
                     >
                       <FranchiseFeatureIcon type={card.icon} />
@@ -843,20 +843,20 @@ export function PortedContactBand({ contact }: PortedContactBandProps) {
                       <p
                         className={
                           isDarkCard
-                            ? "text-[0.62rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.78rem] xl:text-[0.86rem] 2xl:text-[0.94rem] min-[1800px]:text-[1rem]"
-                            : "text-[0.62rem] font-black tracking-[0.14em] text-[#ef4136] md:text-[0.78rem] xl:text-[0.86rem] 2xl:text-[0.94rem] min-[1800px]:text-[1rem]"
+                            ? "text-[0.62rem] font-black tracking-[0.14em] text-[#ffcf00] md:text-[0.78rem] xl:text-[0.84rem] 2xl:text-[0.9rem]"
+                            : "text-[0.62rem] font-black tracking-[0.14em] text-[#ef4136] md:text-[0.78rem] xl:text-[0.84rem] 2xl:text-[0.9rem]"
                         }
                       >
                         {cardNumber}
                       </p>
-                      <h3 className="mt-0.5 max-w-none text-[0.92rem] font-black leading-[1] md:text-[1.2rem] lg:mt-2 lg:min-h-[3.3rem] lg:max-w-[12ch] lg:text-[1.52rem] xl:min-h-[3.75rem] xl:text-[1.72rem] 2xl:mt-2 2xl:min-h-[4.1rem] 2xl:max-w-[13ch] 2xl:text-[1.92rem] min-[1800px]:text-[2.1rem]">
+                      <h3 className="mt-0.5 max-w-none text-[0.92rem] font-black leading-[1] md:text-[1.2rem] lg:mt-2 lg:min-h-[3rem] lg:max-w-[12ch] lg:text-[1.42rem] xl:min-h-[3.35rem] xl:text-[1.58rem] 2xl:mt-2 2xl:min-h-[3.65rem] 2xl:max-w-[13ch] 2xl:text-[1.72rem]">
                         {renderFeatureTitle(card.title)}
                       </h3>
                       <div
                         className={
                           isDarkCard
-                            ? "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-white/86 lg:block lg:text-[0.94rem] xl:text-[0.98rem] 2xl:mt-3 2xl:space-y-1.5 2xl:text-[1.02rem] min-[1800px]:text-[1.08rem]"
-                            : "mt-2.5 hidden space-y-1.5 text-[0.82rem] font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.94rem] xl:text-[0.98rem] 2xl:mt-3 2xl:space-y-1.5 2xl:text-[1.02rem] min-[1800px]:text-[1.08rem]"
+                            ? "mt-2 hidden space-y-1 text-[0.82rem] font-medium leading-relaxed text-white/86 lg:block lg:text-[0.88rem] xl:text-[0.94rem] 2xl:mt-2.5 2xl:text-[0.98rem]"
+                            : "mt-2 hidden space-y-1 text-[0.82rem] font-medium leading-relaxed text-[#5d606b] lg:block lg:text-[0.88rem] xl:text-[0.94rem] 2xl:mt-2.5 2xl:text-[0.98rem]"
                         }
                       >
                         {card.lines.map((line) => (

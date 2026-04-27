@@ -81,7 +81,7 @@ function MenuCard({
           ) : null}
         </div>
 
-        <div className={`relative overflow-hidden ${compact ? "h-[17.5rem] sm:h-[19rem]" : "h-[22rem] sm:h-[24rem] lg:h-[18.75rem] xl:h-[19.75rem] 2xl:h-[20.5rem]"}`}>
+        <div className={`relative overflow-hidden ${compact ? "h-[17.5rem] sm:h-[19rem]" : "h-[22rem] sm:h-[24rem] lg:h-[16.75rem] xl:h-[18.25rem] 2xl:h-[19rem]"}`}>
           <Image
             src={item.image}
             alt={item.title}
@@ -91,7 +91,7 @@ function MenuCard({
           />
         </div>
 
-        <div className={`flex min-h-[9.75rem] flex-1 flex-col justify-center text-left ${compact ? "p-5 sm:p-6" : "p-7 sm:p-8 lg:min-h-[7.6rem] lg:p-6 xl:min-h-[8rem] xl:p-7"} ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
+        <div className={`flex min-h-[9.75rem] flex-1 flex-col justify-center text-left ${compact ? "p-5 sm:p-6" : "p-7 sm:p-8 lg:min-h-[7rem] lg:p-6 xl:min-h-[7.5rem] xl:p-7"} ${isSignature ? "bg-[#001540] text-white" : "bg-white"}`}>
           <div>
             <h3 className={`mb-2.5 font-black leading-tight ${compact ? "text-[1.55rem] sm:text-[1.8rem]" : "text-[1.8rem] lg:text-[1.72rem] xl:text-[1.82rem]"} ${isSignature ? "text-[#ffcf00]" : "text-[#001540]"}`}>
               {item.title}
@@ -174,7 +174,7 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
   return (
     <section
       id="menu-section"
-      className="relative overflow-x-hidden overflow-y-visible bg-white px-0 py-14 text-center md:pt-10 md:pb-12 xl:pt-12 xl:pb-14"
+      className="app-screen-min-offset app-screen-snap-target relative flex items-center overflow-hidden bg-white px-0 py-10 text-center md:py-8 xl:py-10"
     >
       <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-0 h-20 w-[145%] -translate-x-1/2 -translate-y-1/2 rounded-[100%] bg-white" />
       <div className="mx-auto w-full max-w-[1720px] px-4 lg:px-6">
@@ -189,7 +189,7 @@ export function PortedMenuSection({ menu }: PortedMenuSectionProps) {
           </p>
         </div>
 
-        <p className="mb-6 text-[0.82rem] font-semibold text-[#001540]/42 md:hidden">좌우로 넘겨서 메뉴를 확인하세요</p>
+        <p className="mb-4 text-[0.82rem] font-semibold text-[#001540]/42 md:hidden">좌우로 넘겨서 메뉴를 확인하세요</p>
 
         <div className="relative hidden px-5 md:block md:px-8 lg:px-12">
           {canSlide && !isAtStart ? <MenuArrow direction="left" onClick={() => movePage(-1)} /> : null}
