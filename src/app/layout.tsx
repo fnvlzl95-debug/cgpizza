@@ -6,14 +6,17 @@ import "./globals.css";
 
 const googleAnalyticsId = "G-G9ZWHC3L9L";
 const naverAnalyticsId = "1c48f0bc7c4f170";
+const defaultDescription =
+  "최강피자 부천본점 메뉴, 방문포장 할인, 파로 도우 피자, 피자창업·샵인샵 가맹 상담을 안내합니다.";
+const defaultImage = "/assets/user/franchise/front-store-front-edited.png";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "최강피자",
+    default: "최강피자 공식 홈페이지",
     template: "%s | 최강피자",
   },
-  description: "소화가 잘되는 맛있는 피자, 최강피자. 파로 도우와 신선한 재료로 완성한 대표 메뉴를 만나보세요.",
+  description: defaultDescription,
   alternates: {
     canonical: "/",
   },
@@ -24,19 +27,15 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    title: "최강피자",
-    description: "소화가 잘되는 맛있는 피자, 최강피자. 파로 도우와 신선한 재료로 완성한 대표 메뉴를 만나보세요.",
-    images: [
-      "/assets/user/share-preview-og-v2-1200x630.png",
-      "/assets/user/franchise/front-store-front-edited.png",
-      "/assets/user/franchise/shop-in-shop-message.jpeg",
-    ],
+    title: "최강피자 공식 홈페이지",
+    description: defaultDescription,
+    images: [defaultImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "최강피자",
-    description: "소화가 잘되는 맛있는 피자, 최강피자. 파로 도우와 신선한 재료로 완성한 대표 메뉴를 만나보세요.",
-    images: ["/assets/user/share-preview-og-v2-1200x630.png"],
+    title: "최강피자 공식 홈페이지",
+    description: defaultDescription,
+    images: [defaultImage],
   },
 };
 

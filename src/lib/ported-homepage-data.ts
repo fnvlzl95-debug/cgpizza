@@ -110,16 +110,11 @@ const reviewShowcaseSlides = Array.from({ length: 17 }, (_, index) => ({
 
 export const portedHomepageData = {
   metadata: {
-    title: "최강피자 | 피자창업은 최강피자 홈페이지 바로가기.",
-    description: "소화가 잘되는 맛있는 최강피자, 창업안내·선착순 가맹혜택.",
-    ogImage: "/assets/user/share-preview-og-v2-1200x630.png",
-    ogImages: [
-      "/assets/user/share-preview-og-v2-1200x630.png",
-      "/assets/user/franchise/front-store-front-edited.png",
-      "/assets/user/franchise/shop-in-shop-message.jpeg",
-      "/assets/user/franchise/shop-triptych-02.jpeg",
-      "/assets/user/franchise/shop-triptych-01.jpeg",
-    ],
+    title: "최강피자 공식 홈페이지 | 부천본점·피자창업 가맹 문의",
+    description:
+      "최강피자 부천본점 메뉴, 방문포장 할인, 파로 도우 피자, 피자창업·샵인샵 가맹 상담을 안내합니다.",
+    ogImage: "/assets/user/franchise/front-store-front-edited.png",
+    ogImages: ["/assets/user/franchise/front-store-front-edited.png"],
   },
   navItems: [
     { label: "최강 메뉴", href: "#menu-section" },
@@ -129,7 +124,7 @@ export const portedHomepageData = {
   hero: {
     badge: "BEST",
     eyebrow: "CHOIGANG PIZZA",
-    title: ["소화가", "잘되는", "맛있는 피자"],
+    title: ["소화가", "잘되는", "맛있는 최강피자"],
     description:
       "최고의 재료, 최강의 맛! 부천본점의 특별함을 만나보세요.",
     highlight: "",

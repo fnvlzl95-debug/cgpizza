@@ -5,10 +5,13 @@ import { siteUrl } from "@/lib/site-config";
 
 const absoluteUrl = (path: string) => new URL(path, siteUrl).toString();
 
+const brandImage = absoluteUrl(portedHomepageData.metadata.ogImage);
+const brandLogo = absoluteUrl("/assets/user/logo-mark-blue.png");
+
 const searchPromoCards = [
   {
     name: "최강피자 브랜드 소개",
-    image: absoluteUrl("/assets/user/share-preview-og-v2-1200x630.png"),
+    image: brandImage,
     url: absoluteUrl("/"),
   },
   {
@@ -40,7 +43,24 @@ const homepageStructuredData = [
     name: "최강피자",
     url: siteUrl,
     description: portedHomepageData.metadata.description,
-    image: searchPromoCards[0].image,
+    image: brandImage,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    name: "최강피자",
+    url: siteUrl,
+    image: brandImage,
+    logo: brandLogo,
+    telephone: "1866-1622",
+    servesCuisine: "피자",
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "KR",
+      addressRegion: "경기",
+      addressLocality: "부천시 원미구",
+      streetAddress: "도약로 105 한라마을주공(3)아파트 105호",
+    },
   },
   {
     "@context": "https://schema.org",
