@@ -3,10 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { MouseEvent } from "react";
-import { portedHomepageData } from "@/lib/ported-homepage-data";
+import type { PortedNavItem } from "@/lib/ported-homepage-data";
 
 type PortedHeaderProps = {
-  navItems: typeof portedHomepageData.navItems;
+  navItems: PortedNavItem[];
+  activeHref?: string;
+  homeHref?: string;
 };
 
 function getHeaderOffset() {
@@ -18,12 +20,16 @@ function getHeaderOffset() {
   return Number.isFinite(parsedValue) ? parsedValue : 0;
 }
 
-export function PortedHeader({ navItems }: PortedHeaderProps) {
+export function PortedHeader({
+  navItems,
+  activeHref,
+  homeHref = "#top",
+}: PortedHeaderProps) {
   const handleNavClick = (
     event: MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
-    if (href !== "#menu-section") {
+    if (!href.startsWith("#")) {
       return;
     }
 
@@ -38,7 +44,10 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
     const headerOffset = getHeaderOffset();
     const rect = target.getBoundingClientRect();
     const availableHeight = window.innerHeight - headerOffset;
-    const centerOffset = Math.max(0, (availableHeight - rect.height) / 2);
+    const centerOffset =
+      href === "#menu-section"
+        ? Math.max(0, (availableHeight - rect.height) / 2)
+        : 0;
     const targetTop =
       window.scrollY + rect.top - headerOffset - centerOffset;
 
@@ -52,7 +61,7 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 border-b border-[#002266]/30 bg-[#002266]/84 text-white backdrop-blur-md">
       <div className="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between px-4 md:h-[5.25rem]">
-        <Link href="#top" className="group flex min-w-0 items-center gap-0 text-white">
+        <Link href={homeHref} className="group flex min-w-0 items-center gap-0 text-white">
           <span className="relative h-[64px] w-[64px] shrink-0 overflow-hidden md:h-[82px] md:w-[82px]">
             <Image
               src="/assets/user/logo-mark-gold.png"
@@ -74,10 +83,17 @@ export function PortedHeader({ navItems }: PortedHeaderProps) {
               key={item.label}
               href={item.href}
               onClick={(event) => handleNavClick(event, item.href)}
-              className="group relative whitespace-nowrap transition-colors hover:text-[#ffcf00]"
+              style={activeHref === item.href ? { color: "#ffcf00" } : undefined}
+              className={`group relative whitespace-nowrap transition-colors hover:text-[#ffcf00] ${
+                activeHref === item.href ? "text-[#ffcf00]" : ""
+              }`}
             >
               {item.label}
-              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-[#ffcf00] transition-all duration-300 group-hover:w-full" />
+              <span
+                className={`absolute -bottom-1 left-0 h-0.5 bg-[#ffcf00] transition-all duration-300 group-hover:w-full ${
+                  activeHref === item.href ? "w-full" : "w-0"
+                }`}
+              />
             </a>
           ))}
         </nav>

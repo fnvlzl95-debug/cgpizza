@@ -117,8 +117,9 @@ export const portedHomepageData = {
     ogImages: ["/assets/user/최강피자SEO.png?v=20260503-2"],
   },
   navItems: [
-    { label: "최강 메뉴", href: "#menu-section" },
-    { label: "최강샵인샵", href: "#shopinshop-intro-section" },
+    { label: "브랜드", href: "#top" },
+    { label: "메뉴", href: "/menu" },
+    { label: "창업안내", href: "#shopinshop-intro-section" },
     { label: "가맹 문의", href: "#contact-cta-section" },
   ] satisfies PortedNavItem[],
   hero: {
