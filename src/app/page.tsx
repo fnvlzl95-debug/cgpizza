@@ -6,6 +6,9 @@ import { siteUrl } from "@/lib/site-config";
 const absoluteUrl = (path: string) => new URL(path, siteUrl).toString();
 
 const brandImage = absoluteUrl(portedHomepageData.metadata.ogImage);
+const brandImageAlt = "매출의 한계를 넘는 가장 확실한 선택 - 최강피자";
+const brandImageWidth = 1731;
+const brandImageHeight = 909;
 const brandLogo = absoluteUrl("/assets/user/logo-mark-blue.png");
 
 const searchPromoCards = [
@@ -91,12 +94,24 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: portedHomepageData.metadata.title,
     description: portedHomepageData.metadata.description,
-    images: [...portedHomepageData.metadata.ogImages],
+    images: [
+      {
+        url: portedHomepageData.metadata.ogImage,
+        width: brandImageWidth,
+        height: brandImageHeight,
+        alt: brandImageAlt,
+      },
+    ],
   },
   twitter: {
     title: portedHomepageData.metadata.title,
     description: portedHomepageData.metadata.description,
-    images: [portedHomepageData.metadata.ogImage],
+    images: [
+      {
+        url: portedHomepageData.metadata.ogImage,
+        alt: brandImageAlt,
+      },
+    ],
   },
 };
 

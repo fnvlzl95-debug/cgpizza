@@ -8,7 +8,10 @@ const googleAnalyticsId = "G-G9ZWHC3L9L";
 const naverAnalyticsId = "1c48f0bc7c4f170";
 const defaultDescription =
   "최강피자 부천본점 메뉴, 방문포장 할인, 파로 도우 피자, 피자창업·샵인샵 가맹 상담을 안내합니다.";
-const defaultImage = "/assets/user/최강피자SEO.png?v=20260503-2";
+const defaultImage = "/assets/user/최강피자SEO.png";
+const defaultImageAlt = "매출의 한계를 넘는 가장 확실한 선택 - 최강피자";
+const defaultImageWidth = 1731;
+const defaultImageHeight = 909;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,13 +32,25 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: "최강피자 공식 홈페이지",
     description: defaultDescription,
-    images: [defaultImage],
+    images: [
+      {
+        url: defaultImage,
+        width: defaultImageWidth,
+        height: defaultImageHeight,
+        alt: defaultImageAlt,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "최강피자 공식 홈페이지",
     description: defaultDescription,
-    images: [defaultImage],
+    images: [
+      {
+        url: defaultImage,
+        alt: defaultImageAlt,
+      },
+    ],
   },
 };
 
