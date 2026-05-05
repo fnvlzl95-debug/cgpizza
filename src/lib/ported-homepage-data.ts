@@ -113,8 +113,8 @@ export const portedHomepageData = {
     title: "최강피자 공식 홈페이지 | 부천본점·피자창업 가맹 문의",
     description:
       "최강피자 부천본점 메뉴, 방문포장 할인, 파로 도우 피자, 피자창업·샵인샵 가맹 상담을 안내합니다.",
-    ogImage: "/assets/user/최강피자SEO.png?v=20260503-2",
-    ogImages: ["/assets/user/최강피자SEO.png?v=20260503-2"],
+    ogImage: "/assets/user/최강피자SEO.png",
+    ogImages: ["/assets/user/최강피자SEO.png"],
   },
   navItems: [
     { label: "최강 메뉴", href: "#menu-section" },
