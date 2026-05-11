@@ -19,7 +19,7 @@ const searchPromoCards = [
   },
   {
     name: "소형 매장 최적화",
-    image: absoluteUrl("/assets/user/franchise/front-store-front-edited.png"),
+    image: absoluteUrl("/assets/user/franchise/small-store-front-20260511.png"),
     url: absoluteUrl("/#contact-section"),
   },
   {

@@ -390,7 +390,7 @@ export const portedHomepageData = {
         title: "소형 매장 최적화",
         lines: ["10평 남짓한 공간이면 충분합니다.", "배달·포장 중심 레이아웃으로 운영 부담을 낮췄습니다."],
         icon: "store",
-        image: "/assets/user/franchise/front-store-front-edited.png",
+        image: "/assets/user/franchise/small-store-front-20260511.png",
       },
       {
         title: "배달·포장\n집중 운영",
