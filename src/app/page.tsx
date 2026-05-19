@@ -55,7 +55,7 @@ const homepageStructuredData = [
     url: siteUrl,
     image: brandImage,
     logo: brandLogo,
-    telephone: "1866-1622",
+    telephone: "1866-1623",
     servesCuisine: "피자",
     address: {
       "@type": "PostalAddress",
