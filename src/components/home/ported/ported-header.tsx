@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import type { MouseEvent } from "react";
+import { useState, type MouseEvent } from "react";
 import type { PortedNavItem } from "@/lib/ported-homepage-data";
 
 type PortedHeaderProps = {
@@ -10,6 +10,18 @@ type PortedHeaderProps = {
   activeHref?: string;
   homeHref?: string;
 };
+
+function HamburgerIcon({ open }: { open: boolean }) {
+  return (
+    <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
+      {open ? (
+        <path d="m6 6 12 12M18 6 6 18" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" />
+      ) : (
+        <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" />
+      )}
+    </svg>
+  );
+}
 
 function getHeaderOffset() {
   const rawValue = getComputedStyle(document.documentElement).getPropertyValue(
@@ -25,6 +37,8 @@ export function PortedHeader({
   activeHref,
   homeHref = "#top",
 }: PortedHeaderProps) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const handleNavClick = (
     event: MouseEvent<HTMLAnchorElement>,
     href: string,
@@ -100,8 +114,63 @@ export function PortedHeader({
 
         <div className="hidden md:block md:w-[82px]" />
 
-        <div className="w-[4.5rem] md:hidden" />
+        <button
+          type="button"
+          onClick={() => setMenuOpen((value) => !value)}
+          aria-label={menuOpen ? "메뉴 닫기" : "메뉴 열기"}
+          aria-expanded={menuOpen}
+          className="flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/5 text-white transition-colors hover:bg-white/10 md:hidden"
+        >
+          <HamburgerIcon open={menuOpen} />
+        </button>
       </div>
+
+      {menuOpen ? (
+        <nav
+          aria-label="모바일 메뉴"
+          className="relative overflow-hidden rounded-b-[1.6rem] border-t border-[#ffcf00]/30 bg-[linear-gradient(180deg,#08215d_0%,#041544_100%)] px-4 pb-5 pt-2 shadow-[0_30px_60px_rgba(0,0,0,0.55)] md:hidden"
+        >
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -top-16 left-1/2 h-40 w-40 -translate-x-1/2 rounded-full bg-[radial-gradient(circle,rgba(255,207,0,0.2)_0%,rgba(255,207,0,0)_70%)]"
+          />
+          <ul className="relative flex flex-col">
+            {navItems.map((item, index) => {
+              const isActive = activeHref === item.href;
+
+              return (
+                <li key={item.label}>
+                  <a
+                    href={item.href}
+                    onClick={(event) => {
+                      handleNavClick(event, item.href);
+                      setMenuOpen(false);
+                    }}
+                    className={`group flex items-center justify-between gap-3 px-2 py-4 text-[1.12rem] font-black tracking-[-0.01em] transition-colors ${
+                      index > 0 ? "border-t border-white/10" : ""
+                    } ${isActive ? "text-[#ffcf00]" : "text-white hover:text-[#ffcf00]"}`}
+                  >
+                    <span className="flex items-center gap-3">
+                      <span className={`text-[0.95rem] transition-colors ${isActive ? "text-[#ffcf00]" : "text-[#ffcf00]/45 group-hover:text-[#ffcf00]"}`}>
+                        ✦
+                      </span>
+                      {item.label}
+                    </span>
+                    <svg
+                      viewBox="0 0 24 24"
+                      className={`h-4 w-4 transition-all group-hover:translate-x-0.5 ${isActive ? "text-[#ffcf00]" : "text-white/40 group-hover:text-[#ffcf00]"}`}
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path d="m9 6 6 6-6 6" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+      ) : null}
     </header>
   );
 }
