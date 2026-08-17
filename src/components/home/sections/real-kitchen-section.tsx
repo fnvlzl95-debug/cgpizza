@@ -31,8 +31,11 @@ function VideoCard({ clip }: { clip: (typeof data.videos)[number] }) {
 
   return (
     <li
-      className={`relative isolate aspect-[9/16] overflow-hidden rounded-2xl bg-navy-900 sm:aspect-[9/20] ${
-        clip.accent ? "shadow-[0_6px_0_var(--color-yellow-500)]" : ""
+      /* The comp underlines the active clip. That is a rule, so it ships as a
+         border — a zero-blur offset shadow would be the same pixels wearing a
+         costume this world never chose. */
+      className={`relative isolate aspect-[9/16] overflow-hidden rounded-2xl border-b-[6px] bg-navy-900 sm:aspect-[9/20] ${
+        clip.accent ? "border-yellow-500" : "border-transparent"
       }`}
     >
       <video
