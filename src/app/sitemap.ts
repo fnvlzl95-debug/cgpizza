@@ -1,13 +1,26 @@
 import type { MetadataRoute } from "next";
 import { siteUrl } from "@/lib/site-config";
 
+const routes = [
+  {
+    path: "",
+    changeFrequency: "daily",
+    priority: 1,
+  },
+  {
+    path: "/menu",
+    changeFrequency: "weekly",
+    priority: 0.9,
+  },
+] as const;
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  return [
-    {
-      url: siteUrl,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1,
-    },
-  ];
+  const lastModified = new Date();
+
+  return routes.map((route) => ({
+    url: `${siteUrl}${route.path}`,
+    lastModified,
+    changeFrequency: route.changeFrequency,
+    priority: route.priority,
+  }));
 }

@@ -6,9 +6,9 @@ import { siteUrl } from "@/lib/site-config";
 const absoluteUrl = (path: string) => new URL(path, siteUrl).toString();
 
 const brandImage = absoluteUrl(portedHomepageData.metadata.ogImage);
-const brandImageAlt = "매출의 한계를 넘는 가장 확실한 선택 - 최강피자";
-const brandImageWidth = 1731;
-const brandImageHeight = 909;
+const brandImageAlt = "최강피자 대표 피자와 브랜드 안내 이미지";
+const brandImageWidth = 1200;
+const brandImageHeight = 630;
 const brandLogo = absoluteUrl("/assets/user/logo-mark-blue.png");
 
 const searchPromoCards = [
