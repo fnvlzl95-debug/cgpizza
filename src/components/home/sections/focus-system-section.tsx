@@ -15,9 +15,12 @@ function CardArt({ art }: { art: (typeof data.cards)[number]["art"] }) {
       <Image
         src={art.src}
         alt=""
-        width={1024}
-        height={1024}
+        width={720}
+        height={720}
         aria-hidden="true"
+        /* Lossless source, small file, flat fields — a second lossy pass at
+           the optimiser's default quality is all cost and no saving. */
+        unoptimized
         className="h-full w-full object-cover"
       />
     );

@@ -75,6 +75,7 @@ export function PhilosophySection() {
               width={639}
               height={804}
               aria-hidden="true"
+              unoptimized
               className="hidden h-auto w-[11vw] shrink-0 self-end select-none lg:block"
             />
           </div>

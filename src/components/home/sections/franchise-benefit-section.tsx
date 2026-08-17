@@ -166,6 +166,7 @@ export function FranchiseBenefitSection() {
             width={639}
             height={804}
             aria-hidden="true"
+            unoptimized
             className="pointer-events-none -mb-2 hidden h-auto w-[min(6.8vw,12vh)] shrink-0 select-none lg:block"
           />
           <div className="w-full rounded-lg bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[min(1.5vw,2.7vh)] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
