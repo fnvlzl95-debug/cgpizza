@@ -22,6 +22,8 @@ const selector = arg("--sel", null);
 const name = arg("--name", selector ? "section" : "page");
 const only = arg("--only", null);
 const outDir = arg("--out", ".impeccable/review");
+/** `--sections a,b,c` captures several `#id` blocks from ONE page load. */
+const sections = arg("--sections", null)?.split(",").filter(Boolean) ?? null;
 
 // Comp width. Every desktop capture must match it for overlay comparison.
 const COMP_WIDTH = 1672;
@@ -44,29 +46,44 @@ for (const t of targets) {
     reducedMotion: "reduce",
   });
   const page = await context.newPage();
-  // Not networkidle: the dev server's HMR socket never lets the page go idle.
-  await page.goto(url, { waitUntil: "load", timeout: 120_000 });
+  // Neither networkidle (the HMR socket never idles) nor load (a cold image
+  // optimiser can hold it open for minutes). Settle images explicitly below.
+  await page.goto(url, { waitUntil: "domcontentloaded", timeout: 120_000 });
 
-  // Settle lazy images and any in-view reveal transitions.
+  // Settle lazy images and any in-view reveal transitions, but never block
+  // forever on one slow asset.
   await page.evaluate(async () => {
-    await Promise.all(
-      Array.from(document.images)
-        .filter((img) => !img.complete)
-        .map((img) => new Promise((r) => { img.onload = img.onerror = r; })),
-    );
+    const pending = Array.from(document.images).filter((img) => !img.complete);
+    await Promise.race([
+      Promise.all(pending.map((img) => new Promise((r) => { img.onload = img.onerror = r; }))),
+      new Promise((r) => setTimeout(r, 45_000)),
+    ]);
   });
-  await page.waitForTimeout(600);
+  await page.waitForTimeout(700);
 
-  const file = `${outDir}/${name}-${t.id}.png`;
-  if (selector) {
-    const el = page.locator(selector).first();
-    await el.scrollIntoViewIfNeeded();
-    await page.waitForTimeout(400);
-    await el.screenshot({ path: file });
+  if (sections) {
+    // The fixed header would otherwise be painted over every section crop.
+    await page.addStyleTag({ content: "header{visibility:hidden!important}" });
+    for (const id of sections) {
+      const file = `${outDir}/${id}-${t.id}.png`;
+      const el = page.locator(`#${id}`).first();
+      await el.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(500);
+      await el.screenshot({ path: file, timeout: 60_000 });
+      console.log(`✓ ${file}`);
+    }
   } else {
-    await page.screenshot({ path: file, fullPage: true });
+    const file = `${outDir}/${name}-${t.id}.png`;
+    if (selector) {
+      const el = page.locator(selector).first();
+      await el.scrollIntoViewIfNeeded();
+      await page.waitForTimeout(400);
+      await el.screenshot({ path: file, timeout: 60_000 });
+    } else {
+      await page.screenshot({ path: file, fullPage: true });
+    }
+    console.log(`✓ ${file}  (${t.width}x${t.height} @${t.scale}x)`);
   }
-  console.log(`✓ ${file}  (${t.width}x${t.height} @${t.scale}x)`);
   await context.close();
 }
 

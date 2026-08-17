@@ -2,10 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import type { CSSProperties, ReactNode } from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/home/reference/reference-primitives";
-import { PortedHeader } from "@/components/home/ported/ported-header";
+import { SiteHeader } from "@/components/home/site-header";
 import {
   menuPageData,
-  menuPageNavItems,
   type MenuCategoryId,
   type MenuPagePizza,
   type MenuPageSideItem,
@@ -608,11 +607,7 @@ function MenuFooter() {
 export function MenuPage() {
   return (
     <>
-      <PortedHeader
-        navItems={menuPageNavItems}
-        activeHref="/menu"
-        homeHref="/"
-      />
+      <SiteHeader alwaysSolid activeHref="/menu" />
       <main className="bg-[#041544] text-white">
         <MenuHero />
         <MenuTabs />

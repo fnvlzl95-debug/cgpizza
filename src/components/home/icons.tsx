@@ -6,6 +6,12 @@
 
 type IconProps = {
   className?: string;
+  /** Nested <svg> inside an <svg> has no CSS box, so a Tailwind size class is
+   *  ignored there. Pass explicit geometry when drawing into a chart. */
+  width?: number;
+  height?: number;
+  x?: number;
+  y?: number;
 };
 
 const stroke = {
@@ -16,9 +22,25 @@ const stroke = {
   strokeLinejoin: "round",
 } as const;
 
-function Svg({ className, children }: IconProps & { children: React.ReactNode }) {
+function Svg({
+  className,
+  width,
+  height,
+  x,
+  y,
+  children,
+}: IconProps & { children: React.ReactNode }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true" focusable="false">
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      width={width}
+      height={height}
+      x={x}
+      y={y}
+      aria-hidden="true"
+      focusable="false"
+    >
       {children}
     </svg>
   );
@@ -26,18 +48,18 @@ function Svg({ className, children }: IconProps & { children: React.ReactNode })
 
 /* ── Hero proof row ─────────────────────────────────────────── */
 
-export function LeafIcon({ className }: IconProps) {
+export function LeafIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="M20 4c0 8.5-4.4 13-11 13H5.5C5.5 9.6 10.7 4.6 20 4Z" />
       <path {...stroke} d="M5 20c1.8-5.4 5-9.2 9.6-11.6" />
     </Svg>
   );
 }
 
-export function ChefIcon({ className }: IconProps) {
+export function ChefIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path
         {...stroke}
         d="M6.6 14.4a4 4 0 1 1 1.9-7.5 4.1 4.1 0 0 1 7 0 4 4 0 1 1 1.9 7.5v0"
@@ -48,9 +70,9 @@ export function ChefIcon({ className }: IconProps) {
   );
 }
 
-export function MedalIcon({ className }: IconProps) {
+export function MedalIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <circle {...stroke} cx="12" cy="10" r="6" />
       <path {...stroke} d="m12 7.4 1 2 2.2.3-1.6 1.5.4 2.2-2-1-2 1 .4-2.2L8.8 9.7l2.2-.3 1-2Z" />
       <path {...stroke} d="m8.6 15.4-1.4 5 4.8-2.3 4.8 2.3-1.4-5" />
@@ -60,9 +82,9 @@ export function MedalIcon({ className }: IconProps) {
 
 /* ── Benefit table chips (S2) ───────────────────────────────── */
 
-export function TagIcon({ className }: IconProps) {
+export function TagIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path
         fill="currentColor"
         d="M12.6 3.4H19a1.6 1.6 0 0 1 1.6 1.6v6.4a1.6 1.6 0 0 1-.47 1.13l-7.4 7.4a1.6 1.6 0 0 1-2.26 0l-6.4-6.4a1.6 1.6 0 0 1 0-2.26l7.4-7.4a1.6 1.6 0 0 1 1.13-.47Z"
@@ -72,9 +94,9 @@ export function TagIcon({ className }: IconProps) {
   );
 }
 
-export function TruckIcon({ className }: IconProps) {
+export function TruckIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path fill="currentColor" d="M2.6 6.4h10.2v8.9H2.6z" />
       <path fill="currentColor" d="M13.6 9h3.6l3.2 3.4v2.9h-6.8z" />
       <circle cx="7" cy="17.4" r="2.2" fill="currentColor" />
@@ -85,9 +107,9 @@ export function TruckIcon({ className }: IconProps) {
   );
 }
 
-export function ToolsIcon({ className }: IconProps) {
+export function ToolsIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path
         fill="currentColor"
         d="m4.3 5.6 1.5-1.5 4.6 4.6-1.5 1.5-1.4-.3-3.5-3.5.3-.8Z"
@@ -100,9 +122,9 @@ export function ToolsIcon({ className }: IconProps) {
   );
 }
 
-export function HeadsetIcon({ className }: IconProps) {
+export function HeadsetIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path
         fill="currentColor"
         d="M12 3.6a7.4 7.4 0 0 0-7.4 7.4v1.2h1.9a1.7 1.7 0 0 1 1.7 1.7v2.9a1.7 1.7 0 0 1-1.7 1.7H5.3a1.7 1.7 0 0 1-1.7-1.7V11A8.4 8.4 0 0 1 20.4 11v5.8a3.6 3.6 0 0 1-3.6 3.6h-2.5v-1.8h2.5a1.8 1.8 0 0 0 1.8-1.8h-1.4a1.7 1.7 0 0 1-1.7-1.7v-2.9a1.7 1.7 0 0 1 1.7-1.7h1.9V11A7.4 7.4 0 0 0 12 3.6Z"
@@ -113,21 +135,20 @@ export function HeadsetIcon({ className }: IconProps) {
 
 /* ── Profit structure (S4) ──────────────────────────────────── */
 
-export function WheatIcon({ className }: IconProps) {
+export function WheatIcon(props: IconProps) {
   return (
-    <Svg className={className}>
-      <path {...stroke} d="M12 21V9.6" />
-      <path {...stroke} d="M12 9.6c0-2 1-3.4 2.9-4.2C15.2 7.5 14.2 9 12 9.6Z" />
-      <path {...stroke} d="M12 9.6C12 7.6 11 6.2 9.1 5.4 8.8 7.5 9.8 9 12 9.6Z" />
-      <path {...stroke} d="M12 14.4c0-2 1-3.4 2.9-4.2.3 2.1-.7 3.6-2.9 4.2Z" />
-      <path {...stroke} d="M12 14.4c0-2-1-3.4-2.9-4.2-.3 2.1.7 3.6 2.9 4.2Z" />
+    <Svg {...props}>
+      <path {...stroke} d="M12 21.2V6.4" />
+      <path {...stroke} d="M12 6.4c0-1.9 1-3.2 3-4 .3 2-.8 3.4-3 4Zm0 0c0-1.9-1-3.2-3-4-.3 2 .8 3.4 3 4Z" />
+      <path {...stroke} d="M12 11.4c0-1.9 1-3.2 3-4 .3 2-.8 3.4-3 4Zm0 0c0-1.9-1-3.2-3-4-.3 2 .8 3.4 3 4Z" />
+      <path {...stroke} d="M12 16.4c0-1.9 1-3.2 3-4 .3 2-.8 3.4-3 4Zm0 0c0-1.9-1-3.2-3-4-.3 2 .8 3.4 3 4Z" />
     </Svg>
   );
 }
 
-export function BuildingIcon({ className }: IconProps) {
+export function BuildingIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="M5.2 20.4V5.4a1 1 0 0 1 1-1h7.6a1 1 0 0 1 1 1v15" />
       <path {...stroke} d="M14.8 10.4h3a1 1 0 0 1 1 1v9" />
       <path {...stroke} d="M3.6 20.4h16.8" />
@@ -136,9 +157,9 @@ export function BuildingIcon({ className }: IconProps) {
   );
 }
 
-export function PhoneIcon({ className }: IconProps) {
+export function PhoneIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <rect {...stroke} x="6.6" y="2.8" width="10.8" height="18.4" rx="2" />
       <path {...stroke} d="M10.4 5.6h3.2" />
       <path {...stroke} d="M12 18.2h.01" />
@@ -147,9 +168,9 @@ export function PhoneIcon({ className }: IconProps) {
   );
 }
 
-export function PeopleIcon({ className }: IconProps) {
+export function PeopleIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <circle {...stroke} cx="12" cy="7.4" r="3" />
       <path {...stroke} d="M6.4 19.6a5.6 5.6 0 0 1 11.2 0" />
       <path {...stroke} d="M18.4 9.6a2.3 2.3 0 1 0 0-4.4M21 17.6a4.2 4.2 0 0 0-2.6-3.9" />
@@ -158,21 +179,22 @@ export function PeopleIcon({ className }: IconProps) {
   );
 }
 
-export function GearIcon({ className }: IconProps) {
+export function GearIcon(props: IconProps) {
   return (
-    <Svg className={className}>
-      <circle {...stroke} cx="12" cy="12" r="3.1" />
+    <Svg {...props}>
+      <circle {...stroke} cx="12" cy="12" r="3.2" />
       <path
         {...stroke}
-        d="M12 2.8v2M12 19.2v2M21.2 12h-2M4.8 12h-2M18.5 5.5l-1.4 1.4M6.9 17.1l-1.4 1.4M18.5 18.5l-1.4-1.4M6.9 6.9 5.5 5.5"
+        d="M19.5 14.6a7.7 7.7 0 0 0 0-5.2l1.8-1.4-1.8-3.1-2.1.9a7.7 7.7 0 0 0-4.5-2.6L12.6 1h-3.6l-.3 2.2a7.7 7.7 0 0 0-4.5 2.6l-2.1-.9L.3 8l1.8 1.4a7.7 7.7 0 0 0 0 5.2L.3 16l1.8 3.1 2.1-.9a7.7 7.7 0 0 0 4.5 2.6l.3 2.2h3.6l.3-2.2a7.7 7.7 0 0 0 4.5-2.6l2.1.9 1.8-3.1-1.8-1.4Z"
+        transform="translate(1.2 0.9) scale(0.9)"
       />
     </Svg>
   );
 }
 
-export function CoinsIcon({ className }: IconProps) {
+export function CoinsIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <ellipse {...stroke} cx="12" cy="6.6" rx="6.4" ry="2.6" />
       <path {...stroke} d="M5.6 6.6v4c0 1.4 2.9 2.6 6.4 2.6s6.4-1.2 6.4-2.6v-4" />
       <path {...stroke} d="M5.6 10.6v4c0 1.4 2.9 2.6 6.4 2.6s6.4-1.2 6.4-2.6v-4" />
@@ -180,9 +202,9 @@ export function CoinsIcon({ className }: IconProps) {
   );
 }
 
-export function MoneyBagIcon({ className }: IconProps) {
+export function MoneyBagIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="M9.4 2.8h5.2l-1.3 2.6h-2.6L9.4 2.8Z" />
       <path
         {...stroke}
@@ -195,9 +217,9 @@ export function MoneyBagIcon({ className }: IconProps) {
 
 /* ── Trust seals (S4 bottom) ────────────────────────────────── */
 
-export function SealIcon({ className }: IconProps) {
+export function SealIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path
         {...stroke}
         d="m12 2.6 2.2 1.6 2.7-.2.9 2.6 2.2 1.6-1 2.5 1 2.5-2.2 1.6-.9 2.6-2.7-.2L12 19.8l-2.2-1.6-2.7.2-.9-2.6L4 14.2l1-2.5-1-2.5 2.2-1.6.9-2.6 2.7.2L12 2.6Z"
@@ -207,9 +229,9 @@ export function SealIcon({ className }: IconProps) {
   );
 }
 
-export function ChartIcon({ className }: IconProps) {
+export function ChartIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="M4 20h16" />
       <path fill="currentColor" d="M5.6 13.4h3v6h-3zM10.5 10.2h3v9.2h-3zM15.4 6.6h3v12.8h-3z" />
       <path {...stroke} d="m5.6 9.4 4.9-3.6 3.4 2.2 5.5-4.4" />
@@ -218,9 +240,9 @@ export function ChartIcon({ className }: IconProps) {
   );
 }
 
-export function HandshakeIcon({ className }: IconProps) {
+export function HandshakeIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="m2.8 12.6 3-3.4 4.2 1.2 2 1.8" />
       <path {...stroke} d="m21.2 12.6-3-3.4-4.2 1.2-1.5 1.4" />
       <path
@@ -234,35 +256,35 @@ export function HandshakeIcon({ className }: IconProps) {
 
 /* ── Real kitchen (S6) ──────────────────────────────────────── */
 
-export function DiamondIcon({ className }: IconProps) {
+export function DiamondIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="m12 3.4 5.6 5.2-5.6 12-5.6-12 5.6-5.2Z" />
       <path {...stroke} d="M6.4 8.6h11.2M12 3.4 9.2 8.6l2.8 12 2.8-12-2.8-5.2Z" />
     </Svg>
   );
 }
 
-export function ShieldIcon({ className }: IconProps) {
+export function ShieldIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="M12 3.2 5.4 6v6.1c0 4 2.7 7.2 6.6 8.7 3.9-1.5 6.6-4.7 6.6-8.7V6L12 3.2Z" />
       <path {...stroke} d="m9.2 11.9 2.1 2.2 3.9-4.2" />
     </Svg>
   );
 }
 
-export function PlayIcon({ className }: IconProps) {
+export function PlayIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path fill="currentColor" d="M9.2 6.6 17.4 12l-8.2 5.4V6.6Z" />
     </Svg>
   );
 }
 
-export function SparkIcon({ className }: IconProps) {
+export function SparkIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path
         fill="currentColor"
         d="M12 2.6c.5 3.9 2.1 5.9 6 6.5-3.9.5-5.5 2.5-6 6.4-.5-3.9-2.1-5.9-6-6.4 3.9-.6 5.5-2.6 6-6.5Z"
@@ -272,9 +294,9 @@ export function SparkIcon({ className }: IconProps) {
   );
 }
 
-export function ArrowRightIcon({ className }: IconProps) {
+export function ArrowRightIcon(props: IconProps) {
   return (
-    <Svg className={className}>
+    <Svg {...props}>
       <path {...stroke} d="M4.6 12h14.2M13.4 6.6 18.8 12l-5.4 5.4" />
     </Svg>
   );

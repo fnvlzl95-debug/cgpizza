@@ -7,6 +7,8 @@
  * 2,500~3,000만원) — those were replaced by the 30호점 benefit scheme.
  */
 
+import { ctaLinks } from "@/lib/site-config";
+
 export const siteNav = [
   { label: "브랜드", href: "#top" },
   { label: "메뉴", href: "/menu" },
@@ -47,7 +49,7 @@ export const hero = {
   image: {
     // Rotated 90° from the source asset so the shrimp half sits left and the
     // bulgogi half right, matching the comp's orientation.
-    src: "/assets/user/hero-pizza-oriented.png",
+    src: "/assets/user/hero-pizza-oriented.webp",
     alt: "최강피자 반반 피자 한 판",
   },
   badge: "BEST",
@@ -78,6 +80,7 @@ export const franchiseBenefit = {
       detail: "오픈 후 3개월 물류 지원",
       benefit: "적용",
       benefitTone: "blue",
+      sparkle: false,
       flag: "30호점 특별혜택",
       flagIndex: "❷",
     },
@@ -87,6 +90,9 @@ export const franchiseBenefit = {
       detail: "목공사, 바닥, 천장 등 내외부 일체",
       benefit: "직접 시공 가능 (조건 협의)",
       benefitTone: "blue",
+      sparkle: false,
+      flag: null,
+      flagIndex: null,
     },
     {
       icon: "headset",
@@ -94,6 +100,9 @@ export const franchiseBenefit = {
       detail: "오픈 초기 운영 지원",
       benefit: "실전 지원",
       benefitTone: "blue",
+      sparkle: false,
+      flag: null,
+      flagIndex: null,
     },
   ],
   banner: {
@@ -220,9 +229,9 @@ export const focusSystem = {
   cards: [
     {
       title: "집중 운영 시스템",
-      art: { kind: "svg", name: "target" },
+      art: { kind: "svg", name: "target", src: "", alt: "" },
       body: [
-        { text: "핵심에 집중한 운영으로", strong: false },
+        { text: "핵심에 집중한 운영으로", strong: false, inline: false },
         { text: "더 단순하고 ", strong: false, inline: true },
         { text: "효율적인 매장 관리", strong: true, inline: true },
       ],
@@ -230,9 +239,9 @@ export const focusSystem = {
     },
     {
       title: "배달 최적화",
-      art: { kind: "image", src: "/assets/user/system/focus-delivery.webp", alt: "" },
+      art: { kind: "image", name: "", src: "/assets/user/system/focus-delivery.webp", alt: "" },
       body: [
-        { text: "배달 특화 운영으로", strong: false },
+        { text: "배달 특화 운영으로", strong: false, inline: false },
         { text: "빠르고 안정적인", strong: true, inline: true },
         { text: " 배달 서비스 제공", strong: false, inline: true },
       ],
@@ -240,20 +249,20 @@ export const focusSystem = {
     },
     {
       title: "실전형 오픈 지원",
-      art: { kind: "image", src: "/assets/user/system/focus-open-support.webp", alt: "" },
+      art: { kind: "image", name: "", src: "/assets/user/system/focus-open-support.webp", alt: "" },
       body: [
-        { text: "오픈 준비부터 매장 안착까지", strong: false },
-        { text: "실전에 필요한 핵심 노하우를", strong: false },
-        { text: "체계적으로 지원", strong: false },
+        { text: "오픈 준비부터 매장 안착까지", strong: false, inline: false },
+        { text: "실전에 필요한 핵심 노하우를", strong: false, inline: false },
+        { text: "체계적으로 지원", strong: false, inline: false },
       ],
       connector: "+",
     },
     {
       title: "운영 효율 상승",
-      art: { kind: "svg", name: "growth" },
+      art: { kind: "svg", name: "growth", src: "", alt: "" },
       body: [
-        { text: "배달과 포장에 집중해", strong: false },
-        { text: "운영 효율과 매출 회전율 극대화", strong: true },
+        { text: "배달과 포장에 집중해", strong: false, inline: false },
+        { text: "운영 효율과 매출 회전율 극대화", strong: true, inline: false },
       ],
       connector: null,
     },
@@ -286,6 +295,7 @@ export const realKitchen = {
       title: ["푸짐하게", "올리는 토핑"],
       src: "/assets/user/brand-videos/1.mp4",
       poster: "/assets/user/brand-videos/posters/1.webp",
+      accent: false,
     },
     {
       index: "02",
@@ -299,6 +309,7 @@ export const realKitchen = {
       title: ["뜨겁게 완성되는", "한 판"],
       src: "/assets/user/brand-videos/3.mp4",
       poster: "/assets/user/brand-videos/posters/3.webp",
+      accent: false,
     },
   ],
   closer: {
@@ -306,4 +317,47 @@ export const realKitchen = {
     accent: "최강피자의 진짜 이야기",
     tail: "를 지금 확인해보세요!",
   },
+} as const;
+
+/* ── S7 · 리뷰 증명 (88 — 구조 유지, 남색만 밝은 블루로) ────── */
+export const reviewProof = {
+  year: "2026년",
+  lead: "고객님의 성원에 오픈 3개월",
+  headlineLead: "매출",
+  headlineAccent: "2억",
+  headlineTail: "달성",
+  body: ["수많은 고객님이 남겨주신 리뷰가", "최강피자의 자부심입니다."],
+  score: "4.9 / 5.0 만족도",
+  slides: Array.from({ length: 17 }, (_, index) => ({
+    src: `/assets/user/reviews/live/review-live-${String(index + 1).padStart(2, "0")}.webp`,
+    alt: `최강피자 고객 리뷰 캡처 ${index + 1}`,
+  })),
+} as const;
+
+/* ── S8 · 가맹 문의 + 푸터 (10 — 그대로) ─────────────────────── */
+export const contact = {
+  headlineLead: "최강피자 ",
+  headlineAccent: "가맹 문의",
+  description: "브랜드 상담부터 운영 안내까지 빠르게 연결해드립니다.",
+  backgroundImage: "/assets/user/franchise/contact-section.jpeg",
+  phone: { label: "가맹 상담 전화", display: "1866-1623", href: "tel:18661623" },
+  email: {
+    label: "이메일 문의",
+    display: "ckpizza8879@naver.com",
+    href: "mailto:ckpizza8879@naver.com",
+  },
+  footerRows: [
+    ["회사명 : 최강피자 본점", "대표자 : 김현화 / 대표이사 : 김진호"],
+    ["주소 : 경기 부천시 원미구 도약로 105 (한라마을주공(3)아파트) 105호"],
+    ["전화 : 1866-1623", "팩스 : 05040998879"],
+    ["사업자등록번호 : 3943301519", "통신판매업신고 : 0"],
+  ],
+  copyright: "COPYRIGHT INFORMATION GABIACNS © 2021 ALL RIGHTS RESERVED.",
+} as const;
+
+/** Floating rail, present from the philosophy section down (33 / 99). */
+export const floatingRail = {
+  talk: { label: "카카오 상담", href: ctaLinks.kakaoHref },
+  inquiry: { label: "가맹 문의", href: "#contact-cta" },
+  top: { label: "맨 위로", href: "#top" },
 } as const;
