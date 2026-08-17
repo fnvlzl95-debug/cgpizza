@@ -15,7 +15,7 @@ export function PhilosophySection() {
         className="absolute inset-x-0 bottom-0 h-[22%] bg-blue-band lg:h-[28%]"
       />
 
-      <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
+      <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="flex justify-center">
           <EyebrowPill label={data.pill} tone="outline" sparks />
         </div>

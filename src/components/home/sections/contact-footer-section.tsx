@@ -48,7 +48,7 @@ export function ContactFooterSection() {
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.68)_0%,rgba(0,0,0,0.5)_28%,rgba(0,0,0,0.78)_100%)]"
         />
 
-        <div className="relative mx-auto w-full max-w-[93.25rem] px-5 py-section md:px-8 lg:px-0">
+        <div className="relative mx-auto w-full max-w-[93.25rem] px-5 py-section md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
           <div className="motion-reveal text-center">
             <h2 className="text-[1.95rem] font-black leading-[1.1] tracking-[-0.05em] lg:text-[clamp(2.2rem,3.6vw,3.8rem)]">
               {data.headlineLead}
@@ -94,7 +94,7 @@ export function ContactFooterSection() {
       </section>
 
       <footer className="bg-[#03060c] text-white">
-        <div className="mx-auto w-full max-w-[93.25rem] px-5 py-8 md:px-8 lg:px-0">
+        <div className="mx-auto w-full max-w-[93.25rem] px-5 py-8 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-2.5 text-[0.88rem] leading-relaxed text-white/60 lg:text-[clamp(0.82rem,0.98vw,1.02rem)]">
               {data.footerRows.map((row, index) => (

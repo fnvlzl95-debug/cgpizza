@@ -97,7 +97,7 @@ export function RealKitchenSection() {
       id="real-kitchen"
       className="app-screen-snap-target section-screen relative bg-blue-video py-section text-white"
     >
-      <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
+      <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-[3vw]">
           <div className="motion-reveal">
             <h2 className="text-[2.4rem] font-black leading-[1.14] tracking-[-0.05em] lg:text-[clamp(2.8rem,5.5vw,5.8rem)]">

@@ -103,7 +103,7 @@ export function HeroSection() {
 
       {/* pt 5.75rem clears the 96px header; the per-column top padding then
           places each block at its comp coordinate (text 218, pizza 100). */}
-      <div className="mx-auto grid w-full max-w-[83.25rem] grid-cols-1 items-center gap-10 px-5 pb-16 pt-[7rem] md:px-8 lg:grid-cols-[53.3%_55.6%] lg:items-center lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
+      <div className="mx-auto grid w-full max-w-[83.25rem] grid-cols-1 items-center gap-10 px-5 pb-16 pt-[7rem] md:px-8 lg:w-[min(83.25rem,100%-11.4rem)] lg:max-w-none lg:grid-cols-[53.3%_46.7%] lg:items-center lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0 min-[1400px]:grid-cols-[53.3%_55.6%]">
         <div className="relative z-10 max-w-[41rem] lg:pr-8">
           <p
             className="motion-rise flex gap-2 text-[0.9rem] leading-none text-yellow-500 lg:gap-[0.56vw] lg:text-[0.86vw]"
@@ -182,7 +182,7 @@ export function HeroSection() {
           </ul>
         </div>
 
-        <div className="motion-swell relative z-0 mx-auto w-full max-w-[32rem] lg:mx-0 lg:-mr-[8.86%] lg:max-w-none">
+        <div className="motion-swell relative z-0 mx-auto w-full max-w-[32rem] lg:mx-0 lg:max-w-none min-[1400px]:-mr-[8.86%]">
           <div className="relative aspect-square w-full">
             <CrumbScatter className="pointer-events-none absolute -inset-[8%] h-[116%] w-[116%]" />
             <Image

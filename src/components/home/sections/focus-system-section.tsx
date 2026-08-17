@@ -50,7 +50,7 @@ export function FocusSystemSection() {
         className="pointer-events-none absolute inset-0 opacity-[0.13] [background-image:linear-gradient(to_right,rgba(1,23,80,0.35)_1px,transparent_1px),linear-gradient(to_bottom,rgba(1,23,80,0.35)_1px,transparent_1px)] [background-size:56px_56px]"
       />
 
-      <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
+      <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="motion-reveal text-center">
           <h2 className="text-[1.95rem] font-black leading-[1.2] tracking-[-0.05em] text-navy-900 lg:text-[clamp(2.4rem,4.6vw,4.85rem)]">
             {data.headlineLead}

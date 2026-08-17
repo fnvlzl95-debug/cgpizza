@@ -102,7 +102,7 @@ export function ProfitStructureSection() {
       id="profit-structure"
       className="app-screen-snap-target section-screen relative bg-cream-ground py-section"
     >
-      <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
+      <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         {/* Gold rules flanking the top of the section, as in the comp. */}
         <div aria-hidden="true" className="hidden items-center gap-6 lg:flex">
           <span className="h-0.5 w-[22%] bg-gold-600" />
@@ -131,7 +131,7 @@ export function ProfitStructureSection() {
               <p className="mt-3 text-[0.95rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.88rem,1.14vw,1.2rem)]">
                 {data.headlineStat.label}
               </p>
-              <p className="mt-1 text-[2rem] font-black leading-none tracking-[-0.05em] text-orange-500 lg:text-[clamp(1.8rem,min(2.6vw,4.6vh),2.9rem)]">
+              <p className="mt-1 whitespace-nowrap text-[2rem] font-black leading-none tracking-[-0.05em] text-orange-500 lg:text-[clamp(1.8rem,min(2.6vw,4.6vh),2.9rem)]">
                 {data.headlineStat.value}
                 <span className="text-[0.55em]">%</span>
               </p>
@@ -149,7 +149,7 @@ export function ProfitStructureSection() {
           <SummaryTable />
         </div>
 
-        <p className="mt-group text-center text-[0.8rem] text-navy-900/55 lg:text-right lg:text-[clamp(0.75rem,0.92vw,0.96rem)]">
+        <p className="mt-group text-balance text-center text-[0.8rem] text-navy-900/55 lg:text-right lg:text-[clamp(0.75rem,0.92vw,0.96rem)]">
           {data.footnote}
         </p>
 

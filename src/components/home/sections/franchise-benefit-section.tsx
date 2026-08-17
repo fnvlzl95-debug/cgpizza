@@ -127,7 +127,7 @@ export function FranchiseBenefitSection() {
       id="franchise-benefit"
       className="app-screen-snap-target section-screen relative bg-paper py-section"
     >
-      <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
+      <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="flex justify-center">
           <EyebrowPill label={data.pill} />
         </div>

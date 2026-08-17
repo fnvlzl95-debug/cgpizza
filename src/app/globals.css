@@ -88,6 +88,13 @@
     font-family:
       "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+    /* Korean sets by 어절, not by character. Without keep-all the browser
+       breaks mid-word and strands a syllable alone on the last line —
+       "…나아 / 갈" — which reads as a typo rather than a line break.
+       `pretty` then keeps the last line from being a stub. */
+    word-break: keep-all;
+    text-wrap: pretty;
   }
 
   a {
