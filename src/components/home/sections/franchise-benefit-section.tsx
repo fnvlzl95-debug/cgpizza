@@ -61,12 +61,12 @@ function RedUnderline() {
 
 function BenefitTable() {
   return (
-    <div className="mt-8 overflow-hidden rounded-2xl border border-rule bg-white shadow-[0_18px_44px_rgba(1,23,80,0.08)] lg:mr-[9.2vw] lg:mt-[1.7vw]">
+    <div className="mt-block overflow-hidden rounded-2xl border border-rule bg-white shadow-[0_18px_44px_rgba(1,23,80,0.08)] lg:mr-[9.2vw]">
       <div className="grid grid-cols-[1fr] bg-navy-900 text-white lg:grid-cols-[22%_45%_33%]">
         {data.columns.map((column, index) => (
           <div
             key={column}
-            className={`hidden py-3.5 text-center text-[1rem] font-black tracking-[-0.02em] lg:block lg:py-[0.82vw] lg:text-[clamp(0.95rem,1.25vw,1.32rem)] ${
+            className={`hidden py-3.5 text-center text-[1rem] font-black tracking-[-0.02em] lg:block lg:py-[min(0.7vw,1.25vh)] lg:text-[clamp(0.95rem,1.25vw,1.32rem)] ${
               index === 0 ? "lg:block" : ""
             }`}
           >
@@ -81,12 +81,12 @@ function BenefitTable() {
         return (
           <div
             key={row.label}
-            className={`grid grid-cols-1 items-center gap-y-2 px-5 py-5 lg:grid-cols-[22%_45%_33%] lg:gap-0 lg:px-0 lg:py-[0.85vw] ${
+            className={`grid grid-cols-1 items-center gap-y-2 px-5 py-5 lg:grid-cols-[22%_45%_33%] lg:gap-0 lg:px-0 lg:py-[min(0.85vw,1.5vh)] ${
               index > 0 ? "border-t border-rule" : ""
             }`}
           >
             <div className="flex items-center gap-3 lg:justify-start lg:pl-[2.2vw]">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white lg:h-[2.6vw] lg:w-[2.6vw]">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white lg:h-[min(2.6vw,4.6vh)] lg:w-[min(2.6vw,4.6vh)]">
                 <Icon className="h-5 w-5 lg:h-[1.5vw] lg:w-[1.5vw]" />
               </span>
               <span className="text-[1.05rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(1rem,1.42vw,1.5rem)]">
@@ -126,7 +126,7 @@ export function FranchiseBenefitSection() {
   return (
     <section
       id="franchise-benefit"
-      className="app-screen-snap-target relative bg-paper py-20 lg:pb-[2vw] lg:pt-[2.4vw]"
+      className="app-screen-snap-target section-screen relative bg-paper py-section"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
         <div className="relative flex items-center justify-center">
@@ -134,22 +134,25 @@ export function FranchiseBenefitSection() {
           <EyebrowPill label={data.pill} />
         </div>
 
-        <div className="motion-reveal mt-6 text-center lg:mt-[1.1vw]">
+        <div className="motion-reveal mt-block text-center">
           <h2 className="font-black leading-[1.12] tracking-[-0.045em] text-navy-900">
-            <span className="block text-[2.2rem] lg:text-[clamp(2.6rem,5.68vw,5.95rem)]">
-              <span className="relative inline-block">
+            {/* Flex, not inline-block: shrink-to-fit sizes these against the
+                available inline width, which collapsed the marked phrase to a
+                single-character column. Flex items size to their content. */}
+            <span className="flex items-baseline justify-center gap-x-[0.22em] whitespace-nowrap text-[2.2rem] lg:text-[clamp(2.4rem,min(5.68vw,10.1vh),5.95rem)]">
+              <span className="relative">
                 {data.headlineLead}
                 <RedUnderline />
               </span>
-              <span className="relative isolate ml-[0.22em] inline-block px-[0.12em]">
+              <span className="relative isolate px-[0.12em]">
                 <BrushHighlight />
                 {data.headlineBrush}
                 <SparkIcon className="absolute -right-[0.42em] -top-[0.22em] h-[0.3em] w-[0.3em] text-yellow-500" />
               </span>
             </span>
-            <span className="mt-1 block text-[1.75rem] lg:mt-[0.3vw] lg:text-[clamp(2.1rem,4.42vw,4.65rem)]">{data.headlineSecond}</span>
+            <span className="mt-1 block text-[1.75rem] lg:mt-[0.3vw] lg:text-[clamp(1.8rem,min(4vw,7.1vh),4.3rem)]">{data.headlineSecond}</span>
           </h2>
-          <p className="mx-auto mt-4 max-w-[46rem] text-[0.95rem] text-navy-900/65 lg:mt-[1vw] lg:max-w-none lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
+          <p className="mx-auto mt-group max-w-[46rem] text-[0.95rem] text-navy-900/65 lg:max-w-none lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
             {data.subhead}
           </p>
         </div>
@@ -158,18 +161,18 @@ export function FranchiseBenefitSection() {
 
         {/* The comp stands the mascot beside the band, not over it, so this is
             a real two-column row rather than an absolute overlay. */}
-        <div className="relative mt-10 flex items-end gap-0 lg:mt-[1.6vw]">
+        <div className="relative mt-block flex items-end gap-0">
           <Image
             src="/assets/user/mascot/mascot-thumbsup.webp"
             alt=""
             width={639}
             height={804}
             aria-hidden="true"
-            className="pointer-events-none -mb-2 hidden h-auto w-[9.6vw] shrink-0 select-none lg:block"
+            className="pointer-events-none -mb-2 hidden h-auto w-[min(6.8vw,12vh)] shrink-0 select-none lg:block"
           />
-          <div className="w-full rounded-lg bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[1.5vw] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
+          <div className="w-full rounded-lg bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[min(1.5vw,2.7vh)] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
             <div className="flex items-center justify-center gap-3 lg:justify-start lg:gap-[1.4vw]">
-              <span className="hidden h-[3.9vw] w-[3.9vw] shrink-0 items-center justify-center rounded-full bg-white lg:flex">
+              <span className="hidden h-[min(3.4vw,6vh)] w-[min(3.4vw,6vh)] shrink-0 items-center justify-center rounded-full bg-white lg:flex">
                 <Image
                   src="/assets/user/logo-mark-gold.png"
                   alt=""
@@ -187,7 +190,7 @@ export function FranchiseBenefitSection() {
                   <SparkIcon className="h-4 w-4 shrink-0" />
                   <span aria-hidden="true" className="hidden h-px flex-1 bg-gold-400/45 lg:block" />
                 </p>
-                <p className="mt-2 text-[1.35rem] font-black leading-tight tracking-[-0.04em] lg:mt-[0.4vw] lg:text-[clamp(1.6rem,2.8vw,2.95rem)]">
+                <p className="mt-2 text-[1.35rem] font-black leading-tight tracking-[-0.04em] lg:mt-[0.4vw] lg:text-[clamp(1.5rem,min(2.8vw,5vh),2.95rem)]">
                   {data.banner.parts.map((part, index) => (
                     <span
                       key={index}
@@ -208,7 +211,7 @@ export function FranchiseBenefitSection() {
           </div>
         </div>
 
-        <ul className="mt-6 space-y-1.5 lg:mt-[0.9vw] lg:pl-[10.8vw]">
+        <ul className="mt-group space-y-1.5 lg:pl-[10.8vw]">
           {data.footnotes.map((note) => (
             <li
               key={note}

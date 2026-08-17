@@ -95,7 +95,7 @@ export function RealKitchenSection() {
   return (
     <section
       id="real-kitchen"
-      className="app-screen-snap-target relative bg-blue-video py-16 text-white lg:pb-[3.4vw] lg:pt-[4.4vw]"
+      className="app-screen-snap-target section-screen relative bg-blue-video py-section text-white"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-[3vw]">
@@ -111,13 +111,13 @@ export function RealKitchenSection() {
               ))}
             </h2>
 
-            <div className="mt-6 space-y-1.5 text-[0.98rem] text-white/80 lg:mt-[1.7vw] lg:text-[clamp(0.92rem,1.14vw,1.2rem)]">
+            <div className="mt-block space-y-1.5 text-[0.98rem] text-white/80 lg:text-[clamp(0.92rem,1.14vw,1.2rem)]">
               {data.body.map((line) => (
                 <p key={line}>{line}</p>
               ))}
             </div>
 
-            <ul className="mt-8 space-y-6 lg:mt-[2.6vw] lg:space-y-[2vw]">
+            <ul className="mt-block space-y-6 lg:space-y-block">
               {data.points.map((point) => {
                 const Icon = pointIcons[point.icon];
                 return (
@@ -150,7 +150,7 @@ export function RealKitchenSection() {
           </ul>
         </div>
 
-        <div className="relative mt-10 lg:mt-[2.4vw]">
+        <div className="relative mt-block">
         <p className="mx-auto flex w-fit items-center gap-3 rounded-full border-2 border-gold-600/70 px-6 py-3 text-center text-[0.92rem] font-bold text-white lg:gap-[1.2vw] lg:px-[2.4vw] lg:py-[0.9vw] lg:text-[clamp(0.9rem,1.2vw,1.26rem)]">
           <SparkIcon className="h-5 w-5 shrink-0 text-yellow-500" />
           <span aria-hidden="true" className="hidden h-6 w-px bg-white/30 lg:block" />

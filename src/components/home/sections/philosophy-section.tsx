@@ -9,20 +9,20 @@ import { philosophy as data } from "@/lib/home-content";
  */
 export function PhilosophySection() {
   return (
-    <section id="philosophy" className="app-screen-snap-target relative bg-paper">
+    <section id="philosophy" className="app-screen-snap-target section-screen relative bg-paper py-section">
       {/* Blue band the card crosses into. */}
       <div
         aria-hidden="true"
         className="absolute inset-x-0 bottom-0 h-[22%] bg-blue-band lg:h-[28%]"
       />
 
-      <div className="relative mx-auto w-full max-w-[93.25rem] px-5 pt-16 md:px-8 lg:px-0 lg:pt-[3vw]">
+      <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
         <div className="relative flex items-center justify-center">
           <BrandLockup className="absolute left-0 top-1/2 hidden -translate-y-1/2 lg:flex" />
           <EyebrowPill label={data.pill} tone="outline" sparks />
         </div>
 
-        <div className="motion-reveal mt-6 text-center lg:mt-[1.5vw]">
+        <div className="motion-reveal mt-block text-center">
           <h2 className="text-navy-900">
             <span className="block text-[1.7rem] font-bold tracking-[-0.04em] lg:text-[clamp(1.9rem,2.9vw,3.05rem)]">
               {data.headlineLead}
@@ -33,8 +33,8 @@ export function PhilosophySection() {
           </h2>
         </div>
 
-        <div className="motion-reveal mt-10 grid grid-cols-1 overflow-hidden rounded-2xl bg-white shadow-[0_26px_60px_rgba(1,23,80,0.14)] lg:mt-[1.7vw] lg:grid-cols-2">
-          <div className="relative flex items-center gap-4 px-6 py-8 lg:px-[3vw] lg:py-[3.1vw]">
+        <div className="motion-reveal mt-block grid grid-cols-1 overflow-hidden rounded-2xl bg-white shadow-[0_26px_60px_rgba(1,23,80,0.14)] lg:grid-cols-2">
+          <div className="relative flex items-center gap-4 px-6 py-block lg:px-[3vw]">
             <div className="min-w-0 flex-1">
               <svg
                 viewBox="0 0 40 30"
@@ -47,7 +47,7 @@ export function PhilosophySection() {
                 />
               </svg>
 
-              <p className="mt-5 text-[1.5rem] leading-[1.55] tracking-[-0.04em] text-navy-900 lg:mt-[1.4vw] lg:text-[clamp(1.6rem,2.35vw,2.5rem)]">
+              <p className="mt-group text-[1.5rem] leading-[1.55] tracking-[-0.04em] text-navy-900 lg:text-[clamp(1.6rem,2.35vw,2.5rem)]">
                 {data.quote.map((line, lineIndex) => (
                   <span key={lineIndex} className="block">
                     {line.map((part, partIndex) => (
@@ -64,7 +64,7 @@ export function PhilosophySection() {
                 ))}
               </p>
 
-              <div className="mt-6 space-y-1.5 text-[0.92rem] text-navy-900/65 lg:mt-[1.8vw] lg:text-[clamp(0.85rem,1.05vw,1.1rem)]">
+              <div className="mt-block space-y-1.5 text-[0.92rem] text-navy-900/65 lg:text-[clamp(0.85rem,1.05vw,1.1rem)]">
                 {data.body.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
@@ -93,7 +93,6 @@ export function PhilosophySection() {
         </div>
       </div>
 
-      <div className="h-16 lg:h-[2.6vw]" />
     </section>
   );
 }

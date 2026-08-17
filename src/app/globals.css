@@ -36,6 +36,20 @@
   --color-cream-card: #f9f4ea;
   --color-cream-ground: #faf6f2;
   --color-rule: #ebe9e8;
+  --color-mist: #eef1f7;
+
+  /* ---------------------------------------------------------------
+     Vertical rhythm. Every comp sheet is one 1672×941 screen, so the
+     page is built to hold a section per viewport. These steps take the
+     smaller of a width fraction and a height fraction: on a 16:9 screen
+     the two agree, and on a shorter one the height term wins and the
+     rhythm compresses instead of pushing the section past the fold.
+     Use these — never a fresh `mt-[1.7vw]`.
+     --------------------------------------------------------------- */
+  --spacing-section: clamp(1.15rem, min(2.05vw, 3.6vh), 2.4rem);
+  --spacing-block: clamp(0.85rem, min(1.55vw, 2.75vh), 1.7rem);
+  --spacing-group: clamp(0.65rem, min(1.25vw, 2.2vh), 1.35rem);
+  --spacing-tight: clamp(0.4rem, min(0.7vw, 1.25vh), 0.75rem);
 }
 
 :root {
@@ -91,10 +105,24 @@
   }
 }
 
-/* The redesigned sections have very uneven heights (S4 profit structure is
-   tall), so mandatory snapping fights the content. Proximity keeps the
-   assist without trapping the scroll. */
-@media (min-width: 1024px) {
+/* One section per screen. Each comp sheet is a whole 1672×941 frame with the
+   header floating over it, not a band beneath one, so a section takes the
+   full viewport and centres its content; the header overlays the padding. */
+.section-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+}
+
+html[data-in-app-browser="kakao"] .section-screen {
+  min-height: var(--app-height);
+}
+
+/* Snapping is only safe where a section genuinely fits: below this height the
+   taller sections outgrow the viewport and mandatory snap would trap the
+   scroll partway through one. */
+@media (min-width: 1024px) and (min-height: 720px) {
   html,
   body {
     scroll-snap-type: y proximity;
@@ -217,6 +245,44 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   }
 }
 
+/* Review marquee: the track holds the same run twice, so translating it by
+   exactly half its width loops seamlessly. CSS rather than JS keeps it off
+   the main thread and stops it dead under reduced motion. */
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-left var(--marquee-duration, 90s) linear infinite;
+}
+
+.marquee-track[data-direction="right"] {
+  animation-name: marquee-right;
+}
+
+.marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -224,7 +290,8 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
 
   .motion-rise,
   .motion-swell,
-  .motion-reveal {
+  .motion-reveal,
+  .marquee-track {
     animation: none;
   }
 }

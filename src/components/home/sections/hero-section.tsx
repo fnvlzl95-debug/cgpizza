@@ -79,7 +79,7 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="app-screen-snap-target relative isolate overflow-hidden bg-blue-hero text-white lg:min-h-[56.3vw] lg:max-h-[62rem]"
+      className="app-screen-snap-target section-screen relative isolate overflow-hidden bg-blue-hero text-white"
     >
       <CrownWatermark />
 
@@ -103,8 +103,8 @@ export function HeroSection() {
 
       {/* pt 5.75rem clears the 96px header; the per-column top padding then
           places each block at its comp coordinate (text 218, pizza 100). */}
-      <div className="mx-auto grid w-full max-w-[83.25rem] grid-cols-1 items-center gap-10 px-5 pb-16 pt-[7rem] md:px-8 lg:grid-cols-[53.3%_55.6%] lg:items-start lg:gap-0 lg:px-0 lg:pb-0 lg:pt-[5.75rem]">
-        <div className="relative z-10 max-w-[41rem] lg:pr-8 lg:pt-[7.54vw]">
+      <div className="mx-auto grid w-full max-w-[83.25rem] grid-cols-1 items-center gap-10 px-5 pb-16 pt-[7rem] md:px-8 lg:grid-cols-[53.3%_55.6%] lg:items-center lg:gap-0 lg:px-0 lg:pb-0 lg:pt-0">
+        <div className="relative z-10 max-w-[41rem] lg:pr-8">
           <p
             className="motion-rise flex gap-2 text-[0.9rem] leading-none text-yellow-500 lg:gap-[0.56vw] lg:text-[0.86vw]"
             aria-hidden="true"
@@ -117,7 +117,7 @@ export function HeroSection() {
 
           <h1
             style={delay(0.08)}
-            className="motion-rise mt-[3.2vw] text-[3.1rem] font-black leading-[1.04] tracking-[-0.052em] sm:text-[4.4rem] lg:mt-[2.1vw] lg:text-[clamp(4.4rem,7.06vw,7.4rem)]"
+            className="motion-rise mt-group text-[3.1rem] font-black leading-[1.04] tracking-[-0.052em] sm:text-[4.4rem] lg:text-[clamp(4rem,7.06vw,7.4rem)]"
           >
             {hero.headline.map((line, lineIndex) => (
               <span key={lineIndex} className="block">
@@ -137,7 +137,7 @@ export function HeroSection() {
 
           <p
             style={delay(0.16)}
-            className="motion-rise mt-7 text-[1.4rem] font-black tracking-[-0.042em] sm:text-[1.75rem] lg:mt-[2.5vw] lg:text-[clamp(1.5rem,1.97vw,2.06rem)]"
+            className="motion-rise mt-block text-[1.4rem] font-black tracking-[-0.042em] sm:text-[1.75rem] lg:text-[clamp(1.5rem,1.97vw,2.06rem)]"
           >
             {hero.subheadLead}
             <span className="text-yellow-500">{hero.subheadAccent}</span>
@@ -145,7 +145,7 @@ export function HeroSection() {
 
           <div
             style={delay(0.22)}
-            className="motion-rise mt-6 space-y-2 text-[1rem] text-white/80 lg:mt-[1.68vw] lg:space-y-[0.5vw] lg:text-[clamp(0.95rem,1.14vw,1.19rem)]"
+            className="motion-rise mt-group space-y-2 text-[1rem] text-white/80 lg:space-y-tight lg:text-[clamp(0.95rem,1.14vw,1.19rem)]"
           >
             {hero.body.map((line) => (
               <p key={line}>{line}</p>
@@ -154,7 +154,7 @@ export function HeroSection() {
 
           <ul
             style={delay(0.3)}
-            className="motion-rise mt-10 flex flex-wrap items-center gap-x-6 gap-y-5 sm:flex-nowrap sm:gap-x-0 lg:mt-[2.54vw]"
+            className="motion-rise mt-block flex flex-wrap items-center gap-x-6 gap-y-5 sm:flex-nowrap sm:gap-x-0"
           >
             {hero.proofs.map((proof, index) => {
               const Icon = proofIcons[proof.icon];
@@ -182,7 +182,7 @@ export function HeroSection() {
           </ul>
         </div>
 
-        <div className="motion-swell relative z-0 mx-auto w-full max-w-[32rem] lg:mx-0 lg:-mr-[8.86%] lg:max-w-none lg:pt-[0.48vw]">
+        <div className="motion-swell relative z-0 mx-auto w-full max-w-[32rem] lg:mx-0 lg:-mr-[8.86%] lg:max-w-none">
           <div className="relative aspect-square w-full">
             <CrumbScatter className="pointer-events-none absolute -inset-[8%] h-[116%] w-[116%]" />
             <Image

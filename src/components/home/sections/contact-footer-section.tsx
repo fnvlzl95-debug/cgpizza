@@ -48,18 +48,18 @@ export function ContactFooterSection() {
           className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.68)_0%,rgba(0,0,0,0.5)_28%,rgba(0,0,0,0.78)_100%)]"
         />
 
-        <div className="relative mx-auto w-full max-w-[93.25rem] px-5 py-20 md:px-8 lg:px-0 lg:py-[4.4vw]">
+        <div className="relative mx-auto w-full max-w-[93.25rem] px-5 py-section md:px-8 lg:px-0">
           <div className="motion-reveal text-center">
             <h2 className="text-[1.95rem] font-black leading-[1.1] tracking-[-0.05em] lg:text-[clamp(2.2rem,3.6vw,3.8rem)]">
               {data.headlineLead}
               <span className="text-yellow-500">{data.headlineAccent}</span>
             </h2>
-            <p className="mx-auto mt-3 max-w-[36rem] text-[0.95rem] text-white/78 lg:mt-[0.9vw] lg:max-w-none lg:text-[clamp(0.9rem,1.14vw,1.2rem)]">
+            <p className="mx-auto mt-group max-w-[36rem] text-[0.95rem] text-white/78 lg:max-w-none lg:text-[clamp(0.9rem,1.14vw,1.2rem)]">
               {data.description}
             </p>
           </div>
 
-          <div className="mx-auto mt-9 grid max-w-[62rem] gap-4 md:grid-cols-2 lg:mt-[2.2vw] lg:gap-[1.4vw]">
+          <div className="mx-auto mt-block grid max-w-[62rem] gap-4 md:grid-cols-2 lg:gap-group">
             <a
               href={data.phone.href}
               className="flex items-center gap-4 rounded-xl bg-yellow-500 px-6 py-6 text-navy-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-[1.2vw] lg:px-[2vw] lg:py-[1.6vw]"
