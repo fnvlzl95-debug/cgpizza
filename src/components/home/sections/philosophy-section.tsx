@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { BrandLockup } from "@/components/home/ui/brand-lockup";
 import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { philosophy as data } from "@/lib/home-content";
 
@@ -17,8 +16,7 @@ export function PhilosophySection() {
       />
 
       <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
-        <div className="relative flex items-center justify-center">
-          <BrandLockup className="absolute left-0 top-1/2 hidden -translate-y-1/2 lg:flex" />
+        <div className="flex justify-center">
           <EyebrowPill label={data.pill} tone="outline" sparks />
         </div>
 
@@ -49,7 +47,7 @@ export function PhilosophySection() {
 
               <p className="mt-group text-[1.5rem] leading-[1.55] tracking-[-0.04em] text-navy-900 lg:text-[clamp(1.6rem,2.35vw,2.5rem)]">
                 {data.quote.map((line, lineIndex) => (
-                  <span key={lineIndex} className="block">
+                  <span key={lineIndex} className="block whitespace-nowrap">
                     {line.map((part, partIndex) => (
                       <span
                         key={partIndex}

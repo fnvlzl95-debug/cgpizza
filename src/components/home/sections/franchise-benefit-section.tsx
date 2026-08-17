@@ -6,7 +6,6 @@ import {
   ToolsIcon,
   TruckIcon,
 } from "@/components/home/icons";
-import { BrandLockup } from "@/components/home/ui/brand-lockup";
 import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { franchiseBenefit as data } from "@/lib/home-content";
 
@@ -129,8 +128,7 @@ export function FranchiseBenefitSection() {
       className="app-screen-snap-target section-screen relative bg-paper py-section"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:px-0">
-        <div className="relative flex items-center justify-center">
-          <BrandLockup className="absolute left-0 top-1/2 hidden -translate-y-1/2 lg:flex" />
+        <div className="flex justify-center">
           <EyebrowPill label={data.pill} />
         </div>
 
