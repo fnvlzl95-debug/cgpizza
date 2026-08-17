@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PortedHomepage } from "@/components/home/ported/ported-homepage";
+import { HomePage } from "@/components/home/home-page";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 import { siteUrl } from "@/lib/site-config";
 
@@ -115,14 +115,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
+export default function Page() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageStructuredData) }}
       />
-      <PortedHomepage />
+      <HomePage />
     </>
   );
 }

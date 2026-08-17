@@ -65,6 +65,31 @@ export default function RootLayout({
   return (
     <html lang="ko" data-scroll-behavior="smooth">
       <body>
+        {/*
+          THESIS: A franchise page that answers "what is actually left over"
+          with a published number instead of an adjective. It refuses the
+          category default of a dark hero over stock kitchen footage followed
+          by benefit tiles.
+          OWN-WORLD: Electric brand blue (#0032F0) and gold (#FDD816) in
+          full-bleed alternating fields — blue, white, cream, yellow, blue —
+          with navy (#011750) carrying every word and panel. Data lives in
+          real tables and a drawn donut, not in cards. Orange (#F27920) is
+          reserved for the profit section alone; red (#E12110) fires once
+          per screen at most.
+          STORY: A prospective owner learns the head office removes the entry
+          cost first, sees the profit split published, and calls 1866-1623.
+          FIRST VIEWPORT: Blue field. Left half — four gold stars, then
+          "맛도 최강, / 재료도 최강." at display scale with alternating gold
+          and white words, subhead, two body lines, and a three-icon proof
+          row. Right half — the half-and-half pizza bleeding off the edge
+          under a red BEST seal. Primary action sits in the header as a gold
+          pill, always reachable.
+          FORM: Brief-pinned. The client's approved comp set in
+          디자인수정참고파일들/ is the direction; no concept roll was run
+          because a pinned brief outranks the deal.
+          FINISH: unreviewed and undocumented is unfinished; this build ends
+          with the finish review, the verdict, and DESIGN.md
+        */}
         {children}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
