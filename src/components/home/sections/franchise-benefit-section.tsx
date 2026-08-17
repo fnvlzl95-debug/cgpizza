@@ -147,7 +147,7 @@ export function FranchiseBenefitSection() {
                 <SparkIcon className="absolute -right-[0.42em] -top-[0.22em] h-[0.3em] w-[0.3em] text-yellow-500" />
               </span>
             </span>
-            <span className="mt-1 block text-[1.75rem] lg:mt-[0.3vw] lg:text-[clamp(2rem,4.07vw,4.28rem)]">{data.headlineSecond}</span>
+            <span className="mt-1 block text-[1.75rem] lg:mt-[0.3vw] lg:text-[clamp(2.1rem,4.42vw,4.65rem)]">{data.headlineSecond}</span>
           </h2>
           <p className="mx-auto mt-4 max-w-[46rem] text-[0.95rem] text-navy-900/65 lg:mt-[1vw] lg:max-w-none lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
             {data.subhead}
@@ -167,7 +167,7 @@ export function FranchiseBenefitSection() {
             aria-hidden="true"
             className="pointer-events-none -mb-2 hidden h-auto w-[9.6vw] shrink-0 select-none lg:block"
           />
-          <div className="w-full rounded-2xl bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[1.5vw] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
+          <div className="w-full rounded-lg bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[1.5vw] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
             <div className="flex items-center justify-center gap-3 lg:justify-start lg:gap-[1.4vw]">
               <span className="hidden h-[3.9vw] w-[3.9vw] shrink-0 items-center justify-center rounded-full bg-white lg:flex">
                 <Image
@@ -178,12 +178,14 @@ export function FranchiseBenefitSection() {
                   className="h-[3.4vw] w-[3.4vw] object-contain"
                 />
               </span>
-              <span className="hidden h-[4.6vw] w-px bg-white/25 lg:block" />
-              <div className="min-w-0">
-                <p className="flex items-center justify-center gap-2 text-[0.82rem] font-black tracking-[0.06em] text-gold-400 lg:justify-start lg:text-[clamp(0.8rem,1.08vw,1.14rem)]">
-                  <SparkIcon className="h-3.5 w-3.5" />
-                  {data.banner.eyebrow}
-                  <SparkIcon className="h-3.5 w-3.5" />
+              <span className="hidden h-[4.6vw] w-px bg-white/35 lg:block" />
+              <div className="min-w-0 flex-1">
+                <p className="flex items-center justify-center gap-2.5 text-[0.82rem] font-black tracking-[0.06em] text-gold-400 lg:gap-[0.8vw] lg:text-[clamp(0.82rem,1.14vw,1.2rem)]">
+                  <span aria-hidden="true" className="hidden h-px flex-1 bg-gold-400/45 lg:block" />
+                  <SparkIcon className="h-4 w-4 shrink-0" />
+                  <span className="whitespace-nowrap">{data.banner.eyebrow}</span>
+                  <SparkIcon className="h-4 w-4 shrink-0" />
+                  <span aria-hidden="true" className="hidden h-px flex-1 bg-gold-400/45 lg:block" />
                 </p>
                 <p className="mt-2 text-[1.35rem] font-black leading-tight tracking-[-0.04em] lg:mt-[0.4vw] lg:text-[clamp(1.6rem,2.8vw,2.95rem)]">
                   {data.banner.parts.map((part, index) => (

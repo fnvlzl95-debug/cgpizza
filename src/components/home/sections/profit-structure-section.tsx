@@ -30,12 +30,13 @@ const trustIcons = {
 
 function SummaryTable() {
   return (
-    <div className="w-full">
-      <div className="inline-block rounded-t-xl bg-navy-900 px-8 py-3 text-[1.05rem] font-black tracking-[-0.03em] text-white lg:px-[2.4vw] lg:py-[0.8vw] lg:text-[clamp(1rem,1.35vw,1.42rem)]">
+    <div className="relative w-full pt-6 lg:pt-[1.4vw]">
+      {/* The comp straddles this pill across the card's top edge. */}
+      <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-navy-900 px-8 py-2.5 text-[1.05rem] font-black tracking-[-0.03em] text-white lg:px-[2.4vw] lg:py-[0.7vw] lg:text-[clamp(1rem,1.35vw,1.42rem)]">
         {data.table.title}
       </div>
 
-      <div className="rounded-b-xl rounded-tr-xl bg-white p-5 shadow-[0_18px_44px_rgba(1,23,80,0.08)] lg:p-[1.35vw]">
+      <div className="rounded-xl bg-white px-5 pb-5 pt-8 shadow-[0_18px_44px_rgba(1,23,80,0.08)] lg:px-[1.35vw] lg:pb-[1.35vw] lg:pt-[2vw]">
         <div className="flex items-center justify-between border-b border-rule pb-2.5 text-[0.85rem] font-bold text-navy-900/55 lg:text-[clamp(0.8rem,0.98vw,1.02rem)]">
           <span className="pl-1">{data.table.columns[0]}</span>
           <span>{data.table.columns[1]}</span>
@@ -46,10 +47,10 @@ function SummaryTable() {
           return (
             <div
               key={row.label}
-              className="flex items-center justify-between gap-4 border-b border-rule py-3 lg:py-[0.52vw]"
+              className="flex items-center justify-between gap-4 border-b border-dotted border-navy-900/22 py-3 lg:py-[0.52vw]"
             >
               <span className="flex min-w-0 items-center gap-3 lg:gap-[1vw]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white lg:h-[2.4vw] lg:w-[2.4vw]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EFF1F6] text-navy-900 lg:h-[2.4vw] lg:w-[2.4vw]">
                   <Icon className="h-5 w-5 lg:h-[1.4vw] lg:w-[1.4vw]" />
                 </span>
                 <span className="min-w-0 text-[0.98rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.9rem,1.14vw,1.2rem)]">
@@ -68,7 +69,7 @@ function SummaryTable() {
           );
         })}
 
-        <div className="flex items-center justify-between py-3 lg:py-[0.6vw]">
+        <div className="flex items-center justify-between border-t border-navy-900/25 py-3 lg:py-[0.6vw]">
           <span className="pl-1 text-[1.05rem] font-black tracking-[-0.03em] text-orange-500 lg:text-[clamp(1rem,1.28vw,1.34rem)]">
             {data.table.total.label}
           </span>

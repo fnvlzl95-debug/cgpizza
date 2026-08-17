@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { DiamondIcon, PlayIcon, ShieldIcon, SparkIcon } from "@/components/home/icons";
+import { KakaoBadge } from "@/components/home/ui/kakao-badge";
 import { realKitchen as data } from "@/lib/home-content";
 
 /** Geometry from 99- 하단 수정 부분.png: blue field, three portrait clips. */
@@ -30,7 +31,7 @@ function VideoCard({ clip }: { clip: (typeof data.videos)[number] }) {
 
   return (
     <li
-      className={`relative isolate aspect-[9/16] overflow-hidden rounded-2xl bg-navy-900 ${
+      className={`relative isolate aspect-[9/16] overflow-hidden rounded-2xl bg-navy-900 sm:aspect-[9/20] ${
         clip.accent ? "shadow-[0_6px_0_var(--color-yellow-500)]" : ""
       }`}
     >
@@ -118,8 +119,8 @@ export function RealKitchenSection() {
                 const Icon = pointIcons[point.icon];
                 return (
                   <li key={point.title} className="flex gap-4 lg:gap-[1.3vw]">
-                    <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 border-gold-600/70 text-yellow-500 lg:h-[3.9vw] lg:w-[3.9vw]">
-                      <Icon className="h-7 w-7 lg:h-[2vw] lg:w-[2vw]" />
+                    <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-[3px] border-gold-600/75 text-yellow-500 lg:h-[5.2vw] lg:w-[5.2vw]">
+                      <Icon className="h-9 w-9 lg:h-[3vw] lg:w-[3vw]" />
                     </span>
                     <span className="min-w-0">
                       <span className="block text-[1.08rem] font-black tracking-[-0.03em] text-yellow-500 lg:text-[clamp(1rem,1.3vw,1.37rem)]">
@@ -139,14 +140,15 @@ export function RealKitchenSection() {
             </ul>
           </div>
 
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-[1.2vw]">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-[1.2vw] lg:self-start lg:pt-[0.4vw]">
             {data.videos.map((clip) => (
               <VideoCard key={clip.index} clip={clip} />
             ))}
           </ul>
         </div>
 
-        <p className="mx-auto mt-10 flex w-fit items-center gap-3 rounded-full border-2 border-gold-600/70 px-6 py-3 text-center text-[0.92rem] font-bold text-white lg:mt-[2.4vw] lg:gap-[1.2vw] lg:px-[2.4vw] lg:py-[0.9vw] lg:text-[clamp(0.9rem,1.2vw,1.26rem)]">
+        <div className="relative mt-10 lg:mt-[2.4vw]">
+        <p className="mx-auto flex w-fit items-center gap-3 rounded-full border-2 border-gold-600/70 px-6 py-3 text-center text-[0.92rem] font-bold text-white lg:gap-[1.2vw] lg:px-[2.4vw] lg:py-[0.9vw] lg:text-[clamp(0.9rem,1.2vw,1.26rem)]">
           <SparkIcon className="h-5 w-5 shrink-0 text-yellow-500" />
           <span aria-hidden="true" className="hidden h-6 w-px bg-white/30 lg:block" />
           <span>
@@ -155,6 +157,9 @@ export function RealKitchenSection() {
             {data.closer.tail}
           </span>
         </p>
+
+          <KakaoBadge className="absolute -top-4 right-0 hidden lg:flex" />
+        </div>
       </div>
     </section>
   );

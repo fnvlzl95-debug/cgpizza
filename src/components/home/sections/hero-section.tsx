@@ -163,16 +163,16 @@ export function HeroSection() {
                   key={proof.title}
                   className={`flex shrink-0 items-center gap-2.5 ${
                     index > 0
-                      ? "sm:ml-5 sm:border-l sm:border-white/25 sm:pl-5 lg:ml-[1.55vw] lg:pl-[1.55vw]"
+                      ? "sm:ml-5 sm:self-stretch sm:border-l sm:border-white/35 sm:pl-5 lg:ml-[1.55vw] lg:pl-[1.55vw]"
                       : ""
                   }`}
                 >
-                  <Icon className="h-9 w-9 shrink-0 text-yellow-500 lg:h-[2.4vw] lg:w-[2.4vw]" />
+                  <Icon className="h-10 w-10 shrink-0 text-yellow-500 lg:h-[2.9vw] lg:w-[2.9vw]" />
                   <span className="block">
-                    <span className="block whitespace-nowrap text-[0.98rem] font-black tracking-[-0.03em] text-yellow-500 lg:text-[clamp(0.85rem,1.02vw,1.07rem)]">
+                    <span className="block whitespace-nowrap text-[1rem] font-black tracking-[-0.03em] text-white lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
                       {proof.title}
                     </span>
-                    <span className="mt-0.5 block whitespace-nowrap text-[0.78rem] text-white/70 lg:text-[clamp(0.68rem,0.78vw,0.82rem)]">
+                    <span className="mt-1 block whitespace-nowrap text-[0.78rem] text-white/85 lg:text-[clamp(0.7rem,0.85vw,0.9rem)]">
                       {proof.note}
                     </span>
                   </span>

@@ -73,6 +73,18 @@ for (const t of targets) {
       console.log(`✓ ${file}`);
     }
   } else {
+    // Next lazy-loads below-fold images; a fullPage capture never scrolls, so
+    // walk the page once to trigger them before shooting.
+    await page.evaluate(async () => {
+      const step = window.innerHeight;
+      for (let y = 0; y < document.body.scrollHeight; y += step) {
+        window.scrollTo(0, y);
+        await new Promise((r) => setTimeout(r, 120));
+      }
+      window.scrollTo(0, 0);
+      await new Promise((r) => setTimeout(r, 400));
+    });
+
     const file = `${outDir}/${name}-${t.id}.png`;
     if (selector) {
       const el = page.locator(selector).first();

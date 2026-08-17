@@ -30,9 +30,16 @@ const OUTER = 196;
 const INNER = 92;
 const GAP_DEG = 0.9;
 
+/**
+ * Rounded on purpose: Node and the browser disagree on the last bit of these
+ * trig results, which React reports as a hydration mismatch on every wedge.
+ * Three decimals is far below a rendered pixel and makes both sides identical.
+ */
+const round = (value: number) => Math.round(value * 1000) / 1000;
+
 const polar = (radius: number, deg: number) => {
   const rad = ((deg - 90) * Math.PI) / 180;
-  return [CENTER + radius * Math.cos(rad), CENTER + radius * Math.sin(rad)] as const;
+  return [round(CENTER + radius * Math.cos(rad)), round(CENTER + radius * Math.sin(rad))] as const;
 };
 
 function wedgePath(startDeg: number, endDeg: number) {
