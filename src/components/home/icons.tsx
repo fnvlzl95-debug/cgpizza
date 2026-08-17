@@ -259,8 +259,11 @@ export function HandshakeIcon(props: IconProps) {
 export function DiamondIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <path {...stroke} d="m12 3.4 5.6 5.2-5.6 12-5.6-12 5.6-5.2Z" />
-      <path {...stroke} d="M6.4 8.6h11.2M12 3.4 9.2 8.6l2.8 12 2.8-12-2.8-5.2Z" />
+      <g {...stroke} strokeWidth={1.35}>
+        <path d="m12 2.6 6.6 6.1-6.6 12.7L5.4 8.7 12 2.6Z" />
+        <path d="M5.4 8.7h13.2" />
+        <path d="m12 2.6-3.2 6.1L12 21.4l3.2-12.7L12 2.6Z" />
+      </g>
     </Svg>
   );
 }
@@ -268,8 +271,10 @@ export function DiamondIcon(props: IconProps) {
 export function ShieldIcon(props: IconProps) {
   return (
     <Svg {...props}>
-      <path {...stroke} d="M12 3.2 5.4 6v6.1c0 4 2.7 7.2 6.6 8.7 3.9-1.5 6.6-4.7 6.6-8.7V6L12 3.2Z" />
-      <path {...stroke} d="m9.2 11.9 2.1 2.2 3.9-4.2" />
+      <g {...stroke} strokeWidth={1.35}>
+        <path d="M12 2.4 4.6 5.5v6.9c0 4.5 3 8.1 7.4 9.8 4.4-1.7 7.4-5.3 7.4-9.8V5.5L12 2.4Z" />
+        <path d="m8.6 12.1 2.5 2.6 4.5-4.9" />
+      </g>
     </Svg>
   );
 }

@@ -64,7 +64,7 @@ export function FocusSystemSection() {
 
         <ul className="mt-10 flex flex-col items-stretch gap-4 lg:mt-[3.4vw] lg:flex-row lg:items-stretch lg:gap-0">
           {data.cards.map((card) => (
-            <li key={card.title} className="flex flex-col items-center lg:h-full lg:flex-1 lg:flex-row lg:items-stretch">
+            <li key={card.title} className="flex flex-col items-center lg:flex-1 lg:flex-row lg:items-stretch">
               <article className="flex w-full flex-1 flex-col items-center rounded-3xl bg-cream-card px-5 py-7 text-center shadow-[0_16px_38px_rgba(1,23,80,0.14)] lg:px-[1.2vw] lg:py-[2.5vw]">
                 <h3 className="text-[1.28rem] font-black tracking-[-0.04em] text-navy-900 lg:text-[clamp(1.15rem,1.75vw,1.85rem)]">
                   {card.title}

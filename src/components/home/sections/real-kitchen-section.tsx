@@ -119,8 +119,8 @@ export function RealKitchenSection() {
                 const Icon = pointIcons[point.icon];
                 return (
                   <li key={point.title} className="flex gap-4 lg:gap-[1.3vw]">
-                    <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-[3px] border-gold-600/75 text-yellow-500 lg:h-[5.2vw] lg:w-[5.2vw]">
-                      <Icon className="h-9 w-9 lg:h-[3vw] lg:w-[3vw]" />
+                    <span className="flex h-16 w-16 shrink-0 items-center justify-center text-yellow-500 lg:h-[5.2vw] lg:w-[5.2vw]">
+                      <Icon className="h-full w-full" />
                     </span>
                     <span className="min-w-0">
                       <span className="block text-[1.08rem] font-black tracking-[-0.03em] text-yellow-500 lg:text-[clamp(1rem,1.3vw,1.37rem)]">
@@ -158,7 +158,7 @@ export function RealKitchenSection() {
           </span>
         </p>
 
-          <KakaoBadge className="absolute -top-4 right-0 hidden lg:flex" />
+          <KakaoBadge className="absolute right-0 top-1/2 hidden -translate-y-1/2 lg:flex" />
         </div>
       </div>
     </section>
