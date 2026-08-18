@@ -273,7 +273,7 @@ export const focusSystem = {
 
 /* ── S6 · 진짜 주방 (99- 하단 수정 부분.png) ─────────────────── */
 export const realKitchen = {
-  pill: "진짜 주방",
+  pill: "조리 과정",
   headline: [
     { text: "최강피자의", tone: "white" },
     { text: "진짜 주방을", tone: "gold" },
@@ -325,7 +325,6 @@ export const realKitchen = {
       duration: "00:41",
     },
   ],
-  cta: { label: "최강피자의 진짜 이야기 보기", href: "#contact-cta" },
 } as const;
 
 /* ── S7 · 리뷰 증명 (88 — 구조 유지, 남색만 밝은 블루로) ────── */

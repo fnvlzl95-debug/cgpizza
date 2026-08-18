@@ -325,15 +325,6 @@ export function RealKitchenSection() {
           })}
         </ul>
 
-        <div className="mt-group flex justify-center">
-          <a
-            href={data.cta.href}
-            className="group inline-flex items-center gap-2.5 rounded-full bg-yellow-500 px-6 py-2.5 text-[0.9rem] font-black tracking-[-0.03em] text-navy-900 shadow-raise transition-transform duration-200 hover:-translate-y-0.5 lg:px-card lg:text-[clamp(0.9rem,1.08vw,1.14rem)]"
-          >
-            {data.cta.label}
-            <ArrowRightIcon className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
-          </a>
-        </div>
       </div>
     </section>
   );
