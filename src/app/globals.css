@@ -142,7 +142,6 @@
 
   html {
     scroll-behavior: smooth;
-    scroll-padding-top: var(--header-offset);
   }
 
   body {
@@ -151,7 +150,6 @@
     background: var(--color-paper);
     color: var(--color-navy-900);
     overflow-x: hidden;
-    scroll-padding-top: var(--header-offset);
     font-family:
       "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
       "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -192,6 +190,10 @@
 /* Content sections anchor their first element at --spacing-lead rather than
    centring, which made the lead-in a computed value — 34px in a dense
    section, 159px in a sparse one — that no token could govern. */
+#contact-cta {
+  scroll-margin-top: var(--header-offset);
+}
+
 .section-lead {
   justify-content: flex-start;
   padding-top: var(--spacing-lead);
@@ -206,8 +208,10 @@ html[data-in-app-browser="kakao"] .section-screen {
    taller sections outgrow the viewport and mandatory snap would trap the
    scroll partway through one. */
 @media (min-width: 1024px) and (min-height: 720px) {
-  html,
-  body {
+  /* Only the scrolling element declares the snap container. Declaring it on
+     html and body both nests one snapport inside another, and the snap then
+     resolves against the wrong box. */
+  html {
     scroll-snap-type: y proximity;
   }
 
