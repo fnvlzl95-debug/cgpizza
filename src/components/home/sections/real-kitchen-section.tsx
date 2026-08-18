@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   ArrowRightIcon,
   CrownIcon,
@@ -13,14 +13,15 @@ import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { realKitchen as data } from "@/lib/home-content";
 
 /**
- * The clips are shot 1080×1920, so they stay portrait rather than being
- * cropped into landscape frames that throw most of each shot away.
+ * The clips are shot 1080×1920 and stay portrait rather than being cropped
+ * into landscape frames that throw most of each shot away.
  *
- * The three slots are fixed in size and the clips move between them — the
- * chosen one rotates into the centre, which is the only slot that plays.
- * Sizing the cards off which clip is active instead would animate every card
- * wider and narrower on each step, which is what made stepping feel unsteady.
- * Only the centre needs a <video> at all; the flanks are poster frames.
+ * This is a real track: every clip is laid out in one row and the row slides,
+ * so stepping moves the strip rather than swapping pictures in place. Three
+ * copies of the list are rendered and the position snaps back into the middle
+ * copy once a slide finishes, which is what makes it loop without ever
+ * running out of neighbours. Width never animates — the centre card is scaled
+ * with a transform, so nothing reflows and the row stays steady.
  */
 
 const pointIcons = {
@@ -28,6 +29,16 @@ const pointIcons = {
   flame: FlameIcon,
   temp: ThermometerIcon,
 } as const;
+
+const COUNT = data.videos.length;
+const COPIES = 3;
+/** With the strip centred as a whole, this index sits under the midline. */
+const MIDPOINT = Math.floor((COUNT * COPIES) / 2);
+const LOOP = Array.from({ length: COUNT * COPIES }, (_, index) => ({
+  clip: data.videos[index % COUNT],
+  source: index % COUNT,
+  slot: index,
+}));
 
 function SoundIcon({ muted }: { muted: boolean }) {
   return (
@@ -69,10 +80,13 @@ function StepArrow({ direction, onClick }: { direction: "prev" | "next"; onClick
 }
 
 export function RealKitchenSection() {
-  const [active, setActive] = useState(1);
+  // Position on the rendered strip; starts in the middle copy.
+  const [position, setPosition] = useState(MIDPOINT);
+  const [sliding, setSliding] = useState(true);
   const [muted, setMuted] = useState(true);
   const centreRef = useRef<HTMLVideoElement>(null);
-  const count = data.videos.length;
+
+  const active = ((position % COUNT) + COUNT) % COUNT;
 
   useEffect(() => {
     const el = centreRef.current;
@@ -82,10 +96,32 @@ export function RealKitchenSection() {
     void el.play().catch(() => {});
   }, [active, muted]);
 
-  const step = (delta: number) => setActive((current) => (current + delta + count) % count);
+  // Once a slide lands, jump silently back into the middle copy so there is
+  // always a card either side to slide toward.
+  const recentre = useCallback(() => {
+    setPosition((current) => {
+      const normalised = MIDPOINT - (MIDPOINT % COUNT) + (((current % COUNT) + COUNT) % COUNT);
+      if (normalised === current) return current;
+      setSliding(false);
+      return normalised;
+    });
+  }, []);
 
-  // Fixed slots; the clips rotate through them.
-  const slots = [(active + count - 1) % count, active, (active + 1) % count];
+  useEffect(() => {
+    if (sliding) return;
+    const frame = requestAnimationFrame(() => setSliding(true));
+    return () => cancelAnimationFrame(frame);
+  }, [sliding]);
+
+  const step = (delta: number) => {
+    setSliding(true);
+    setPosition((current) => current + delta);
+  };
+
+  const goTo = (index: number) => {
+    setSliding(true);
+    setPosition(MIDPOINT - (MIDPOINT % COUNT) + index);
+  };
 
   // Heading breaks after 최강피자의.
   const groups = [data.headline.slice(0, 1), data.headline.slice(1)];
@@ -127,89 +163,120 @@ export function RealKitchenSection() {
           </p>
         </div>
 
-        {/* Arrows overlay the ends of the row rather than taking columns of
-            their own, so the clips get the width. */}
-        <div className="relative mx-auto mt-group w-full max-w-[58rem]">
-          <ul className="flex items-center justify-center gap-3 lg:gap-group">
-            {slots.map((videoIndex, slot) => {
-              const clip = data.videos[videoIndex];
-              const centre = slot === 1;
-
-              return (
-                <li key={slot} className={centre ? "" : "hidden sm:block"}>
-                  <button
-                    type="button"
-                    onClick={() => (centre ? setMuted((value) => !value) : setActive(videoIndex))}
-                    aria-label={
-                      centre
-                        ? `재생 중: ${clip.title.join(" ")} — 소리 ${muted ? "켜기" : "끄기"}`
-                        : `${clip.title.join(" ")} 영상 보기`
-                    }
-                    className={`group relative block overflow-hidden rounded-card text-left ${
-                      centre
-                        ? "w-[16rem] shadow-lift ring-2 ring-yellow-500 lg:w-[min(14.2vw,25vh)]"
-                        : "w-[10rem] opacity-55 shadow-card ring-1 ring-white/15 transition-opacity duration-200 hover:opacity-90 lg:w-[min(10.6vw,18.6vh)]"
-                    }`}
+        <div
+          className="relative mx-auto mt-group"
+          style={
+            {
+              "--slide": "min(11.4vw, 20vh)",
+              "--slide-gap": "0.85rem",
+              "--stride": "calc(var(--slide) + var(--slide-gap))",
+              // Three strides wide, so the strip shows the centre and a
+              // neighbour either side rather than the whole loop.
+              width: "min(100%, calc(var(--stride) * 2.95))",
+            } as React.CSSProperties
+          }
+        >
+          {/* The viewport clips the strip; the strip itself is what moves. */}
+          <div
+            className="flex justify-center overflow-hidden"
+            /* The centre card is scaled, so the clip window needs room
+               for the overshoot above and below. */
+            style={{ padding: "calc(var(--slide) * 16 / 9 * 0.17) 0" }}
+          >
+            <ul
+              onTransitionEnd={recentre}
+              className={`flex w-max ${sliding ? "transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)]" : ""}`}
+              style={{
+                gap: "var(--slide-gap)",
+                // The strip is centred by the flex parent, so the offset is
+                // measured from whichever item naturally sits on the midline.
+                transform: `translateX(calc((${MIDPOINT} - ${position}) * var(--stride)))`,
+              }}
+            >
+              {LOOP.map(({ clip, source, slot }) => {
+                const centre = slot === position;
+                return (
+                  <li
+                    key={slot}
+                    /* The centre card is scaled past its own box, and
+                       later siblings paint over it without this. */
+                    className={`shrink-0 ${centre ? "relative z-10" : ""}`}
+                    style={{ width: "var(--slide)" }}
                   >
-                    <span key={clip.src} className="motion-fade relative block aspect-[9/16] bg-navy-900">
-                      {centre ? (
-                        <video
-                          ref={centreRef}
-                          key={clip.src}
-                          src={clip.src}
-                          poster={clip.poster}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                          preload="metadata"
-                          className="absolute inset-0 h-full w-full object-cover"
+                    <button
+                      type="button"
+                      onClick={() => (centre ? setMuted((value) => !value) : goTo(source))}
+                      aria-hidden={!centre && slot % COUNT !== source}
+                      aria-label={
+                        centre
+                          ? `재생 중: ${clip.title.join(" ")} — 소리 ${muted ? "켜기" : "끄기"}`
+                          : `${clip.title.join(" ")} 영상 보기`
+                      }
+                      className={`group relative block w-full overflow-hidden rounded-card text-left transition-[transform,opacity,box-shadow] duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        centre
+                          ? "scale-[1.3] opacity-100 shadow-lift ring-2 ring-yellow-500"
+                          : "scale-100 opacity-55 shadow-card ring-1 ring-white/15"
+                      }`}
+                    >
+                      <span className="relative block aspect-[9/16] bg-navy-900">
+                        {centre ? (
+                          <video
+                            ref={centreRef}
+                            key={clip.src}
+                            src={clip.src}
+                            poster={clip.poster}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            preload="metadata"
+                            className="absolute inset-0 h-full w-full object-cover"
+                          />
+                        ) : (
+                          <Image
+                            src={clip.poster}
+                            alt=""
+                            fill
+                            unoptimized
+                            sizes="(max-width: 1024px) 40vw, 12vw"
+                            className="object-cover"
+                          />
+                        )}
+
+                        <span
+                          aria-hidden="true"
+                          className={`absolute inset-0 transition-colors duration-[520ms] ${
+                            centre
+                              ? "bg-[linear-gradient(180deg,rgba(1,23,80,0.32)_0%,rgba(1,23,80,0)_32%,rgba(1,23,80,0.56)_100%)]"
+                              : "bg-navy-900/45"
+                          }`}
                         />
-                      ) : (
-                        <Image
-                          src={clip.poster}
-                          alt=""
-                          fill
-                          unoptimized
-                          sizes="(max-width: 1024px) 40vw, 12vw"
-                          className="object-cover"
-                        />
-                      )}
 
-                      <span
-                        aria-hidden="true"
-                        className={`absolute inset-0 ${
-                          centre
-                            ? "bg-[linear-gradient(180deg,rgba(1,23,80,0.34)_0%,rgba(1,23,80,0)_32%,rgba(1,23,80,0.6)_100%)]"
-                            : "bg-navy-900/45"
-                        }`}
-                      />
-
-                      <span
-                        className={`absolute left-2.5 top-0 flex flex-col items-center gap-0.5 px-2 pb-2.5 pt-1.5 text-[0.74rem] font-black leading-none lg:left-3 lg:px-2.5 lg:text-[clamp(0.72rem,0.92vw,0.98rem)] ${
-                          centre ? "bg-yellow-500 text-navy-900" : "bg-navy-900 text-white"
-                        } [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_78%,0%_100%)]`}
-                      >
-                        {clip.index}
-                        {centre ? <CrownIcon className="mt-1 h-3 w-3" /> : null}
-                      </span>
-
-                      <span className="absolute bottom-2.5 left-2.5 rounded-full bg-navy-900/75 px-2 py-0.5 text-[0.68rem] font-bold tabular-nums text-white backdrop-blur-sm lg:bottom-3 lg:left-3">
-                        {clip.duration}
-                      </span>
-
-                      {centre ? (
-                        <span className="absolute bottom-2.5 right-2.5 flex h-9 w-9 items-center justify-center rounded-full bg-navy-900/70 text-white backdrop-blur-sm lg:bottom-3 lg:right-3">
-                          <SoundIcon muted={muted} />
+                        <span
+                          className={`absolute left-2 top-0 flex flex-col items-center gap-0.5 px-1.5 pb-2 pt-1 text-[0.6rem] font-black leading-none lg:px-2 lg:text-[clamp(0.58rem,0.72vw,0.78rem)] ${
+                            centre ? "bg-yellow-500 text-navy-900" : "bg-navy-900 text-white"
+                          } [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_78%,0%_100%)]`}
+                        >
+                          {clip.index}
+                          {centre ? <CrownIcon className="mt-0.5 h-2.5 w-2.5" /> : null}
                         </span>
-                      ) : null}
-                    </span>
 
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+                        <span className="absolute bottom-2 left-2 rounded-full bg-navy-900/75 px-1.5 py-0.5 text-[0.56rem] font-bold tabular-nums text-white backdrop-blur-sm lg:text-[clamp(0.54rem,0.68vw,0.74rem)]">
+                          {clip.duration}
+                        </span>
+
+                        {centre ? (
+                          <span className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-navy-900/70 text-white backdrop-blur-sm">
+                            <SoundIcon muted={muted} />
+                          </span>
+                        ) : null}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
 
           <StepArrow direction="prev" onClick={() => step(-1)} />
           <StepArrow direction="next" onClick={() => step(1)} />
@@ -220,7 +287,7 @@ export function RealKitchenSection() {
             <button
               key={clip.index}
               type="button"
-              onClick={() => setActive(index)}
+              onClick={() => goTo(index)}
               aria-label={`${clip.title.join(" ")} 영상 보기`}
               aria-pressed={index === active}
               className={`h-2 rounded-full transition-all duration-300 ${

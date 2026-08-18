@@ -35,7 +35,7 @@ function Operator({ symbol }: { symbol: string }) {
   return (
     <span
       aria-hidden="true"
-      className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-[1.5rem] font-black leading-none text-yellow-500 shadow-raise lg:h-[min(4.13vw,7.3vh)] lg:w-[min(4.13vw,7.3vh)] lg:text-[clamp(1.4rem,2vw,2.1rem)]"
+      className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-[3px] border-white bg-navy-900 text-[1.5rem] font-black leading-none text-yellow-500 shadow-raise lg:h-[min(4.13vw,7.3vh)] lg:w-[min(4.13vw,7.3vh)] lg:text-[clamp(1.4rem,2vw,2.1rem)]"
     >
       {symbol}
     </span>
@@ -73,7 +73,7 @@ export function FocusSystemSection() {
         <ul className="mt-block grid grid-cols-2 gap-3 sm:gap-4 lg:flex lg:flex-row lg:items-stretch lg:gap-0">
           {data.cards.map((card) => (
             <li key={card.title} className="flex flex-col items-center lg:flex-1 lg:flex-row lg:items-stretch">
-              <article className="flex h-full w-full flex-1 flex-col items-center rounded-panel bg-cream-card px-3 py-5 text-center shadow-card sm:px-5 lg:px-pill lg:py-block">
+              <article className="flex h-full w-full flex-1 flex-col items-center rounded-panel border-2 border-navy-900 bg-cream-card px-3 py-5 text-center shadow-card sm:px-5 lg:px-pill lg:py-block">
                 <h3 className="text-[1rem] font-black tracking-[-0.04em] text-navy-900 sm:text-[1.2rem] lg:text-[clamp(1.15rem,1.75vw,1.85rem)]">
                   {card.title}
                 </h3>
