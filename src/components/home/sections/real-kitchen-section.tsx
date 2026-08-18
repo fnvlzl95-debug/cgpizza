@@ -12,15 +12,13 @@ import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { realKitchen as data } from "@/lib/home-content";
 
 /**
- * Structure borrowed from the rustic reference — a featured middle clip,
- * numbered ribbons, run-times, a caption band under each frame, a three-up
- * proof row and a real button — rendered in this page's own world rather than
- * its parchment one. One section in a different palette reads as a different
- * website.
+ * The clips are shot 1080×1920, so they are shown as portrait cards rather
+ * than cropped into landscape frames that throw away most of each shot.
  *
- * The clips play muted and looping as they enter view: the claim here is
- * 연출이 아니라 실제 과정, and a frozen frame asks the visitor to take that on
- * trust. Sound stays theirs to turn on.
+ * One card is selected at a time: it stands taller, carries the gold trim and
+ * plays; the others hold their poster and wait. The claim here is 연출이
+ * 아니라 실제 과정, and a running kitchen shows that where a still asks the
+ * visitor to take it on trust. Sound stays theirs to turn on.
  */
 
 const pointIcons = {
@@ -28,13 +26,6 @@ const pointIcons = {
   flame: FlameIcon,
   temp: ThermometerIcon,
 } as const;
-
-/** Ribbon and caption band per clip; the middle one carries the gold. */
-const trim = [
-  { chip: "bg-navy-900 text-white", band: "bg-navy-900 text-white", ring: "ring-white/15" },
-  { chip: "bg-yellow-500 text-navy-900", band: "bg-yellow-500 text-navy-900", ring: "ring-yellow-500" },
-  { chip: "bg-blue-band text-white", band: "bg-blue-band text-white", ring: "ring-white/15" },
-] as const;
 
 function SoundIcon({ muted }: { muted: boolean }) {
   return (
@@ -60,94 +51,50 @@ function SoundIcon({ muted }: { muted: boolean }) {
   );
 }
 
-function VideoCard({ clip, index }: { clip: (typeof data.videos)[number]; index: number }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
+function StepArrow({ direction, onClick }: { direction: "prev" | "next"; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={direction === "prev" ? "이전 영상" : "다음 영상"}
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/12 text-white ring-1 ring-white/25 transition-colors duration-200 hover:bg-white/22 lg:h-[min(3.2vw,5.7vh)] lg:w-[min(3.2vw,5.7vh)]"
+    >
+      <ArrowRightIcon className={`h-5 w-5 ${direction === "prev" ? "rotate-180" : ""}`} />
+    </button>
+  );
+}
+
+export function RealKitchenSection() {
+  const [active, setActive] = useState(1);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
   const [muted, setMuted] = useState(true);
-  const skin = trim[index];
-  const featured = clip.accent;
 
+  // Only the selected clip runs; the rest hold their poster frame.
   useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    videoRefs.current.forEach((el, index) => {
+      if (!el) return;
+      if (index === active && !reduce) void el.play().catch(() => {});
+      else {
+        el.pause();
+        el.currentTime = 0;
+      }
+    });
+  }, [active]);
 
-    // Decode only what is on screen.
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) void el.play().catch(() => {});
-        else el.pause();
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
+  const step = (delta: number) =>
+    setActive((current) => (current + delta + data.videos.length) % data.videos.length);
 
   const toggleSound = () => {
-    const el = videoRef.current;
+    const el = videoRefs.current[active];
     if (!el) return;
     el.muted = !el.muted;
     setMuted(el.muted);
     if (el.paused) void el.play().catch(() => {});
   };
 
-  return (
-    <li>
-      <div className={`overflow-hidden rounded-card shadow-card ring-1 ${skin.ring} ${featured ? "lg:ring-2" : ""}`}>
-        <div className="group relative isolate aspect-[3/2] bg-navy-900">
-          <video
-            ref={videoRef}
-            src={clip.src}
-            poster={clip.poster}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-          />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,23,80,0.34)_0%,rgba(1,23,80,0.04)_38%,rgba(1,23,80,0.4)_100%)]"
-          />
-
-          {/* Numbered tab hung from the top edge, as the reference sets it. */}
-          <span
-            className={`absolute left-3 top-0 flex flex-col items-center gap-0.5 px-2.5 pb-3 pt-2 text-[0.82rem] font-black leading-none lg:left-4 lg:px-3 lg:text-[clamp(0.8rem,1.02vw,1.08rem)] ${skin.chip} [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_78%,0%_100%)]`}
-          >
-            {clip.index}
-            {featured ? <CrownIcon className="mt-1 h-3.5 w-3.5" /> : null}
-          </span>
-
-          <span className="absolute bottom-3 left-3 rounded-full bg-navy-900/75 px-2.5 py-1 text-[0.74rem] font-bold tabular-nums text-white backdrop-blur-sm lg:bottom-4 lg:left-4">
-            {clip.duration}
-          </span>
-
-          <button
-            type="button"
-            onClick={toggleSound}
-            aria-pressed={!muted}
-            className="absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full bg-navy-900/60 text-white backdrop-blur-sm transition-colors duration-200 hover:bg-navy-900/85 lg:right-4 lg:top-4"
-          >
-            <SoundIcon muted={muted} />
-            <span className="sr-only">
-              {clip.title.join(" ")} 영상 소리 {muted ? "켜기" : "끄기"}
-            </span>
-          </button>
-        </div>
-
-        {/* Caption band under the frame — the reference's strongest device. */}
-        <p
-          className={`px-4 py-3 text-center text-[0.96rem] font-black tracking-[-0.03em] lg:px-card lg:py-tight lg:text-[clamp(0.94rem,1.2vw,1.26rem)] ${skin.band}`}
-        >
-          {clip.title.join(" ")}
-        </p>
-      </div>
-    </li>
-  );
-}
-
-export function RealKitchenSection() {
-  const groups = [data.headline.slice(0, 2), data.headline.slice(2)];
+  // Heading breaks after 최강피자의.
+  const groups = [data.headline.slice(0, 1), data.headline.slice(1)];
 
   return (
     <section
@@ -160,7 +107,7 @@ export function RealKitchenSection() {
         </div>
 
         <div className="motion-reveal mt-block text-center">
-          <h2 className="text-[2.1rem] font-black leading-[1.14] tracking-[-0.05em] lg:text-[clamp(2.1rem,min(3.1vw,5.5vh),3.3rem)]">
+          <h2 className="text-[2rem] font-black leading-[1.14] tracking-[-0.05em] lg:text-[clamp(2.1rem,min(3.1vw,5.5vh),3.3rem)]">
             {groups.map((group, index) => (
               <span key={index} className="block">
                 {group.map((line, position) => (
@@ -177,7 +124,7 @@ export function RealKitchenSection() {
             ))}
           </h2>
 
-          <p className="mt-group text-[0.94rem] text-white/80 lg:text-[clamp(0.9rem,1.08vw,1.14rem)]">
+          <p className="mt-group text-[0.92rem] text-white/80 lg:text-[clamp(0.9rem,1.08vw,1.14rem)]">
             {data.body[0]}
             <span className="mt-1 block">
               <span className="font-black text-yellow-500">{data.bodyAccent}</span>
@@ -186,15 +133,100 @@ export function RealKitchenSection() {
           </p>
         </div>
 
-        {/* The middle clip leads: wider column, gold trim, and it breaks the
-            row line at top and bottom. */}
-        <ul className="mt-block grid grid-cols-1 items-center gap-4 sm:grid-cols-3 lg:grid-cols-[1fr_1.08fr_1fr] lg:gap-gutter">
-          {data.videos.map((clip, index) => (
-            <VideoCard key={clip.index} clip={clip} index={index} />
-          ))}
-        </ul>
+        <div className="mt-block flex items-center justify-center gap-3 lg:gap-gutter">
+          <StepArrow direction="prev" onClick={() => step(-1)} />
 
-        <ul className="mx-auto mt-block grid max-w-[68rem] grid-cols-1 gap-3 sm:grid-cols-3 lg:gap-0">
+          <ul className="flex items-center justify-center gap-3 lg:gap-group">
+            {data.videos.map((clip, index) => {
+              const selected = index === active;
+              return (
+                <li key={clip.index} className={selected ? "" : "hidden sm:block"}>
+                  <button
+                    type="button"
+                    onClick={() => setActive(index)}
+                    aria-pressed={selected}
+                    className={`group relative block overflow-hidden rounded-card text-left transition-[width,box-shadow] duration-300 ${
+                      selected
+                        ? "w-[13rem] shadow-lift ring-2 ring-yellow-500 sm:w-[11rem] lg:w-[min(10.8vw,18.3vh)]"
+                        : "opacity-70 shadow-card ring-1 ring-white/15 hover:opacity-100 sm:w-[8.5rem] lg:w-[min(8.5vw,14.5vh)]"
+                    }`}
+                  >
+                    <span className="relative block aspect-[9/16] bg-navy-900">
+                      <video
+                        ref={(el) => {
+                          videoRefs.current[index] = el;
+                        }}
+                        src={clip.src}
+                        poster={clip.poster}
+                        muted
+                        loop
+                        playsInline
+                        preload="metadata"
+                        className="absolute inset-0 h-full w-full object-cover"
+                      />
+                      <span
+                        aria-hidden="true"
+                        className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,23,80,0.36)_0%,rgba(1,23,80,0.02)_34%,rgba(1,23,80,0.78)_100%)]"
+                      />
+
+                      <span
+                        className={`absolute left-2.5 top-0 flex flex-col items-center gap-0.5 px-2 pb-2.5 pt-1.5 text-[0.72rem] font-black leading-none lg:left-3 lg:px-2.5 lg:text-[clamp(0.7rem,0.9vw,0.95rem)] ${
+                          selected ? "bg-yellow-500 text-navy-900" : "bg-navy-900 text-white"
+                        } [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_78%,0%_100%)]`}
+                      >
+                        {clip.index}
+                        {selected ? <CrownIcon className="mt-1 h-3 w-3" /> : null}
+                      </span>
+
+                      <span className="absolute bottom-2.5 left-2.5 rounded-full bg-navy-900/75 px-2 py-0.5 text-[0.68rem] font-bold tabular-nums text-white backdrop-blur-sm lg:bottom-3 lg:left-3">
+                        {clip.duration}
+                      </span>
+                    </span>
+
+                    <span
+                      className={`block px-3 py-2.5 text-center text-[0.82rem] font-black leading-tight tracking-[-0.03em] lg:px-2 lg:py-tight lg:text-[clamp(0.8rem,1.02vw,1.08rem)] ${
+                        selected ? "bg-yellow-500 text-navy-900" : "bg-navy-900 text-white"
+                      }`}
+                    >
+                      {clip.title.join(" ")}
+                    </span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+
+          <StepArrow direction="next" onClick={() => step(1)} />
+        </div>
+
+        <div className="mt-tight flex items-center justify-center gap-3">
+          <div className="flex items-center gap-2">
+            {data.videos.map((clip, index) => (
+              <button
+                key={clip.index}
+                type="button"
+                onClick={() => setActive(index)}
+                aria-label={`${clip.title.join(" ")} 영상 보기`}
+                aria-pressed={index === active}
+                className={`h-2 rounded-full transition-all duration-300 ${
+                  index === active ? "w-6 bg-yellow-500" : "w-2 bg-white/35 hover:bg-white/60"
+                }`}
+              />
+            ))}
+          </div>
+
+          <button
+            type="button"
+            onClick={toggleSound}
+            aria-pressed={!muted}
+            className="flex h-9 w-9 items-center justify-center rounded-full bg-white/12 text-white ring-1 ring-white/25 transition-colors duration-200 hover:bg-white/22"
+          >
+            <SoundIcon muted={muted} />
+            <span className="sr-only">재생 중인 영상 소리 {muted ? "켜기" : "끄기"}</span>
+          </button>
+        </div>
+
+        <ul className="mx-auto mt-group grid max-w-[68rem] grid-cols-1 gap-3 sm:grid-cols-3 lg:gap-0">
           {data.points.map((point, index) => {
             const Icon = pointIcons[point.icon];
             return (

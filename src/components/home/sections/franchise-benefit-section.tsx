@@ -114,7 +114,7 @@ function BenefitTable() {
             {row.flag ? (
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute right-3 top-3 -rotate-[9deg] rounded-[0.35rem] bg-yellow-500 px-2.5 py-1 text-[0.7rem] font-black leading-none tracking-[-0.02em] text-navy-900 shadow-raise ring-1 ring-navy-900/10 lg:right-[1.4vw] lg:top-1/2 lg:-translate-y-1/2 lg:px-[0.9vw] lg:py-[0.42vw] lg:text-[clamp(0.72rem,0.95vw,1rem)]"
+                className="pointer-events-none absolute right-1 top-1 origin-top-right rotate-[9deg] rounded-[0.35rem] bg-yellow-500 px-2.5 py-1 text-[0.7rem] font-black leading-none tracking-[-0.02em] text-navy-900 shadow-raise ring-1 ring-navy-900/10 lg:right-[0.5vw] lg:top-[0.35vw] lg:px-[0.9vw] lg:py-[0.42vw] lg:text-[clamp(0.72rem,0.95vw,1rem)]"
               >
                 {row.flag}
                 <span className="ml-1 text-red-500">{row.flagIndex}</span>
