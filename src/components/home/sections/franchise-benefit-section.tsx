@@ -70,7 +70,7 @@ function BenefitTable() {
         <span className="text-center text-[clamp(0.9rem,1.14vw,1.2rem)] font-black tracking-[-0.02em]">
           {data.columns[1]}
         </span>
-        <span className="pr-[2.2vw] text-right text-[clamp(0.9rem,1.14vw,1.2rem)] font-black tracking-[-0.02em]">
+        <span className="text-center text-[clamp(0.9rem,1.14vw,1.2rem)] font-black tracking-[-0.02em]">
           {data.columns[2]}
         </span>
       </div>
@@ -83,7 +83,7 @@ function BenefitTable() {
         return (
           <div
             key={row.label}
-            className={`px-4 py-4 lg:grid lg:grid-cols-[26%_42%_32%] lg:items-center lg:px-0 lg:py-[min(0.58vw,1.03vh)] ${
+            className={`relative px-4 py-4 lg:grid lg:grid-cols-[26%_42%_32%] lg:items-center lg:px-0 lg:py-[min(0.58vw,1.03vh)] ${
               index > 0 ? "border-t border-hairline" : ""
             }`}
           >
@@ -100,28 +100,30 @@ function BenefitTable() {
               {row.detail}
             </p>
 
-            {/* Two fixed slots: the benefit always ends on the same axis and
-                the flag always starts on the next, so a row without a flag
-                does not shift its neighbour's wording sideways. */}
-            <div className="mt-2.5 flex items-center gap-2 pl-12 lg:mt-0 lg:grid lg:grid-cols-[1fr_auto] lg:gap-x-[1vw] lg:pl-0 lg:pr-[2.2vw]">
-              <span
-                className={`inline-flex items-center justify-end gap-1 whitespace-nowrap text-[1rem] font-black tracking-[-0.03em] lg:text-[clamp(0.98rem,1.32vw,1.4rem)] ${
-                  row.benefitTone === "red" ? "text-red-500" : "text-blue-band"
-                }`}
-              >
-                {row.benefit}
-                {row.sparkle ? <SparkIcon className="h-4 w-4 text-yellow-500 lg:h-[1.4vw] lg:w-[1.4vw]" /> : null}
-              </span>
+            {/* Nothing shares this cell any more. The flag used to sit beside
+                the benefit and pushed every row's wording to its own x; it is
+                now a sticker on the row's right edge, out of the text flow. */}
+            <p
+              className={`mt-2.5 pl-12 text-[1rem] font-black tracking-[-0.03em] lg:mt-0 lg:pl-0 lg:text-center lg:text-[clamp(0.98rem,1.32vw,1.4rem)] ${
+                row.benefitTone === "red" ? "text-red-500" : "text-blue-band"
+              }`}
+            >
+              {row.benefit}
+            </p>
 
-              <span className="lg:min-w-[11.5vw]">
-                {row.flag ? (
-                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-yellow-500 px-2.5 py-1 text-[0.74rem] font-black tracking-[-0.02em] text-navy-900 lg:px-pill lg:py-tight lg:text-[clamp(0.76rem,1.02vw,1.08rem)]">
-                    {row.flag}
-                    <span className="text-red-500">{row.flagIndex}</span>
-                  </span>
-                ) : null}
+            {row.flag ? (
+              <span
+                aria-hidden="true"
+                className="pointer-events-none absolute right-3 top-3 -rotate-[9deg] rounded-[0.35rem] bg-yellow-500 px-2.5 py-1 text-[0.7rem] font-black leading-none tracking-[-0.02em] text-navy-900 shadow-raise ring-1 ring-navy-900/10 lg:right-[1.4vw] lg:top-1/2 lg:-translate-y-1/2 lg:px-[0.9vw] lg:py-[0.42vw] lg:text-[clamp(0.72rem,0.95vw,1rem)]"
+              >
+                {row.flag}
+                <span className="ml-1 text-red-500">{row.flagIndex}</span>
               </span>
-            </div>
+            ) : null}
+
+            {/* The sticker is decorative duplication of the banner below, so
+                it is announced once here rather than twice to a screen reader. */}
+            {row.flag ? <span className="sr-only">{row.flag}</span> : null}
           </div>
         );
       })}

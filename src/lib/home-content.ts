@@ -279,17 +279,24 @@ export const realKitchen = {
     { text: "진짜 주방을", tone: "gold" },
     { text: "보여드립니다.", tone: "white" },
   ],
-  body: ["보여주기 위한 연출보다", "실제 매장의 진짜 과정을 담았습니다."],
+  body: ["재료 준비부터 반죽, 토핑, 화덕 굽기까지 —"],
+  bodyAccent: "매장에서 매일 만드는 진짜 과정",
+  bodyTail: "을 영상으로 확인하세요.",
   points: [
     {
-      icon: "diamond",
-      title: "정직하게, 진심으로",
-      body: ["최강피자는 좋은 재료와 정성을 담아", "한 판 한 판 제대로 만듭니다."],
+      icon: "leaf",
+      title: "좋은 재료만, 정직하게",
+      body: ["신선한 재료를 매일 직접 손질합니다."],
     },
     {
-      icon: "shield",
-      title: "기본을 지키고, 맛으로 증명합니다",
-      body: ["도우부터 토핑, 오븐까지", "기본에 충실하게 완성합니다."],
+      icon: "flame",
+      title: "제대로 굽는 정통 방식",
+      body: ["고온의 오븐에서 풍미를 살려 구워냅니다."],
+    },
+    {
+      icon: "temp",
+      title: "최고의 온도로, 가장 맛있게",
+      body: ["가장 맛있는 온도로 바로 제공합니다."],
     },
   ],
   videos: [
@@ -299,6 +306,7 @@ export const realKitchen = {
       src: "/assets/user/brand-videos/1.mp4",
       poster: "/assets/user/brand-videos/posters/1.webp",
       accent: false,
+      duration: "00:11",
     },
     {
       index: "02",
@@ -306,6 +314,7 @@ export const realKitchen = {
       src: "/assets/user/brand-videos/2-revised.mp4",
       poster: "/assets/user/brand-videos/posters/2-revised.webp",
       accent: true,
+      duration: "00:09",
     },
     {
       index: "03",
@@ -313,13 +322,10 @@ export const realKitchen = {
       src: "/assets/user/brand-videos/3.mp4",
       poster: "/assets/user/brand-videos/posters/3.webp",
       accent: false,
+      duration: "00:41",
     },
   ],
-  closer: {
-    lead: "필터 없는 주방, ",
-    accent: "최강피자의 진짜 이야기",
-    tail: "를 지금 확인해보세요!",
-  },
+  cta: { label: "최강피자의 진짜 이야기 보기", href: "#contact-cta" },
 } as const;
 
 /* ── S7 · 리뷰 증명 (88 — 구조 유지, 남색만 밝은 블루로) ────── */

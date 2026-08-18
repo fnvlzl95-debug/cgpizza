@@ -307,6 +307,39 @@ export function ArrowRightIcon(props: IconProps) {
   );
 }
 
+/* ── Kitchen proof row ──────────────────────────────────────── */
+
+export function FlameIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path
+        {...stroke}
+        d="M12 3.2c.4 3 2 4.6 3.8 6.3 1.6 1.5 2.6 3.2 2.6 5.2a6.4 6.4 0 0 1-12.8 0c0-1.6.6-2.9 1.6-4.1.3 1 .9 1.8 1.8 2.2-.3-3.6.8-6.6 3-9.6Z"
+      />
+      <path {...stroke} d="M12 20.4a2.9 2.9 0 0 1-1.5-5.4c.5 1 1.2 1.5 2.2 1.7-.2-1.5.2-2.7 1-3.7.9.9 1.4 2 1.4 3.2a2.9 2.9 0 0 1-3.1 4.2Z" />
+    </Svg>
+  );
+}
+
+export function ThermometerIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path {...stroke} d="M14.4 13.6V5.4a2.4 2.4 0 0 0-4.8 0v8.2a4.2 4.2 0 1 0 4.8 0Z" />
+      <path fill="currentColor" d="M12 10.6a1.4 1.4 0 0 1 1.4 1.4v3.3a2.4 2.4 0 1 1-2.8 0V12a1.4 1.4 0 0 1 1.4-1.4Z" />
+      <path {...stroke} d="M16.4 6.6h2.4M16.4 9.4h1.6M16.4 12.2h2.4" />
+    </Svg>
+  );
+}
+
+export function CrownIcon({ className }: IconProps) {
+  return (
+    <Svg className={className}>
+      <path fill="currentColor" d="M3.4 7.6 7 12l5-6.6L17 12l3.6-4.4 -1.4 10.2H4.8L3.4 7.6Z" />
+      <path fill="currentColor" d="M4.6 19.4h14.8v1.8H4.6z" />
+    </Svg>
+  );
+}
+
 /* ── Section art drawn as vector (S5 cards 1 and 4) ─────────── */
 
 export function TargetArt({ className }: IconProps) {

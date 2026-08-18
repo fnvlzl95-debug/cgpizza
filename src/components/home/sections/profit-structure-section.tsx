@@ -48,7 +48,7 @@ function SummaryTable() {
           return (
             <div
               key={row.label}
-              className="flex items-center justify-between gap-4 border-b border-dotted border-hairline py-3 lg:py-[min(0.3vw,0.54vh)]"
+              className="flex items-center justify-between gap-4 border-b border-dotted border-hairline py-3 lg:py-[min(0.22vw,0.4vh)]"
             >
               <span className="flex min-w-0 items-center gap-3 lg:gap-[1vw]">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EFF1F6] text-navy-900 lg:h-[min(1.95vw,3.45vh)] lg:w-[min(1.95vw,3.45vh)]">
@@ -129,7 +129,7 @@ export function ProfitStructureSection() {
             {/* On a phone this figure already appears twice more — in the donut
                 and in the table total — so the standalone callout is desktop-only. */}
             <div className="hidden shrink-0 text-center lg:block lg:w-[9.5vw]">
-              <ChartIcon className="mx-auto h-12 w-12 text-orange-500 lg:h-[min(2.3vw,4.1vh)] lg:w-[min(2.3vw,4.1vh)]" />
+              <ChartIcon className="mx-auto h-12 w-12 text-orange-500 lg:h-[min(2vw,3.55vh)] lg:w-[min(2vw,3.55vh)]" />
               <span aria-hidden="true" className="mx-auto mt-3 block h-0.5 w-16 bg-gold-600 lg:w-full" />
               <p className="mt-3 text-[0.95rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.88rem,1.14vw,1.2rem)]">
                 {data.headlineStat.label}
@@ -144,7 +144,7 @@ export function ProfitStructureSection() {
               </p>
             </div>
 
-            <div className="w-full max-w-[17.5rem] sm:max-w-[22rem] lg:max-w-[min(18.5vw,32vh)]">
+            <div className="w-full max-w-[17.5rem] sm:max-w-[22rem] lg:max-w-[min(17vw,29.5vh)]">
               <ProfitDonut />
             </div>
           </div>
