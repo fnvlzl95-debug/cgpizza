@@ -206,11 +206,16 @@ export function RealKitchenSection() {
                     <button
                       type="button"
                       onClick={() => (centre ? setMuted((value) => !value) : goTo(source))}
-                      aria-hidden={!centre && slot % COUNT !== source}
+                      /* The strip renders three copies of the list, so every
+                         card but the playing one is hidden from assistive tech;
+                         otherwise each clip is announced three times over. The
+                         arrows and dots carry the navigation. */
+                      aria-hidden={!centre}
+                      tabIndex={centre ? 0 : -1}
                       aria-label={
                         centre
                           ? `재생 중: ${clip.title.join(" ")} — 소리 ${muted ? "켜기" : "끄기"}`
-                          : `${clip.title.join(" ")} 영상 보기`
+                          : undefined
                       }
                       className={`group relative block w-full overflow-hidden rounded-card text-left transition-[transform,opacity,box-shadow] duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         centre

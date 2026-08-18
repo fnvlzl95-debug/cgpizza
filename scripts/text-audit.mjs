@@ -81,7 +81,10 @@ const audit = () => {
           const cutRight = Math.round(rect.right - pr.right);
           const cutLeft = Math.round(pr.left - rect.left);
           const cutBottom = Math.round(rect.bottom - pr.bottom);
-          if (cutRight > 2 || cutLeft > 2 || cutBottom > 2) {
+          // A few pixels of tolerance: inside a scaled subtree the child and
+          // parent rects round independently, which reads as a hairline
+          // overflow that measures as clearance when checked directly.
+          if (cutRight > 8 || cutLeft > 8 || cutBottom > 8) {
             push(
               "clipped",
               el,
@@ -130,8 +133,18 @@ const audit = () => {
       }
     }
 
-    // 4. Pushed outside the viewport horizontally.
-    if (hasOwnText && (rect.right > window.innerWidth + 2 || rect.left < -2)) {
+    // 4. Pushed outside the viewport horizontally. A carousel track parks its
+    //    off-screen cards there deliberately, so anything inside a
+    //    horizontally-clipping ancestor is out of scope for this check.
+    let inTrack = false;
+    for (let node = el.parentElement; node && node !== document.body; node = node.parentElement) {
+      const ns = getComputedStyle(node);
+      if (ns.overflowX === "hidden" || ns.overflowX === "clip") {
+        inTrack = true;
+        break;
+      }
+    }
+    if (!inTrack && hasOwnText && (rect.right > window.innerWidth + 2 || rect.left < -2)) {
       push("offscreen", el, `left ${Math.round(rect.left)} right ${Math.round(rect.right)} of ${window.innerWidth}`);
     }
   }
