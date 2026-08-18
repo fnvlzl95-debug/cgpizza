@@ -250,8 +250,8 @@ function MenuHero() {
         className="absolute inset-0 hidden bg-cover bg-center md:block"
         style={{ backgroundImage: `url(${generatedMenuAssets.heroDesktop})` }}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,21,64,0.16)_0%,rgba(0,21,64,0.38)_28%,rgba(0,21,64,0.92)_67%,rgba(0,21,64,1)_100%)] md:bg-[linear-gradient(90deg,rgba(0,21,64,0.98)_0%,rgba(0,21,64,0.9)_35%,rgba(0,21,64,0.36)_62%,rgba(0,21,64,0.02)_100%)]" />
-      <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(0,21,64,0.08)_0%,rgba(0,21,64,0.02)_56%,rgba(0,21,64,0.26)_100%)] md:block" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,50,240,0.16)_0%,rgba(0,50,240,0.38)_28%,rgba(0,50,240,0.92)_67%,rgba(0,50,240,1)_100%)] md:bg-[linear-gradient(90deg,rgba(0,50,240,0.98)_0%,rgba(0,50,240,0.9)_35%,rgba(0,50,240,0.36)_62%,rgba(0,50,240,0.02)_100%)]" />
+      <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(0,50,240,0.08)_0%,rgba(0,50,240,0.02)_56%,rgba(0,50,240,0.26)_100%)] md:block" />
       <div className="relative mx-auto grid min-h-[350px] w-full max-w-7xl items-end px-4 pb-9 pt-5 md:min-h-[440px] md:grid-cols-[0.56fr_0.44fr] md:items-center md:py-10 lg:min-h-[480px]">
         <div className="relative z-20 max-w-xl">
           <Sparkles className="mb-4 md:mb-5" />
@@ -382,7 +382,7 @@ function BestMenuSection() {
   return (
     <section className="relative overflow-hidden bg-blue-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
       <DecorativeSectionImage src={generatedMenuAssets.best} className="opacity-30" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,21,68,0.82)_0%,rgba(4,21,68,0.7)_46%,rgba(4,21,68,0.9)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,51,221,0.82)_0%,rgba(1,51,221,0.7)_46%,rgba(1,51,221,0.9)_100%)]" />
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-best"
@@ -494,7 +494,7 @@ function ReasonsBand() {
 
 function SideIllustration({ item }: { item: MenuPageSideItem }) {
   return (
-    <div className="relative mx-auto aspect-[1.18] w-full max-w-[12rem] overflow-hidden rounded-[1.35rem] bg-[linear-gradient(160deg,#fff7ed_0%,#f8ead9_100%)] shadow-[inset_0_0_0_1px_rgba(0,21,64,0.07)]">
+    <div className="relative mx-auto aspect-[1.18] w-full max-w-[12rem] overflow-hidden rounded-[1.35rem] bg-[linear-gradient(160deg,#fff7ed_0%,#f8ead9_100%)] shadow-[inset_0_0_0_1px_rgba(1,23,80,0.07)]">
       <Image
         src={item.image}
         alt={item.title}
@@ -510,7 +510,7 @@ function SideMenuSection() {
   return (
     <section id="menu-side" className="relative scroll-mt-28 overflow-hidden bg-blue-band px-4 py-12 text-white md:py-[4.25rem]">
       <DecorativeSectionImage src={generatedMenuAssets.side} className="opacity-25" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,21,64,0.85)_0%,rgba(0,21,64,0.72)_46%,rgba(0,21,64,0.9)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,72,227,0.85)_0%,rgba(1,72,227,0.72)_46%,rgba(1,72,227,0.9)_100%)]" />
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-side-title"
@@ -543,7 +543,7 @@ function MenuCta() {
   return (
     <section id="menu-contact" className="relative overflow-hidden bg-blue-band px-4 py-12 text-white md:py-16">
       <DecorativeSectionImage src={generatedMenuAssets.cta} className="object-[64%_center] opacity-30 md:object-center" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,42,102,0.96)_0%,rgba(12,42,102,0.84)_48%,rgba(12,42,102,0.32)_100%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(1,72,227,0.96)_0%,rgba(1,72,227,0.84)_48%,rgba(1,72,227,0.32)_100%)]" />
       <div className="relative mx-auto grid max-w-7xl md:grid-cols-[0.68fr_0.32fr]">
         <div className="max-w-3xl text-left">
           <Sparkles className="mb-4" />
