@@ -37,7 +37,7 @@ function SummaryTable() {
         {data.table.title}
       </div>
 
-      <div className="rounded-card bg-white px-5 pb-5 pt-8 shadow-card lg:px-card lg:pb-[0.9vw] lg:pt-[1.5vw]">
+      <div className="rounded-card bg-white px-5 pb-5 pt-8 shadow-card lg:px-card lg:pb-[min(0.7vw,1.25vh)] lg:pt-[min(1.15vw,2vh)]">
         <div className="flex items-center justify-between border-b border-hairline pb-2.5 text-[0.85rem] font-bold text-navy-900/55 lg:text-[clamp(0.8rem,0.98vw,1.02rem)]">
           <span className="pl-1">{data.table.columns[0]}</span>
           <span>{data.table.columns[1]}</span>
@@ -79,7 +79,7 @@ function SummaryTable() {
           </span>
         </div>
 
-        <div className="mt-3 flex flex-col items-stretch gap-3 rounded-card bg-navy-900 px-5 py-4 text-white sm:flex-row sm:items-center sm:justify-between lg:mt-[0.7vw] lg:px-card lg:py-tight">
+        <div className="mt-3 flex flex-col items-stretch gap-3 rounded-card bg-navy-900 px-5 py-3 text-white sm:flex-row sm:items-center sm:justify-between lg:mt-tight lg:px-card lg:py-[min(0.5vw,0.9vh)]">
           <span className="flex items-center gap-2.5 text-[0.92rem] font-bold lg:text-[clamp(0.85rem,1.08vw,1.14rem)]">
             <SealIcon className="h-6 w-6 shrink-0 text-yellow-500" />
             {data.table.cta.question}
@@ -156,7 +156,7 @@ export function ProfitStructureSection() {
           {data.footnote}
         </p>
 
-        <ul className="mt-block grid grid-cols-1 gap-3 rounded-card bg-white/70 p-4 shadow-card sm:grid-cols-3 lg:gap-0 lg:p-tight">
+        <ul className="mt-block grid grid-cols-1 gap-3 rounded-card bg-white/70 p-4 shadow-card sm:grid-cols-3 lg:gap-0 lg:p-[min(0.55vw,1vh)]">
           {data.trust.map((item, index) => {
             const Icon = trustIcons[item.icon];
             return (
@@ -166,7 +166,7 @@ export function ProfitStructureSection() {
                   index > 0 ? "sm:border-l sm:border-hairline sm:pl-4 lg:pl-[2vw]" : ""
                 }`}
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[min(2.7vw,4.8vh)] lg:w-[min(2.7vw,4.8vh)]">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[min(2.4vw,4.2vh)] lg:w-[min(2.4vw,4.2vh)]">
                   <Icon className="h-8 w-8 lg:h-[2.4vw] lg:w-[2.4vw]" />
                 </span>
                 <span className="min-w-0">

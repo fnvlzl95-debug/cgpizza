@@ -23,7 +23,7 @@ const rows = [
 
 function ReviewCard({ slide }: { slide: (typeof data.slides)[number] }) {
   return (
-    <div className="w-[15rem] shrink-0 sm:w-[19rem] lg:w-[21vw]">
+    <div className="w-[15rem] shrink-0 sm:w-[19rem] lg:w-[min(21vw,25vh)]">
       <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-hairline bg-white shadow-card">
         <Image
           src={slide.src}

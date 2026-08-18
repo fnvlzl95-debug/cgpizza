@@ -64,7 +64,7 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex h-[4.75rem] max-w-[93.25rem] items-center justify-between px-5 md:h-[6rem] md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
+      <div className="mx-auto flex h-[var(--header-offset)] max-w-[93.25rem] items-center justify-between px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <Link href="/" className="flex min-w-0 items-center text-white">
           <span className="relative h-14 w-14 shrink-0 md:h-[4.6rem] md:w-[4.6rem]">
             <Image

@@ -97,6 +97,40 @@
   }
 }
 
+/* ---------------------------------------------------------------
+   Short viewports.
+
+   A laptop's usable height is nothing like its screen height: Windows
+   display scaling reports a 1920×1080 panel as 1280×720 CSS pixels at
+   150%, and browser chrome takes another 60–120px off the top. The
+   width-based rhythm alone cannot see that, so the page reads its own
+   height and tightens rather than pushing sections past the fold.
+   --------------------------------------------------------------- */
+@media (max-height: 920px) {
+  :root {
+    --header-offset: 80px;
+    --spacing-section: clamp(0.8rem, 2.4vh, 1.7rem);
+    --spacing-block: clamp(0.55rem, 1.8vh, 1.15rem);
+    --spacing-group: clamp(0.4rem, 1.4vh, 0.9rem);
+    --spacing-tight: clamp(0.25rem, 0.85vh, 0.55rem);
+    --spacing-card: clamp(0.7rem, 2vh, 1.3rem);
+    --spacing-pill: clamp(0.6rem, 2.1vh, 1.4rem);
+    --spacing-gutter: clamp(0.6rem, 3.4vh, 2.2rem);
+  }
+}
+
+@media (max-height: 700px) {
+  :root {
+    --header-offset: 72px;
+    --spacing-section: clamp(0.6rem, 1.9vh, 1.2rem);
+    --spacing-block: clamp(0.45rem, 1.45vh, 0.85rem);
+    --spacing-group: clamp(0.3rem, 1.1vh, 0.65rem);
+    --spacing-tight: clamp(0.2rem, 0.7vh, 0.4rem);
+    --spacing-card: clamp(0.55rem, 1.6vh, 1rem);
+    --spacing-pill: clamp(0.5rem, 1.7vh, 1.1rem);
+  }
+}
+
 /* Element defaults live in @layer base on purpose. Unlayered rules outrank
    every layered one, so an unlayered `img { display: block }` silently beats
    Tailwind's `hidden` utility — `hidden lg:block` on an image then shows at
@@ -312,7 +346,7 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
 
 @media (min-width: 1024px) {
   .clip-track {
-    --slide: min(11.4vw, 20vh);
+    --slide: min(11.4vw, 17.5vh);
     --slide-gap: 0.85rem;
   }
 }

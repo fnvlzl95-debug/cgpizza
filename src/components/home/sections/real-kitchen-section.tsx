@@ -177,7 +177,7 @@ export function RealKitchenSection() {
             className="flex justify-center overflow-hidden"
             /* The centre card is scaled, so the clip window needs room
                for the overshoot above and below. */
-            style={{ padding: "calc(var(--slide) * 16 / 9 * 0.17) 0" }}
+            style={{ padding: "calc(var(--slide) * 16 / 9 * 0.155) 0" }}
           >
             <ul
               onTransitionEnd={() => {
