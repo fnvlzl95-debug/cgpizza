@@ -76,7 +76,10 @@ const audit = () => {
       let parent = el.parentElement;
       while (parent && parent !== document.body) {
         const ps = getComputedStyle(parent);
-        if (ps.overflow !== "visible" && ps.overflowX !== "visible") {
+        // hidden and clip lose the content; auto and scroll only park it,
+        // and the reader can bring it back. Only the first kind is a defect.
+        const hides = (v) => v === "hidden" || v === "clip";
+        if (hides(ps.overflow) || hides(ps.overflowX) || hides(ps.overflowY)) {
           const pr = parent.getBoundingClientRect();
           const cutRight = Math.round(rect.right - pr.right);
           const cutLeft = Math.round(pr.left - rect.left);
@@ -139,7 +142,7 @@ const audit = () => {
     let inTrack = false;
     for (let node = el.parentElement; node && node !== document.body; node = node.parentElement) {
       const ns = getComputedStyle(node);
-      if (ns.overflowX === "hidden" || ns.overflowX === "clip") {
+      if (ns.overflowX !== "visible") {
         inTrack = true;
         break;
       }

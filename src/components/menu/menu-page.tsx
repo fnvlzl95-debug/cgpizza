@@ -198,7 +198,7 @@ function Sparkles({ className = "" }: { className?: string }) {
   return (
     <div className={`flex gap-2 ${className}`} aria-hidden="true">
       {[0, 1, 2, 3].map((index) => (
-        <span key={index} className="text-xl text-[#ffcf00] md:text-2xl">
+        <span key={index} className="text-xl text-yellow-500 md:text-2xl">
           ✦
         </span>
       ))}
@@ -207,7 +207,7 @@ function Sparkles({ className = "" }: { className?: string }) {
 }
 
 function StickerBadge({ tone, rank }: { tone: "BEST" | "NEW"; rank?: number }) {
-  const palette = tone === "BEST" ? "bg-[#ef4136] text-white" : "bg-[#ffcf00] text-[#041544]";
+  const palette = tone === "BEST" ? "bg-red-500 text-white" : "bg-yellow-500 text-navy-900";
   return (
     <div
       aria-hidden="true"
@@ -228,7 +228,7 @@ function StickerBadge({ tone, rank }: { tone: "BEST" | "NEW"; rank?: number }) {
 
 function GoldText({ children }: { children: ReactNode }) {
   return (
-    <span className="bg-[linear-gradient(180deg,#ffcf00_0%,#f5a000_100%)] bg-clip-text text-transparent">
+    <span className="bg-[linear-gradient(180deg,var(--color-yellow-500)_0%,#f5a000_100%)] bg-clip-text text-transparent">
       {children}
     </span>
   );
@@ -236,7 +236,7 @@ function GoldText({ children }: { children: ReactNode }) {
 
 function MenuHero() {
   return (
-    <section id="top" className="relative isolate min-h-[430px] overflow-hidden bg-[#061a46] pt-[4.25rem] md:min-h-[520px] md:pt-[4.75rem] lg:min-h-[560px]">
+    <section id="top" className="relative isolate min-h-[430px] overflow-hidden bg-blue-hero pt-[4.25rem] md:min-h-[520px] md:pt-[4.75rem] lg:min-h-[560px]">
       <div
         aria-hidden="true"
         className="absolute inset-0 bg-top bg-no-repeat md:hidden"
@@ -255,14 +255,14 @@ function MenuHero() {
       <div className="relative mx-auto grid min-h-[350px] w-full max-w-7xl items-end px-4 pb-9 pt-5 md:min-h-[440px] md:grid-cols-[0.56fr_0.44fr] md:items-center md:py-10 lg:min-h-[480px]">
         <div className="relative z-20 max-w-xl">
           <Sparkles className="mb-4 md:mb-5" />
-          <span className="mb-4 inline-flex rounded-full bg-[#ffcf00] px-4 py-1.5 text-[0.72rem] font-black tracking-[0.12em] text-[#041544] shadow-[0_12px_30px_rgba(255,207,0,0.28)] md:mb-5 md:px-5 md:py-2 md:text-[0.82rem]">
+          <span className="mb-4 inline-flex rounded-full bg-yellow-500 px-4 py-1.5 text-[0.72rem] font-black tracking-[0.12em] text-navy-900 shadow-[0_12px_30px_rgba(255,207,0,0.28)] md:mb-5 md:px-5 md:py-2 md:text-[0.82rem]">
             CHOIGANG PIZZA MENU
           </span>
           <h1 className="text-[2.9rem] font-black leading-[0.9] tracking-[-0.05em] text-white sm:text-[3.7rem] md:text-[4.9rem]">
             최강피자 <GoldText>메뉴</GoldText>
           </h1>
           <p className="mt-4 text-[1.05rem] font-black leading-snug text-white/94 md:mt-5 md:text-[1.3rem]">
-            취향대로 골라 즐기는 <span className="text-[#ef4136]">최강의 한 판</span>
+            취향대로 골라 즐기는 <span className="text-red-500">최강의 한 판</span>
           </p>
           <p className="mt-4 max-w-[24rem] text-[0.86rem] font-medium leading-relaxed text-white/72 md:mt-4 md:text-[0.95rem]">
             최강의 토핑, 최강의 맛! 엄선된 재료와 노하우로 언제나 만족스러운 한 판을 제공합니다.
@@ -276,20 +276,20 @@ function MenuHero() {
 
 function MenuTabs() {
   return (
-    <div className="relative z-20 bg-[#041544]">
+    <div className="relative z-20 bg-blue-video">
       <div className="mx-auto -mt-6 max-w-7xl px-4">
         <nav
           aria-label="메뉴 카테고리"
-          className="flex gap-2 overflow-x-auto rounded-full border border-white/15 bg-[#0b2156] p-2 text-white shadow-[0_18px_48px_rgba(0,0,0,0.5)] [scrollbar-width:none] [-ms-overflow-style:none] md:grid md:grid-cols-6 md:gap-2 md:overflow-visible [&::-webkit-scrollbar]:hidden"
+          className="flex gap-2 overflow-x-auto rounded-full border border-white/15 bg-navy-900 p-2 text-white shadow-[0_18px_48px_rgba(0,0,0,0.5)] [scrollbar-width:none] [-ms-overflow-style:none] md:grid md:grid-cols-6 md:gap-2 md:overflow-visible [&::-webkit-scrollbar]:hidden"
         >
           {menuPageData.tabs.map((tab) => (
             <a
               key={tab.id}
               href={menuTabHref[tab.id]}
-              style={tab.id === "all" ? { color: "#001540" } : undefined}
+              style={tab.id === "all" ? { color: "var(--color-navy-900)" } : undefined}
               className={`inline-flex h-11 min-w-max items-center justify-center gap-1.5 rounded-full px-4 text-[0.9rem] font-black transition-all duration-300 active:translate-y-px md:min-w-0 md:px-2.5 ${
                 tab.id === "all"
-                  ? "bg-[#ffcf00] text-[#001540] shadow-[0_8px_20px_rgba(255,207,0,0.32)]"
+                  ? "bg-yellow-500 text-navy-900 shadow-[0_8px_20px_rgba(255,207,0,0.32)]"
                   : "bg-white/10 text-white/85 hover:bg-white/20 hover:text-white"
               }`}
             >
@@ -320,14 +320,14 @@ function SectionTitle({
   return (
     <div id={id} className="scroll-mt-28 text-center">
       {eyebrow ? (
-        <p className={`mb-3 text-[0.74rem] font-black tracking-[0.24em] md:text-[0.82rem] ${isDark ? "text-[#ffcf00]" : "text-[#ef4136]"}`}>
+        <p className={`mb-3 text-[0.74rem] font-black tracking-[0.24em] md:text-[0.82rem] ${isDark ? "text-yellow-500" : "text-red-500"}`}>
           {eyebrow}
         </p>
       ) : null}
-      <h2 className={`text-balance text-[2.1rem] font-black leading-[0.96] tracking-[-0.04em] sm:text-[2.5rem] md:text-[3.15rem] ${isDark ? "text-white" : "text-[#041544]"}`}>
+      <h2 className={`text-balance text-[2.1rem] font-black leading-[0.96] tracking-[-0.04em] sm:text-[2.5rem] md:text-[3.15rem] ${isDark ? "text-white" : "text-navy-900"}`}>
         {title}
       </h2>
-      <p className={`mx-auto mt-4 max-w-xl text-[0.96rem] font-medium leading-relaxed ${isDark ? "text-white/62" : "text-[#041544]/56"}`}>
+      <p className={`mx-auto mt-4 max-w-xl text-[0.96rem] font-medium leading-relaxed ${isDark ? "text-white/62" : "text-navy-900/60"}`}>
         {description}
       </p>
     </div>
@@ -340,8 +340,8 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
     <article
       className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] text-center transition-[box-shadow,transform] duration-300 hover:-translate-y-1 ${
         isSignature
-          ? "border-2 border-[#ffcf00] bg-[#0a214f] text-white shadow-[0_0_34px_rgba(255,207,0,0.22),0_26px_54px_rgba(0,0,0,0.5)]"
-          : "border border-[#0f2d75] bg-white text-[#001540] shadow-[0_18px_40px_rgba(0,0,0,0.22)] hover:shadow-[0_28px_58px_rgba(0,0,0,0.3)]"
+          ? "border-2 border-yellow-500 bg-navy-900 text-white shadow-[0_0_34px_rgba(255,207,0,0.22),0_26px_54px_rgba(0,0,0,0.5)]"
+          : "border border-hairline bg-white text-navy-900 shadow-[0_18px_40px_rgba(0,0,0,0.22)] hover:shadow-[0_28px_58px_rgba(0,0,0,0.3)]"
       }`}
     >
       {item.badge ? <StickerBadge tone={item.badge} rank={item.rank} /> : null}
@@ -367,10 +367,10 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
         />
       </div>
       <div className={`flex flex-1 flex-col ${featured ? "px-5 py-5 md:px-6 md:py-6" : "px-3.5 py-3.5 md:px-5 md:py-5"}`}>
-        <h3 className={`${featured ? "text-[1.55rem] md:text-[1.75rem]" : "text-[1.08rem] md:text-[1.38rem]"} flex min-h-[2.4em] items-center justify-center text-balance font-black leading-tight tracking-[-0.02em] [word-break:keep-all] ${isSignature ? "text-[#ffcf00]" : ""}`}>
+        <h3 className={`${featured ? "text-[1.55rem] md:text-[1.75rem]" : "text-[1.08rem] md:text-[1.38rem]"} flex min-h-[2.4em] items-center justify-center text-balance font-black leading-tight tracking-[-0.02em] [word-break:keep-all] ${isSignature ? "text-yellow-500" : ""}`}>
           {item.title}
         </h3>
-        <p className={`mx-auto mt-1.5 max-w-[18rem] text-[0.78rem] font-medium leading-snug md:mt-2 md:text-[0.86rem] md:leading-relaxed ${isSignature ? "text-white/60" : "text-[#001540]/54"}`}>
+        <p className={`mx-auto mt-1.5 max-w-[18rem] text-balance text-[0.78rem] font-medium leading-snug md:mt-2 md:text-[0.86rem] md:leading-relaxed ${isSignature ? "text-white/60" : "text-navy-900/54"}`}>
           {item.description}
         </p>
       </div>
@@ -380,7 +380,7 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
 
 function BestMenuSection() {
   return (
-    <section className="relative overflow-hidden bg-[#041544] px-4 pt-12 pb-9 md:pt-14 md:pb-14">
+    <section className="relative overflow-hidden bg-blue-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
       <DecorativeSectionImage src={generatedMenuAssets.best} className="opacity-30" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,21,68,0.82)_0%,rgba(4,21,68,0.7)_46%,rgba(4,21,68,0.9)_100%)]" />
       <div className="relative mx-auto max-w-7xl">
@@ -392,10 +392,10 @@ function BestMenuSection() {
           tone="dark"
         />
         <div className="relative mt-9 md:mt-12">
-          <span className="absolute left-[-2.6rem] top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#001540] shadow-[0_10px_24px_rgba(0,0,0,0.3)] lg:flex">
+          <span className="absolute left-[-2.6rem] top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-navy-900 shadow-[0_10px_24px_rgba(0,0,0,0.3)] lg:flex">
             <ArrowLeftIcon className="h-5 w-5" />
           </span>
-          <span className="absolute right-[-2.6rem] top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-[#001540] shadow-[0_10px_24px_rgba(0,0,0,0.3)] lg:flex">
+          <span className="absolute right-[-2.6rem] top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-navy-900 shadow-[0_10px_24px_rgba(0,0,0,0.3)] lg:flex">
             <ArrowRightIcon className="h-5 w-5" />
           </span>
           <div className="grid gap-5 md:grid-cols-3">
@@ -425,7 +425,7 @@ function AllMenuSection() {
         <SectionTitle
           id="menu-all"
           eyebrow="ALL MENU"
-          title={<>전체 <span className="text-[#ef4136]">메뉴</span></>}
+          title={<>전체 <span className="text-red-500">메뉴</span></>}
           description="대표 메뉴부터 클래식 메뉴까지 한 번에 확인하세요."
         />
         <div className="mt-9 space-y-10">
@@ -435,11 +435,11 @@ function AllMenuSection() {
               id={group.category === "best" ? undefined : `menu-${group.category}`}
               className="scroll-mt-28"
             >
-              <div className="mb-5 flex items-end justify-between gap-4 border-b border-[#001540]/10 pb-3">
-                <h3 className="text-[1.25rem] font-black leading-tight tracking-normal text-[#001540] md:text-[1.55rem]">
+              <div className="mb-5 flex items-end justify-between gap-4 border-b border-navy-900/10 pb-3">
+                <h3 className="text-[1.25rem] font-black leading-tight tracking-normal text-navy-900 md:text-[1.55rem]">
                   {allMenuCategoryTitle[group.category]}
                 </h3>
-                <span className="shrink-0 text-[0.78rem] font-black text-[#001540]/42">
+                <span className="shrink-0 text-[0.78rem] font-black text-navy-900/42">
                   {group.items.length}종
                 </span>
               </div>
@@ -458,14 +458,14 @@ function AllMenuSection() {
 
 function ReasonsBand() {
   return (
-    <section className="relative overflow-hidden border-y-2 border-black/5 bg-[#ffcf00] px-4 py-10 text-[#001540] md:py-14">
+    <section className="relative overflow-hidden border-y-2 border-black/5 bg-yellow-500 px-4 py-10 text-navy-900 md:py-14">
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">
-          <p className="mb-3 text-[0.74rem] font-black tracking-[0.24em] text-[#ef4136] md:text-[0.82rem]">
+          <p className="mb-3 text-[0.74rem] font-black tracking-[0.24em] text-red-500 md:text-[0.82rem]">
             STRONG REASON
           </p>
           <h2 className="text-balance text-[2rem] font-black leading-[0.96] tracking-[-0.04em] md:text-[3.15rem]">
-            최강피자 <span className="text-[#ef4136]">강한 이유</span>
+            최강피자 <span className="text-red-500">강한 이유</span>
           </h2>
         </div>
         <div className="mt-7 grid grid-cols-2 gap-3 md:mt-11 md:grid-cols-4 md:gap-6">
@@ -474,15 +474,15 @@ function ReasonsBand() {
               key={reason.title}
               className="group relative flex flex-col items-center rounded-[1rem] bg-white/25 px-3 py-5 text-center md:rounded-none md:bg-transparent md:px-2 md:py-0"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#001540] text-[#ffcf00] shadow-lg transition-transform group-hover:scale-110 md:h-16 md:w-16 [&_svg]:h-6 [&_svg]:w-6 md:[&_svg]:h-9 md:[&_svg]:w-9">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 shadow-lg transition-transform group-hover:scale-110 md:h-16 md:w-16 [&_svg]:h-6 [&_svg]:w-6 md:[&_svg]:h-9 md:[&_svg]:w-9">
                 <ReasonIcon type={reason.icon} />
               </div>
               <h3 className="mt-3 text-[0.98rem] font-black leading-tight md:mt-4 md:text-[1.2rem]">{reason.title}</h3>
-              <p className="mt-1.5 max-w-[11rem] text-[0.78rem] font-medium leading-snug text-[#001540]/62 md:mt-2 md:text-[0.86rem] md:leading-relaxed">
+              <p className="mt-1.5 max-w-[11rem] text-[0.78rem] font-medium leading-snug text-navy-900/62 md:mt-2 md:text-[0.86rem] md:leading-relaxed">
                 {reason.description}
               </p>
               {index < menuPageData.reasons.length - 1 ? (
-                <span className="absolute right-[-0.75rem] top-1/2 hidden h-12 w-px -translate-y-1/2 rotate-12 bg-[#001540]/10 md:block" />
+                <span className="absolute right-[-0.75rem] top-1/2 hidden h-12 w-px -translate-y-1/2 rotate-12 bg-navy-900/10 md:block" />
               ) : null}
             </div>
           ))}
@@ -508,7 +508,7 @@ function SideIllustration({ item }: { item: MenuPageSideItem }) {
 
 function SideMenuSection() {
   return (
-    <section id="menu-side" className="relative scroll-mt-28 overflow-hidden bg-[#001540] px-4 py-12 text-white md:py-[4.25rem]">
+    <section id="menu-side" className="relative scroll-mt-28 overflow-hidden bg-blue-band px-4 py-12 text-white md:py-[4.25rem]">
       <DecorativeSectionImage src={generatedMenuAssets.side} className="opacity-25" />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,21,64,0.85)_0%,rgba(0,21,64,0.72)_46%,rgba(0,21,64,0.9)_100%)]" />
       <div className="relative mx-auto max-w-7xl">
@@ -523,14 +523,14 @@ function SideMenuSection() {
           {menuPageData.sideItems.map((item) => (
             <article
               key={item.title}
-              className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border border-[#0f2d75] bg-white px-3 pb-4 pt-3 text-center text-[#001540] shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.32)] md:px-4 md:pb-5 md:pt-4"
+              className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border border-hairline bg-white px-3 pb-4 pt-3 text-center text-navy-900 shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.32)] md:px-4 md:pb-5 md:pt-4"
             >
               <SideIllustration item={item} />
               <h3 className="mt-3 flex min-h-[2.5rem] items-center justify-center text-balance text-[1rem] font-black leading-tight tracking-[-0.02em] md:text-[1.1rem]">
                 {item.title}
               </h3>
-              <span className="mx-auto mt-2 h-0.5 w-7 rounded-full bg-[#ffcf00]" />
-              <p className="mt-2.5 text-[0.74rem] font-medium leading-snug text-[#001540]/54 md:text-[0.8rem] md:leading-relaxed">{item.description}</p>
+              <span className="mx-auto mt-2 h-0.5 w-7 rounded-full bg-yellow-500" />
+              <p className="mt-2.5 text-balance text-[0.74rem] font-medium leading-snug text-navy-900/54 md:text-[0.8rem] md:leading-relaxed">{item.description}</p>
             </article>
           ))}
         </div>
@@ -541,14 +541,14 @@ function SideMenuSection() {
 
 function MenuCta() {
   return (
-    <section id="menu-contact" className="relative overflow-hidden bg-[#0c2a66] px-4 py-12 text-white md:py-16">
+    <section id="menu-contact" className="relative overflow-hidden bg-blue-band px-4 py-12 text-white md:py-16">
       <DecorativeSectionImage src={generatedMenuAssets.cta} className="object-[64%_center] opacity-30 md:object-center" />
       <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,42,102,0.96)_0%,rgba(12,42,102,0.84)_48%,rgba(12,42,102,0.32)_100%)]" />
       <div className="relative mx-auto grid max-w-7xl md:grid-cols-[0.68fr_0.32fr]">
         <div className="max-w-3xl text-left">
           <Sparkles className="mb-4" />
           <h2 className="max-w-[18rem] text-[1.9rem] font-black leading-[0.98] tracking-[-0.04em] [word-break:keep-all] md:max-w-[42rem] md:text-[3rem]">
-            오늘의 <span className="text-[#ffcf00]">최강 메뉴</span>를 만나보세요!
+            오늘의 <span className="text-yellow-500">최강 메뉴</span>를 만나보세요!
           </h2>
           <p className="mt-3 max-w-xl text-[0.98rem] font-bold text-white/72">
             메뉴 구성과 창업 상담까지 한 번에 확인해보세요.
@@ -556,16 +556,16 @@ function MenuCta() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a
               href="#menu-best"
-              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-[#ffcf00] px-10 text-[1.18rem] font-black text-[#001540] shadow-[0_18px_36px_rgba(0,0,0,0.28)] transition-all duration-300 hover:bg-[#ffd633] active:translate-y-px"
-              style={{ color: "#001540" }}
+              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-yellow-500 px-10 text-[1.18rem] font-black text-navy-900 shadow-[0_18px_36px_rgba(0,0,0,0.28)] transition-all duration-300 hover:bg-[#ffd633] active:translate-y-px"
+              style={{ color: "var(--color-navy-900)" }}
             >
               <StarIcon className="h-6 w-6" />
               베스트 메뉴
             </a>
             <Link
               href="/#contact-cta-section"
-              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-white px-10 text-[1.18rem] font-black text-[#001540] shadow-[0_18px_36px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-[#f7f9fd] active:translate-y-px"
-              style={{ color: "#001540" }}
+              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-white px-10 text-[1.18rem] font-black text-navy-900 shadow-[0_18px_36px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-[#f7f9fd] active:translate-y-px"
+              style={{ color: "var(--color-navy-900)" }}
             >
               <BuildingIcon />
               가맹문의
@@ -608,7 +608,7 @@ export function MenuPage() {
   return (
     <>
       <SiteHeader alwaysSolid activeHref="/menu" />
-      <main className="bg-[#041544] text-white">
+      <main className="bg-blue-video text-white">
         <MenuHero />
         <MenuTabs />
         <BestMenuSection />
