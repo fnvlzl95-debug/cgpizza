@@ -70,21 +70,21 @@ export function FocusSystemSection() {
           </p>
         </div>
 
-        <ul className="mt-block flex flex-col items-stretch gap-4 lg:flex-row lg:items-stretch lg:gap-0">
+        <ul className="mt-block grid grid-cols-2 gap-3 sm:gap-4 lg:flex lg:flex-row lg:items-stretch lg:gap-0">
           {data.cards.map((card) => (
             <li key={card.title} className="flex flex-col items-center lg:flex-1 lg:flex-row lg:items-stretch">
-              <article className="flex w-full flex-1 flex-col items-center rounded-panel bg-cream-card px-5 py-7 text-center shadow-card lg:px-pill lg:py-block">
-                <h3 className="text-[1.28rem] font-black tracking-[-0.04em] text-navy-900 lg:text-[clamp(1.15rem,1.75vw,1.85rem)]">
+              <article className="flex h-full w-full flex-1 flex-col items-center rounded-panel bg-cream-card px-3 py-5 text-center shadow-card sm:px-5 lg:px-pill lg:py-block">
+                <h3 className="text-[1rem] font-black tracking-[-0.04em] text-navy-900 sm:text-[1.2rem] lg:text-[clamp(1.15rem,1.75vw,1.85rem)]">
                   {card.title}
                 </h3>
                 <span aria-hidden="true" className="mt-group block h-0.5 w-14 bg-gold-600" />
 
                 {/* Every card gets the comp's cream disc, vector art included. */}
-                <span className="mt-block flex aspect-square w-[10.5rem] items-center justify-center overflow-hidden rounded-full bg-disc lg:w-[min(13.4vw,23vh)]">
+                <span className="mt-block flex aspect-square w-[6.6rem] items-center justify-center overflow-hidden rounded-full bg-disc sm:w-[9rem] lg:w-[min(13.4vw,23vh)]">
                   <CardArt art={card.art} />
                 </span>
 
-                <p className="mt-auto pt-block text-[0.9rem] leading-[1.8] text-navy-900/80 lg:text-[clamp(0.9rem,1.14vw,1.2rem)]">
+                <p className="mt-auto pt-block text-[0.8rem] leading-[1.7] text-navy-900/80 sm:text-[0.9rem] lg:text-[clamp(0.9rem,1.14vw,1.2rem)]">
                   {card.body.map((line, lineIndex) => (
                     <span
                       key={lineIndex}
@@ -97,7 +97,7 @@ export function FocusSystemSection() {
               </article>
 
               {card.connector ? (
-                <span className="my-3 flex justify-center lg:my-0 lg:mt-[min(12.4vw,21vh)] lg:w-gutter lg:shrink-0 lg:self-start">
+                <span className="hidden lg:mt-[min(12.4vw,21vh)] lg:flex lg:w-gutter lg:shrink-0 lg:justify-center lg:self-start">
                   <Operator symbol={card.connector} />
                 </span>
               ) : null}

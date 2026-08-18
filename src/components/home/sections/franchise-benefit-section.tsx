@@ -61,18 +61,21 @@ function RedUnderline() {
 function BenefitTable() {
   return (
     <div className="mt-block overflow-hidden rounded-card border border-hairline bg-white shadow-card">
-      <div className="grid grid-cols-[1fr] bg-navy-900 text-white lg:grid-cols-[22%_45%_33%]">
-        {data.columns.map((column, index) => (
-          <div
-            key={column}
-            className={`hidden py-3.5 text-center text-[1rem] font-black tracking-[-0.02em] lg:block lg:py-[min(0.52vw,0.92vh)] lg:text-[clamp(0.9rem,1.14vw,1.2rem)] ${
-              index === 0 ? "lg:block" : ""
-            }`}
-          >
-            {column}
-          </div>
-        ))}
-        <div className="py-3.5 text-center text-[1rem] font-black lg:hidden">가맹 혜택</div>
+      {/* Column head. Each label sits over its own column on the same axis as
+          the cells beneath it, rather than all three centred. */}
+      <div className="hidden bg-navy-900 text-white lg:grid lg:grid-cols-[26%_42%_32%] lg:py-[min(0.52vw,0.92vh)]">
+        <span className="pl-[2.2vw] text-[clamp(0.9rem,1.14vw,1.2rem)] font-black tracking-[-0.02em]">
+          {data.columns[0]}
+        </span>
+        <span className="text-center text-[clamp(0.9rem,1.14vw,1.2rem)] font-black tracking-[-0.02em]">
+          {data.columns[1]}
+        </span>
+        <span className="pr-[2.2vw] text-right text-[clamp(0.9rem,1.14vw,1.2rem)] font-black tracking-[-0.02em]">
+          {data.columns[2]}
+        </span>
+      </div>
+      <div className="bg-navy-900 py-3 text-center text-[0.95rem] font-black text-white lg:hidden">
+        가맹 혜택
       </div>
 
       {data.rows.map((row, index) => {
@@ -80,39 +83,44 @@ function BenefitTable() {
         return (
           <div
             key={row.label}
-            className={`grid grid-cols-1 items-center gap-y-2 px-5 py-5 lg:grid-cols-[22%_45%_33%] lg:gap-0 lg:px-0 lg:py-[min(0.58vw,1.03vh)] ${
+            className={`px-4 py-4 lg:grid lg:grid-cols-[26%_42%_32%] lg:items-center lg:px-0 lg:py-[min(0.58vw,1.03vh)] ${
               index > 0 ? "border-t border-hairline" : ""
             }`}
           >
-            <div className="flex items-center gap-3 lg:justify-start lg:pl-[2.2vw]">
+            <div className="flex items-center gap-3 lg:pl-[2.2vw]">
               <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white lg:h-[min(2.15vw,3.8vh)] lg:w-[min(2.15vw,3.8vh)]">
                 <Icon className="h-5 w-5 lg:h-[1.5vw] lg:w-[1.5vw]" />
               </span>
-              <span className="text-[1.05rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(1rem,1.42vw,1.5rem)]">
+              <span className="text-[1rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.98rem,1.32vw,1.4rem)]">
                 {row.label}
               </span>
             </div>
 
-            <p className="text-[0.92rem] text-navy-900/70 lg:text-center lg:text-[clamp(0.9rem,1.25vw,1.32rem)]">
+            <p className="mt-2 pl-12 text-[0.88rem] leading-relaxed text-navy-900/70 lg:mt-0 lg:pl-0 lg:text-center lg:text-[clamp(0.88rem,1.14vw,1.2rem)]">
               {row.detail}
             </p>
 
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 lg:justify-center lg:gap-x-[1vw]">
+            {/* Two fixed slots: the benefit always ends on the same axis and
+                the flag always starts on the next, so a row without a flag
+                does not shift its neighbour's wording sideways. */}
+            <div className="mt-2.5 flex items-center gap-2 pl-12 lg:mt-0 lg:grid lg:grid-cols-[1fr_auto] lg:gap-x-[1vw] lg:pl-0 lg:pr-[2.2vw]">
               <span
-                className={`inline-flex items-center gap-1 whitespace-nowrap text-[1.02rem] font-black tracking-[-0.03em] lg:text-[clamp(1rem,1.42vw,1.5rem)] ${
+                className={`inline-flex items-center justify-end gap-1 whitespace-nowrap text-[1rem] font-black tracking-[-0.03em] lg:text-[clamp(0.98rem,1.32vw,1.4rem)] ${
                   row.benefitTone === "red" ? "text-red-500" : "text-blue-band"
                 }`}
               >
                 {row.benefit}
-                {row.sparkle ? <SparkIcon className="h-4 w-4 text-yellow-500 lg:h-[1.5vw] lg:w-[1.5vw]" /> : null}
+                {row.sparkle ? <SparkIcon className="h-4 w-4 text-yellow-500 lg:h-[1.4vw] lg:w-[1.4vw]" /> : null}
               </span>
 
-              {row.flag ? (
-                <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-yellow-500 px-3 py-1.5 text-[0.78rem] font-black tracking-[-0.02em] text-navy-900 lg:px-pill lg:py-tight lg:text-[clamp(0.78rem,1.08vw,1.14rem)]">
-                  {row.flag}
-                  <span className="text-red-500">{row.flagIndex}</span>
-                </span>
-              ) : null}
+              <span className="lg:min-w-[11.5vw]">
+                {row.flag ? (
+                  <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-yellow-500 px-2.5 py-1 text-[0.74rem] font-black tracking-[-0.02em] text-navy-900 lg:px-pill lg:py-tight lg:text-[clamp(0.76rem,1.02vw,1.08rem)]">
+                    {row.flag}
+                    <span className="text-red-500">{row.flagIndex}</span>
+                  </span>
+                ) : null}
+              </span>
             </div>
           </div>
         );

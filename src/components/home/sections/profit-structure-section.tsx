@@ -124,9 +124,11 @@ export function ProfitStructureSection() {
           </p>
         </div>
 
-        <div className="mt-block grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:gap-[2.4vw]">
-          <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-[1.6vw]">
-            <div className="shrink-0 text-center lg:w-[9.5vw]">
+        <div className="mt-block grid grid-cols-1 items-center gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:gap-[2.4vw]">
+          <div className="flex flex-col items-center gap-4 lg:flex-row lg:gap-[1.6vw]">
+            {/* On a phone this figure already appears twice more — in the donut
+                and in the table total — so the standalone callout is desktop-only. */}
+            <div className="hidden shrink-0 text-center lg:block lg:w-[9.5vw]">
               <ChartIcon className="mx-auto h-12 w-12 text-orange-500 lg:h-[min(2.3vw,4.1vh)] lg:w-[min(2.3vw,4.1vh)]" />
               <span aria-hidden="true" className="mx-auto mt-3 block h-0.5 w-16 bg-gold-600 lg:w-full" />
               <p className="mt-3 text-[0.95rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.88rem,1.14vw,1.2rem)]">
@@ -142,7 +144,7 @@ export function ProfitStructureSection() {
               </p>
             </div>
 
-            <div className="w-full max-w-[26rem] lg:max-w-[min(18.5vw,32vh)]">
+            <div className="w-full max-w-[17.5rem] sm:max-w-[22rem] lg:max-w-[min(18.5vw,32vh)]">
               <ProfitDonut />
             </div>
           </div>
@@ -154,7 +156,7 @@ export function ProfitStructureSection() {
           {data.footnote}
         </p>
 
-        <ul className="mt-block grid grid-cols-1 gap-4 rounded-card bg-white/70 p-5 shadow-card sm:grid-cols-3 lg:gap-0 lg:p-tight">
+        <ul className="mt-block grid grid-cols-1 gap-3 rounded-card bg-white/70 p-4 shadow-card sm:grid-cols-3 lg:gap-0 lg:p-tight">
           {data.trust.map((item, index) => {
             const Icon = trustIcons[item.icon];
             return (
@@ -164,7 +166,7 @@ export function ProfitStructureSection() {
                   index > 0 ? "sm:border-l sm:border-hairline sm:pl-4 lg:pl-[2vw]" : ""
                 }`}
               >
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[min(2.7vw,4.8vh)] lg:w-[min(2.7vw,4.8vh)]">
+                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[min(2.7vw,4.8vh)] lg:w-[min(2.7vw,4.8vh)]">
                   <Icon className="h-8 w-8 lg:h-[2.4vw] lg:w-[2.4vw]" />
                 </span>
                 <span className="min-w-0">
