@@ -12,7 +12,7 @@ export function PhilosophySection() {
       {/* Blue band the card crosses into. */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-[22%] bg-blue-band lg:h-[28%]"
+        className="absolute inset-x-0 bottom-0 h-[35%] bg-blue-band lg:h-1/2"
       />
 
       <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">

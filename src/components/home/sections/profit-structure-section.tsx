@@ -10,6 +10,7 @@ import {
   WheatIcon,
 } from "@/components/home/icons";
 import { ProfitDonut } from "@/components/home/sections/profit-donut";
+import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { profitStructure as data } from "@/lib/home-content";
 
 /** Geometry from 44-수정후-.png. Orange is this section's accent, not gold. */
@@ -32,11 +33,11 @@ function SummaryTable() {
   return (
     <div className="relative w-full pt-6 lg:pt-[1.4vw]">
       {/* The comp straddles this pill across the card's top edge. */}
-      <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-navy-900 px-8 py-2.5 text-[1.05rem] font-black tracking-[-0.03em] text-white lg:px-card lg:py-[min(0.7vw,1.25vh)] lg:text-[clamp(1rem,1.35vw,1.42rem)]">
+      <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-navy-900 px-8 py-2.5 text-[1.05rem] font-black tracking-[-0.03em] text-white lg:px-card lg:py-[min(0.5vw,0.88vh)] lg:text-[clamp(0.95rem,1.2vw,1.28rem)]">
         {data.table.title}
       </div>
 
-      <div className="rounded-card bg-white px-5 pb-5 pt-8 shadow-card lg:px-card lg:pb-[1.35vw] lg:pt-[2vw]">
+      <div className="rounded-card bg-white px-5 pb-5 pt-8 shadow-card lg:px-card lg:pb-[0.9vw] lg:pt-[1.5vw]">
         <div className="flex items-center justify-between border-b border-hairline pb-2.5 text-[0.85rem] font-bold text-navy-900/55 lg:text-[clamp(0.8rem,0.98vw,1.02rem)]">
           <span className="pl-1">{data.table.columns[0]}</span>
           <span>{data.table.columns[1]}</span>
@@ -47,10 +48,10 @@ function SummaryTable() {
           return (
             <div
               key={row.label}
-              className="flex items-center justify-between gap-4 border-b border-dotted border-hairline py-3 lg:py-[min(0.52vw,0.95vh)]"
+              className="flex items-center justify-between gap-4 border-b border-dotted border-hairline py-3 lg:py-[min(0.3vw,0.54vh)]"
             >
               <span className="flex min-w-0 items-center gap-3 lg:gap-[1vw]">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EFF1F6] text-navy-900 lg:h-[min(2.4vw,4.3vh)] lg:w-[min(2.4vw,4.3vh)]">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EFF1F6] text-navy-900 lg:h-[min(1.95vw,3.45vh)] lg:w-[min(1.95vw,3.45vh)]">
                   <Icon className="h-5 w-5 lg:h-[1.4vw] lg:w-[1.4vw]" />
                 </span>
                 <span className="min-w-0 text-[0.98rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.9rem,1.14vw,1.2rem)]">
@@ -103,15 +104,15 @@ export function ProfitStructureSection() {
       className="app-screen-snap-target section-screen section-lead relative bg-cream-ground"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
-        {/* Gold rules flanking the top of the section, as in the comp. */}
-        <div aria-hidden="true" className="hidden items-center gap-6 lg:flex">
-          <span className="h-0.5 w-[22%] bg-gold-600" />
-          <span className="flex-1" />
-          <span className="h-0.5 w-[22%] bg-gold-600" />
+        {/* The comp's gold rules run either side of the section label. */}
+        <div className="flex items-center gap-6">
+          <span aria-hidden="true" className="hidden h-0.5 flex-1 bg-gold-600 lg:block" />
+          <EyebrowPill label={data.pill} />
+          <span aria-hidden="true" className="hidden h-0.5 flex-1 bg-gold-600 lg:block" />
         </div>
 
         <div className="motion-reveal mt-block text-center">
-          <h2 className="text-[1.85rem] font-black leading-[1.2] tracking-[-0.05em] text-navy-900 lg:text-[clamp(1.9rem,min(3.75vw,6.7vh),3.95rem)]">
+          <h2 className="text-[1.85rem] font-black leading-[1.2] tracking-[-0.05em] text-navy-900 lg:text-[clamp(1.8rem,min(3.2vw,5.7vh),3.4rem)]">
             {data.headlineLead}
             <span className="text-orange-500">{data.headlineAccent}</span>
             {data.headlineTail}
@@ -126,12 +127,12 @@ export function ProfitStructureSection() {
         <div className="mt-block grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.02fr)] lg:gap-[2.4vw]">
           <div className="flex flex-col items-center gap-6 lg:flex-row lg:gap-[1.6vw]">
             <div className="shrink-0 text-center lg:w-[9.5vw]">
-              <ChartIcon className="mx-auto h-12 w-12 text-orange-500 lg:h-[min(2.8vw,5vh)] lg:w-[min(2.8vw,5vh)]" />
+              <ChartIcon className="mx-auto h-12 w-12 text-orange-500 lg:h-[min(2.3vw,4.1vh)] lg:w-[min(2.3vw,4.1vh)]" />
               <span aria-hidden="true" className="mx-auto mt-3 block h-0.5 w-16 bg-gold-600 lg:w-full" />
               <p className="mt-3 text-[0.95rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.88rem,1.14vw,1.2rem)]">
                 {data.headlineStat.label}
               </p>
-              <p className="mt-1 whitespace-nowrap text-[2rem] font-black leading-none tracking-[-0.05em] text-orange-500 lg:text-[clamp(1.8rem,min(2.6vw,4.6vh),2.9rem)]">
+              <p className="mt-1 whitespace-nowrap text-[2rem] font-black leading-none tracking-[-0.05em] text-orange-500 lg:text-[clamp(1.6rem,min(2.2vw,3.9vh),2.5rem)]">
                 {data.headlineStat.value}
                 <span className="text-[0.55em]">%</span>
               </p>
@@ -141,7 +142,7 @@ export function ProfitStructureSection() {
               </p>
             </div>
 
-            <div className="w-full max-w-[26rem] lg:max-w-[min(21.5vw,37vh)]">
+            <div className="w-full max-w-[26rem] lg:max-w-[min(18.5vw,32vh)]">
               <ProfitDonut />
             </div>
           </div>
@@ -163,7 +164,7 @@ export function ProfitStructureSection() {
                   index > 0 ? "sm:border-l sm:border-hairline sm:pl-4 lg:pl-[2vw]" : ""
                 }`}
               >
-                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[min(3.4vw,6vh)] lg:w-[min(3.4vw,6vh)]">
+                <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[min(2.7vw,4.8vh)] lg:w-[min(2.7vw,4.8vh)]">
                   <Icon className="h-8 w-8 lg:h-[2.4vw] lg:w-[2.4vw]" />
                 </span>
                 <span className="min-w-0">

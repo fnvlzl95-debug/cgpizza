@@ -157,6 +157,7 @@ export const philosophy = {
 
 /* ── S4 · 수익 구조 (44-수정후-.png) ─────────────────────────── */
 export const profitStructure = {
+  pill: "PROFIT",
   headlineLead: "매출보다 중요한 건, 실제로 남는 ",
   headlineAccent: "수익",
   headlineTail: "입니다.",
@@ -222,6 +223,7 @@ export const profitStructure = {
 
 /* ── S5 · 집중운영 시스템 (77-중간 수정후.png) ───────────────── */
 export const focusSystem = {
+  pill: "SYSTEM",
   headlineLead: "최강피자 ",
   headlineAccent: "집중운영",
   headlineTail: " 시스템",
@@ -271,6 +273,7 @@ export const focusSystem = {
 
 /* ── S6 · 진짜 주방 (99- 하단 수정 부분.png) ─────────────────── */
 export const realKitchen = {
+  pill: "REAL KITCHEN",
   headline: [
     { text: "최강피자의", tone: "white" },
     { text: "진짜 주방을", tone: "gold" },
@@ -321,6 +324,7 @@ export const realKitchen = {
 
 /* ── S7 · 리뷰 증명 (88 — 구조 유지, 남색만 밝은 블루로) ────── */
 export const reviewProof = {
+  pill: "REVIEW",
   year: "2026년",
   lead: "고객님의 성원에 오픈 3개월",
   headlineLead: "매출",
@@ -336,6 +340,7 @@ export const reviewProof = {
 
 /* ── S8 · 가맹 문의 + 푸터 (10 — 그대로) ─────────────────────── */
 export const contact = {
+  pill: "CONTACT",
   headlineLead: "최강피자 ",
   headlineAccent: "가맹 문의",
   description: "브랜드 상담부터 운영 안내까지 빠르게 연결해드립니다.",

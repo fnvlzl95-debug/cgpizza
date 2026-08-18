@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { GrowthArt, TargetArt } from "@/components/home/icons";
+import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { focusSystem as data } from "@/lib/home-content";
 
 /** Geometry from 77-중간 수정후.png: yellow ground, four cream cards, navy operators. */
@@ -34,7 +35,7 @@ function Operator({ symbol }: { symbol: string }) {
   return (
     <span
       aria-hidden="true"
-      className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-[1.5rem] font-black leading-none text-yellow-500 shadow-raise lg:h-[3.6vw] lg:w-[3.6vw] lg:text-[clamp(1.4rem,2vw,2.1rem)]"
+      className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-[1.5rem] font-black leading-none text-yellow-500 shadow-raise lg:h-[min(4.13vw,7.3vh)] lg:w-[min(4.13vw,7.3vh)] lg:text-[clamp(1.4rem,2vw,2.1rem)]"
     >
       {symbol}
     </span>
@@ -54,7 +55,11 @@ export function FocusSystemSection() {
       />
 
       <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
-        <div className="motion-reveal text-center">
+        <div className="flex justify-center">
+          <EyebrowPill label={data.pill} />
+        </div>
+
+        <div className="motion-reveal mt-block text-center">
           <h2 className="text-[1.95rem] font-black leading-[1.2] tracking-[-0.05em] text-navy-900 lg:text-[clamp(2.4rem,4.6vw,4.85rem)]">
             {data.headlineLead}
             <span className="text-red-500">{data.headlineAccent}</span>
@@ -75,7 +80,7 @@ export function FocusSystemSection() {
                 <span aria-hidden="true" className="mt-group block h-0.5 w-14 bg-gold-600" />
 
                 {/* Every card gets the comp's cream disc, vector art included. */}
-                <span className="mt-block flex aspect-square w-[10.5rem] items-center justify-center overflow-hidden rounded-full bg-[#F3EAD4] lg:w-[min(13.4vw,23vh)]">
+                <span className="mt-block flex aspect-square w-[10.5rem] items-center justify-center overflow-hidden rounded-full bg-disc lg:w-[min(13.4vw,23vh)]">
                   <CardArt art={card.art} />
                 </span>
 
@@ -92,7 +97,7 @@ export function FocusSystemSection() {
               </article>
 
               {card.connector ? (
-                <span className="my-3 flex justify-center lg:my-0 lg:-mx-[1.8vw] lg:mt-[min(12.4vw,21vh)] lg:self-start">
+                <span className="my-3 flex justify-center lg:my-0 lg:mt-[min(12.4vw,21vh)] lg:w-gutter lg:shrink-0 lg:self-start">
                   <Operator symbol={card.connector} />
                 </span>
               ) : null}

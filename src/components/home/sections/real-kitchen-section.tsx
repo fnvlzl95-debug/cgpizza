@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { DiamondIcon, PlayIcon, ShieldIcon, SparkIcon } from "@/components/home/icons";
+import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { KakaoBadge } from "@/components/home/ui/kakao-badge";
 import { realKitchen as data } from "@/lib/home-content";
 
@@ -100,7 +101,8 @@ export function RealKitchenSection() {
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-[3vw]">
           <div className="motion-reveal">
-            <h2 className="text-[2.4rem] font-black leading-[1.14] tracking-[-0.05em] lg:text-[clamp(2.8rem,5.5vw,5.8rem)]">
+            <EyebrowPill label={data.pill} tone="contrast" />
+            <h2 className="mt-block text-[2.4rem] font-black leading-[1.14] tracking-[-0.05em] lg:text-[clamp(2.8rem,5.5vw,5.8rem)]">
               {data.headline.map((line) => (
                 <span
                   key={line.text}

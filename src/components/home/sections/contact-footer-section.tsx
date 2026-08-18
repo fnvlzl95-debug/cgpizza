@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { contact as data } from "@/lib/home-content";
 
 /** 10 ships unchanged; only the tokens are swapped for the new palette. */
@@ -50,7 +51,8 @@ export function ContactFooterSection() {
 
         <div className="relative mx-auto w-full max-w-[93.25rem] px-5 py-section md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
           <div className="motion-reveal text-center">
-            <h2 className="text-[1.95rem] font-black leading-[1.1] tracking-[-0.05em] lg:text-[clamp(2.2rem,3.6vw,3.8rem)]">
+            <EyebrowPill label={data.pill} tone="contrast" />
+            <h2 className="mt-block text-[1.95rem] font-black leading-[1.1] tracking-[-0.05em] lg:text-[clamp(2.2rem,3.6vw,3.8rem)]">
               {data.headlineLead}
               <span className="text-yellow-500">{data.headlineAccent}</span>
             </h2>
