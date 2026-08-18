@@ -118,7 +118,7 @@ export function RealKitchenSection() {
             ))}
           </h2>
 
-          <p className="mt-tight text-[0.88rem] text-white/80 lg:text-[clamp(0.86rem,0.98vw,1.04rem)]">
+          <p className="mx-auto mt-tight max-w-[42rem] text-balance text-[0.88rem] text-white/80 lg:text-[clamp(0.86rem,0.98vw,1.04rem)]">
             {data.body[0]}
             <span className="mt-0.5 block">
               <span className="font-black text-yellow-500">{data.bodyAccent}</span>
