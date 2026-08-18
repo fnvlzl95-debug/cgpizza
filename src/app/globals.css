@@ -294,6 +294,19 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   }
 }
 
+/* Carousel swap: the slots hold still and the clip inside one changes, so
+   the new frame fades up rather than cutting. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+.motion-fade {
+  animation: fade-up 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
 /* Review marquee: the track holds the same run twice, so translating it by
    exactly half its width loops seamlessly. CSS rather than JS keeps it off
    the main thread and stops it dead under reduced motion. */
@@ -340,6 +353,7 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   .motion-rise,
   .motion-swell,
   .motion-reveal,
+  .motion-fade,
   .marquee-track {
     animation: none;
   }

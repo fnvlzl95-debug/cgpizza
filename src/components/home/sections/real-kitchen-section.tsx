@@ -147,11 +147,11 @@ export function RealKitchenSection() {
                     }
                     className={`group relative block overflow-hidden rounded-card text-left ${
                       centre
-                        ? "w-[15rem] shadow-lift ring-2 ring-yellow-500 lg:w-[min(12.6vw,22.2vh)]"
-                        : "w-[9rem] opacity-55 shadow-card ring-1 ring-white/15 transition-opacity duration-200 hover:opacity-90 lg:w-[min(9.4vw,16.5vh)]"
+                        ? "w-[16rem] shadow-lift ring-2 ring-yellow-500 lg:w-[min(14.2vw,25vh)]"
+                        : "w-[10rem] opacity-55 shadow-card ring-1 ring-white/15 transition-opacity duration-200 hover:opacity-90 lg:w-[min(10.6vw,18.6vh)]"
                     }`}
                   >
-                    <span className="relative block aspect-[9/16] bg-navy-900">
+                    <span key={clip.src} className="motion-fade relative block aspect-[9/16] bg-navy-900">
                       {centre ? (
                         <video
                           ref={centreRef}
@@ -205,13 +205,6 @@ export function RealKitchenSection() {
                       ) : null}
                     </span>
 
-                    <span
-                      className={`block px-3 py-2 text-center text-[0.82rem] font-black leading-tight tracking-[-0.03em] lg:px-2 lg:text-[clamp(0.8rem,0.98vw,1.04rem)] ${
-                        centre ? "bg-yellow-500 text-navy-900" : "bg-navy-900 text-white"
-                      }`}
-                    >
-                      {clip.title.join(" ")}
-                    </span>
                   </button>
                 </li>
               );
