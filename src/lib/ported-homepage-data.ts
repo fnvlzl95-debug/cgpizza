@@ -113,8 +113,8 @@ export const portedHomepageData = {
     title: "최강피자 공식 홈페이지 | 부천본점·피자창업 가맹 문의",
     description:
       "최강피자 부천본점 메뉴, 방문포장 할인, 파로 도우 피자, 피자창업·샵인샵 가맹 상담을 안내합니다.",
-    ogImage: "/assets/user/최강피자SEO.png",
-    ogImages: ["/assets/user/최강피자SEO.png"],
+    ogImage: "/assets/user/share-preview-og-v2-1200x630.png",
+    ogImages: ["/assets/user/share-preview-og-v2-1200x630.png"],
   },
   navItems: [
     { label: "브랜드", href: "#top" },
@@ -279,8 +279,7 @@ export const portedHomepageData = {
           image: "/assets/user/franchise/shop-triptych-02.jpeg",
           title: "가맹 비용",
           lines: [
-            "가맹비 500만원 & 교육비 300만원 (부가세 별도)",
-            "※ 단, 20호점까지 가맹비·교육비 800만원 전액 지원",
+            "* 30호점 한정 혜택 안내는 홈 화면 가맹 혜택 표를 따릅니다.",
           ],
           tone: "blue",
           objectPosition: "center center",
@@ -289,8 +288,7 @@ export const portedHomepageData = {
           image: "/assets/user/franchise/shop-triptych-01.jpeg",
           title: "인테리어 비용",
           lines: [
-            "평당 최대 220만 원",
-            "에어컨 및 도시가스, 포스 및 키오스크(별도)",
+            "* 인테리어 직접 시공 가능 (조건 협의)",
           ],
           tone: "navy",
           objectPosition: "center 38%",
@@ -298,7 +296,7 @@ export const portedHomepageData = {
         {
           image: "/assets/user/franchise/shop-triptych-03.jpeg",
           title: "주방기구 비용",
-          lines: ["집기 구매 시 2,500만 원 ~ 3,000만원"],
+          lines: ["* 견적은 매장 실측 후 안내드립니다."],
           tone: "navy",
           objectPosition: "66% center",
         },

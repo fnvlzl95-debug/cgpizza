@@ -1,65 +1,235 @@
 @import "tailwindcss" source("../");
 
+/* ---------------------------------------------------------------
+   Design tokens — sampled directly from the approved comps in
+   디자인수정참고파일들/ (ffmpeg palettegen + pixel probes).
+   Do not eyeball-adjust these; re-sample the comp instead.
+   --------------------------------------------------------------- */
+@theme {
+  /* Brand blue — hero (11), philosophy band (33), kitchen (99), reviews (88) */
+  --color-blue-hero: #0032f0;
+  --color-blue-band: #0148e3;
+  --color-blue-video: #0133dd;
+
+  /* Navy — body copy, panels, table headers, scrolled header */
+  --color-navy-900: #011750;
+  --color-navy-800: #041342;
+  --color-navy-700: #051839;
+  --color-navy-600: #021b3d;
+
+  /* Gold / yellow */
+  --color-yellow-500: #fdd816;
+  --color-gold-400: #fcd666;
+  --color-gold-300: #fce374;
+  --color-gold-600: #e5bb53;
+
+  /* Orange — S4 profit structure ONLY. Never mix with gold. */
+  --color-orange-500: #f27920;
+  --color-orange-400: #f8a328;
+
+  /* Red — single-use emphasis (전액 면제 / 집중운영 / 2억) */
+  --color-red-500: #e12110;
+  --color-red-600: #db1412;
+
+  /* Neutrals */
+  --color-paper: #fdfdfd;
+  --color-cream-card: #f9f4ea;
+  --color-cream-ground: #faf6f2;
+  --color-rule: #ebe9e8;
+  --color-mist: #eef1f7;
+  --color-disc: #fbebc6;
+
+  /* ---------------------------------------------------------------
+     Vertical rhythm. Every comp sheet is one 1672×941 screen, so the
+     page is built to hold a section per viewport. These steps take the
+     smaller of a width fraction and a height fraction: on a 16:9 screen
+     the two agree, and on a shorter one the height term wins and the
+     rhythm compresses instead of pushing the section past the fold.
+     Use these — never a fresh `mt-[1.7vw]`.
+     --------------------------------------------------------------- */
+  --spacing-section: clamp(1.15rem, min(2.05vw, 3.6vh), 2.4rem);
+  --spacing-block: clamp(0.7rem, min(1.25vw, 2.2vh), 1.4rem);
+  --spacing-group: clamp(0.65rem, min(1.25vw, 2.2vh), 1.35rem);
+  --spacing-tight: clamp(0.4rem, min(0.7vw, 1.25vh), 0.75rem);
+
+  /* Distance from a section's top edge to its first content. Clears the
+     fixed header, then adds one breathing gap. Sections anchor to this
+     instead of centring, so a heading lands at the same height on every
+     screen as you page down. */
+  --spacing-lead: calc(var(--header-offset) + clamp(0.25rem, min(0.8vw, 1.4vh), 0.95rem));
+
+  /* Gutter between sibling cards in a row — 45px on the comps' 1672 frame. */
+  --spacing-gutter: clamp(0.75rem, min(2.7vw, 4.8vh), 3rem);
+
+  /* Gap from a section's label to whatever follows it. Its own step, so the
+     seven sections cannot drift apart the way they had — four were on
+     --spacing-block, two on --spacing-group, and they only agreed by
+     coincidence at one viewport size. */
+  --spacing-label: clamp(1rem, min(2vw, 3.5vh), 2.2rem);
+
+  /* Interior padding for cards, panels and pills. */
+  --spacing-card: clamp(1rem, min(1.55vw, 2.75vh), 1.8rem);
+  --spacing-pill: clamp(0.85rem, min(1.6vw, 2.8vh), 1.9rem);
+
+  /* ---------------------------------------------------------------
+     Elevation. Three steps, all tinted with the page's own navy rather
+     than black, and all with a real offset and blur. Fifteen invented
+     one-off shadows became these.
+     --------------------------------------------------------------- */
+  --shadow-raise: 0 8px 20px rgba(1, 23, 80, 0.2);
+  --shadow-card: 0 18px 44px rgba(1, 23, 80, 0.1);
+  --shadow-lift: 0 30px 72px rgba(1, 23, 80, 0.34);
+  --shadow-gold: 0 12px 24px rgba(253, 216, 22, 0.35);
+
+  /* One hairline, instead of navy at four different alphas. */
+  --color-hairline: rgba(1, 23, 80, 0.12);
+
+  /* Card corners. Three steps because the comps genuinely use three:
+     the soft system cards, the default card, and the tight navy band. */
+  --radius-panel: 1.5rem;
+  --radius-card: 1rem;
+  --radius-band: 0.5rem;
+}
+
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --header-offset: 76px;
   --app-height: 100svh;
 }
 
 @media (min-width: 768px) {
   :root {
-    --header-offset: 84px;
+    --header-offset: 96px;
   }
 }
 
-* {
-  box-sizing: border-box;
+/* ---------------------------------------------------------------
+   Short viewports.
+
+   A laptop's usable height is nothing like its screen height: Windows
+   display scaling reports a 1920×1080 panel as 1280×720 CSS pixels at
+   150%, and browser chrome takes another 60–120px off the top. The
+   width-based rhythm alone cannot see that, so the page reads its own
+   height and tightens rather than pushing sections past the fold.
+   --------------------------------------------------------------- */
+@media (max-height: 920px) {
+  :root {
+    --header-offset: 80px;
+    --spacing-section: clamp(0.8rem, 2.4vh, 1.7rem);
+    --spacing-block: clamp(0.55rem, 1.8vh, 1.15rem);
+    --spacing-group: clamp(0.4rem, 1.4vh, 0.9rem);
+    --spacing-tight: clamp(0.25rem, 0.85vh, 0.55rem);
+    --spacing-label: clamp(0.85rem, 3vh, 1.9rem);
+    --spacing-card: clamp(0.7rem, 2vh, 1.3rem);
+    --spacing-pill: clamp(0.6rem, 2.1vh, 1.4rem);
+    --spacing-gutter: clamp(0.6rem, 3.4vh, 2.2rem);
+  }
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: var(--header-offset);
+@media (max-height: 700px) {
+  :root {
+    --header-offset: 72px;
+    --spacing-section: clamp(0.6rem, 1.9vh, 1.2rem);
+    --spacing-block: clamp(0.45rem, 1.45vh, 0.85rem);
+    --spacing-group: clamp(0.3rem, 1.1vh, 0.65rem);
+    --spacing-tight: clamp(0.2rem, 0.7vh, 0.4rem);
+    --spacing-label: clamp(0.7rem, 2.4vh, 1.5rem);
+    --spacing-card: clamp(0.55rem, 1.6vh, 1rem);
+    --spacing-pill: clamp(0.5rem, 1.7vh, 1.1rem);
+  }
 }
 
-@media (min-width: 1024px) {
-  html,
+/* Element defaults live in @layer base on purpose. Unlayered rules outrank
+   every layered one, so an unlayered `img { display: block }` silently beats
+   Tailwind's `hidden` utility — `hidden lg:block` on an image then shows at
+   every width. Keeping these in base lets utilities override them. */
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    scroll-snap-type: y mandatory;
+    margin: 0;
+    min-height: 100vh;
+    background: var(--color-paper);
+    color: var(--color-navy-900);
+    overflow-x: hidden;
+    font-family:
+      "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+
+    /* Korean sets by 어절, not by character. Without keep-all the browser
+       breaks mid-word and strands a syllable alone on the last line —
+       "…나아 / 갈" — which reads as a typo rather than a line break.
+       `pretty` then keeps the last line from being a stub. */
+    word-break: keep-all;
+    text-wrap: pretty;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+  }
+
+  ::selection {
+    background: rgba(253, 216, 22, 0.45);
+    color: var(--color-navy-900);
+  }
+}
+
+/* One section per screen. Each comp sheet is a whole 1672×941 frame with the
+   header floating over it, not a band beneath one, so a section takes the
+   full viewport and centres its content; the header overlays the padding. */
+.section-screen {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100svh;
+}
+
+/* Content sections anchor their first element at --spacing-lead rather than
+   centring, which made the lead-in a computed value — 34px in a dense
+   section, 159px in a sparse one — that no token could govern. */
+#contact-cta {
+  scroll-margin-top: var(--header-offset);
+}
+
+.section-lead {
+  justify-content: flex-start;
+  padding-top: var(--spacing-lead);
+  padding-bottom: var(--spacing-section);
+}
+
+html[data-in-app-browser="kakao"] .section-screen {
+  min-height: var(--app-height);
+}
+
+/* Snapping is only safe where a section genuinely fits: below this height the
+   taller sections outgrow the viewport and mandatory snap would trap the
+   scroll partway through one. */
+@media (min-width: 1024px) and (min-height: 720px) {
+  /* Only the scrolling element declares the snap container. Declaring it on
+     html and body both nests one snapport inside another, and the snap then
+     resolves against the wrong box. */
+  html {
+    scroll-snap-type: y proximity;
   }
 
   .app-screen-snap-target {
     scroll-snap-align: start;
-    scroll-snap-stop: always;
   }
 }
 
 html[data-in-app-browser="kakao"] {
   scroll-behavior: auto;
-}
-
-body {
-  margin: 0;
-  min-height: 100vh;
-  background: #04122b;
-  color: #fff8eb;
-  overflow-x: hidden;
-  scroll-padding-top: var(--header-offset);
-  font-family:
-    "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  display: block;
-}
-
-::selection {
-  background: rgba(255, 222, 56, 0.3);
 }
 
 .text-balance {
@@ -124,8 +294,136 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   }
 }
 
+/* ---------------------------------------------------------------
+   Entrance motion.
+
+   These are CSS animations, not JS ones, on purpose: framer-motion's
+   `initial` state is decided per-environment, so the server renders
+   opacity:0 while a reduced-motion client renders opacity:1 — a
+   hydration mismatch that can strand the hero blank. CSS runs before
+   hydration, needs no JS, and honours the reduced-motion query itself.
+   --------------------------------------------------------------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+}
+
+@keyframes swell {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+.motion-rise {
+  animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--motion-delay, 0s);
+}
+
+.motion-swell {
+  animation: swell 1.1s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--motion-delay, 0s);
+}
+
+/* Scroll-triggered reveals where the browser supports view timelines.
+   Elsewhere the content simply renders in place, which is the correct
+   degradation for a page that must read without motion. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .motion-reveal {
+      animation: rise 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-timeline: view();
+      animation-range: entry 5% cover 26%;
+    }
+  }
+}
+
+/* Clip carousel card width. A single vw fraction cannot serve both ends:
+   11.4vw is 191px on a desktop and 44px on a phone, which is what shrank the
+   clips to thumbnails there. Each range gets its own fraction. */
+.clip-track {
+  --slide: min(56vw, 30vh);
+  --slide-gap: 0.6rem;
+  --stride: calc(var(--slide) + var(--slide-gap));
+}
+
+@media (min-width: 640px) {
+  .clip-track {
+    --slide: min(30vw, 26vh);
+    --slide-gap: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .clip-track {
+    --slide: min(11.4vw, 17.5vh);
+    --slide-gap: 0.85rem;
+  }
+}
+
+/* Carousel swap: the slots hold still and the clip inside one changes, so
+   the new frame fades up rather than cutting. */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+}
+
+.motion-fade {
+  animation: fade-up 0.42s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Review marquee: the track holds the same run twice, so translating it by
+   exactly half its width loops seamlessly. CSS rather than JS keeps it off
+   the main thread and stops it dead under reduced motion. */
+@keyframes marquee-left {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translate3d(-50%, 0, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: flex-start;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-left var(--marquee-duration, 90s) linear infinite;
+}
+
+.marquee-track[data-direction="right"] {
+  animation-name: marquee-right;
+}
+
+.marquee-viewport:hover .marquee-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .motion-rise,
+  .motion-swell,
+  .motion-reveal,
+  .motion-fade,
+  .marquee-track {
+    animation: none;
   }
 }

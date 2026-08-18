@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { PortedHomepage } from "@/components/home/ported/ported-homepage";
+import { HomePage } from "@/components/home/home-page";
 import { portedHomepageData } from "@/lib/ported-homepage-data";
 import { siteUrl } from "@/lib/site-config";
 
 const absoluteUrl = (path: string) => new URL(path, siteUrl).toString();
 
 const brandImage = absoluteUrl(portedHomepageData.metadata.ogImage);
-const brandImageAlt = "매출의 한계를 넘는 가장 확실한 선택 - 최강피자";
-const brandImageWidth = 1731;
-const brandImageHeight = 909;
+const brandImageAlt = "최강피자 대표 피자와 브랜드 안내 이미지";
+const brandImageWidth = 1200;
+const brandImageHeight = 630;
 const brandLogo = absoluteUrl("/assets/user/logo-mark-blue.png");
 
 const searchPromoCards = [
@@ -20,22 +20,22 @@ const searchPromoCards = [
   {
     name: "소형 매장 최적화",
     image: absoluteUrl("/assets/user/franchise/small-store-front-20260511.png"),
-    url: absoluteUrl("/#contact-section"),
+    url: absoluteUrl("/#contact-cta"),
   },
   {
-    name: "최강 샵인샵 안내",
+    name: "함께 성장할 점주 모집",
     image: absoluteUrl("/assets/user/franchise/shop-in-shop-message.jpeg"),
-    url: absoluteUrl("/#shopinshop-intro-section"),
+    url: absoluteUrl("/#philosophy"),
   },
   {
-    name: "준비된 주방 운영 구조",
+    name: "최강피자의 진짜 주방",
     image: absoluteUrl("/assets/user/franchise/shop-triptych-02.jpeg"),
-    url: absoluteUrl("/#shopinshop-section"),
+    url: absoluteUrl("/#real-kitchen"),
   },
   {
-    name: "추가 수익 운영 동선",
+    name: "집중 운영 시스템",
     image: absoluteUrl("/assets/user/franchise/shop-triptych-01.jpeg"),
-    url: absoluteUrl("/#threeway-section"),
+    url: absoluteUrl("/#focus-system"),
   },
 ] as const;
 
@@ -115,14 +115,14 @@ export const metadata: Metadata = {
   },
 };
 
-export default function HomePage() {
+export default function Page() {
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageStructuredData) }}
       />
-      <PortedHomepage />
+      <HomePage />
     </>
   );
 }
