@@ -78,7 +78,7 @@ export function ReviewProofSection() {
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-5">
         <div className="motion-reveal pointer-events-auto w-full max-w-[28rem] rounded-card bg-blue-band px-8 py-block text-center text-white shadow-lift lg:max-w-[31vw] lg:px-card">
           <EyebrowPill label={data.pill} tone="contrast" />
-          <p className="mt-group text-[0.85rem] font-black tracking-[0.14em] text-yellow-500 lg:text-[clamp(0.8rem,1vw,1.05rem)]">
+          <p className="mt-label text-[0.85rem] font-black tracking-[0.14em] text-yellow-500 lg:text-[clamp(0.8rem,1vw,1.05rem)]">
             {data.year}
           </p>
           <p className="mt-group text-[1.1rem] font-black tracking-[-0.03em] lg:text-[clamp(1.05rem,1.42vw,1.5rem)]">

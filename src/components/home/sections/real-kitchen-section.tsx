@@ -156,7 +156,7 @@ export function RealKitchenSection() {
           <EyebrowPill label={data.pill} tone="contrast" />
         </div>
 
-        <div className="motion-reveal mt-group text-center">
+        <div className="motion-reveal mt-label text-center">
           {/* Two registers rather than one: the lead-in sits back and the
               claim carries the weight, which is where the other sections put
               theirs too. */}

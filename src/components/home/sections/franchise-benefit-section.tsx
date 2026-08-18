@@ -142,7 +142,7 @@ export function FranchiseBenefitSection() {
           <EyebrowPill label={data.pill} />
         </div>
 
-        <div className="motion-reveal mt-block text-center">
+        <div className="motion-reveal mt-label text-center">
           <h2 className="font-black leading-[1.12] tracking-[-0.045em] text-navy-900">
             {/* Flex, not inline-block: shrink-to-fit sizes these against the
                 available inline width, which collapsed the marked phrase to a

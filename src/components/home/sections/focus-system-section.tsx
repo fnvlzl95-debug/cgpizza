@@ -59,7 +59,7 @@ export function FocusSystemSection() {
           <EyebrowPill label={data.pill} />
         </div>
 
-        <div className="motion-reveal mt-block text-center">
+        <div className="motion-reveal mt-label text-center">
           <h2 className="text-[1.95rem] font-black leading-[1.2] tracking-[-0.05em] text-navy-900 lg:text-[clamp(2.4rem,4.6vw,4.85rem)]">
             {data.headlineLead}
             <span className="text-red-500">{data.headlineAccent}</span>

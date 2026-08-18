@@ -20,7 +20,7 @@ export function PhilosophySection() {
           <EyebrowPill label={data.pill} tone="outline" />
         </div>
 
-        <div className="motion-reveal mt-block text-center">
+        <div className="motion-reveal mt-label text-center">
           <h2 className="text-navy-900">
             <span className="block text-[1.7rem] font-bold tracking-[-0.04em] lg:text-[clamp(1.9rem,2.9vw,3.05rem)]">
               {data.headlineLead}

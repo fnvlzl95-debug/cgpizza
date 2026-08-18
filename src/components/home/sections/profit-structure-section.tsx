@@ -111,7 +111,7 @@ export function ProfitStructureSection() {
           <span aria-hidden="true" className="hidden h-0.5 flex-1 bg-gold-600 lg:block" />
         </div>
 
-        <div className="motion-reveal mt-block text-center">
+        <div className="motion-reveal mt-label text-center">
           <h2 className="text-[1.85rem] font-black leading-[1.2] tracking-[-0.05em] text-navy-900 lg:text-[clamp(1.8rem,min(3.2vw,5.7vh),3.4rem)]">
             {data.headlineLead}
             <span className="text-orange-500">{data.headlineAccent}</span>
