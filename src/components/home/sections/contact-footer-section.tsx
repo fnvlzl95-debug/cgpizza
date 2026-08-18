@@ -62,7 +62,7 @@ export function ContactFooterSection() {
           <div className="mx-auto mt-block grid max-w-[62rem] gap-4 md:grid-cols-2 lg:gap-group">
             <a
               href={data.phone.href}
-              className="flex items-center gap-4 rounded-xl bg-yellow-500 px-6 py-6 text-navy-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-[1.2vw] lg:px-[2vw] lg:py-[1.6vw]"
+              className="flex items-center gap-4 rounded-card bg-yellow-500 px-6 py-6 text-navy-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
             >
               <PhoneGlyph />
               <span className="min-w-0">
@@ -77,7 +77,7 @@ export function ContactFooterSection() {
 
             <a
               href={data.email.href}
-              className="flex items-center gap-4 rounded-xl bg-white px-6 py-6 text-navy-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-[1.2vw] lg:px-[2vw] lg:py-[1.6vw]"
+              className="flex items-center gap-4 rounded-card bg-white px-6 py-6 text-navy-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
             >
               <MailGlyph />
               <span className="min-w-0">

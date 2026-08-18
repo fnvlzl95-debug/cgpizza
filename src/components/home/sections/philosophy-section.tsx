@@ -8,7 +8,7 @@ import { philosophy as data } from "@/lib/home-content";
  */
 export function PhilosophySection() {
   return (
-    <section id="philosophy" className="app-screen-snap-target section-screen relative bg-paper py-section">
+    <section id="philosophy" className="app-screen-snap-target section-screen section-lead relative bg-paper">
       {/* Blue band the card crosses into. */}
       <div
         aria-hidden="true"
@@ -31,8 +31,8 @@ export function PhilosophySection() {
           </h2>
         </div>
 
-        <div className="motion-reveal mt-block grid grid-cols-1 overflow-hidden rounded-2xl bg-white shadow-[0_26px_60px_rgba(1,23,80,0.14)] lg:grid-cols-2">
-          <div className="relative flex items-center gap-4 px-6 py-block lg:px-[3vw]">
+        <div className="motion-reveal mt-block grid grid-cols-1 overflow-hidden rounded-card bg-white shadow-card lg:grid-cols-2">
+          <div className="relative flex items-center gap-4 px-6 py-block lg:px-card">
             <div className="min-w-0 flex-1">
               <svg
                 viewBox="0 0 40 30"

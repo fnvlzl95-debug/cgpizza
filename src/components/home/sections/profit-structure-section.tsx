@@ -32,12 +32,12 @@ function SummaryTable() {
   return (
     <div className="relative w-full pt-6 lg:pt-[1.4vw]">
       {/* The comp straddles this pill across the card's top edge. */}
-      <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-navy-900 px-8 py-2.5 text-[1.05rem] font-black tracking-[-0.03em] text-white lg:px-[2.4vw] lg:py-[min(0.7vw,1.25vh)] lg:text-[clamp(1rem,1.35vw,1.42rem)]">
+      <div className="absolute left-1/2 top-0 z-10 -translate-x-1/2 whitespace-nowrap rounded-full bg-navy-900 px-8 py-2.5 text-[1.05rem] font-black tracking-[-0.03em] text-white lg:px-card lg:py-[min(0.7vw,1.25vh)] lg:text-[clamp(1rem,1.35vw,1.42rem)]">
         {data.table.title}
       </div>
 
-      <div className="rounded-xl bg-white px-5 pb-5 pt-8 shadow-[0_18px_44px_rgba(1,23,80,0.08)] lg:px-[1.35vw] lg:pb-[1.35vw] lg:pt-[2vw]">
-        <div className="flex items-center justify-between border-b border-rule pb-2.5 text-[0.85rem] font-bold text-navy-900/55 lg:text-[clamp(0.8rem,0.98vw,1.02rem)]">
+      <div className="rounded-card bg-white px-5 pb-5 pt-8 shadow-card lg:px-card lg:pb-[1.35vw] lg:pt-[2vw]">
+        <div className="flex items-center justify-between border-b border-hairline pb-2.5 text-[0.85rem] font-bold text-navy-900/55 lg:text-[clamp(0.8rem,0.98vw,1.02rem)]">
           <span className="pl-1">{data.table.columns[0]}</span>
           <span>{data.table.columns[1]}</span>
         </div>
@@ -47,7 +47,7 @@ function SummaryTable() {
           return (
             <div
               key={row.label}
-              className="flex items-center justify-between gap-4 border-b border-dotted border-navy-900/22 py-3 lg:py-[min(0.52vw,0.95vh)]"
+              className="flex items-center justify-between gap-4 border-b border-dotted border-hairline py-3 lg:py-[min(0.52vw,0.95vh)]"
             >
               <span className="flex min-w-0 items-center gap-3 lg:gap-[1vw]">
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[#EFF1F6] text-navy-900 lg:h-[min(2.4vw,4.3vh)] lg:w-[min(2.4vw,4.3vh)]">
@@ -69,7 +69,7 @@ function SummaryTable() {
           );
         })}
 
-        <div className="flex items-center justify-between border-t border-navy-900/25 py-3 lg:py-[0.6vw]">
+        <div className="flex items-center justify-between border-t border-hairline py-3 lg:py-tight">
           <span className="pl-1 text-[1.05rem] font-black tracking-[-0.03em] text-orange-500 lg:text-[clamp(1rem,1.28vw,1.34rem)]">
             {data.table.total.label}
           </span>
@@ -78,14 +78,14 @@ function SummaryTable() {
           </span>
         </div>
 
-        <div className="mt-3 flex flex-col items-stretch gap-3 rounded-xl bg-navy-900 px-5 py-4 text-white sm:flex-row sm:items-center sm:justify-between lg:mt-[0.7vw] lg:px-[1.6vw] lg:py-[0.7vw]">
+        <div className="mt-3 flex flex-col items-stretch gap-3 rounded-card bg-navy-900 px-5 py-4 text-white sm:flex-row sm:items-center sm:justify-between lg:mt-[0.7vw] lg:px-card lg:py-tight">
           <span className="flex items-center gap-2.5 text-[0.92rem] font-bold lg:text-[clamp(0.85rem,1.08vw,1.14rem)]">
             <SealIcon className="h-6 w-6 shrink-0 text-yellow-500" />
             {data.table.cta.question}
           </span>
           <a
             href={data.table.cta.href}
-            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-lg bg-orange-500 px-5 py-2.5 text-[0.9rem] font-black tracking-[-0.03em] text-white transition-transform duration-200 hover:-translate-y-0.5 lg:px-[1.4vw] lg:text-[clamp(0.85rem,1.05vw,1.1rem)]"
+            className="group inline-flex shrink-0 items-center justify-center gap-2 rounded-band bg-orange-500 px-5 py-2.5 text-[0.9rem] font-black tracking-[-0.03em] text-white transition-transform duration-200 hover:-translate-y-0.5 lg:px-pill lg:text-[clamp(0.85rem,1.05vw,1.1rem)]"
           >
             {data.table.cta.label}
             <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -100,7 +100,7 @@ export function ProfitStructureSection() {
   return (
     <section
       id="profit-structure"
-      className="app-screen-snap-target section-screen relative bg-cream-ground py-section"
+      className="app-screen-snap-target section-screen section-lead relative bg-cream-ground"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         {/* Gold rules flanking the top of the section, as in the comp. */}
@@ -153,14 +153,14 @@ export function ProfitStructureSection() {
           {data.footnote}
         </p>
 
-        <ul className="mt-block grid grid-cols-1 gap-4 rounded-2xl bg-white/70 p-5 shadow-[0_14px_34px_rgba(1,23,80,0.06)] sm:grid-cols-3 lg:gap-0 lg:p-tight">
+        <ul className="mt-block grid grid-cols-1 gap-4 rounded-card bg-white/70 p-5 shadow-card sm:grid-cols-3 lg:gap-0 lg:p-tight">
           {data.trust.map((item, index) => {
             const Icon = trustIcons[item.icon];
             return (
               <li
                 key={item.title}
-                className={`flex items-center gap-4 lg:justify-center lg:gap-[1.2vw] ${
-                  index > 0 ? "sm:border-l sm:border-rule sm:pl-4 lg:pl-[2vw]" : ""
+                className={`flex items-center gap-4 lg:justify-center lg:gap-group ${
+                  index > 0 ? "sm:border-l sm:border-hairline sm:pl-4 lg:pl-[2vw]" : ""
                 }`}
               >
                 <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[min(3.4vw,6vh)] lg:w-[min(3.4vw,6vh)]">

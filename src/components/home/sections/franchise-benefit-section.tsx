@@ -60,7 +60,7 @@ function RedUnderline() {
 
 function BenefitTable() {
   return (
-    <div className="mt-block overflow-hidden rounded-2xl border border-rule bg-white shadow-[0_18px_44px_rgba(1,23,80,0.08)] lg:mr-[9.2vw]">
+    <div className="mt-block overflow-hidden rounded-card border border-hairline bg-white shadow-card lg:mr-[9.2vw]">
       <div className="grid grid-cols-[1fr] bg-navy-900 text-white lg:grid-cols-[22%_45%_33%]">
         {data.columns.map((column, index) => (
           <div
@@ -81,7 +81,7 @@ function BenefitTable() {
           <div
             key={row.label}
             className={`grid grid-cols-1 items-center gap-y-2 px-5 py-5 lg:grid-cols-[22%_45%_33%] lg:gap-0 lg:px-0 lg:py-[min(0.85vw,1.5vh)] ${
-              index > 0 ? "border-t border-rule" : ""
+              index > 0 ? "border-t border-hairline" : ""
             }`}
           >
             <div className="flex items-center gap-3 lg:justify-start lg:pl-[2.2vw]">
@@ -108,7 +108,7 @@ function BenefitTable() {
               </span>
 
               {row.flag ? (
-                <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-yellow-500 px-3 py-1.5 text-[0.78rem] font-black tracking-[-0.02em] text-navy-900 lg:px-[1.1vw] lg:py-[0.42vw] lg:text-[clamp(0.78rem,1.08vw,1.14rem)]">
+                <span className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-yellow-500 px-3 py-1.5 text-[0.78rem] font-black tracking-[-0.02em] text-navy-900 lg:px-pill lg:py-tight lg:text-[clamp(0.78rem,1.08vw,1.14rem)]">
                   {row.flag}
                   <span className="text-red-500">{row.flagIndex}</span>
                 </span>
@@ -125,7 +125,7 @@ export function FranchiseBenefitSection() {
   return (
     <section
       id="franchise-benefit"
-      className="app-screen-snap-target section-screen relative bg-paper py-section"
+      className="app-screen-snap-target section-screen section-lead relative bg-paper"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="flex justify-center">
@@ -169,7 +169,7 @@ export function FranchiseBenefitSection() {
             unoptimized
             className="pointer-events-none -mb-2 hidden h-auto w-[min(6.8vw,12vh)] shrink-0 select-none lg:block"
           />
-          <div className="w-full rounded-lg bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[min(1.5vw,2.7vh)] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
+          <div className="w-full rounded-band bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-card lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
             <div className="flex items-center justify-center gap-3 lg:justify-start lg:gap-[1.4vw]">
               <span className="hidden h-[min(3.4vw,6vh)] w-[min(3.4vw,6vh)] shrink-0 items-center justify-center rounded-full bg-white lg:flex">
                 <Image

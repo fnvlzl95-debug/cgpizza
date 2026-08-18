@@ -23,7 +23,7 @@ const rows = [
 function ReviewCard({ slide }: { slide: (typeof data.slides)[number] }) {
   return (
     <div className="w-[15rem] shrink-0 sm:w-[19rem] lg:w-[21vw]">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-navy-900/8 bg-white shadow-[0_14px_34px_rgba(1,23,80,0.1)]">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-card border border-hairline bg-white shadow-card">
         <Image
           src={slide.src}
           alt=""
@@ -75,7 +75,7 @@ export function ReviewProofSection() {
 
       {/* The panel sits over the moving rows, so it needs its own ground. */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-5">
-        <div className="motion-reveal pointer-events-auto w-full max-w-[28rem] rounded-2xl bg-blue-band px-8 py-block text-center text-white shadow-[0_34px_90px_rgba(1,23,80,0.42)] lg:max-w-[31vw] lg:px-[3vw]">
+        <div className="motion-reveal pointer-events-auto w-full max-w-[28rem] rounded-card bg-blue-band px-8 py-block text-center text-white shadow-lift lg:max-w-[31vw] lg:px-card">
           <p className="text-[0.85rem] font-black tracking-[0.14em] text-yellow-500 lg:text-[clamp(0.8rem,1vw,1.05rem)]">
             {data.year}
           </p>
@@ -94,7 +94,7 @@ export function ReviewProofSection() {
               <p key={line}>{line}</p>
             ))}
           </div>
-          <p className="mt-block inline-flex items-center gap-3 rounded-full bg-navy-900 px-6 py-3 lg:px-[1.8vw] lg:py-[0.8vw]">
+          <p className="mt-block inline-flex items-center gap-3 rounded-full bg-navy-900 px-6 py-3 lg:px-pill lg:py-tight">
             <span aria-hidden="true" className="text-[0.95rem] tracking-[0.14em] text-yellow-500">
               ★★★★★
             </span>

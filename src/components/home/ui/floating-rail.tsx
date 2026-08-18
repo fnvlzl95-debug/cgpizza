@@ -26,7 +26,7 @@ export function FloatingRail() {
         href={floatingRail.talk.href}
         target="_blank"
         rel="noreferrer"
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-[0.72rem] font-black tracking-[0.04em] text-white shadow-[0_10px_24px_rgba(1,23,80,0.28)] transition-transform duration-200 hover:-translate-y-0.5 md:h-16 md:w-16 md:text-[0.8rem]"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-[0.72rem] font-black tracking-[0.04em] text-white shadow-raise transition-transform duration-200 hover:-translate-y-0.5 md:h-16 md:w-16 md:text-[0.8rem]"
       >
         TALK
         <span className="sr-only">{floatingRail.talk.label}</span>
@@ -35,7 +35,7 @@ export function FloatingRail() {
       <a
         href={floatingRail.inquiry.href}
         aria-label={floatingRail.inquiry.label}
-        className="flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-[0_10px_24px_rgba(1,23,80,0.28)] transition-transform duration-200 hover:-translate-y-0.5 md:h-16 md:w-16"
+        className="flex h-14 w-14 items-center justify-center rounded-full bg-navy-900 text-white shadow-raise transition-transform duration-200 hover:-translate-y-0.5 md:h-16 md:w-16"
       >
         <svg viewBox="0 0 24 24" className="h-6 w-6" fill="none" aria-hidden="true">
           <path
@@ -52,7 +52,7 @@ export function FloatingRail() {
         type="button"
         onClick={toTop}
         aria-label={floatingRail.top.label}
-        className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-navy-900/12 bg-white text-[0.72rem] font-black tracking-[0.04em] text-navy-900 shadow-[0_10px_24px_rgba(1,23,80,0.18)] transition-transform duration-200 hover:-translate-y-0.5 md:h-16 md:w-16 md:text-[0.8rem]"
+        className="flex h-14 w-14 items-center justify-center rounded-full border-2 border-hairline bg-white text-[0.72rem] font-black tracking-[0.04em] text-navy-900 shadow-raise transition-transform duration-200 hover:-translate-y-0.5 md:h-16 md:w-16 md:text-[0.8rem]"
       >
         TOP
       </button>

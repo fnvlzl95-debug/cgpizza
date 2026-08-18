@@ -50,6 +50,35 @@
   --spacing-block: clamp(0.85rem, min(1.55vw, 2.75vh), 1.7rem);
   --spacing-group: clamp(0.65rem, min(1.25vw, 2.2vh), 1.35rem);
   --spacing-tight: clamp(0.4rem, min(0.7vw, 1.25vh), 0.75rem);
+
+  /* Distance from a section's top edge to its first content. Clears the
+     fixed header, then adds one breathing gap. Sections anchor to this
+     instead of centring, so a heading lands at the same height on every
+     screen as you page down. */
+  --spacing-lead: calc(var(--header-offset) + clamp(0.5rem, min(1.5vw, 2.6vh), 1.6rem));
+
+  /* Interior padding for cards, panels and pills. */
+  --spacing-card: clamp(1rem, min(1.55vw, 2.75vh), 1.8rem);
+  --spacing-pill: clamp(0.85rem, min(1.6vw, 2.8vh), 1.9rem);
+
+  /* ---------------------------------------------------------------
+     Elevation. Three steps, all tinted with the page's own navy rather
+     than black, and all with a real offset and blur. Fifteen invented
+     one-off shadows became these.
+     --------------------------------------------------------------- */
+  --shadow-raise: 0 8px 20px rgba(1, 23, 80, 0.2);
+  --shadow-card: 0 18px 44px rgba(1, 23, 80, 0.1);
+  --shadow-lift: 0 30px 72px rgba(1, 23, 80, 0.34);
+  --shadow-gold: 0 12px 24px rgba(253, 216, 22, 0.35);
+
+  /* One hairline, instead of navy at four different alphas. */
+  --color-hairline: rgba(1, 23, 80, 0.12);
+
+  /* Card corners. Three steps because the comps genuinely use three:
+     the soft system cards, the default card, and the tight navy band. */
+  --radius-panel: 1.5rem;
+  --radius-card: 1rem;
+  --radius-band: 0.5rem;
 }
 
 :root {
@@ -60,7 +89,7 @@
 
 @media (min-width: 768px) {
   :root {
-    --header-offset: 84px;
+    --header-offset: 96px;
   }
 }
 
@@ -120,6 +149,15 @@
   flex-direction: column;
   justify-content: center;
   min-height: 100svh;
+}
+
+/* Content sections anchor their first element at --spacing-lead rather than
+   centring, which made the lead-in a computed value — 34px in a dense
+   section, 159px in a sparse one — that no token could govern. */
+.section-lead {
+  justify-content: flex-start;
+  padding-top: var(--spacing-lead);
+  padding-bottom: var(--spacing-section);
 }
 
 html[data-in-app-browser="kakao"] .section-screen {

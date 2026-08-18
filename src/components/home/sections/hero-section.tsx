@@ -63,7 +63,7 @@ function CrumbScatter({ className }: { className: string }) {
 
 function BestSeal() {
   return (
-    <div className="absolute right-[4%] top-[11%] z-20 flex aspect-square w-[3.9rem] items-center justify-center rounded-full bg-red-500 text-white shadow-[0_12px_28px_rgba(1,23,80,0.4)] lg:right-auto lg:left-[75.2%] lg:top-[11.3%] lg:w-[14.2%]">
+    <div className="absolute right-[4%] top-[11%] z-20 flex aspect-square w-[3.9rem] items-center justify-center rounded-full bg-red-500 text-white shadow-raise lg:right-auto lg:left-[75.2%] lg:top-[11.3%] lg:w-[14.2%]">
       <span className="absolute inset-[9%] rounded-full border-2 border-dashed border-white/85" />
       <span className="relative flex flex-col items-center leading-none">
         <span className="text-[0.42rem] tracking-[0.18em] lg:text-[0.62vw]">★★★</span>

@@ -60,7 +60,7 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-navy-900/95 shadow-[0_10px_30px_rgba(1,23,80,0.18)] backdrop-blur-md"
+          ? "bg-navy-900/95 shadow-card backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
@@ -107,7 +107,7 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
             data-header-cta
             href={headerCta.href}
             onClick={(event) => handleNavClick(event, headerCta.href)}
-            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-yellow-500 px-[2.24vw] py-3.5 text-[0.95rem] font-black tracking-[-0.03em] text-navy-900 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-[0_12px_24px_rgba(253,216,22,0.35)] lg:text-[clamp(0.9rem,1.02vw,1.07rem)]"
+            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-yellow-500 px-[2.24vw] py-3.5 text-[0.95rem] font-black tracking-[-0.03em] text-navy-900 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-gold lg:text-[clamp(0.9rem,1.02vw,1.07rem)]"
           >
             {headerCta.label}
             <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />

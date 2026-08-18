@@ -34,7 +34,7 @@ function Operator({ symbol }: { symbol: string }) {
   return (
     <span
       aria-hidden="true"
-      className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-[1.5rem] font-black leading-none text-yellow-500 shadow-[0_8px_18px_rgba(1,23,80,0.28)] lg:h-[3.6vw] lg:w-[3.6vw] lg:text-[clamp(1.4rem,2vw,2.1rem)]"
+      className="z-10 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-navy-900 text-[1.5rem] font-black leading-none text-yellow-500 shadow-raise lg:h-[3.6vw] lg:w-[3.6vw] lg:text-[clamp(1.4rem,2vw,2.1rem)]"
     >
       {symbol}
     </span>
@@ -45,7 +45,7 @@ export function FocusSystemSection() {
   return (
     <section
       id="focus-system"
-      className="app-screen-snap-target section-screen relative overflow-hidden bg-yellow-500 py-section"
+      className="app-screen-snap-target section-screen section-lead relative overflow-hidden bg-yellow-500"
     >
       {/* Faint grid the comp lays over the yellow field. */}
       <div
@@ -68,7 +68,7 @@ export function FocusSystemSection() {
         <ul className="mt-block flex flex-col items-stretch gap-4 lg:flex-row lg:items-stretch lg:gap-0">
           {data.cards.map((card) => (
             <li key={card.title} className="flex flex-col items-center lg:flex-1 lg:flex-row lg:items-stretch">
-              <article className="flex w-full flex-1 flex-col items-center rounded-3xl bg-cream-card px-5 py-7 text-center shadow-[0_16px_38px_rgba(1,23,80,0.14)] lg:px-[1.2vw] lg:py-block">
+              <article className="flex w-full flex-1 flex-col items-center rounded-panel bg-cream-card px-5 py-7 text-center shadow-card lg:px-pill lg:py-block">
                 <h3 className="text-[1.28rem] font-black tracking-[-0.04em] text-navy-900 lg:text-[clamp(1.15rem,1.75vw,1.85rem)]">
                   {card.title}
                 </h3>

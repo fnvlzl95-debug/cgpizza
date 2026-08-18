@@ -34,7 +34,7 @@ function VideoCard({ clip }: { clip: (typeof data.videos)[number] }) {
       /* The comp underlines the active clip. That is a rule, so it ships as a
          border — a zero-blur offset shadow would be the same pixels wearing a
          costume this world never chose. */
-      className={`relative isolate aspect-[9/16] overflow-hidden rounded-2xl border-b-[6px] bg-navy-900 sm:aspect-[9/20] ${
+      className={`relative isolate aspect-[9/16] overflow-hidden rounded-card border-b-[6px] bg-navy-900 sm:aspect-[9/20] ${
         clip.accent ? "border-yellow-500" : "border-transparent"
       }`}
     >
@@ -95,7 +95,7 @@ export function RealKitchenSection() {
   return (
     <section
       id="real-kitchen"
-      className="app-screen-snap-target section-screen relative bg-blue-video py-section text-white"
+      className="app-screen-snap-target section-screen section-lead relative bg-blue-video text-white"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-[3vw]">
@@ -143,7 +143,7 @@ export function RealKitchenSection() {
             </ul>
           </div>
 
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-[1.2vw] lg:self-start lg:pt-[0.4vw]">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:gap-group lg:self-start lg:pt-[0.4vw]">
             {data.videos.map((clip) => (
               <VideoCard key={clip.index} clip={clip} />
             ))}
@@ -151,7 +151,7 @@ export function RealKitchenSection() {
         </div>
 
         <div className="relative mt-block">
-        <p className="mx-auto flex w-fit items-center gap-3 rounded-full border-2 border-gold-600/70 px-6 py-3 text-center text-[0.92rem] font-bold text-white lg:gap-[1.2vw] lg:px-[2.4vw] lg:py-[0.9vw] lg:text-[clamp(0.9rem,1.2vw,1.26rem)]">
+        <p className="mx-auto flex w-fit items-center gap-3 rounded-full border-2 border-gold-600/70 px-6 py-3 text-center text-[0.92rem] font-bold text-white lg:gap-group lg:px-card lg:py-tight lg:text-[clamp(0.9rem,1.2vw,1.26rem)]">
           <SparkIcon className="h-5 w-5 shrink-0 text-yellow-500" />
           <span aria-hidden="true" className="hidden h-6 w-px bg-white/30 lg:block" />
           <span>
