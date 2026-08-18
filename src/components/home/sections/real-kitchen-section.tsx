@@ -168,7 +168,7 @@ export function RealKitchenSection() {
                 the available inline width, which collapsed the marked phrase into
                 a column. Flex items size to their content. */}
             <span className="mt-tight flex flex-wrap items-baseline justify-center gap-x-[0.24em] whitespace-nowrap text-[2.4rem] lg:text-[clamp(2.5rem,min(4.3vw,7.6vh),4.6rem)]">
-              {groups[1].map((line, position) => (
+              {groups[1].map((line) => (
                 <span
                   key={line.text}
                   className={
