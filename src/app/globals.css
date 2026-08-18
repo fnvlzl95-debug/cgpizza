@@ -294,6 +294,29 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   }
 }
 
+/* Clip carousel card width. A single vw fraction cannot serve both ends:
+   11.4vw is 191px on a desktop and 44px on a phone, which is what shrank the
+   clips to thumbnails there. Each range gets its own fraction. */
+.clip-track {
+  --slide: min(56vw, 30vh);
+  --slide-gap: 0.6rem;
+  --stride: calc(var(--slide) + var(--slide-gap));
+}
+
+@media (min-width: 640px) {
+  .clip-track {
+    --slide: min(30vw, 26vh);
+    --slide-gap: 0.75rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .clip-track {
+    --slide: min(11.4vw, 20vh);
+    --slide-gap: 0.85rem;
+  }
+}
+
 /* Carousel swap: the slots hold still and the clip inside one changes, so
    the new frame fades up rather than cutting. */
 @keyframes fade-up {

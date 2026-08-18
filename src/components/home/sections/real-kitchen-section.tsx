@@ -167,17 +167,10 @@ export function RealKitchenSection() {
         </div>
 
         <div
-          className="relative mx-auto mt-group"
-          style={
-            {
-              "--slide": "min(11.4vw, 20vh)",
-              "--slide-gap": "0.85rem",
-              "--stride": "calc(var(--slide) + var(--slide-gap))",
-              // Three strides wide, so the strip shows the centre and a
-              // neighbour either side rather than the whole loop.
-              width: "min(100%, calc(var(--stride) * 2.95))",
-            } as React.CSSProperties
-          }
+          className="clip-track relative mx-auto mt-group"
+          /* Three strides wide, so the strip shows the centre and a neighbour
+             either side rather than the whole loop. */
+          style={{ width: "min(100%, calc(var(--stride) * 2.95))" }}
         >
           {/* The viewport clips the strip; the strip itself is what moves. */}
           <div
