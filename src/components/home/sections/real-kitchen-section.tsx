@@ -40,6 +40,23 @@ const LOOP = Array.from({ length: COUNT * COPIES }, (_, index) => ({
   slot: index,
 }));
 
+/** Gold sweep under the phrase the heading turns on. */
+function GoldUnderline() {
+  return (
+    <svg
+      viewBox="0 0 300 16"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      className="absolute -bottom-[0.06em] left-0 h-[0.13em] w-full text-yellow-500"
+    >
+      <path
+        fill="currentColor"
+        d="M2 10c40-5 92-8 154-8 42 0 82 2 120 5v7c-40-3-81-5-122-5-58 0-108 3-150 8L2 10Z"
+      />
+    </svg>
+  );
+}
+
 function SoundIcon({ muted }: { muted: boolean }) {
   return (
     <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" aria-hidden="true">
@@ -140,21 +157,29 @@ export function RealKitchenSection() {
         </div>
 
         <div className="motion-reveal mt-group text-center">
-          <h2 className="text-[1.95rem] font-black leading-[1.14] tracking-[-0.05em] lg:text-[clamp(2rem,min(2.7vw,4.8vh),2.9rem)]">
-            {groups.map((group, index) => (
-              <span key={index} className="block">
-                {group.map((line, position) => (
-                  <span
-                    key={line.text}
-                    className={`${line.tone === "gold" ? "text-yellow-500" : "text-white"} ${
-                      position > 0 ? "ml-[0.24em]" : ""
-                    }`}
-                  >
-                    {line.text}
-                  </span>
-                ))}
-              </span>
-            ))}
+          {/* Two registers rather than one: the lead-in sits back and the
+              claim carries the weight, which is where the other sections put
+              theirs too. */}
+          <h2 className="font-black leading-[1.1] tracking-[-0.05em]">
+            <span className="block text-[1.35rem] text-white/85 lg:text-[clamp(1.4rem,min(2.1vw,3.7vh),2.3rem)]">
+              {groups[0][0].text}
+            </span>
+            {/* Flex, not inline-block: shrink-to-fit sizes an inline-block against
+                the available inline width, which collapsed the marked phrase into
+                a column. Flex items size to their content. */}
+            <span className="mt-tight flex flex-wrap items-baseline justify-center gap-x-[0.24em] whitespace-nowrap text-[2.4rem] lg:text-[clamp(2.5rem,min(4.3vw,7.6vh),4.6rem)]">
+              {groups[1].map((line, position) => (
+                <span
+                  key={line.text}
+                  className={
+                    line.tone === "gold" ? "relative text-yellow-500" : "text-white"
+                  }
+                >
+                  {line.text}
+                  {line.tone === "gold" ? <GoldUnderline /> : null}
+                </span>
+              ))}
+            </span>
           </h2>
 
           <p className="mx-auto mt-tight max-w-[42rem] text-balance text-[0.88rem] text-white/80 lg:text-[clamp(0.86rem,0.98vw,1.04rem)]">
