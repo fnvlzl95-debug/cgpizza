@@ -70,7 +70,7 @@ function StepArrow({ direction, onClick }: { direction: "prev" | "next"; onClick
       type="button"
       onClick={onClick}
       aria-label={direction === "prev" ? "이전 영상" : "다음 영상"}
-      className={`absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-navy-900/75 text-white ring-1 ring-white/25 backdrop-blur-sm transition-colors duration-200 hover:bg-navy-900 lg:h-[min(3vw,5.3vh)] lg:w-[min(3vw,5.3vh)] ${
+      className={`absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-navy-900/85 text-white ring-1 ring-white/25 transition-colors duration-200 hover:bg-navy-900 lg:h-[min(3vw,5.3vh)] lg:w-[min(3vw,5.3vh)] ${
         direction === "prev" ? "left-0" : "right-0"
       }`}
     >
@@ -83,6 +83,7 @@ export function RealKitchenSection() {
   // Position on the rendered strip; starts in the middle copy.
   const [position, setPosition] = useState(MIDPOINT);
   const [sliding, setSliding] = useState(true);
+  const [settled, setSettled] = useState(true);
   const [muted, setMuted] = useState(true);
   const centreRef = useRef<HTMLVideoElement>(null);
 
@@ -115,11 +116,13 @@ export function RealKitchenSection() {
 
   const step = (delta: number) => {
     setSliding(true);
+    setSettled(false);
     setPosition((current) => current + delta);
   };
 
   const goTo = (index: number) => {
     setSliding(true);
+    setSettled(false);
     setPosition(MIDPOINT - (MIDPOINT % COUNT) + index);
   };
 
@@ -184,8 +187,11 @@ export function RealKitchenSection() {
             style={{ padding: "calc(var(--slide) * 16 / 9 * 0.17) 0" }}
           >
             <ul
-              onTransitionEnd={recentre}
-              className={`flex w-max ${sliding ? "transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)]" : ""}`}
+              onTransitionEnd={() => {
+                recentre();
+                setSettled(true);
+              }}
+              className={`flex w-max will-change-transform ${sliding ? "transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)]" : ""}`}
               style={{
                 gap: "var(--slide-gap)",
                 // The strip is centred by the flex parent, so the offset is
@@ -217,14 +223,14 @@ export function RealKitchenSection() {
                           ? `재생 중: ${clip.title.join(" ")} — 소리 ${muted ? "켜기" : "끄기"}`
                           : undefined
                       }
-                      className={`group relative block w-full overflow-hidden rounded-card text-left transition-[transform,opacity,box-shadow] duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                      className={`group relative block w-full overflow-hidden rounded-card text-left will-change-[transform,opacity] transition-[scale,opacity] duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         centre
                           ? "scale-[1.3] opacity-100 shadow-lift ring-2 ring-yellow-500"
                           : "scale-100 opacity-55 shadow-card ring-1 ring-white/15"
                       }`}
                     >
                       <span className="relative block aspect-[9/16] bg-navy-900">
-                        {centre ? (
+                        {centre && settled ? (
                           <video
                             ref={centreRef}
                             key={clip.src}
@@ -250,7 +256,7 @@ export function RealKitchenSection() {
 
                         <span
                           aria-hidden="true"
-                          className={`absolute inset-0 transition-colors duration-[520ms] ${
+                          className={`absolute inset-0 ${
                             centre
                               ? "bg-[linear-gradient(180deg,rgba(1,23,80,0.32)_0%,rgba(1,23,80,0)_32%,rgba(1,23,80,0.56)_100%)]"
                               : "bg-navy-900/45"
@@ -266,12 +272,12 @@ export function RealKitchenSection() {
                           {centre ? <CrownIcon className="mt-0.5 h-2.5 w-2.5" /> : null}
                         </span>
 
-                        <span className="absolute bottom-2 left-2 rounded-full bg-navy-900/75 px-1.5 py-0.5 text-[0.56rem] font-bold tabular-nums text-white backdrop-blur-sm lg:text-[clamp(0.54rem,0.68vw,0.74rem)]">
+                        <span className="absolute bottom-2 left-2 rounded-full bg-navy-900/85 px-1.5 py-0.5 text-[0.56rem] font-bold tabular-nums text-white lg:text-[clamp(0.54rem,0.68vw,0.74rem)]">
                           {clip.duration}
                         </span>
 
                         {centre ? (
-                          <span className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-navy-900/70 text-white backdrop-blur-sm">
+                          <span className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-navy-900/85 text-white">
                             <SoundIcon muted={muted} />
                           </span>
                         ) : null}
