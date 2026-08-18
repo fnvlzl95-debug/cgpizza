@@ -252,6 +252,11 @@ function MenuHero() {
       />
       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,50,240,0.16)_0%,rgba(0,50,240,0.38)_28%,rgba(0,50,240,0.92)_67%,rgba(0,50,240,1)_100%)] md:bg-[linear-gradient(90deg,rgba(0,50,240,0.98)_0%,rgba(0,50,240,0.9)_35%,rgba(0,50,240,0.36)_62%,rgba(0,50,240,0.02)_100%)]" />
       <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(0,50,240,0.08)_0%,rgba(0,50,240,0.02)_56%,rgba(0,50,240,0.26)_100%)] md:block" />
+      {/* The header rides this hero, and its links cross the pizza on the
+          right. A short scrim along the top gives them a ground to read
+          against without hiding the photograph. */}
+      <div className="absolute inset-x-0 top-0 h-[7.5rem] bg-[linear-gradient(180deg,rgba(0,50,240,0.82)_0%,rgba(0,50,240,0.5)_55%,rgba(0,50,240,0)_100%)]" />
+
       <div className="relative mx-auto grid min-h-[350px] w-full max-w-7xl items-end px-4 pb-9 pt-5 md:min-h-[440px] md:grid-cols-[0.56fr_0.44fr] md:items-center md:py-10 lg:min-h-[480px]">
         <div className="relative z-20 max-w-xl">
           <Sparkles className="mb-4 md:mb-5" />
@@ -381,8 +386,8 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
 function BestMenuSection() {
   return (
     <section className="relative overflow-hidden bg-blue-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
-      <DecorativeSectionImage src={generatedMenuAssets.best} className="opacity-30" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,51,221,0.82)_0%,rgba(1,51,221,0.7)_46%,rgba(1,51,221,0.9)_100%)]" />
+      <DecorativeSectionImage src={generatedMenuAssets.best} className="opacity-20" />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,51,221,0.9)_0%,rgba(1,51,221,0.82)_46%,rgba(1,51,221,0.94)_100%)]" />
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-best"
@@ -607,7 +612,7 @@ function MenuFooter() {
 export function MenuPage() {
   return (
     <>
-      <SiteHeader alwaysSolid activeHref="/menu" />
+      <SiteHeader activeHref="/menu" />
       <main className="bg-blue-video text-white">
         <MenuHero />
         <MenuTabs />
