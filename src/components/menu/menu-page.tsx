@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import type { ReactNode } from "react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/home/reference/reference-primitives";
 import { SiteHeader } from "@/components/home/site-header";
 import {
@@ -14,39 +14,7 @@ import { portedHomepageData } from "@/lib/ported-homepage-data";
 const generatedMenuAssets = {
   heroDesktop: "/assets/user/menu/ima2/section-hero-half-desktop.png",
   heroMobile: "/assets/user/menu/ima2/section-hero-half-mobile-fit.png",
-  best: "/assets/user/menu/ima2/section-best.png",
-  all: "/assets/user/menu/ima2/section-all.png",
-  reasons: "/assets/user/menu/ima2/section-reasons.png",
-  side: "/assets/user/menu/ima2/section-side.png",
-  cta: "/assets/user/menu/ima2/section-cta.png",
 } as const;
-
-function DecorativeSectionImage({
-  src,
-  className = "",
-  priority = false,
-  style,
-  fit = "cover",
-}: {
-  src: string;
-  className?: string;
-  priority?: boolean;
-  style?: CSSProperties;
-  fit?: "cover" | "contain";
-}) {
-  return (
-    <Image
-      src={src}
-      alt=""
-      fill
-      aria-hidden="true"
-      priority={priority}
-      sizes="100vw"
-      style={style}
-      className={`pointer-events-none select-none ${fit === "contain" ? "object-contain" : "object-cover"} ${className}`}
-    />
-  );
-}
 
 function PizzaSliceIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -386,8 +354,6 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
 function BestMenuSection() {
   return (
     <section className="relative overflow-hidden bg-blue-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
-      <DecorativeSectionImage src={generatedMenuAssets.best} className="opacity-20" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,51,221,0.9)_0%,rgba(1,51,221,0.82)_46%,rgba(1,51,221,0.94)_100%)]" />
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-best"
@@ -423,9 +389,7 @@ function AllMenuSection() {
     .filter((group) => group.items.length > 0);
 
   return (
-    <section className="relative overflow-hidden bg-[#fbfaf7] px-4 py-10 md:py-14">
-      <DecorativeSectionImage src={generatedMenuAssets.all} className="opacity-72" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.9)_0%,rgba(255,255,255,0.7)_45%,rgba(255,255,255,0.92)_100%)]" />
+    <section className="relative overflow-hidden bg-paper px-4 py-10 md:py-14">
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-all"
@@ -514,8 +478,6 @@ function SideIllustration({ item }: { item: MenuPageSideItem }) {
 function SideMenuSection() {
   return (
     <section id="menu-side" className="relative scroll-mt-28 overflow-hidden bg-blue-band px-4 py-12 text-white md:py-[4.25rem]">
-      <DecorativeSectionImage src={generatedMenuAssets.side} className="opacity-25" />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(1,72,227,0.85)_0%,rgba(1,72,227,0.72)_46%,rgba(1,72,227,0.9)_100%)]" />
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-side-title"
@@ -546,9 +508,7 @@ function SideMenuSection() {
 
 function MenuCta() {
   return (
-    <section id="menu-contact" className="relative overflow-hidden bg-blue-band px-4 py-12 text-white md:py-16">
-      <DecorativeSectionImage src={generatedMenuAssets.cta} className="object-[64%_center] opacity-30 md:object-center" />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(1,72,227,0.96)_0%,rgba(1,72,227,0.84)_48%,rgba(1,72,227,0.32)_100%)]" />
+    <section id="menu-contact" className="relative overflow-hidden bg-navy-900 px-4 py-12 text-white md:py-16">
       <div className="relative mx-auto grid max-w-7xl md:grid-cols-[0.68fr_0.32fr]">
         <div className="max-w-3xl text-left">
           <Sparkles className="mb-4" />
