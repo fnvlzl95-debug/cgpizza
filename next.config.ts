@@ -38,6 +38,33 @@ const nextConfig: NextConfig = {
         destination: "/",
         statusCode: 301,
       },
+      // Retired share images. Every og:image this site has ever declared is
+      // still crawlable at its original URL, so Naver keeps treating the old
+      // pizza photos as valid thumbnail candidates. A 301 is the retirement
+      // signal a 404 is not: scrapers follow it, and links already shared to
+      // KakaoTalk keep resolving to a current card instead of breaking.
+      // The files stay on disk — the redirect wins the route first.
+      ...[
+        "/assets/user/share-preview-logo-1200x630.png",
+        "/assets/user/share-preview-og-1200x630.png",
+        "/assets/user/share-preview-og-v2-1200x630.png",
+        "/assets/user/share-preview-kakao-logo-1200x630.png",
+        "/assets/user/share-preview-navy-logo.jpg",
+        "/assets/user/share-preview-navy-logo-v2.jpg",
+        "/assets/user/%EC%B5%9C%EA%B0%95%ED%94%BC%EC%9E%90SEO.png",
+      ].map((source) => ({
+        source,
+        destination: "/assets/user/og/home-hero-20260819.webp",
+        statusCode: 301 as const,
+      })),
+      {
+        // The /brand hero was reshot, so its card is a new URL. The retired
+        // one keeps answering — with a redirect to the current brand card,
+        // not to the home card, so a shared /brand link keeps its own image.
+        source: "/assets/user/og/brand-hero-20260819.webp",
+        destination: "/assets/user/og/brand-hero-20260820.webp",
+        statusCode: 301 as const,
+      },
     ];
   },
 };
