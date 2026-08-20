@@ -23,6 +23,13 @@ colors:
   rule: "#ebe9e8"
   ink-black: "#03060c"
 typography:
+  menu-headline:
+    fontFamily: "'Black Han Sans', Pretendard, sans-serif"
+    fontSize: "clamp(3.3rem, 5.5vw, 5.8rem)"
+    fontWeight: 900
+    lineHeight: 0.99
+    letterSpacing: "-0.02em"
+    scope: "the /menu hero h1 only — subset to that headline's glyphs"
   display:
     fontFamily: "Pretendard, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif"
     fontSize: "clamp(4.4rem, 7.06vw, 7.4rem)"
@@ -212,7 +219,9 @@ An electric print palette: saturated brand blue and gold against near-black navy
 **Display Font:** Pretendard (with `-apple-system`, `Segoe UI`, `Noto Sans KR`, `Apple SD Gothic Neo`, `Malgun Gothic`)
 **Body Font:** Pretendard — one family for everything, by explicit client decision.
 
-**Character:** A single Korean-first geometric sans, worked hard at both ends of its weight range. Black weight with tight negative tracking gives headlines a poster compression; the same family at regular weight keeps long Korean body copy plain and readable. There is no second face anywhere, and none should be added.
+**Menu Hero Face:** Black Han Sans (OFL), self-hosted and subset to the fifteen syllables the `/menu` hero sets — about 10 KB. It exists because the approved menu comp letters that headline in a heavy Korean display face, and Pretendard turned up loud is a visibly different shape, not a louder version of the same one. It is scoped to that one `h1`; the subset has no other glyphs, so using it anywhere else silently falls back mid-word. Re-run `scripts/subset-display-font.mjs` after changing that copy.
+
+**Character:** A single Korean-first geometric sans, worked hard at both ends of its weight range. Black weight with tight negative tracking gives headlines a poster compression; the same family at regular weight keeps long Korean body copy plain and readable. Pretendard carries every word on the site except that one headline.
 
 ### Hierarchy
 - **Display** (900, `{typography.display.fontSize}`, 1.04): the hero headline only. Words alternate gold and white inside the line.
@@ -228,6 +237,10 @@ An electric print palette: saturated brand blue and gold against near-black navy
 **The Accent-Word Rule.** Emphasis is a single coloured word inside the sentence — gold on blue, orange in the profit section, red once. Never a different face, never a box, never italics.
 
 **The Tabular-Figure Rule.** Any number a prospective owner might compare is set in tabular numerals so columns align down the table.
+
+**The Display-Face Boundary.** The display face carries titles; Pretendard carries everything you read and everything you compare. On `/brand` that means the hero `h1`, the kitchen and store titles, the counter heading, the three strength titles, the six ingredient names, the banner tagline and the menu call to action. It never takes body copy, an address, a phone number, a chip, a stamp, a button label or an index numeral — those are the Label and Data registers, and the face ships one 400 cut with no tabular figures. Client instruction, 2026-08-20, widening the earlier `/menu`-only scope.
+
+**The One-Cut Rule.** Black Han Sans ships a single 400 weight. Any element that asks for a heavier one — and `<strong>` asks for 700 by default — gets a browser-synthesized smear instead of a heavier face, which reads as muddy half-dark glyphs. Display-face titles outside the dimensional treatments take `.display-flat`, which pins the weight, refuses synthesis, and switches to greyscale antialiasing so the tight counters do not fringe on saturated navy. Every string set in this face must also be in `scripts/subset-display-font.mjs` — a missing syllable falls back to Pretendard mid-word, silently. That is what happened to 파 and 로 in `/brand`'s largest line.
 
 **The Two-Register Rule.** Weight 900 carries all hierarchy; 400–500 carries all reading. Mid weights are used only for a figure (700) or a sub-label, never to invent a fourth heading level.
 
@@ -297,11 +310,63 @@ A drawn SVG ring on a 400-unit box (outer radius 196, inner 92, 0.9° gap betwee
 ### Icon Family
 One family for the whole page: 24-unit grid, 1.8 stroke, round caps and joins, `currentColor`, drawn to sit on both gold-on-blue and navy-on-cream. Filled marks are a declared variant, not a second family. Icons accept explicit `width`/`height`/`x`/`y` because a nested `<svg>` inside an `<svg>` has no CSS box and ignores a size class.
 
+### Field Devices
+`src/components/decor/field-decor.tsx` — the drawn furniture the blue first screens share: `CrownWatermark` (the crown hung off an edge at 5–6% white), `CrumbScatter` (twenty toasted-crumb and salt marks in two clusters, drawn to ring a round subject), and `HeroProps` (drifting cut-outs driven by `.motion-drift` CSS vars). They lived privately inside the home hero and again inside the menu hero — duplicated verbatim — which is why `/brand` had none of them and read as a different site. The `/brand` no-asset-reuse rule constrains files a crawler can hash, not this vocabulary: repeating these marks is what makes three routes one brand.
+
 ### Floating Rail
 Right-edge stack of three circular controls (TALK, inquiry, TOP), fading in after 420px of scroll. Two navy, one white with a navy 12% ring; each lifts 2px on hover. Below `md` it stays but shrinks to 3.5rem.
 
 ### Brand Lockup
 Gold crown mark over-scaled inside a smaller box (the mark's artwork has generous padding) with the wordmark set in black-weight type beside it at `-0.05em`. The mark asset carries no lettering, so the wordmark is always type, never an image.
+
+## Menu Page
+
+The catalogue at `/menu` runs the same field order as the rest of the site — blue hero, blue best, paper, yellow, blue side, navy close — and adds three devices of its own.
+
+**Dimensional headline.** The hero `h1` is set in the scoped display face with a navy ring and a stepped extrude, built from `text-shadow` rather than `-webkit-text-stroke`: a stroke eats the counters out of Hangul at this weight. Each line takes a slightly different rotation so the block steps rather than sits, and the accent word overshoots on entry. One authored moment, not three.
+
+**Cut-out ingredients, never a wash.** Twelve ingredients — shrimp, basil, tomato, pepperoni, olive, pepper, mushroom, corn, cheese, bacon — float across the blue as transparent cut-outs. Four ride the card cluster's own edges, behind it and in front; the rest ring the field. The two columns leave only a narrow gutter, so the open ground on this screen is the frame around the composition — the strips outside each column and the band under the copy — and crowding them all onto the cards reads as clutter rather than as depth. They are generated on solid black and keyed by treating the frame as premultiplied — alpha from the channel maximum, not luminance, so a dark saturated subject survives. This is the only way food is allowed onto the blue field: **in its own colour, as the subject.** A photograph washed with blue behind a section reads as spoiled, which is why those were removed in `9abd46a`.
+
+**The card cluster is a control.** The leader card is promoted by pressing a side card or a dot, cycles on its own, and stops on hover or focus so it never moves the thing you were about to press. The cluster leans toward a fine pointer only.
+
+**No panel and no actions in the hero.** The comp's white service panel is gone: it repeated what the leader card already states — the number one, its name, its line — and spent the height the headline and the cards needed. Its two buttons went with it, because neither flow exists yet. Ordering and store-finding are not built, and a hero button that leads nowhere is worse than no button. When those ship, they belong on the field at the scale the rest of the first screen is set, not back inside a panel.
+
+**The line above the headline is type on real sauce.** "피자는 역시" is set in the same display face as the headline, in white with the same navy ring and stepped extrude one size down, riding a real smear of pizza sauce. The two lines read as one poster lockup rather than a UI label introducing a heading. The smear is a photographed material — grain, gloss and trailing drags — not a vector approximation: a drawn version was tried first and thrown away, because flat fill cannot carry the volume and faking that volume with CSS bevels and gradients is exactly what this system forbids. Sauce rather than paint because it is the thing this page is about.
+
+Its red is **material, not signal.** The One Red rule governs the emphasis red that marks a figure; a photograph of sauce belongs with the tomato and pepperoni cut-outs already on this screen. The BEST seal stays the one signal red.
+
+Placement is measured off the asset, not eyeballed: its solid body covers the middle two-thirds of the image height across the left 70% of its width, centred near 46%, so the words are seated there and inset from the blunt end rather than riding the top edge or drifting onto a trailing streak. The lettering's ring and extrude are sized in `em`, because this line runs from 1.5rem on a phone to 2.85rem on a wide display and a fixed ring would be a slab at one end and invisible at the other. The gold spark stays off the sauce. The line needs `inline-flex` and `whitespace-nowrap`: the page sets `text-wrap: pretty` and `word-break: keep-all`, and an `inline-block` here measures at its padding alone while the two words break onto separate lines — the same shrink-to-fit misread the headline's last line already works around.
+
+**Cut-out ingredients, never a wash.** Twelve ingredients — shrimp, basil, tomato, pepperoni, olive, pepper, mushroom, corn, cheese, bacon — float across the blue as transparent cut-outs. Four ride the card cluster's own edges, behind it and in front; the rest ring the field. The two columns leave only a narrow gutter, so the open ground on this screen is the frame around the composition — the strips outside each column and the band under the copy — and crowding them all onto the cards reads as clutter rather than as depth. They are generated on solid black and keyed by treating the frame as premultiplied — alpha from the channel maximum, not luminance, so a dark saturated subject survives. This is the only way food is allowed onto the blue field: **in its own colour, as the subject.** A photograph washed with blue behind a section reads as spoiled, which is why those were removed in `9abd46a`.
+
+**The card cluster is a control.** The leader card is promoted by pressing a side card or a dot, cycles on its own, and stops on hover or focus so it never moves the thing you were about to press. The cluster leans toward a fine pointer only.
+
+**No panel and no actions in the hero.** The comp's white service panel is gone: it repeated what the leader card already states — the number one, its name, its line — and spent the height the headline and the cards needed. Its two buttons went with it, because neither flow exists yet. Ordering and store-finding are not built, and a hero button that leads nowhere is worse than no button. When those ship, they belong on the field at the scale the rest of the first screen is set, not back inside a panel.
+
+**The line above the headline is type on real paint.** "피자는 역시" is set in the same display face as the headline and rides a single sweep of thick gold paint, so it reads as the first line of one poster lockup instead of a UI label introducing it. The sweep is a photographed material, not a vector approximation: raised ridges, wet gloss, a blunt landing on the left, and split bristle tails past the last syllable. A drawn version was tried first and thrown away — flat fill cannot carry the volume, and faking that volume with CSS bevels and gradients is exactly what this system forbids.
+
+Placement is measured off the asset, not eyeballed: its solid body covers 69% of the image height and the left 87% of its width, centred at 44.6%, so the words are seated at 46.5% and inset from the blunt end rather than riding the top edge or drifting onto a tail. The gold spark stays off the paint — gold on gold is no mark at all. The line needs `inline-flex` and `whitespace-nowrap`: the page sets `text-wrap: pretty` and `word-break: keep-all`, and an `inline-block` here measures at its padding alone while the two words break onto separate lines — the same shrink-to-fit misread the headline's last line already works around.
+
+**Cut-out ingredients, never a wash.** Twelve ingredients — shrimp, basil, tomato, pepperoni, olive, pepper, mushroom, corn, cheese, bacon — float across the blue as transparent cut-outs. Four ride the card cluster's own edges, behind it and in front; the rest ring the field. The two columns leave only a narrow gutter, so the open ground on this screen is the frame around the composition — the strips outside each column and the band under the copy — and crowding them all onto the cards reads as clutter rather than as depth. They are generated on solid black and keyed by treating the frame as premultiplied — alpha from the channel maximum, not luminance, so a dark saturated subject survives. This is the only way food is allowed onto the blue field: **in its own colour, as the subject.** A photograph washed with blue behind a section reads as spoiled, which is why those were removed in `9abd46a`.
+
+**The card cluster is a control.** The leader card is promoted by pressing a side card or a dot, cycles on its own, and stops on hover or focus so it never moves the thing you were about to press. The cluster leans toward a fine pointer only.
+
+**No panel and no actions in the hero.** The comp's white service panel is gone: it repeated what the leader card already states — the number one, its name, its line — and spent the height the headline and the cards needed. Its two buttons went with it, because neither flow exists yet. Ordering and store-finding are not built, and a hero button that leads nowhere is worse than no button. When those ship, they belong on the field at the scale the rest of the first screen is set, not back inside a panel.
+
+**The line above the headline is type, not a chip.** "피자는 역시" is set in the same display face as the headline over a single gold brush sweep, so it reads as the first line of one poster lockup instead of a UI label introducing it. The sweep is its own mark, not the home page's marker slab: it lands blunt on the left, holds full weight through the words, and tapers past the last syllable into flicks where the brush lifted. Its dry-bristle gaps are real holes in the path — `evenodd` sub-paths, not shapes painted in a background colour — because it sits on a gradient field where a painted gap would show. The gold spark stays off the sweep; gold on gold is no mark at all. It needs `inline-flex` and `whitespace-nowrap`: the page sets `text-wrap: pretty` and `word-break: keep-all`, and an `inline-block` here measures at its padding alone while the two words break onto separate lines — the same shrink-to-fit misread the headline's last line already works around.
+
+**The category row is one control, not six labels.** A white track on the cream band, centred and hugging its own content rather than flung to the container's edges, with the lit pill sliding between labels. Every pill takes its padding in `em`, so 매콤 and 클래식 are the same shape instead of the gap scaling with the viewport and leaving short words as blobs. The type steps up past 1800px so the control holds its own on a large display.
+
+**Category filtering is CSS.** The rail writes the chosen category onto a wrapper as `data-filter` and the stylesheet hides the sections that do not carry it in `data-category`. Every item stays in the served HTML, so the filter narrows what is on screen and never what the page contains. A section can hold several categories, so the attribute is a list matched with `~=`, and the rule hides non-matches rather than hiding everything and re-showing — the blanket selector is the more specific of the two and wins. On 전체 the rail stops filtering and goes back to reporting which section is underfoot.
+
+## Brand Page
+
+`/brand` is the customer-facing story — 파로 도우, 재료, 실제 주방, 부천본점 — and exists partly as a search surface. Three rules keep it honest:
+
+- **No franchise material.** The home page owns 창업·가맹·수익; one shared sentence between the two routes and search engines start treating them as duplicates electing a representative. The build check counts shared sentences and expects zero.
+- **No asset reuse that repeats a page.** Its kitchen clip is the one video the home page does not use; its ingredient pictures are the menu hero's own cut-outs recast as content.
+- **One sheet, one metric.** `/brand` is a single-screen magazine infographic, not a stack of bands, so it is bound by `min-height` rather than a fixed 16:9 box. Its type is `clamp(rem, min(Vvw, Nsvh), rem)` — width-driven with a height cap, `V = N x 941 / 1672 / 100`. Sizing off `svh` alone let the type and the column it sits in scale on different axes, so the composition changed shape rather than size.
+- **Its share card is its own hero.** All three routes' og:image cards are rendered from the live pages by `scripts/og-cards.mjs` at 1200×630 under 200 KB, date-stamped so every regeneration is a new URL. Retired card URLs 301 to the current home card in `next.config.ts` — an og:image URL, once published, is never allowed to keep answering 200 as itself.
 
 ## Do's and Don'ts
 
@@ -319,7 +384,7 @@ Gold crown mark over-scaled inside a smaller box (the mark's artwork has generou
 - **Do** set every comparable figure in tabular numerals.
 
 ### Don't:
-- **Don't** introduce a second typeface. Pretendard is a client decision and carries display and body alike.
+- **Don't** introduce a second typeface for body, labels or data. Pretendard is a client decision and carries all of them. The display face carries **titles** on `/menu` and `/brand` (see Typography → The Display-Face Boundary); widening it past a title needs the same kind of evidence, not a preference.
 - **Don't** use `framer-motion` `initial` for entrance state anywhere on this page.
 - **Don't** add an unlayered global element rule; it will outrank Tailwind utilities.
 - **Don't** mix orange with gold in one composition, or let a second red into a screen.
