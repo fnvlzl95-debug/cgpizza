@@ -22,8 +22,7 @@ export type MenuPageSideItem = {
     | "baconRoseSpaghetti"
     | "shrimpRings"
     | "hotWings"
-    | "smokedChicken"
-    | "cheeseSticks";
+    | "smokedChicken";
   badge?: "NEW";
 };
 
@@ -38,9 +37,9 @@ export const menuPageData = {
   tabs: [
     { id: "all", label: "전체" },
     { id: "best", label: "베스트" },
-    { id: "classic", label: "클래식" },
     { id: "special", label: "스페셜" },
-    { id: "spicy", label: "핫한 메뉴" },
+    { id: "spicy", label: "매콤" },
+    { id: "classic", label: "클래식" },
     { id: "side", label: "사이드" },
   ] satisfies Array<{ id: MenuCategoryId; label: string }>,
   best: [
@@ -56,19 +55,19 @@ export const menuPageData = {
     {
       rank: 2,
       badge: "BEST",
-      title: "최강 통베이컨",
-      description: "통베이컨 풍미를 꽉 채운 묵직한 한 판",
-      price: "가격 문의",
-      image: "/assets/user/menu/choigang-whole-bacon-pizza.png",
+      title: "최강 숯불갈비 피자",
+      description: "숯불갈비의 진한 불향을 살린 묵직한 조합",
+      price: "L 31,900원",
+      image: "/assets/user/menu/choigang-charcoal-galbi-pizza.png",
       category: "best",
     },
     {
       rank: 3,
       badge: "BEST",
-      title: "최강 고구마무스",
-      description: "달콤한 고구마무스를 진하게 올린 인기 메뉴",
-      price: "L 26,900원",
-      image: "/assets/user/menu/choigang-sweet-potato-mousse.png",
+      title: "최강 통새우피자",
+      description: "통새우 토핑을 푸짐하게 올린 최강피자 인기 메뉴",
+      price: "가격 문의",
+      image: "/assets/user/menu/choigang-whole-shrimp-pizza.png",
       category: "best",
     },
   ] satisfies MenuPagePizza[],
@@ -221,46 +220,39 @@ export const menuPageData = {
   }>,
   sideItems: [
     {
-      title: "토마토소스 스파게티",
+      title: "치즈오븐 스파게티",
       description: "진한 토마토소스와 치즈가 어우러진 오븐 스파게티",
       price: "8,000원",
-      image: "/assets/user/menu/ima2/side/tomato-sauce-spaghetti.png",
+      image: "/assets/user/menu/ima2/side/cheese-oven-spaghetti-20260819.webp",
       kind: "tomatoSpaghetti",
     },
     {
-      title: "베이컨로제 스파게티",
-      description: "부드러운 로제소스와 베이컨을 올린 오븐 스파게티",
+      title: "베이컨 오븐 스파게티",
+      description: "고소한 치즈와 베이컨을 올린 오븐 스파게티",
       price: "9,000원",
-      image: "/assets/user/menu/ima2/side/bacon-rose-spaghetti.png",
+      image: "/assets/user/menu/ima2/side/bacon-oven-spaghetti-20260819.webp",
       kind: "baconRoseSpaghetti",
     },
     {
       title: "새우링",
       description: "바삭하게 튀긴 새우링",
       price: "4개 4,000원",
-      image: "/assets/user/menu/ima2/side/shrimp-rings.png",
+      image: "/assets/user/menu/ima2/side/shrimp-rings-20260819.webp",
       kind: "shrimpRings",
     },
     {
       title: "핫윙",
       description: "매콤하게 즐기는 인기 사이드",
       price: ["5조각 8,000원", "10조각 10,000원"],
-      image: "/assets/user/menu/ima2/side/hot-wings.png",
+      image: "/assets/user/menu/ima2/side/hot-wings-20260819.webp",
       kind: "hotWings",
     },
     {
       title: "훈제치킨",
       description: "담백하고 촉촉한 훈제치킨",
       price: ["반마리 8,000원", "한마리 15,000원"],
-      image: "/assets/user/menu/ima2/side/smoked-chicken.png",
+      image: "/assets/user/menu/ima2/side/smoked-chicken-20260819.webp",
       kind: "smokedChicken",
-    },
-    {
-      title: "치즈스틱",
-      description: "바삭한 튀김 속 쭉 늘어나는 치즈",
-      price: "4개 4,000원",
-      image: "/assets/user/menu/ima2/side/cheese-sticks.png",
-      kind: "cheeseSticks",
     },
   ] satisfies MenuPageSideItem[],
 };

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState, type MouseEvent } from "react";
 import { ArrowRightIcon } from "@/components/home/icons";
 import { headerCta, siteNav } from "@/lib/home-content";
@@ -34,6 +35,7 @@ function getHeaderOffset() {
 export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(alwaysSolid);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (alwaysSolid) return;
@@ -44,16 +46,33 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
     return () => window.removeEventListener("scroll", onScroll);
   }, [alwaysSolid]);
 
+  /**
+   * Anchors are intercepted only when their target is on the page we are
+   * already looking at — then we smooth-scroll and compensate for the fixed
+   * header ourselves. From any other route the browser navigates for real,
+   * and the target's own scroll-margin handles the landing.
+   */
   const handleNavClick = (event: MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!href.startsWith("#")) return;
+    const hashIndex = href.indexOf("#");
+    if (hashIndex === -1) return;
 
-    const target = document.querySelector<HTMLElement>(href);
+    const path = href.slice(0, hashIndex) || "/";
+    if (path !== pathname) return;
+
+    const target = document.querySelector<HTMLElement>(href.slice(hashIndex));
     if (!target) return;
 
     event.preventDefault();
     const top = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset();
-    window.history.replaceState(null, "", href);
+    window.history.replaceState(null, "", href.slice(hashIndex));
     window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  };
+
+  /** The lit nav item: an exact route, or the route an anchor lives on. */
+  const isActive = (href: string) => {
+    if (activeHref) return activeHref === href;
+    const path = href.split("#")[0] || "/";
+    return href.includes("#") ? false : path === pathname;
   };
 
   return (
@@ -90,13 +109,13 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
                 href={item.href}
                 onClick={(event) => handleNavClick(event, item.href)}
                 className={`group relative whitespace-nowrap py-1 transition-colors hover:text-gold-400 ${
-                  activeHref === item.href ? "text-gold-400" : ""
+                  isActive(item.href) ? "text-gold-400" : ""
                 }`}
               >
                 {item.label}
                 <span
                   className={`absolute -bottom-0.5 left-0 h-0.5 bg-gold-400 transition-[width] duration-300 group-hover:w-full ${
-                    activeHref === item.href ? "w-full" : "w-0"
+                    isActive(item.href) ? "w-full" : "w-0"
                   }`}
                 />
               </a>

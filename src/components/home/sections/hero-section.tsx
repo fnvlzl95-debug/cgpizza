@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import { CrownWatermark, CrumbScatter } from "@/components/decor/field-decor";
 import { ChefIcon, LeafIcon, MedalIcon } from "@/components/home/icons";
 import { hero } from "@/lib/home-content";
 
@@ -16,50 +17,6 @@ const proofIcons = {
 } as const;
 
 const delay = (seconds: number) => ({ "--motion-delay": `${seconds}s` }) as CSSProperties;
-
-/** Crown mark, mostly off the left edge in the comp. */
-function CrownWatermark() {
-  return (
-    <svg
-      viewBox="0 0 200 240"
-      aria-hidden="true"
-      className="pointer-events-none absolute -left-[8.5rem] top-16 h-[26rem] w-auto text-white/[0.06] lg:-left-[11rem] lg:top-[5.5rem] lg:h-[36rem]"
-    >
-      <path
-        d="M12 24 100 214 188 24l-50 92-38-70-38 70-50-92Z"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="8"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-/**
- * Toasted crumb and salt scatter, in the comp's two clusters — off the
- * pizza's upper right and lower left — rather than an even field.
- */
-function CrumbScatter({ className }: { className: string }) {
-  // [cx, cy, r, opacity, salt] in a 100×100 field over the pizza box.
-  const crumbs = [
-    [78, 2, 0.5, 0.9, false], [83, 6, 0.34, 0.75, false], [88, 3, 0.42, 0.85, false],
-    [92, 8, 0.28, 0.6, true], [86, 11, 0.55, 0.95, false], [95, 4, 0.36, 0.8, true],
-    [90, 14, 0.3, 0.65, false], [97, 11, 0.44, 0.7, true], [81, 9, 0.26, 0.55, true],
-    [94, 17, 0.32, 0.6, false], [99, 7, 0.3, 0.55, true],
-    [10, 92, 0.52, 0.9, false], [5, 88, 0.34, 0.7, false], [15, 96, 0.4, 0.85, false],
-    [2, 95, 0.28, 0.6, true], [19, 90, 0.46, 0.8, false], [8, 98, 0.3, 0.65, true],
-    [23, 97, 0.36, 0.7, false], [13, 85, 0.24, 0.5, true], [27, 93, 0.3, 0.6, false],
-  ] as const;
-
-  return (
-    <svg viewBox="0 0 100 100" aria-hidden="true" className={className}>
-      {crumbs.map(([cx, cy, r, opacity, salt], index) => (
-        <circle key={index} cx={cx} cy={cy} r={r} fill={salt ? "#FFFFFF" : "#D2984E"} opacity={opacity} />
-      ))}
-    </svg>
-  );
-}
 
 function BestSeal() {
   return (
@@ -115,17 +72,28 @@ export function HeroSection() {
             <span>★</span>
           </p>
 
+          {/* Set in the display face with the menu hero's dimensional ring and
+              its staggered tilt, so the two first screens letter the brand the
+              same way. The comp's word-level gold/white alternation is kept —
+              that device belongs to this headline, not to the face. The clamp
+              runs under the old Pretendard one because this face sets wider
+              per syllable at the same size. */}
           <h1
             style={delay(0.08)}
-            className="motion-rise mt-group text-[3.1rem] font-black leading-[1.04] tracking-[-0.052em] sm:text-[4.4rem] lg:text-[clamp(4rem,7.06vw,7.4rem)]"
+            className="motion-rise headline-3d mt-group origin-left -skew-x-[6deg] font-headline leading-[0.99] tracking-[-0.02em]"
           >
             {hero.headline.map((line, lineIndex) => (
-              <span key={lineIndex} className="block">
+              <span
+                key={lineIndex}
+                className={`block origin-left ${
+                  lineIndex === 0 ? "-rotate-[1.4deg]" : "-rotate-[0.5deg] pt-[0.06em]"
+                } text-[2.7rem] sm:text-[3.8rem] lg:text-[clamp(3.4rem,6.1vw,6.5rem)]`}
+              >
                 {line.map((word, wordIndex) => (
                   <span
                     key={wordIndex}
                     className={`${word.tone === "gold" ? "text-yellow-500" : "text-white"} ${
-                      wordIndex > 0 ? "ml-[0.3em]" : ""
+                      wordIndex > 0 ? "ml-[0.24em]" : ""
                     }`}
                   >
                     {word.text}

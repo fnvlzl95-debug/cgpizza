@@ -6,36 +6,34 @@ import { siteUrl } from "@/lib/site-config";
 const absoluteUrl = (path: string) => new URL(path, siteUrl).toString();
 
 const brandImage = absoluteUrl(portedHomepageData.metadata.ogImage);
-const brandImageAlt = "최강피자 로고";
+const brandImageAlt = "최강피자 — 맛도 최강, 재료도 최강";
 const brandImageWidth = 1200;
 const brandImageHeight = 630;
 const brandLogo = absoluteUrl("/assets/user/logo-mark-blue.png");
 
+/* Every image here is one the home page actually renders. Advertising
+   images the DOM never shows reads as a mismatch to a crawler comparing
+   structured data against page content. */
 const searchPromoCards = [
   {
     name: "최강피자 브랜드 소개",
     image: brandImage,
-    url: absoluteUrl("/"),
-  },
-  {
-    name: "소형 매장 최적화",
-    image: absoluteUrl("/assets/user/franchise/small-store-front-20260511.png"),
-    url: absoluteUrl("/#contact-cta"),
+    url: `${siteUrl}/brand`,
   },
   {
     name: "함께 성장할 점주 모집",
-    image: absoluteUrl("/assets/user/franchise/shop-in-shop-message.jpeg"),
+    image: absoluteUrl("/assets/user/franchise/store-red-concept.webp"),
     url: absoluteUrl("/#philosophy"),
   },
   {
     name: "최강피자의 진짜 주방",
-    image: absoluteUrl("/assets/user/franchise/shop-triptych-02.jpeg"),
+    image: absoluteUrl("/assets/user/brand-videos/posters/2-revised.webp"),
     url: absoluteUrl("/#real-kitchen"),
   },
   {
-    name: "집중 운영 시스템",
-    image: absoluteUrl("/assets/user/franchise/shop-triptych-01.jpeg"),
-    url: absoluteUrl("/#focus-system"),
+    name: "전체 메뉴",
+    image: absoluteUrl("/assets/user/og/menu-hero-20260819.webp"),
+    url: absoluteUrl("/menu"),
   },
 ] as const;
 

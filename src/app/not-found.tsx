@@ -1,4 +1,23 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+
+/**
+ * Without its own metadata this page inherits the root's, and the built 404
+ * shipped a homepage canonical plus "index, follow" alongside Next's own
+ * noindex — a 404 declaring itself a representative of the homepage.
+ */
+export const metadata: Metadata = {
+  title: "페이지를 찾을 수 없습니다",
+  robots: {
+    index: false,
+    follow: false,
+  },
+  alternates: {
+    canonical: null,
+  },
+  openGraph: undefined,
+  twitter: undefined,
+};
 
 export default function NotFound() {
   return (

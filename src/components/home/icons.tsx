@@ -168,6 +168,29 @@ export function PhoneIcon(props: IconProps) {
   );
 }
 
+/** Heart — the brand page's "속이 편안한" recommendation row. */
+export function HeartIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path
+        {...stroke}
+        d="M12 20.4c-4.9-3.5-8-6.8-8-10.3a4.5 4.5 0 0 1 8-2.8 4.5 4.5 0 0 1 8 2.8c0 3.5-3.1 6.8-8 10.3Z"
+      />
+    </Svg>
+  );
+}
+
+/** Map pin. The family had no address glyph, so the brand sheet was drawing
+ *  its own at a stroke the rest of the page does not use. */
+export function PinIcon(props: IconProps) {
+  return (
+    <Svg {...props}>
+      <path {...stroke} d="M12 21.2c-4.3-4-6.5-7.4-6.5-10.4a6.5 6.5 0 0 1 13 0c0 3-2.2 6.4-6.5 10.4Z" />
+      <circle {...stroke} cx="12" cy="10.6" r="2.4" />
+    </Svg>
+  );
+}
+
 export function PeopleIcon(props: IconProps) {
   return (
     <Svg {...props}>

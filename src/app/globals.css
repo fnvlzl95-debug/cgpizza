@@ -88,7 +88,20 @@
      the soft system cards, the default card, and the tight navy band. */
   --radius-panel: 1.5rem;
   --radius-card: 1rem;
+  /* Data panels sit between a card and a band. The system claimed four steps
+     and shipped three, so panels were borrowing the band's 8px. */
+  --radius-data: 0.75rem;
   --radius-band: 0.5rem;
+
+  /* The menu hero's display face. Subset to that one headline's syllables,
+     so it is only ever correct on that h1 — anywhere else it silently falls
+     back to Pretendard mid-word. Pretendard still carries the whole site. */
+  --font-headline: var(--font-blackhan);
+
+  /* The brand sheet's handwritten annotations and its one English script
+     line. Both subset to their fixed copy — see scripts/subset-display-font. */
+  --font-annotation: var(--font-pen);
+  --font-script: var(--font-caveat);
 }
 
 :root {
@@ -183,6 +196,23 @@
     background: rgba(253, 216, 22, 0.45);
     color: var(--color-navy-900);
   }
+
+  /* Surfaces the browser draws for us still belong to this palette. */
+  html {
+    caret-color: var(--color-blue-hero);
+    scrollbar-color: rgba(1, 23, 80, 0.35) transparent;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-yellow-500);
+    outline-offset: 2px;
+  }
+}
+
+/* Any figure a reader might compare down a column. */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
 }
 
 /* One section per screen. Each comp sheet is a whole 1672×941 frame with the
@@ -414,6 +444,169 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   animation-play-state: paused;
 }
 
+/* Hero props: the cut-out shrimp, basil and tomato that ride the blue field.
+   Each one gets its own duration and delay from the markup so the cluster
+   never breathes in unison — that reads as a loop, not as floating. */
+@keyframes drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(var(--drift-tilt, 0deg));
+  }
+  50% {
+    transform: translate3d(var(--drift-x, 0), var(--drift-y, -12px), 0)
+      rotate(calc(var(--drift-tilt, 0deg) + var(--drift-spin, 4deg)));
+  }
+}
+
+.motion-drift {
+  animation: drift var(--drift-duration, 7s) ease-in-out infinite both;
+  animation-delay: var(--motion-delay, 0s);
+  transform: rotate(var(--drift-tilt, 0deg));
+}
+
+/* One light pass across the card when it takes the featured slot, so the
+   promotion reads as the card catching the light rather than a hard cut. */
+@keyframes shine {
+  from {
+    transform: translateX(-140%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
+  }
+}
+
+.motion-shine::after {
+  content: "";
+  position: absolute;
+  inset-block: -20%;
+  width: 42%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.42),
+    transparent
+  );
+  animation: shine 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: 0.12s;
+  pointer-events: none;
+}
+
+/* The headline's dimensional lettering. An eight-way ring draws the outline,
+   then six stepped copies fall away to the lower right as a solid extrude,
+   and one navy pool under the whole block seats it on the field. Built as
+   text-shadow rather than -webkit-text-stroke because a stroke eats the
+   counters out of Hangul at this weight. */
+.headline-3d {
+  /* The display face ships one weight. Asking for 900 keeps the Pretendard
+     fallback bold, and refusing synthesis stops the browser smearing a fake
+     bold over the real face when it does load. */
+  font-weight: 900;
+  font-synthesis-weight: none;
+  text-shadow:
+    -2px 0 0 var(--color-navy-900),
+    2px 0 0 var(--color-navy-900),
+    0 -2px 0 var(--color-navy-900),
+    0 2px 0 var(--color-navy-900),
+    -2px -2px 0 var(--color-navy-900),
+    2px -2px 0 var(--color-navy-900),
+    -2px 2px 0 var(--color-navy-900),
+    2px 2px 0 var(--color-navy-900),
+    3px 3px 0 var(--color-navy-900),
+    4px 4px 0 var(--color-navy-900),
+    5px 5px 0 var(--color-navy-900),
+    6px 6px 0 var(--color-navy-900),
+    7px 7px 0 var(--color-navy-900),
+    8px 8px 0 var(--color-navy-900),
+    0 22px 38px rgba(1, 23, 80, 0.45);
+}
+
+/* The brand sheet borrows the menu hero's staggered, dimensional rhythm on a
+   light paper field. A short gold step gives the navy letters depth without
+   adding a dark outline that would close the counters in compact Hangul. */
+.brand-headline-depth {
+  font-weight: 900;
+  font-synthesis-weight: none;
+  text-shadow:
+    0.035em 0.035em 0 var(--color-yellow-500),
+    0.07em 0.07em 0 var(--color-yellow-500),
+    0.105em 0.105em 0 rgba(1, 23, 80, 0.16);
+}
+
+/* The display face ships a single 400 cut. Anything that asks for a heavier
+   one — and `<strong>` asks for 700 by default — gets a browser-synthesized
+   smear rather than a heavier face, which reads as muddy, half-dark glyphs.
+   Titles set in this face outside the dimensional treatments take this. */
+.display-flat {
+  font-weight: 400;
+  font-synthesis-weight: none;
+  /* Greyscale antialiasing. This face is heavy with very tight counters, and
+     Windows subpixel rendering fringes it red on one edge and blue on the
+     other against the saturated navy — at counter-label size that reads as
+     muddy grey lettering rather than white. */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* The same dimensional lettering one step down, for the line that opens the
+   lockup. Sized in `em` rather than px because this line runs from 1.5rem on a
+   phone to 2.85rem on a wide display, and a fixed ring would be a slab at one
+   end and invisible at the other. */
+.lockup-3d {
+  font-weight: 900;
+  font-synthesis-weight: none;
+  text-shadow:
+    -0.05em 0 0 var(--color-navy-900),
+    0.05em 0 0 var(--color-navy-900),
+    0 -0.05em 0 var(--color-navy-900),
+    0 0.05em 0 var(--color-navy-900),
+    -0.05em -0.05em 0 var(--color-navy-900),
+    0.05em -0.05em 0 var(--color-navy-900),
+    -0.05em 0.05em 0 var(--color-navy-900),
+    0.05em 0.05em 0 var(--color-navy-900),
+    0.075em 0.075em 0 var(--color-navy-900),
+    0.1em 0.1em 0 var(--color-navy-900),
+    0.125em 0.125em 0 var(--color-navy-900),
+    0 0.28em 0.42em rgba(1, 23, 80, 0.5);
+}
+
+/* The last line lands after the two above it, and overshoots a little on
+   the way in — it is the one word the screen is built around. */
+@keyframes punch {
+  0% {
+    opacity: 0;
+    transform: scale(0.82) translateY(18px);
+  }
+  62% {
+    opacity: 1;
+    transform: scale(1.06) translateY(0);
+  }
+  100% {
+    transform: scale(1) translateY(0);
+  }
+}
+
+.motion-punch {
+  animation: punch 0.78s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: var(--motion-delay, 0s);
+}
+
+/* Category filter. The rail writes the chosen category onto the wrapper and
+   the catalogue answers in CSS, so every menu item stays in the served HTML
+   — the filter narrows what is on screen, not what the page contains.
+
+   One rule per category, hiding only what does not match, rather than a
+   blanket hide plus exceptions: the blanket selector is the more specific of
+   the two and wins, which hides the whole board. A section can hold several
+   categories — the all-menu board holds four — so the attribute carries a
+   list and matches on a word. */
+[data-filter="best"] [data-category]:not([data-category~="best"]),
+[data-filter="special"] [data-category]:not([data-category~="special"]),
+[data-filter="spicy"] [data-category]:not([data-category~="spicy"]),
+[data-filter="classic"] [data-category]:not([data-category~="classic"]),
+[data-filter="side"] [data-category]:not([data-category~="side"]) {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -423,7 +616,13 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   .motion-swell,
   .motion-reveal,
   .motion-fade,
+  .motion-drift,
+  .motion-punch,
   .marquee-track {
     animation: none;
+  }
+
+  .motion-shine::after {
+    display: none;
   }
 }

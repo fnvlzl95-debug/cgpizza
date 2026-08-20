@@ -36,7 +36,7 @@ function MailGlyph() {
 export function ContactFooterSection() {
   return (
     <>
-      <section id="contact-cta" className="relative isolate overflow-hidden bg-[#03060c] text-white">
+      <section id="contact-cta" className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[#03060c] text-white">
         <Image
           src={data.backgroundImage}
           alt=""

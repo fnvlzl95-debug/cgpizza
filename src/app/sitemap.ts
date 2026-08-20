@@ -12,6 +12,11 @@ const routes = [
     changeFrequency: "weekly",
     priority: 0.9,
   },
+  {
+    path: "/brand",
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

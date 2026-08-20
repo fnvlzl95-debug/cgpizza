@@ -9,16 +9,23 @@
 
 import { ctaLinks } from "@/lib/site-config";
 
+/**
+ * Every href is a full path, because this header rides three routes now.
+ * A bare "#contact-cta" resolves against whatever page you happen to be on
+ * — which made 창업안내, 가맹 문의 and the CTA dead buttons everywhere but
+ * home. The header still smooth-scrolls these when you are already on the
+ * page they point into.
+ */
 export const siteNav = [
-  { label: "브랜드", href: "#top" },
+  { label: "브랜드", href: "/brand" },
   { label: "메뉴", href: "/menu" },
-  { label: "창업안내", href: "#franchise-benefit" },
-  { label: "가맹 문의", href: "#contact-cta" },
+  { label: "창업안내", href: "/#franchise-benefit" },
+  { label: "가맹 문의", href: "/#contact-cta" },
 ] as const;
 
 export const headerCta = {
   label: "창업 상담 신청",
-  href: "#contact-cta",
+  href: "/#contact-cta",
 } as const;
 
 /* ── S1 · 히어로 (11-첫화면.png) ─────────────────────────────── */

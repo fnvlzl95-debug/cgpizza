@@ -1,15 +1,56 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import Script from "next/script";
 import { siteUrl } from "@/lib/site-config";
 import "pretendard/dist/web/static/pretendard.css";
 import "./globals.css";
 
+/**
+ * The menu comp sets its headline in a heavy Korean display face, not
+ * Pretendard, and the difference is the whole character of that first
+ * screen. A full Hangul webfont is a megabyte, so we ship only the fifteen
+ * syllables the hero actually sets — 10 KB. Pretendard still carries every
+ * other word on the site; run scripts/subset-display-font.mjs after
+ * changing the headline copy.
+ */
+const headlineFont = localFont({
+  src: "../fonts/black-han-sans-headline.woff2",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+  variable: "--font-blackhan",
+  fallback: ["Pretendard", "sans-serif"],
+  adjustFontFallback: false,
+});
+
+/** The brand sheet's handwritten Korean annotations — same subsetting deal. */
+const annotationFont = localFont({
+  src: "../fonts/nanum-pen-annotations.woff2",
+  weight: "400",
+  style: "normal",
+  display: "swap",
+  variable: "--font-pen",
+  fallback: ["Pretendard", "sans-serif"],
+  adjustFontFallback: false,
+});
+
+/** One English script line on the brand sheet. Latin glyphs only. */
+const scriptFont = localFont({
+  src: "../fonts/caveat-script.woff2",
+  weight: "400 700",
+  style: "normal",
+  display: "swap",
+  variable: "--font-caveat",
+  fallback: ["cursive"],
+  adjustFontFallback: false,
+});
+
 const googleAnalyticsId = "G-G9ZWHC3L9L";
 const naverAnalyticsId = "1c48f0bc7c4f170";
 const defaultDescription =
   "최강피자 부천본점 메뉴, 방문포장 할인, 파로 도우 피자, 피자창업·샵인샵 가맹 상담을 안내합니다.";
-const defaultImage = "/assets/user/share-preview-logo-1200x630.png";
-const defaultImageAlt = "최강피자 로고";
+const defaultImage = "/assets/user/og/home-hero-20260819.webp";
+const defaultImageAlt = "최강피자 — 맛도 최강, 재료도 최강";
 const defaultImageWidth = 1200;
 const defaultImageHeight = 630;
 
@@ -63,7 +104,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" data-scroll-behavior="smooth">
+    <html lang="ko" data-scroll-behavior="smooth" className={`${headlineFont.variable} ${annotationFont.variable} ${scriptFont.variable}`}>
       <body>
         {/*
           THESIS: A franchise page that answers "what is actually left over"

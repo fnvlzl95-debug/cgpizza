@@ -1,5 +1,6 @@
 "use client";
 
+import { HashLandingFix } from "@/components/home/hash-landing-fix";
 import { PortedViewportRuntimeFix } from "@/components/home/ported/ported-viewport-runtime-fix";
 import { SiteHeader } from "@/components/home/site-header";
 import { ContactFooterSection } from "@/components/home/sections/contact-footer-section";
@@ -22,6 +23,7 @@ export function HomePage() {
   return (
     <>
       <PortedViewportRuntimeFix />
+      <HashLandingFix />
       <SiteHeader />
       <main className="overflow-x-hidden bg-paper text-navy-900">
         <HeroSection />

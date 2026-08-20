@@ -1,20 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { ReactNode } from "react";
-import { ArrowLeftIcon, ArrowRightIcon } from "@/components/home/reference/reference-primitives";
+import type { CSSProperties, ReactNode } from "react";
+import { CrownWatermark, CrumbScatter, HeroProps, type HeroProp } from "@/components/decor/field-decor";
 import { SiteHeader } from "@/components/home/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { MenuCatalog } from "@/components/menu/menu-catalog";
+import { MenuHeroShowcase } from "@/components/menu/menu-hero-showcase";
 import {
   menuPageData,
-  type MenuCategoryId,
   type MenuPagePizza,
   type MenuPageSideItem,
 } from "@/lib/menu-page-data";
-import { portedHomepageData } from "@/lib/ported-homepage-data";
-
-const generatedMenuAssets = {
-  heroDesktop: "/assets/user/menu/ima2/section-hero-half-desktop.png",
-  heroMobile: "/assets/user/menu/ima2/section-hero-half-mobile-fit.png",
-} as const;
 
 function PizzaSliceIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
@@ -32,14 +28,6 @@ function PizzaSliceIcon({ className = "h-5 w-5" }: { className?: string }) {
   );
 }
 
-function GridIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
-      <path d="M5 5h5v5H5V5Zm9 0h5v5h-5V5ZM5 14h5v5H5v-5Zm9 0h5v5h-5v-5Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function StarIcon({ className = "h-5 w-5" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
@@ -49,38 +37,6 @@ function StarIcon({ className = "h-5 w-5" }: { className?: string }) {
         strokeWidth="1.9"
         strokeLinejoin="round"
       />
-    </svg>
-  );
-}
-
-function FlameIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
-      <path
-        d="M12.2 20.5c-3.4 0-6.1-2.3-6.1-5.8 0-2.4 1.3-4.4 3.4-6.2.4 2 1.3 3.2 2.6 3.8-.2-3 1-5.8 3.8-8.1.1 3.4 2.1 4.8 2.1 8.5 0 4.7-2.7 7.8-5.8 7.8Z"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
-
-function SideIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
-      <path d="M6.5 17.5h11l1-8h-13l1 8Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
-      <path d="M8.2 6.5h7.6M9.5 9.5v8M14.5 9.5v8" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-function DrinkIcon({ className = "h-5 w-5" }: { className?: string }) {
-  return (
-    <svg viewBox="0 0 24 24" className={className} fill="none" aria-hidden="true">
-      <path d="M8 6h8l-1 14h-6L8 6Z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
-      <path d="M7.5 6h9M10 3.8h5.8" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
-      <path d="M9 11h6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" />
     </svg>
   );
 }
@@ -126,25 +82,6 @@ function ChoiceIcon({ className = "h-9 w-9" }: { className?: string }) {
     </svg>
   );
 }
-
-function CategoryIcon({ id }: { id: MenuCategoryId }) {
-  if (id === "all") return <GridIcon />;
-  if (id === "best") return <StarIcon />;
-  if (id === "spicy") return <FlameIcon />;
-  if (id === "side") return <SideIcon />;
-  if (id === "drink") return <DrinkIcon />;
-  return <PizzaSliceIcon />;
-}
-
-const menuTabHref = {
-  all: "#menu-all",
-  best: "#menu-best",
-  classic: "#menu-classic",
-  special: "#menu-special",
-  spicy: "#menu-spicy",
-  side: "#menu-side",
-  drink: "#menu-side",
-} satisfies Record<MenuCategoryId, string>;
 
 const allMenuCategoryOrder = ["best", "special", "spicy", "classic"] satisfies MenuPagePizza["category"][];
 
@@ -202,77 +139,286 @@ function GoldText({ children }: { children: ReactNode }) {
   );
 }
 
-function MenuHero() {
-  return (
-    <section id="top" className="relative isolate min-h-[430px] overflow-hidden bg-blue-hero pt-[4.25rem] md:min-h-[520px] md:pt-[4.75rem] lg:min-h-[560px]">
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 bg-top bg-no-repeat md:hidden"
-        style={{
-          backgroundImage: `url(${generatedMenuAssets.heroMobile})`,
-          backgroundSize: "100% auto",
-        }}
-      />
-      <div
-        aria-hidden="true"
-        className="absolute inset-0 hidden bg-cover bg-center md:block"
-        style={{ backgroundImage: `url(${generatedMenuAssets.heroDesktop})` }}
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,50,240,0.16)_0%,rgba(0,50,240,0.38)_28%,rgba(0,50,240,0.92)_67%,rgba(0,50,240,1)_100%)] md:bg-[linear-gradient(90deg,rgba(0,50,240,0.98)_0%,rgba(0,50,240,0.9)_35%,rgba(0,50,240,0.36)_62%,rgba(0,50,240,0.02)_100%)]" />
-      <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(0,50,240,0.08)_0%,rgba(0,50,240,0.02)_56%,rgba(0,50,240,0.26)_100%)] md:block" />
-      {/* The header rides this hero, and its links cross the pizza on the
-          right. A short scrim along the top gives them a ground to read
-          against without hiding the photograph. */}
-      <div className="absolute inset-x-0 top-0 h-[7.5rem] bg-[linear-gradient(180deg,rgba(0,50,240,0.82)_0%,rgba(0,50,240,0.5)_55%,rgba(0,50,240,0)_100%)]" />
+const delay = (seconds: number) => ({ "--motion-delay": `${seconds}s` }) as CSSProperties;
 
-      <div className="relative mx-auto grid min-h-[350px] w-full max-w-7xl items-end px-4 pb-9 pt-5 md:min-h-[440px] md:grid-cols-[0.56fr_0.44fr] md:items-center md:py-10 lg:min-h-[480px]">
-        <div className="relative z-20 max-w-xl">
-          <Sparkles className="mb-4 md:mb-5" />
-          <span className="mb-4 inline-flex rounded-full bg-yellow-500 px-4 py-1.5 text-[0.72rem] font-black tracking-[0.12em] text-navy-900 shadow-[0_12px_30px_rgba(255,207,0,0.28)] md:mb-5 md:px-5 md:py-2 md:text-[0.82rem]">
-            CHOIGANG PIZZA MENU
-          </span>
-          <h1 className="text-[2.9rem] font-black leading-[0.9] tracking-[-0.05em] text-white sm:text-[3.7rem] md:text-[4.9rem]">
-            최강피자 <GoldText>메뉴</GoldText>
-          </h1>
-          <p className="mt-4 text-[1.05rem] font-black leading-snug text-white/94 md:mt-5 md:text-[1.3rem]">
-            취향대로 골라 즐기는 <span className="text-red-500">최강의 한 판</span>
-          </p>
-          <p className="mt-4 max-w-[24rem] text-[0.86rem] font-medium leading-relaxed text-white/72 md:mt-4 md:text-[0.95rem]">
-            최강의 토핑, 최강의 맛! 엄선된 재료와 노하우로 언제나 만족스러운 한 판을 제공합니다.
-          </p>
-        </div>
-        <div className="hidden md:block" aria-hidden="true" />
-      </div>
-    </section>
+/** The comp's scattered sparks: a few gold four-point stars and white dots,
+ *  each placed as its own element so no stretch distorts them, kept to the
+ *  card cluster's airspace so none lands on a word. */
+const sparkMarks = [
+  // [left%, top%, rem, opacity, isSpark]
+  [3, 4, 1.3, 0.85, true], [11, 10, 0.4, 0.5, false], [-2, 30, 0.9, 0.6, true],
+  [96, 2, 1.5, 0.8, true], [90, 12, 0.45, 0.45, false], [102, 40, 1.0, 0.55, true],
+  [-1, 74, 1.1, 0.6, true], [7, 92, 0.45, 0.4, false], [55, -3, 0.5, 0.5, false],
+  [98, 84, 1.2, 0.6, true], [88, 96, 0.4, 0.4, false],
+] as const;
+
+function SparkField({ className }: { className: string }) {
+  return (
+    <div aria-hidden="true" className={className}>
+      {sparkMarks.map(([left, top, size, opacity, isSpark], index) => (
+        <span
+          key={index}
+          className="absolute -translate-x-1/2 -translate-y-1/2"
+          style={{ left: `${left}%`, top: `${top}%`, opacity }}
+        >
+          {isSpark ? (
+            <svg viewBox="0 0 24 24" style={{ width: `${size}rem`, height: `${size}rem` }}>
+              <path
+                d="M12 0c.9 6.9 4.2 10.2 12 12-7.8 1.8-11.1 5.1-12 12-.9-6.9-4.2-10.2-12-12C7.8 10.2 11.1 6.9 12 0Z"
+                fill="var(--color-yellow-500)"
+              />
+            </svg>
+          ) : (
+            <span
+              className="block rounded-full bg-white"
+              style={{ width: `${size}rem`, height: `${size}rem` }}
+            />
+          )}
+        </span>
+      ))}
+    </div>
   );
 }
 
-function MenuTabs() {
+/** Halftone dot patch, the comp's texture accent on the blue field. */
+function DotPatch({ className }: { className: string }) {
   return (
-    <div className="relative z-20 bg-blue-video">
-      <div className="mx-auto -mt-6 max-w-7xl px-4">
-        <nav
-          aria-label="메뉴 카테고리"
-          className="flex gap-2 overflow-x-auto rounded-full border border-white/15 bg-navy-900 p-2 text-white shadow-[0_18px_48px_rgba(0,0,0,0.5)] [scrollbar-width:none] [-ms-overflow-style:none] md:grid md:grid-cols-6 md:gap-2 md:overflow-visible [&::-webkit-scrollbar]:hidden"
-        >
-          {menuPageData.tabs.map((tab) => (
-            <a
-              key={tab.id}
-              href={menuTabHref[tab.id]}
-              style={tab.id === "all" ? { color: "var(--color-navy-900)" } : undefined}
-              className={`inline-flex h-11 min-w-max items-center justify-center gap-1.5 rounded-full px-4 text-[0.9rem] font-black transition-all duration-300 active:translate-y-px md:min-w-0 md:px-2.5 ${
-                tab.id === "all"
-                  ? "bg-yellow-500 text-navy-900 shadow-[0_8px_20px_rgba(255,207,0,0.32)]"
-                  : "bg-white/10 text-white/85 hover:bg-white/20 hover:text-white"
-              }`}
-            >
-              <CategoryIcon id={tab.id} />
-              {tab.label}
-            </a>
-          ))}
-        </nav>
-      </div>
+    <svg viewBox="0 0 160 96" aria-hidden="true" className={className}>
+      {Array.from({ length: 6 }, (_, row) =>
+        Array.from({ length: 10 }, (_, col) => (
+          <circle
+            key={`${row}-${col}`}
+            cx={8 + col * 16}
+            cy={8 + row * 16}
+            r={2.4}
+            fill="currentColor"
+          />
+        )),
+      )}
+    </svg>
+  );
+}
+
+/** The comp's field: a broad lighter sweep climbing to the right with one
+ *  bright streak along its edge, drawn as flat skewed bands. */
+function FieldSweep() {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* The comp does not light this field evenly: a pool of lighter blue
+          sits behind the card cluster and the corners fall away, which is
+          what puts the cards in front of the field rather than on it. */}
+      <div className="absolute inset-0 bg-[radial-gradient(58%_54%_at_72%_44%,rgba(120,158,255,0.5),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_45%,transparent_42%,rgba(1,23,80,0.44))]" />
+      <div className="absolute -left-[20%] top-[34%] h-[44%] w-[150%] -rotate-[8deg] bg-white/[0.045]" />
+      <div className="absolute -left-[20%] top-[33.4%] h-[3px] w-[150%] -rotate-[8deg] bg-white/[0.18]" />
+      <div className="absolute -left-[20%] top-[82%] h-[22%] w-[150%] -rotate-[8deg] bg-white/[0.03]" />
+      <DotPatch className="absolute right-[5%] top-[9%] h-24 w-40 text-white/[0.14]" />
+      <DotPatch className="absolute bottom-[13%] left-[37%] h-20 w-32 text-white/[0.09]" />
     </div>
+  );
+}
+
+/**
+ * The comp floats real ingredients across the blue — shrimp, basil, a cut
+ * tomato, a slice of pepperoni — biting the card edges so the cluster sits
+ * inside the field rather than on top of it.
+ *
+ * Most are placed against the card cluster's own box, not the section, so
+ * they hold their relationship to the cards at any viewport height. Two sit
+ * behind the cards and two in front; a prop that only ever passes behind
+ * reads as wallpaper, and one that always passes in front reads as a sticker.
+ *
+ * Each drifts on its own clock, and below `lg` nearly all of them stand down:
+ * the copy takes the full width there and a prop over a headline is noise.
+ */
+const clusterPropsBehind = [
+  {
+    src: "/assets/user/menu/props/tomato.webp",
+    className: "hidden -right-[8%] top-[10%] w-[5.5rem] lg:block lg:w-[clamp(7rem,8vw,10rem)]",
+    style: { "--drift-tilt": "-6deg", "--drift-y": "-11px", "--drift-x": "-5px", "--drift-duration": "9.2s", "--motion-delay": "1.1s" },
+  },
+] as const satisfies readonly HeroProp[];
+
+const clusterPropsFront = [
+  {
+    src: "/assets/user/menu/props/shrimp-a.webp",
+    className: "left-[27%] -top-[10%] w-[4.5rem] lg:w-[clamp(7rem,7.8vw,9.75rem)]",
+    style: { "--drift-tilt": "-16deg", "--drift-y": "-13px", "--drift-x": "6px", "--drift-duration": "8.5s", "--motion-delay": "0s" },
+  },
+  {
+    src: "/assets/user/menu/props/basil-a.webp",
+    className: "hidden -left-[5%] top-[43%] w-[5rem] lg:block lg:w-[clamp(6.75rem,7.5vw,9.5rem)]",
+    style: { "--drift-tilt": "10deg", "--drift-y": "-15px", "--drift-x": "-7px", "--drift-duration": "10s", "--motion-delay": "0.6s" },
+  },
+  {
+    src: "/assets/user/menu/props/cheese.webp",
+    className: "left-[34%] -bottom-[4%] w-[3.75rem] lg:left-[37%] lg:-bottom-[5%] lg:w-[clamp(6.5rem,7.2vw,9rem)]",
+    style: { "--drift-tilt": "-9deg", "--drift-y": "-11px", "--drift-x": "8px", "--drift-duration": "8.8s", "--motion-delay": "0.8s" },
+  },
+] as const satisfies readonly HeroProp[];
+
+/**
+ * The rest ring the field rather than the cards. The two columns leave only a
+ * narrow gutter between them, so the open ground on this screen is the frame
+ * around the composition — the strips outside each column and the band under
+ * the copy — and that is where these sit.
+ */
+const fieldProps = [
+  {
+    src: "/assets/user/menu/props/pepper.webp",
+    className: "hidden lg:left-[1%] lg:top-[23%] lg:block lg:w-[clamp(6rem,6.6vw,8.5rem)]",
+    style: { "--drift-tilt": "-13deg", "--drift-y": "-12px", "--drift-x": "6px", "--drift-duration": "9.4s", "--motion-delay": "0.4s" },
+  },
+  {
+    src: "/assets/user/menu/props/shrimp-b.webp",
+    className: "hidden lg:left-[2%] lg:top-[55%] lg:block lg:w-[clamp(6rem,6.8vw,8.75rem)]",
+    style: { "--drift-tilt": "22deg", "--drift-y": "-12px", "--drift-x": "-7px", "--drift-duration": "8s", "--motion-delay": "0.9s" },
+  },
+  {
+    src: "/assets/user/menu/props/mushroom.webp",
+    className: "hidden lg:left-[92%] lg:top-[27%] lg:block lg:w-[clamp(6rem,6.6vw,8.5rem)]",
+    style: { "--drift-tilt": "14deg", "--drift-y": "-10px", "--drift-x": "6px", "--drift-duration": "8.1s", "--motion-delay": "1.9s" },
+  },
+  {
+    src: "/assets/user/menu/props/pepperoni.webp",
+    className: "hidden lg:left-[94%] lg:top-[63%] lg:block lg:w-[clamp(5.5rem,6vw,7.75rem)]",
+    style: { "--drift-tilt": "12deg", "--drift-y": "-9px", "--drift-x": "7px", "--drift-duration": "7.4s", "--motion-delay": "0.3s" },
+  },
+  {
+    src: "/assets/user/menu/props/bacon.webp",
+    className: "hidden lg:left-[7%] lg:top-[83%] lg:block lg:w-[clamp(6.25rem,7vw,9rem)]",
+    style: { "--drift-tilt": "-7deg", "--drift-y": "-10px", "--drift-x": "7px", "--drift-duration": "10.6s", "--motion-delay": "2s" },
+  },
+  {
+    src: "/assets/user/menu/props/basil-b.webp",
+    className: "hidden left-[29%] top-[79%] w-[4.5rem] lg:block lg:w-[clamp(5.75rem,6.4vw,8.25rem)]",
+    style: { "--drift-tilt": "-18deg", "--drift-y": "-10px", "--drift-x": "5px", "--drift-duration": "11s", "--motion-delay": "1.6s" },
+  },
+  {
+    src: "/assets/user/menu/props/corn.webp",
+    className: "hidden lg:left-[51%] lg:top-[80%] lg:block lg:w-[clamp(5.25rem,5.8vw,7.5rem)]",
+    style: { "--drift-tilt": "8deg", "--drift-y": "-9px", "--drift-x": "5px", "--drift-duration": "7.8s", "--motion-delay": "1.4s" },
+  },
+  {
+    src: "/assets/user/menu/props/olive.webp",
+    className: "left-[7%] bottom-[4%] w-[3.5rem] lg:bottom-auto lg:left-[72%] lg:top-[85%] lg:w-[clamp(6rem,6.6vw,8.5rem)]",
+    style: { "--drift-tilt": "-11deg", "--drift-y": "-12px", "--drift-x": "-6px", "--drift-duration": "9.8s", "--motion-delay": "2.3s" },
+  },
+] as const satisfies readonly HeroProp[];
+
+/** The comp's bottom edge: the white field sweeps up into the blue. */
+function HeroCurve() {
+  return (
+    <svg
+      viewBox="0 0 1440 90"
+      preserveAspectRatio="none"
+      aria-hidden="true"
+      className="absolute inset-x-0 bottom-0 z-10 h-[2.6rem] w-full lg:h-[4.2rem]"
+    >
+      <path d="M0 34Q360 88 900 52T1440 12L1440 90L0 90Z" fill="var(--color-cream-ground)" />
+    </svg>
+  );
+}
+
+function MenuHero() {
+  return (
+    <section
+      id="top"
+      className="relative isolate flex flex-col justify-center overflow-hidden bg-blue-hero pb-[4.5rem] pt-lead text-white lg:min-h-[calc(100svh-3.9rem)] lg:pb-[5.5rem]"
+    >
+      <FieldSweep />
+      <CrownWatermark />
+      <HeroProps items={fieldProps} className="inset-0 z-[2] overflow-hidden" />
+
+      <div className="relative mx-auto grid w-full max-w-[90rem] grid-cols-1 items-center gap-gutter px-5 md:px-8 lg:grid-cols-[50fr_50fr] min-[1800px]:max-w-[104rem] min-[2200px]:max-w-[124rem] lg:items-center lg:gap-[2.8vw]">
+        <div className="relative z-20">
+          {/* Not a label stuck above the heading. The words are set in the
+              same display face as the headline and ride a real smear of pizza
+              sauce — the grain, the gloss and the trailing drags photographed
+              rather than approximated in CSS, which is the house rule for
+              physical texture. Sauce rather than paint because it is the thing
+              this page is about; the smear runs wider than the words so its
+              streaks break past the last syllable. */}
+          <p className="motion-rise relative inline-flex -rotate-[3.5deg] pb-[0.1em]">
+            <span className="relative isolate inline-flex whitespace-nowrap px-[0.62em] py-[0.16em]">
+              <Image
+                src="/assets/user/sauce-sweep.webp"
+                alt=""
+                width={1100}
+                height={437}
+                priority
+                aria-hidden="true"
+                sizes="(max-width: 1024px) 60vw, 26vw"
+                className="pointer-events-none absolute -left-[6%] top-1/2 -z-10 w-[160%] max-w-none -translate-y-[46%]"
+              />
+              <span className="lockup-3d font-headline text-[1.5rem] leading-none tracking-[-0.01em] text-white sm:text-[1.85rem] lg:text-[clamp(1.85rem,2.05vw,2.85rem)]">
+                피자는 역시
+              </span>
+            </span>
+            {/* Clear of the sweep: gold on gold is no mark at all. */}
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className="absolute right-[30%] -top-8 h-4 w-4 lg:right-[29%] lg:-top-12 lg:h-6 lg:w-6"
+            >
+              <path
+                d="M12 0c.9 6.9 4.2 10.2 12 12-7.8 1.8-11.1 5.1-12 12-.9-6.9-4.2-10.2-12-12C7.8 10.2 11.1 6.9 12 0Z"
+                fill="var(--color-yellow-500)"
+              />
+            </svg>
+          </p>
+
+          {/* The comp sets this in a heavy display face with a navy outline
+              and a solid extrude, and steps each line off a different angle.
+              That lettering is most of the screen's character, so it gets its
+              own subset face rather than Pretendard turned up loud. */}
+          <h1
+            style={delay(0.08)}
+            className="motion-rise headline-3d mt-group origin-left -skew-x-[6deg] font-headline leading-[0.99] tracking-[-0.02em]"
+          >
+            <span className="block origin-left -rotate-[1.2deg] text-[2.15rem] sm:text-[2.8rem] lg:text-[clamp(2.9rem,4.3vw,6.2rem)] lg:[@media(max-height:820px)]:text-[clamp(2.45rem,3.5vw,3.5rem)]">
+              최강 답게
+            </span>
+            <span className="block origin-left -rotate-[0.4deg] pl-[0.9em] text-[2.45rem] sm:text-[3.15rem] lg:text-[clamp(2.9rem,4.3vw,6.2rem)] lg:[@media(max-height:820px)]:text-[clamp(2.45rem,3.5vw,3.5rem)]">
+              고르는 재미,
+            </span>
+            {/* A flex row, not a wrapped line: the tilted word yields rects at
+                three heights, which the shrink-to-fit inline pass misreads. */}
+            <span className="flex origin-left -rotate-[2deg] items-baseline gap-[0.24em] pt-[0.1em] text-[3.3rem] sm:text-[4.3rem] lg:text-[clamp(3.9rem,5.45vw,8.1rem)] lg:[@media(max-height:820px)]:text-[clamp(3.15rem,4.5vw,4.5rem)]">
+              <span>한 판의</span>
+              <span style={delay(0.46)} className="motion-punch inline-block text-yellow-500">
+                임팩트!
+              </span>
+            </span>
+          </h1>
+
+          <p
+            style={delay(0.16)}
+            className="motion-rise mt-group max-w-[34rem] origin-left -skew-x-[3deg] text-[1.02rem] font-bold leading-relaxed tracking-[-0.02em] text-white/85 lg:text-[clamp(1.02rem,1.28vw,1.68rem)]"
+          >
+            취향도, 맛도, 토핑도 최강! 지금 나만의 최강피자를 골라보세요.
+          </p>
+
+          <p
+            style={delay(0.3)}
+            className="motion-rise mt-group flex items-center gap-1.5 text-[0.88rem] font-bold text-white/70 lg:text-[clamp(0.86rem,1vw,1.15rem)]"
+          >
+            <span aria-hidden="true" className="text-yellow-500">◇</span>
+            방문포장 시 할인 혜택을 받아보세요!
+          </p>
+        </div>
+
+        <div className="motion-swell relative z-10 mx-auto w-full max-w-[26rem] pt-6 sm:max-w-[30rem] lg:mx-0 lg:max-w-none lg:justify-self-end lg:pt-2 lg:[@media(max-height:820px)]:max-w-[26rem]">
+          <SparkField className="pointer-events-none absolute -inset-x-[2%] inset-y-0 z-0" />
+          <CrumbScatter className="pointer-events-none absolute -inset-[4%] -z-10 h-[108%] w-[108%]" />
+          <HeroProps items={clusterPropsBehind} className="inset-0 z-0" />
+          <MenuHeroShowcase items={menuPageData.best} />
+          <HeroProps items={clusterPropsFront} className="inset-0 z-40" />
+        </div>
+      </div>
+
+      <HeroCurve />
+    </section>
   );
 }
 
@@ -291,7 +437,7 @@ function SectionTitle({
 }) {
   const isDark = tone === "dark";
   return (
-    <div id={id} className="scroll-mt-28 text-center">
+    <div id={id} className="scroll-mt-[calc(var(--header-offset)+4.5rem)] text-center">
       {eyebrow ? (
         <p className={`mb-3 text-[0.74rem] font-black tracking-[0.24em] md:text-[0.82rem] ${isDark ? "text-yellow-500" : "text-red-500"}`}>
           {eyebrow}
@@ -353,7 +499,7 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
 
 function BestMenuSection() {
   return (
-    <section className="relative overflow-hidden bg-blue-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
+    <section data-category="best" className="relative overflow-hidden bg-blue-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-best"
@@ -363,12 +509,6 @@ function BestMenuSection() {
           tone="dark"
         />
         <div className="relative mt-9 md:mt-12">
-          <span className="absolute left-[-2.6rem] top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-navy-900 shadow-[0_10px_24px_rgba(0,0,0,0.3)] lg:flex">
-            <ArrowLeftIcon className="h-5 w-5" />
-          </span>
-          <span className="absolute right-[-2.6rem] top-1/2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-navy-900 shadow-[0_10px_24px_rgba(0,0,0,0.3)] lg:flex">
-            <ArrowRightIcon className="h-5 w-5" />
-          </span>
           <div className="grid gap-5 md:grid-cols-3">
             {menuPageData.best.map((item) => (
               <PizzaCard key={item.title} item={item} featured />
@@ -389,7 +529,7 @@ function AllMenuSection() {
     .filter((group) => group.items.length > 0);
 
   return (
-    <section className="relative overflow-hidden bg-paper px-4 py-10 md:py-14">
+    <section data-category="best special spicy classic" className="relative overflow-hidden bg-cream-ground px-4 py-10 md:py-14">
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-all"
@@ -401,14 +541,16 @@ function AllMenuSection() {
           {menuGroups.map((group) => (
             <div
               key={group.category}
-              id={group.category === "best" ? undefined : `menu-${group.category}`}
-              className="scroll-mt-28"
+              id={group.category === "best" ? "menu-best-group" : `menu-${group.category}`}
+              data-category={group.category}
+              className="scroll-mt-[calc(var(--header-offset)+4.5rem)]"
             >
-              <div className="mb-5 flex items-end justify-between gap-4 border-b border-navy-900/10 pb-3">
-                <h3 className="text-[1.25rem] font-black leading-tight tracking-normal text-navy-900 md:text-[1.55rem]">
+              <div className="mb-6 flex items-center justify-between gap-4 border-b-2 border-navy-900 pb-3">
+                <h3 className="flex items-center gap-2.5 text-[1.35rem] font-black leading-tight tracking-[-0.03em] text-navy-900 md:text-[1.7rem]">
+                  <span aria-hidden="true" className="h-[0.6em] w-[0.6em] rotate-45 rounded-[2px] bg-yellow-500 ring-1 ring-navy-900/15" />
                   {allMenuCategoryTitle[group.category]}
                 </h3>
-                <span className="shrink-0 text-[0.78rem] font-black text-navy-900/42">
+                <span className="shrink-0 rounded-full bg-navy-900 px-3 py-1 text-[0.74rem] font-black text-yellow-500 md:text-[0.82rem]">
                   {group.items.length}종
                 </span>
               </div>
@@ -477,7 +619,7 @@ function SideIllustration({ item }: { item: MenuPageSideItem }) {
 
 function SideMenuSection() {
   return (
-    <section id="menu-side" className="relative scroll-mt-28 overflow-hidden bg-blue-band px-4 py-12 text-white md:py-[4.25rem]">
+    <section id="menu-side" data-category="side" className="relative scroll-mt-[calc(var(--header-offset)+4.5rem)] overflow-hidden bg-blue-band px-4 py-12 text-white md:py-[4.25rem]">
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-side-title"
@@ -486,11 +628,11 @@ function SideMenuSection() {
           description="피자와 함께 더 맛있게 즐겨보세요!"
           tone="dark"
         />
-        <div className="mt-9 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-3 xl:grid-cols-6">
+        <div className="mt-9 flex flex-wrap justify-center gap-3 sm:gap-4">
           {menuPageData.sideItems.map((item) => (
             <article
               key={item.title}
-              className="group relative flex flex-col overflow-hidden rounded-[1.5rem] border border-hairline bg-white px-3 pb-4 pt-3 text-center text-navy-900 shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.32)] md:px-4 md:pb-5 md:pt-4"
+              className="group relative flex w-[calc(50%-0.375rem)] flex-col overflow-hidden rounded-[1.5rem] border border-hairline bg-white px-3 pb-4 pt-3 text-center text-navy-900 shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.32)] sm:w-[calc(50%-0.5rem)] md:px-4 md:pb-5 md:pt-4 lg:w-[calc(20%-0.8rem)]"
             >
               <SideIllustration item={item} />
               <h3 className="mt-3 flex min-h-[2.5rem] items-center justify-center text-balance text-[1rem] font-black leading-tight tracking-[-0.02em] md:text-[1.1rem]">
@@ -543,46 +685,21 @@ function MenuCta() {
   );
 }
 
-function MenuFooter() {
-  const { footerRows, footerCopyright } = portedHomepageData.contact;
-
-  return (
-    <footer className="bg-[#03060c] text-white">
-      <div className="mx-auto max-w-[1680px] px-4 py-7 md:px-6 md:py-8">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
-          <div className="space-y-3 text-left text-sm leading-relaxed text-white/62 md:text-[0.94rem]">
-            {footerRows.map((row, rowIndex) => (
-              <div key={rowIndex} className="flex flex-wrap items-center gap-x-6 gap-y-1">
-                {row.map((item) => (
-                  <p key={item}>{item}</p>
-                ))}
-              </div>
-            ))}
-          </div>
-
-          <p className="shrink-0 text-left text-sm font-medium tracking-[0.08em] text-white/42 md:text-[0.95rem] lg:pt-0.5 lg:text-right">
-            {footerCopyright}
-          </p>
-        </div>
-      </div>
-    </footer>
-  );
-}
-
 export function MenuPage() {
   return (
     <>
       <SiteHeader activeHref="/menu" />
       <main className="bg-blue-video text-white">
         <MenuHero />
-        <MenuTabs />
-        <BestMenuSection />
-        <AllMenuSection />
+        <MenuCatalog>
+          <BestMenuSection />
+          <AllMenuSection />
+          <SideMenuSection />
+        </MenuCatalog>
         <ReasonsBand />
-        <SideMenuSection />
         <MenuCta />
       </main>
-      <MenuFooter />
+      <SiteFooter />
     </>
   );
 }

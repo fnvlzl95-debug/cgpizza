@@ -6,6 +6,7 @@ import {
   ToolsIcon,
   TruckIcon,
 } from "@/components/home/icons";
+import { BrushHighlight } from "@/components/home/reference/reference-primitives";
 import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { franchiseBenefit as data } from "@/lib/home-content";
 
@@ -17,32 +18,6 @@ const rowIcons = {
   tools: ToolsIcon,
   headset: HeadsetIcon,
 } as const;
-
-/**
- * Gold marker sweep behind "30호점까지,". The comp's mark is a thick, rough
- * brush that fully covers the word with frayed ends and a few flicks past the
- * stroke, so this draws the whole slab rather than an underline.
- */
-function BrushHighlight() {
-  return (
-    <svg
-      viewBox="0 0 420 100"
-      preserveAspectRatio="none"
-      aria-hidden="true"
-      className="absolute -inset-x-[4%] -inset-y-[6%] -z-10 h-[112%] w-[108%] text-yellow-500"
-    >
-      {/* Main slab: uneven top and bottom edges, tapering at both ends. */}
-      <path
-        fill="currentColor"
-        d="M4 24c26-7 62-12 108-15 58-4 118-4 178 0 42 3 76 8 102 15 14 4 22 9 24 16 3 12-1 22-11 30-6 5-16 7-30 6-52-5-104-8-156-8-56 0-112 4-168 12-16 2-27 1-33-4-8-6-11-16-11-30 0-11 0-17 3-20 2-2 6-3 13-5Z"
-      />
-      {/* Flicks running past the slab, as a dry marker leaves. */}
-      <path fill="currentColor" d="M392 22c12 2 20 6 24 11l-4 4c-6-6-14-10-24-12l4-3Z" />
-      <path fill="currentColor" d="M400 68c10-2 17-6 22-11l3 5c-6 6-14 10-24 12l-1-6Z" />
-      <path fill="currentColor" opacity="0.75" d="M12 16c30-6 66-10 108-12l1 6c-40 2-75 6-104 12l-5-6Z" />
-    </svg>
-  );
-}
 
 /** Red pen stroke under "딱", as in the comp. */
 function RedUnderline() {
@@ -135,7 +110,7 @@ export function FranchiseBenefitSection() {
   return (
     <section
       id="franchise-benefit"
-      className="app-screen-snap-target section-screen section-lead relative bg-paper"
+      className="scroll-mt-[var(--header-offset)] app-screen-snap-target section-screen section-lead relative bg-paper"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="flex justify-center">
