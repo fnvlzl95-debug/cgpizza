@@ -57,14 +57,17 @@ const nextConfig: NextConfig = {
         destination: "/assets/user/og/home-hero-20260819.webp",
         statusCode: 301 as const,
       })),
-      {
-        // The /brand hero was reshot, so its card is a new URL. The retired
-        // one keeps answering — with a redirect to the current brand card,
-        // not to the home card, so a shared /brand link keeps its own image.
-        source: "/assets/user/og/brand-hero-20260819.webp",
-        destination: "/assets/user/og/brand-hero-20260820.webp",
+      // The /brand hero has been reshot twice, so its card has two retired
+      // URLs. Each keeps answering — redirected to the current brand card,
+      // not to the home card, so a shared /brand link keeps its own image.
+      ...[
+        "/assets/user/og/brand-hero-20260819.webp",
+        "/assets/user/og/brand-hero-20260820.webp",
+      ].map((source) => ({
+        source,
+        destination: "/assets/user/og/brand-hero-20260821.webp",
         statusCode: 301 as const,
-      },
+      })),
     ];
   },
 };

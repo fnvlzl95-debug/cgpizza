@@ -145,14 +145,17 @@ export function FranchiseBenefitSection() {
         {/* The comp stands the mascot beside the band, not over it, so this is
             a real two-column row rather than an absolute overlay. */}
         <div className="relative mt-block flex items-end gap-0">
+          {/* Client's new CKP badge, cut out of the red square it was drawn
+              on so the mark stands on the field rather than in a box. It is
+              square where the mascot was tall, so it sits a touch wider and
+              loses the mascot's -mb nudge. */}
           <Image
-            src="/assets/user/mascot/mascot-thumbsup.webp"
+            src="/assets/user/brand/ckp-badge-20260821.webp"
             alt=""
-            width={639}
-            height={804}
+            width={720}
+            height={720}
             aria-hidden="true"
-            unoptimized
-            className="pointer-events-none -mb-2 hidden h-auto w-[min(6.8vw,12vh)] shrink-0 select-none lg:block"
+            className="pointer-events-none hidden h-auto w-[min(7.6vw,13vh)] shrink-0 select-none lg:block"
           />
           <div className="w-full rounded-band bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[min(1.05vw,1.85vh)] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
             <div className="flex items-center justify-center gap-3 lg:justify-start lg:gap-[1.4vw]">

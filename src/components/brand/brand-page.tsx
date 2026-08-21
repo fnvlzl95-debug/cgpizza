@@ -496,7 +496,7 @@ export function BrandPage() {
                     style={delay(0.12)}
                     className="motion-swell relative lg:order-2 lg:-mt-[3svh] lg:w-[112%] lg:max-w-none lg:-translate-x-[5%]"
                   >
-                    <div className="relative aspect-[1490/928]">
+                    <div className="relative aspect-[1530/969]">
                       <CrumbScatter className="pointer-events-none absolute -inset-[6%] -z-10 h-[112%] w-[112%]" />
                       <Image
                         src={hero.farro.ears}

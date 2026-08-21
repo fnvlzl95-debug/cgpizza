@@ -34,13 +34,15 @@ export const hero = {
   bubbleLines: ["소화가 잘되는", "맛있는 파로 도우!"],
   pizza: {
     /**
-     * The menu's own number-one — 최강 마스터 피자, 갈비 half and 통새우 half —
-     * rather than an invented pizza that resembles one. Framed to the comp's
-     * camera: a high three-quarter angle that reads as a wide ellipse, so the
-     * board sits under the headline instead of standing in front of it.
+     * The menu's own number-one — 최강 마스터 피자, 갈비 half and 통새우 half.
+     * This is the catalogue photograph itself, keyed off its marble ground,
+     * rather than a render of it: the generated version read as generated.
+     * Its camera is already the comp's — a high three-quarter angle that
+     * reads as a wide ellipse, so the board sits under the headline instead
+     * of standing in front of it.
      */
     name: "최강 마스터 피자",
-    src: "/assets/user/brand/hero-master-pizza-20260819.webp",
+    src: "/assets/user/brand/hero-master-pizza-real-20260821.webp",
     alt: "최강피자 대표 메뉴 최강 마스터 피자 — 숯불갈비 반, 통새우 반 한 판",
   },
   /**
@@ -67,15 +69,16 @@ export const ingredients = {
   title: "좋은 재료가 좋은 피자를 만듭니다",
   body: ["진짜 재료만, 아끼지 않고 듬뿍!", "한 판의 피자에 담긴 신선한 재료들의 조화."],
   /**
-   * Counter props framed for this comp — each one lying on the shelf at the
-   * same camera height, which the menu page's own props are not. 모짜렐라
-   * keeps the menu's cheese still: the comp draws a mushroom under that
-   * label, and shipping a mushroom as mozzarella would be a lie on the page.
+   * What this kitchen actually puts on a pizza. 바질 and 토마토 were on this
+   * shelf until the client pointed out they are not ingredients here; 청피망
+   * is on the 마스터 피자 itself and 페퍼로니 has a menu item of its own, so
+   * both are on the record. Naming a topping the store does not stock is the
+   * one mistake this section cannot make.
    */
   items: [
     { src: "/assets/user/brand/ingredients/shrimp-20260819.webp", note: "탱글탱글", name: "통새우" },
-    { src: "/assets/user/brand/ingredients/basil-20260819.webp", note: "향긋한 풍미", name: "바질" },
-    { src: "/assets/user/brand/ingredients/tomato-20260819.webp", note: "상큼한 과즙", name: "토마토" },
+    { src: "/assets/user/menu/props/pepper.webp", note: "아삭한 식감", name: "청피망" },
+    { src: "/assets/user/menu/props/pepperoni.webp", note: "짭짤한 감칠맛", name: "페퍼로니" },
     { src: "/assets/user/menu/props/cheese.webp", note: "고소한 풍미", name: "모짜렐라" },
     { src: "/assets/user/brand/ingredients/bacon-20260819.webp", note: "짭조름한 감칠맛", name: "베이컨" },
     { src: "/assets/user/brand/ingredients/olive-20260819.webp", note: "풍부한 식감", name: "블랙올리브" },

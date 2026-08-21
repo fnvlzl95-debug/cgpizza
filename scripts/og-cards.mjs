@@ -21,7 +21,7 @@ import { mkdirSync } from "node:fs";
 import { resolve, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const DATE = "20260820";
+const DATE = "20260821";
 const CARD_W = 1200;
 const CARD_H = 630;
 /* Naver guidance: over 150×150, over 5 KB, ratio no wider than 3:1. We also
