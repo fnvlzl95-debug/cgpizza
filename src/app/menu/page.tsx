@@ -9,7 +9,7 @@ import { siteUrl } from "@/lib/site-config";
    falls back to harvesting DOM images, which is how stale pizza photos end
    up as the search thumbnail. Regenerate with scripts/og-cards.mjs; a new
    date is a new URL on purpose. */
-const menuImage = "/assets/user/og/menu-hero-20260819.webp";
+const menuImage = "/assets/user/og/menu-hero-20260822.webp";
 const menuImageAlt = "최강피자 메뉴 — 베스트 피자와 전체 메뉴";
 const menuDescription = "최강피자의 베스트 메뉴, 전체 피자 메뉴, 사이드 메뉴를 확인하세요.";
 

@@ -38,7 +38,7 @@ function BenefitTable() {
     <div className="mt-block overflow-hidden rounded-card border border-hairline bg-white shadow-card">
       {/* Column head. Each label sits over its own column on the same axis as
           the cells beneath it, rather than all three centred. */}
-      <div className="hidden bg-navy-900 text-white lg:grid lg:grid-cols-[26%_42%_32%] lg:py-[min(0.52vw,0.92vh)]">
+      <div className="hidden bg-ink-900 text-white lg:grid lg:grid-cols-[26%_42%_32%] lg:py-[min(0.52vw,0.92vh)]">
         <span className="pl-[2.2vw] text-[clamp(0.9rem,1.14vw,1.2rem)] font-black tracking-[-0.02em]">
           {data.columns[0]}
         </span>
@@ -49,7 +49,7 @@ function BenefitTable() {
           {data.columns[2]}
         </span>
       </div>
-      <div className="bg-navy-900 py-3 text-center text-[0.95rem] font-black text-white lg:hidden">
+      <div className="bg-ink-900 py-3 text-center text-[0.95rem] font-black text-white lg:hidden">
         가맹 혜택
       </div>
 
@@ -63,15 +63,15 @@ function BenefitTable() {
             }`}
           >
             <div className="flex items-center gap-3 lg:pl-[2.2vw]">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-navy-900 text-white lg:h-[min(2.15vw,3.8vh)] lg:w-[min(2.15vw,3.8vh)]">
+              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-ink-900 text-white lg:h-[min(2.15vw,3.8vh)] lg:w-[min(2.15vw,3.8vh)]">
                 <Icon className="h-5 w-5 lg:h-[1.5vw] lg:w-[1.5vw]" />
               </span>
-              <span className="text-[1rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.98rem,1.32vw,1.4rem)]">
+              <span className="text-[1rem] font-black tracking-[-0.03em] text-ink-900 lg:text-[clamp(0.98rem,1.32vw,1.4rem)]">
                 {row.label}
               </span>
             </div>
 
-            <p className="mt-2 pl-12 text-[0.88rem] leading-relaxed text-navy-900/70 lg:mt-0 lg:pl-0 lg:text-center lg:text-[clamp(0.88rem,1.14vw,1.2rem)]">
+            <p className="mt-2 pl-12 text-[0.88rem] leading-relaxed text-ink-900/70 lg:mt-0 lg:pl-0 lg:text-center lg:text-[clamp(0.88rem,1.14vw,1.2rem)]">
               {row.detail}
             </p>
 
@@ -80,7 +80,7 @@ function BenefitTable() {
                 now a sticker on the row's right edge, out of the text flow. */}
             <p
               className={`mt-2.5 pl-12 text-[1rem] font-black tracking-[-0.03em] lg:mt-0 lg:pl-0 lg:text-center lg:text-[clamp(0.98rem,1.32vw,1.4rem)] ${
-                row.benefitTone === "red" ? "text-red-500" : "text-blue-band"
+                row.benefitTone === "red" ? "text-red-500" : "text-ink-900/72"
               }`}
             >
               {row.benefit}
@@ -89,7 +89,7 @@ function BenefitTable() {
             {row.flag ? (
               <span
                 aria-hidden="true"
-                className="pointer-events-none absolute right-1 top-1 origin-top-right rotate-[9deg] rounded-[0.35rem] bg-yellow-500 px-2.5 py-1 text-[0.7rem] font-black leading-none tracking-[-0.02em] text-navy-900 shadow-raise ring-1 ring-navy-900/10 lg:right-[0.5vw] lg:top-[0.35vw] lg:px-[0.9vw] lg:py-[0.42vw] lg:text-[clamp(0.72rem,0.95vw,1rem)]"
+                className="pointer-events-none absolute right-1 top-1 origin-top-right rotate-[9deg] rounded-[0.35rem] bg-yellow-500 px-2.5 py-1 text-[0.7rem] font-black leading-none tracking-[-0.02em] text-ink-900 shadow-raise ring-1 ring-ink-900/10 lg:right-[0.5vw] lg:top-[0.35vw] lg:px-[0.9vw] lg:py-[0.42vw] lg:text-[clamp(0.72rem,0.95vw,1rem)]"
               >
                 {row.flag}
                 <span className="ml-1 text-red-500">{row.flagIndex}</span>
@@ -118,7 +118,7 @@ export function FranchiseBenefitSection() {
         </div>
 
         <div className="motion-reveal mt-label text-center">
-          <h2 className="font-black leading-[1.12] tracking-[-0.045em] text-navy-900">
+          <h2 className="font-black leading-[1.12] tracking-[-0.045em] text-ink-900">
             {/* Flex, not inline-block: shrink-to-fit sizes these against the
                 available inline width, which collapsed the marked phrase to a
                 single-character column. Flex items size to their content. */}
@@ -135,7 +135,7 @@ export function FranchiseBenefitSection() {
             </span>
             <span className="mt-1 block text-[1.75rem] lg:mt-[0.3vw] lg:text-[clamp(1.7rem,min(3.5vw,6.2vh),3.8rem)]">{data.headlineSecond}</span>
           </h2>
-          <p className="mx-auto mt-group max-w-[46rem] text-[0.95rem] text-navy-900/65 lg:max-w-none lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
+          <p className="mx-auto mt-group max-w-[46rem] text-[0.95rem] text-ink-900/65 lg:max-w-none lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
             {data.subhead}
           </p>
         </div>
@@ -157,17 +157,16 @@ export function FranchiseBenefitSection() {
             aria-hidden="true"
             className="pointer-events-none hidden h-auto w-[min(7.6vw,13vh)] shrink-0 select-none lg:block"
           />
-          <div className="w-full rounded-band bg-navy-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[min(1.05vw,1.85vh)] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
+          <div className="w-full rounded-band bg-ink-900 px-6 py-6 text-center text-white lg:ml-[1.2vw] lg:py-[min(1.05vw,1.85vh)] lg:pl-[2vw] lg:pr-[2.4vw] lg:text-left">
             <div className="flex items-center justify-center gap-3 lg:justify-start lg:gap-[1.4vw]">
-              <span className="hidden h-[min(3.4vw,6vh)] w-[min(3.4vw,6vh)] shrink-0 items-center justify-center rounded-full bg-white lg:flex">
-                <Image
-                  src="/assets/user/logo-mark-gold.png"
-                  alt=""
-                  width={120}
-                  height={120}
-                  className="h-[3.4vw] w-[3.4vw] object-contain"
-                />
-              </span>
+              <Image
+                src="/assets/user/brand/ckp-badge-20260821.webp"
+                alt=""
+                width={720}
+                height={720}
+                aria-hidden="true"
+                className="hidden h-[min(3.4vw,6vh)] w-[min(3.4vw,6vh)] shrink-0 object-contain lg:block"
+              />
               <span className="hidden h-[4.6vw] w-px bg-white/35 lg:block" />
               <div className="min-w-0 flex-1">
                 <p className="flex items-center justify-center gap-2.5 text-[0.82rem] font-black tracking-[0.06em] text-gold-400 lg:gap-[0.8vw] lg:text-[clamp(0.82rem,1.14vw,1.2rem)]">
@@ -202,7 +201,7 @@ export function FranchiseBenefitSection() {
           {data.footnotes.map((note) => (
             <li
               key={note}
-              className="flex gap-1.5 text-[0.82rem] text-navy-900/60 lg:text-[clamp(0.78rem,0.95vw,1rem)]"
+              className="flex gap-1.5 text-[0.82rem] text-ink-900/60 lg:text-[clamp(0.78rem,0.95vw,1rem)]"
             >
               <span aria-hidden="true" className="text-red-500">
                 *

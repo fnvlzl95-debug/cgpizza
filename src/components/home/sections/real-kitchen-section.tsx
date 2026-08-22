@@ -87,7 +87,7 @@ function StepArrow({ direction, onClick }: { direction: "prev" | "next"; onClick
       type="button"
       onClick={onClick}
       aria-label={direction === "prev" ? "이전 영상" : "다음 영상"}
-      className={`absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-navy-900/85 text-white ring-1 ring-white/25 transition-colors duration-200 hover:bg-navy-900 lg:h-[min(3vw,5.3vh)] lg:w-[min(3vw,5.3vh)] ${
+      className={`absolute top-1/2 z-20 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-ink-900/85 text-white ring-1 ring-white/25 transition-colors duration-200 hover:bg-ink-900 lg:h-[min(3vw,5.3vh)] lg:w-[min(3vw,5.3vh)] ${
         direction === "prev" ? "left-0" : "right-0"
       }`}
     >
@@ -149,7 +149,7 @@ export function RealKitchenSection() {
   return (
     <section
       id="real-kitchen"
-      className="app-screen-snap-target section-screen section-lead relative bg-blue-video text-white"
+      className="app-screen-snap-target section-screen section-lead relative bg-red-video text-white"
     >
       <div className="mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
         <div className="flex justify-center">
@@ -247,7 +247,7 @@ export function RealKitchenSection() {
                           : "scale-100 opacity-55 shadow-card ring-1 ring-white/15"
                       }`}
                     >
-                      <span className="relative block aspect-[9/16] bg-navy-900">
+                      <span className="relative block aspect-[9/16] bg-ink-900">
                         {centre && settled ? (
                           <video
                             ref={centreRef}
@@ -276,26 +276,26 @@ export function RealKitchenSection() {
                           aria-hidden="true"
                           className={`absolute inset-0 ${
                             centre
-                              ? "bg-[linear-gradient(180deg,rgba(1,23,80,0.32)_0%,rgba(1,23,80,0)_32%,rgba(1,23,80,0.56)_100%)]"
-                              : "bg-navy-900/45"
+                              ? "bg-[linear-gradient(180deg,rgba(42,10,6,0.32)_0%,rgba(42,10,6,0)_32%,rgba(42,10,6,0.56)_100%)]"
+                              : "bg-ink-900/45"
                           }`}
                         />
 
                         <span
                           className={`absolute left-2 top-0 flex flex-col items-center gap-0.5 px-1.5 pb-2 pt-1 text-[0.6rem] font-black leading-none lg:px-2 lg:text-[clamp(0.58rem,0.72vw,0.78rem)] ${
-                            centre ? "bg-yellow-500 text-navy-900" : "bg-navy-900 text-white"
+                            centre ? "bg-yellow-500 text-ink-900" : "bg-ink-900 text-white"
                           } [clip-path:polygon(0%_0%,100%_0%,100%_100%,50%_78%,0%_100%)]`}
                         >
                           {clip.index}
                           {centre ? <CrownIcon className="mt-0.5 h-2.5 w-2.5" /> : null}
                         </span>
 
-                        <span className="absolute bottom-2 left-2 rounded-full bg-navy-900/85 px-1.5 py-0.5 text-[0.56rem] font-bold tabular-nums text-white lg:text-[clamp(0.54rem,0.68vw,0.74rem)]">
+                        <span className="absolute bottom-2 left-2 rounded-full bg-ink-900/85 px-1.5 py-0.5 text-[0.56rem] font-bold tabular-nums text-white lg:text-[clamp(0.54rem,0.68vw,0.74rem)]">
                           {clip.duration}
                         </span>
 
                         {centre ? (
-                          <span className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-navy-900/85 text-white">
+                          <span className="absolute bottom-2 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-ink-900/85 text-white">
                             <SoundIcon muted={muted} />
                           </span>
                         ) : null}

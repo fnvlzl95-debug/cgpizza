@@ -59,8 +59,8 @@ const delay = (seconds: number) => ({ "--motion-delay": `${seconds}s` }) as CSSP
 const BLEED = "px-[clamp(1.25rem,3vw,3.5rem)]";
 
 /** Cut-out product photography, per the system's subject-shadow token. */
-const SUBJECT_SHADOW = "drop-shadow-[0_30px_58px_rgba(1,23,80,0.42)]";
-const PROP_SHADOW = "drop-shadow-[0_12px_24px_rgba(1,23,80,0.45)]";
+const SUBJECT_SHADOW = "drop-shadow-[0_30px_58px_rgba(42,10,6,0.42)]";
+const PROP_SHADOW = "drop-shadow-[0_12px_24px_rgba(42,10,6,0.45)]";
 
 function Pen({
   children,
@@ -81,7 +81,7 @@ function Pen({
 /** Round outline stamp — the label register, in the shape marks take. */
 function Stamp({ children }: { children: ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border-2 border-navy-900/22 px-[0.9em] py-[0.34em] text-[clamp(0.6rem,0.72vw,0.8rem)] font-black tracking-[0.14em] text-navy-900/62">
+    <span className="inline-flex items-center rounded-full border-2 border-ink-900/22 px-[0.9em] py-[0.34em] text-[clamp(0.6rem,0.72vw,0.8rem)] font-black tracking-[0.14em] text-ink-900/62">
       {children}
     </span>
   );
@@ -177,7 +177,7 @@ function IngredientCounter() {
   return (
     <div
       style={delay(0.56)}
-      className="motion-rise relative mt-block rounded-data bg-navy-900 p-card shadow-lift ring-1 ring-white/12 lg:mt-0"
+      className="motion-rise relative mt-block rounded-data bg-ink-900 p-card shadow-lift ring-1 ring-white/12 lg:mt-0"
     >
       <h2 className="display-flat text-center font-headline text-[1.1rem] tracking-[-0.01em] text-white lg:text-left lg:text-[clamp(0.95rem,min(1.21vw,2.15svh),1.6rem)]">
         좋은 재료가 좋은 피자를 <span className="text-yellow-500">만듭니다</span>
@@ -241,7 +241,7 @@ function BrandBanner() {
   return (
     <section
       id="brand-store"
-      className="relative z-20 scroll-mt-[var(--header-offset)] bg-cream-ground text-navy-900"
+      className="relative z-20 scroll-mt-[var(--header-offset)] bg-cream-ground text-ink-900"
     >
       <div className={`${BLEED} py-block`}>
         {/* ── Statement ── */}
@@ -290,27 +290,27 @@ function BrandBanner() {
           </figure>
 
           <div className="relative flex flex-col justify-center">
-            <Pen className="block -rotate-2 text-[1.1rem] text-blue-hero lg:text-[clamp(1rem,min(1.1vw,1.95svh),1.5rem)]">
+            <Pen className="block -rotate-2 text-[1.1rem] text-red-hero lg:text-[clamp(1rem,min(1.1vw,1.95svh),1.5rem)]">
               {store.annotation}
             </Pen>
             <h3 className="brand-headline-depth mt-tight origin-left -skew-x-[5deg] -rotate-[1.2deg] font-headline text-[2rem] leading-[0.98] tracking-[-0.02em] lg:text-[clamp(1.7rem,min(2.48vw,4.4svh),3.2rem)]">
               {store.title}
             </h3>
-            <p className="mt-group text-[0.88rem] font-medium leading-relaxed text-navy-900/70 lg:text-[clamp(0.78rem,min(0.9vw,1.6svh),1.08rem)]">
+            <p className="mt-group text-[0.88rem] font-medium leading-relaxed text-ink-900/70 lg:text-[clamp(0.78rem,min(0.9vw,1.6svh),1.08rem)]">
               {store.lead}
             </p>
 
             <dl className="mt-group space-y-tight text-[0.92rem] font-bold lg:text-[clamp(0.8rem,min(0.93vw,1.65svh),1.15rem)]">
               <div className="flex items-center gap-2.5">
                 <dt className="sr-only">주소</dt>
-                <PinIcon className="h-5 w-5 shrink-0 text-blue-hero" />
+                <PinIcon className="h-5 w-5 shrink-0 text-red-hero" />
                 <dd>{store.address}</dd>
               </div>
               <div className="flex items-center gap-2.5">
                 <dt className="sr-only">전화</dt>
-                <PhoneIcon className="h-5 w-5 shrink-0 text-blue-hero" />
+                <PhoneIcon className="h-5 w-5 shrink-0 text-red-hero" />
                 <dd>
-                  <a href={store.phoneHref} className="tabular font-black transition-colors hover:text-blue-hero">
+                  <a href={store.phoneHref} className="tabular font-black transition-colors hover:text-red-hero">
                     {store.phone}
                   </a>
                 </dd>
@@ -347,7 +347,7 @@ function BrandBanner() {
                 const Icon = recommendIcons[item.icon];
                 return (
                   <li key={item.lines[0]} className="flex items-center gap-3">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 lg:h-[clamp(2.2rem,min(2.6vw,4.6svh),3rem)] lg:w-[clamp(2.2rem,min(2.6vw,4.6svh),3rem)]">
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-ink-900 text-yellow-500 lg:h-[clamp(2.2rem,min(2.6vw,4.6svh),3rem)] lg:w-[clamp(2.2rem,min(2.6vw,4.6svh),3rem)]">
                       <Icon className="h-5 w-5 lg:h-[clamp(1rem,min(1.2vw,2.1svh),1.4rem)] lg:w-[clamp(1rem,min(1.2vw,2.1svh),1.4rem)]" />
                     </span>
                     <span className="text-[0.88rem] font-bold leading-snug lg:text-[clamp(0.78rem,min(0.9vw,1.6svh),1.08rem)]">
@@ -360,7 +360,7 @@ function BrandBanner() {
           </div>
 
           <div className="flex flex-col justify-center border-t border-hairline pt-block lg:border-t-0 lg:pt-0 lg:border-l lg:pl-[1.8vw]">
-            <Pen className="block -rotate-2 text-[1.1rem] text-blue-hero lg:text-[clamp(1rem,min(1.1vw,1.95svh),1.5rem)]">
+            <Pen className="block -rotate-2 text-[1.1rem] text-red-hero lg:text-[clamp(1rem,min(1.1vw,1.95svh),1.5rem)]">
               {store.aside[0]}
               <br />
               {store.aside[1]}
@@ -373,7 +373,7 @@ function BrandBanner() {
                 </span>
               ))}
             </h3>
-            <p className="mt-tight text-[0.85rem] font-medium leading-relaxed text-navy-900/64 lg:text-[clamp(0.76rem,min(0.87vw,1.55svh),1.05rem)]">
+            <p className="mt-tight text-[0.85rem] font-medium leading-relaxed text-ink-900/64 lg:text-[clamp(0.76rem,min(0.87vw,1.55svh),1.05rem)]">
               {menuCta.body[0]}
               <br />
               {menuCta.body[1]}
@@ -383,7 +383,7 @@ function BrandBanner() {
                 is a hover answer — never the rest state. */}
             <Link
               href={menuCta.primary.href}
-              className="group relative mt-group inline-flex min-h-[3.4rem] items-center gap-3 self-start rounded-full border border-yellow-600 bg-yellow-500 pl-6 pr-14 text-[1.05rem] font-black text-navy-900 shadow-raise transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-gold lg:min-h-[clamp(3.2rem,min(3.6vw,6.4svh),4.4rem)] lg:text-[clamp(0.95rem,min(1.18vw,2.1svh),1.5rem)]"
+              className="group relative mt-group inline-flex min-h-[3.4rem] items-center gap-3 self-start rounded-full border border-yellow-600 bg-yellow-500 pl-6 pr-14 text-[1.05rem] font-black text-ink-900 shadow-raise transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-gold lg:min-h-[clamp(3.2rem,min(3.6vw,6.4svh),4.4rem)] lg:text-[clamp(0.95rem,min(1.18vw,2.1svh),1.5rem)]"
             >
               {menuCta.primary.label}
               <ArrowRightIcon className="h-5 w-5 transition-transform duration-200 group-hover:translate-x-1" />
@@ -409,7 +409,7 @@ export function BrandPage() {
     <>
       <SiteHeader activeHref="/brand" />
 
-      <main className="overflow-x-hidden bg-blue-hero text-white">
+      <main className="overflow-x-hidden bg-red-hero text-white">
         <div id="top" className="relative isolate flex flex-col lg:min-h-svh">
           <div id="dough" className="absolute inset-x-0 top-0 h-px" aria-hidden="true" />
 
@@ -424,8 +424,8 @@ export function BrandPage() {
               sizes="100vw"
               className="object-cover object-center opacity-[0.22] mix-blend-luminosity"
             />
-            <div className="absolute inset-0 bg-[radial-gradient(58%_54%_at_44%_40%,rgba(120,158,255,0.42),transparent_72%)]" />
-            <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_45%,transparent_38%,rgba(1,18,64,0.72))]" />
+            <div className="absolute inset-0 bg-[radial-gradient(58%_54%_at_44%_40%,rgba(255,176,150,0.34),transparent_72%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_45%,transparent_38%,rgba(42,10,6,0.72))]" />
             <div className="absolute -left-[20%] top-[30%] h-[42%] w-[150%] -rotate-[8deg] bg-white/[0.035]" />
             <div className="absolute -left-[20%] top-[29.6%] h-[2px] w-[150%] -rotate-[8deg] bg-white/[0.14]" />
             <CrownWatermark className="pointer-events-none absolute -left-[9rem] bottom-[3%] h-[26rem] w-auto text-white/[0.05] lg:-left-[11rem] lg:h-[34rem]" />
@@ -530,7 +530,7 @@ export function BrandPage() {
                     {/* The sheet names the pizza it is showing. */}
                     <Link
                       href="/menu"
-                      className="group absolute -bottom-1 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-navy-900/85 px-3.5 py-1.5 text-[0.72rem] font-black text-white ring-1 ring-white/15 transition-transform duration-200 hover:-translate-y-0.5 hover:translate-x-[-50%] lg:text-[clamp(0.66rem,min(0.76vw,1.35svh),0.95rem)]"
+                      className="group absolute -bottom-1 left-1/2 z-20 inline-flex -translate-x-1/2 items-center gap-1.5 rounded-full bg-ink-900/85 px-3.5 py-1.5 text-[0.72rem] font-black text-white ring-1 ring-white/15 transition-transform duration-200 hover:-translate-y-0.5 hover:translate-x-[-50%] lg:text-[clamp(0.66rem,min(0.76vw,1.35svh),0.95rem)]"
                     >
                       {hero.pizza.name}
                       <ArrowRightIcon className="h-3.5 w-3.5 text-yellow-500 transition-transform duration-200 group-hover:translate-x-0.5" />

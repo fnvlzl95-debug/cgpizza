@@ -12,7 +12,7 @@ export function PhilosophySection() {
       {/* Blue band the card crosses into. */}
       <div
         aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 h-[35%] bg-blue-band lg:h-1/2"
+        className="absolute inset-x-0 bottom-0 h-[35%] bg-red-band lg:h-1/2"
       />
 
       <div className="relative mx-auto w-full max-w-[93.25rem] px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
@@ -21,7 +21,7 @@ export function PhilosophySection() {
         </div>
 
         <div className="motion-reveal mt-label text-center">
-          <h2 className="text-navy-900">
+          <h2 className="text-ink-900">
             <span className="block text-[1.7rem] font-bold tracking-[-0.04em] lg:text-[clamp(1.9rem,2.9vw,3.05rem)]">
               {data.headlineLead}
             </span>
@@ -37,7 +37,7 @@ export function PhilosophySection() {
               <svg
                 viewBox="0 0 40 30"
                 aria-hidden="true"
-                className="h-8 w-10 text-blue-band lg:h-[2.4vw] lg:w-[3vw]"
+                className="h-8 w-10 text-red-band lg:h-[2.4vw] lg:w-[3vw]"
               >
                 <path
                   fill="currentColor"
@@ -45,7 +45,7 @@ export function PhilosophySection() {
                 />
               </svg>
 
-              <p className="mt-group text-[1.5rem] leading-[1.55] tracking-[-0.04em] text-navy-900 lg:text-[clamp(1.6rem,2.35vw,2.5rem)]">
+              <p className="mt-group text-[1.5rem] leading-[1.55] tracking-[-0.04em] text-ink-900 lg:text-[clamp(1.6rem,2.35vw,2.5rem)]">
                 {data.quote.map((line, lineIndex) => (
                   <span key={lineIndex} className="block whitespace-nowrap">
                     {line.map((part, partIndex) => (
@@ -62,7 +62,7 @@ export function PhilosophySection() {
                 ))}
               </p>
 
-              <div className="mt-block space-y-1.5 text-[0.92rem] text-navy-900/65 lg:text-[clamp(0.85rem,1.05vw,1.1rem)]">
+              <div className="mt-block space-y-1.5 text-[0.92rem] text-ink-900/65 lg:text-[clamp(0.85rem,1.05vw,1.1rem)]">
                 {data.body.map((line) => (
                   <p key={line}>{line}</p>
                 ))}
@@ -72,11 +72,10 @@ export function PhilosophySection() {
             <Image
               src={data.mascot.src}
               alt=""
-              width={639}
-              height={804}
+              width={720}
+              height={720}
               aria-hidden="true"
-              unoptimized
-              className="hidden h-auto w-[11vw] shrink-0 self-end select-none lg:block"
+              className="hidden h-auto w-[9vw] shrink-0 self-end select-none lg:block"
             />
           </div>
 

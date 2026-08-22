@@ -91,7 +91,7 @@ export function HeroProps({
             width={560}
             height={560}
             sizes="(max-width: 1024px) 16vw, 9vw"
-            className="h-auto w-full drop-shadow-[0_14px_22px_rgba(1,23,80,0.5)]"
+            className="h-auto w-full drop-shadow-[0_14px_22px_rgba(42,10,6,0.5)]"
           />
         </span>
       ))}

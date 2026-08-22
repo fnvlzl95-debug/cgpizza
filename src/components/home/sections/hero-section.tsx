@@ -20,8 +20,8 @@ const delay = (seconds: number) => ({ "--motion-delay": `${seconds}s` }) as CSSP
 
 function BestSeal() {
   return (
-    <div className="absolute right-[4%] top-[11%] z-20 flex aspect-square w-[3.9rem] items-center justify-center rounded-full bg-red-500 text-white shadow-raise lg:right-auto lg:left-[75.2%] lg:top-[11.3%] lg:w-[14.2%]">
-      <span className="absolute inset-[9%] rounded-full border-2 border-dashed border-white/85" />
+    <div className="absolute right-[4%] top-[11%] z-20 flex aspect-square w-[3.9rem] items-center justify-center rounded-full bg-ivory text-red-hero shadow-raise lg:right-auto lg:left-[75.2%] lg:top-[11.3%] lg:w-[14.2%]">
+      <span className="absolute inset-[9%] rounded-full border-2 border-dashed border-red-hero/60" />
       <span className="relative flex flex-col items-center leading-none">
         <span className="text-[0.42rem] tracking-[0.18em] lg:text-[0.62vw]">★★★</span>
         <span className="mt-[0.18rem] text-[0.85rem] font-black tracking-[0.01em] lg:text-[1.35vw]">
@@ -36,7 +36,7 @@ export function HeroSection() {
   return (
     <section
       id="top"
-      className="app-screen-snap-target section-screen relative isolate overflow-hidden bg-blue-hero text-white"
+      className="app-screen-snap-target section-screen relative isolate overflow-hidden bg-red-hero text-white"
     >
       <CrownWatermark />
 
@@ -159,7 +159,7 @@ export function HeroSection() {
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"
-              className="object-contain drop-shadow-[0_30px_58px_rgba(1,23,80,0.42)]"
+              className="object-contain drop-shadow-[0_30px_58px_rgba(42,10,6,0.42)]"
             />
             <BestSeal />
           </div>

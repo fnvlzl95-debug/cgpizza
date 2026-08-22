@@ -86,7 +86,7 @@ export function ProfitDonut() {
         const Icon = segmentIcons[segment.icon];
         const [lx, ly] = polar((OUTER + INNER) / 2, mid);
         const light = segment.fill === "#FCBF43" || segment.fill === "#F7AE30";
-        const ink = light ? "#021D3E" : "#FFFFFF";
+        const ink = light ? "#2a0a06" : "#FFFFFF";
 
         return (
           <g key={segment.key}>
@@ -119,19 +119,19 @@ export function ProfitDonut() {
       })}
 
       <circle cx={CENTER} cy={CENTER} r={INNER - 4} fill="#FFFFFF" />
-      <MoneyBagIcon x={CENTER - 17} y={CENTER - 64} width={34} height={34} className="text-orange-500" />
+      <MoneyBagIcon x={CENTER - 17} y={CENTER - 64} width={34} height={34} className="text-red-hero" />
       <text
         x={CENTER}
         y={CENTER - 6}
         textAnchor="middle"
-        fill="#021D3E"
+        fill="#2a0a06"
         fontSize="17"
         fontWeight="700"
         letterSpacing="-0.03em"
       >
         {data.center.label}
       </text>
-      <text x={CENTER} y={CENTER + 26} textAnchor="middle" fill="#021D3E" letterSpacing="-0.04em">
+      <text x={CENTER} y={CENTER + 26} textAnchor="middle" fill="#2a0a06" letterSpacing="-0.04em">
         <tspan fontSize="32" fontWeight="900">
           {data.center.value}
         </tspan>
@@ -143,7 +143,7 @@ export function ProfitDonut() {
         x={CENTER}
         y={CENTER + 48}
         textAnchor="middle"
-        fill="#021D3E"
+        fill="#2a0a06"
         opacity="0.55"
         fontSize="12"
         fontWeight="600"

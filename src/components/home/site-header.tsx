@@ -79,25 +79,26 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         scrolled
-          ? "bg-navy-900/95 shadow-card backdrop-blur-md"
+          ? "bg-ink-900/95 shadow-card backdrop-blur-md"
           : "bg-transparent"
       }`}
     >
       <div className="mx-auto flex h-[var(--header-offset)] max-w-[93.25rem] items-center justify-between px-5 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
+        {/* The new wordmark carries the brand name inside the artwork, so the
+            live type that used to sit beside the crown is gone — keeping both
+            would set 최강피자 twice. The -ml-1 kern went with it; it existed
+            only to close the gap left by the old mark's internal padding. The
+            white cut serves both header states: it reads on the red hero
+            (6.85) and on the scrolled ink bar (16.9). */}
         <Link href="/" className="flex min-w-0 items-center text-white">
-          <span className="relative h-14 w-14 shrink-0 md:h-[4.6rem] md:w-[4.6rem]">
-            <Image
-              src="/assets/user/logo-mark-gold.png"
-              alt=""
-              width={170}
-              height={170}
-              className="absolute left-1/2 top-1/2 h-[8.5rem] w-[8.5rem] -translate-x-1/2 -translate-y-1/2 object-contain md:h-[11rem] md:w-[11rem]"
-              priority
-            />
-          </span>
-          <span className="-ml-1 truncate text-[1.65rem] font-black leading-none tracking-[-0.045em] md:text-[2.05rem]">
-            최강피자
-          </span>
+          <Image
+            src="/assets/user/brand/wordmark-white-20260822.webp"
+            alt=""
+            width={1145}
+            height={484}
+            priority
+            className="h-10 w-auto shrink-0 md:h-14"
+          />
           <span className="sr-only">최강피자 홈으로</span>
         </Link>
 
@@ -126,7 +127,7 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
             data-header-cta
             href={headerCta.href}
             onClick={(event) => handleNavClick(event, headerCta.href)}
-            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-yellow-500 px-[2.24vw] py-3.5 text-[0.95rem] font-black tracking-[-0.03em] text-navy-900 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-gold lg:text-[clamp(0.9rem,1.02vw,1.07rem)]"
+            className="group inline-flex shrink-0 items-center gap-2.5 rounded-full bg-yellow-500 px-[2.24vw] py-3.5 text-[0.95rem] font-black tracking-[-0.03em] text-ink-900 transition-[transform,box-shadow] duration-200 hover:-translate-y-0.5 hover:shadow-gold lg:text-[clamp(0.9rem,1.02vw,1.07rem)]"
           >
             {headerCta.label}
             <ArrowRightIcon className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
@@ -147,7 +148,7 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
       {menuOpen ? (
         <nav
           aria-label="모바일 메뉴"
-          className="border-t border-gold-400/30 bg-navy-900 px-5 pb-6 pt-2 md:hidden"
+          className="border-t border-gold-400/30 bg-ink-900 px-5 pb-6 pt-2 md:hidden"
         >
           <ul className="flex flex-col">
             {siteNav.map((item, index) => (
@@ -174,7 +175,7 @@ export function SiteHeader({ alwaysSolid = false, activeHref }: SiteHeaderProps)
               handleNavClick(event, headerCta.href);
               setMenuOpen(false);
             }}
-            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-yellow-500 py-3.5 text-[1rem] font-black text-navy-900"
+            className="mt-4 flex items-center justify-center gap-2 rounded-full bg-yellow-500 py-3.5 text-[1rem] font-black text-ink-900"
           >
             {headerCta.label}
             <ArrowRightIcon className="h-4 w-4" />

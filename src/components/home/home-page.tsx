@@ -25,7 +25,7 @@ export function HomePage() {
       <PortedViewportRuntimeFix />
       <HashLandingFix />
       <SiteHeader />
-      <main className="overflow-x-hidden bg-paper text-navy-900">
+      <main className="overflow-x-hidden bg-paper text-ink-900">
         <HeroSection />
         <FranchiseBenefitSection />
         <PhilosophySection />

@@ -10,7 +10,7 @@ export function SiteFooter() {
   const { footerRows, footerCopyright } = portedHomepageData.contact;
 
   return (
-    <footer className="bg-[#03060c] text-white">
+    <footer className="bg-[#170503] text-white">
       <div className="mx-auto max-w-[1680px] px-4 py-7 md:px-6 md:py-8">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
           <div className="space-y-3 text-left text-sm leading-relaxed text-white/62 md:text-[0.94rem]">

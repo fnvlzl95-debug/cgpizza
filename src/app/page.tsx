@@ -9,7 +9,7 @@ const brandImage = absoluteUrl(portedHomepageData.metadata.ogImage);
 const brandImageAlt = "최강피자 — 맛도 최강, 재료도 최강";
 const brandImageWidth = 1200;
 const brandImageHeight = 630;
-const brandLogo = absoluteUrl("/assets/user/logo-mark-blue.png");
+const brandLogo = absoluteUrl("/assets/user/brand/ckp-badge-20260821.webp");
 
 /* Every image here is one the home page actually renders. Advertising
    images the DOM never shows reads as a mismatch to a crawler comparing
@@ -32,7 +32,7 @@ const searchPromoCards = [
   },
   {
     name: "전체 메뉴",
-    image: absoluteUrl("/assets/user/og/menu-hero-20260819.webp"),
+    image: absoluteUrl("/assets/user/og/menu-hero-20260822.webp"),
     url: absoluteUrl("/menu"),
   },
 ] as const;

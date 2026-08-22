@@ -27,8 +27,8 @@ function CrownMark({ className }: { className: string }) {
 function BestSeal() {
   return (
     <span className="pointer-events-none absolute -right-3 -top-6 z-30 lg:-right-5 lg:-top-8">
-      <CrownMark className="absolute -top-4 left-1/2 h-5 w-auto -translate-x-1/2 rotate-[-6deg] drop-shadow-[0_6px_12px_rgba(1,23,80,0.4)] lg:-top-6 lg:h-7" />
-      <span className="flex aspect-square w-[3.5rem] rotate-[10deg] items-center justify-center rounded-full bg-red-500 text-white shadow-raise lg:w-[4.6rem]">
+      <CrownMark className="absolute -top-4 left-1/2 h-5 w-auto -translate-x-1/2 rotate-[-6deg] drop-shadow-[0_6px_12px_rgba(42,10,6,0.4)] lg:-top-6 lg:h-7" />
+      <span className="flex aspect-square w-[3.5rem] rotate-[10deg] items-center justify-center rounded-full bg-ivory text-red-hero shadow-raise lg:w-[4.6rem]">
         <span className="absolute inset-[9%] rounded-full border-2 border-dashed border-white/85" />
         <span className="relative flex flex-col items-center leading-none">
           <span className="text-[0.38rem] tracking-[0.18em] lg:text-[0.5rem]">★★★</span>
@@ -115,7 +115,7 @@ export function MenuHeroShowcase({ items }: { items: readonly MenuPagePizza[] })
       >
         <figure
           key={leader.title}
-          className="motion-shine relative overflow-hidden rounded-[28px] bg-navy-900 shadow-lift ring-1 ring-white/20"
+          className="motion-shine relative overflow-hidden rounded-[28px] bg-ink-900 shadow-lift ring-1 ring-white/20"
         >
           <div className="relative aspect-[4/3.1] w-full">
             <Image
@@ -128,7 +128,7 @@ export function MenuHeroShowcase({ items }: { items: readonly MenuPagePizza[] })
             />
             {/* The comp reads its caption off the photograph, so the type
                 needs its own ground rather than a bar below the frame. */}
-            <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(to_top,rgba(1,23,80,0.95),rgba(1,23,80,0.72)_46%,transparent)] px-4 pb-4 pt-14 lg:px-6 lg:pb-5 lg:pt-20">
+            <div className="absolute inset-x-0 bottom-0 bg-[linear-gradient(to_top,rgba(42,10,6,0.95),rgba(42,10,6,0.72)_46%,transparent)] px-4 pb-4 pt-14 lg:px-6 lg:pb-5 lg:pt-20">
               <figcaption>
                 <span className="block text-[1.02rem] font-black tracking-[-0.035em] text-white lg:text-[clamp(1.05rem,1.35vw,1.45rem)]">
                   {leader.title}
@@ -138,7 +138,7 @@ export function MenuHeroShowcase({ items }: { items: readonly MenuPagePizza[] })
                 </span>
               </figcaption>
             </div>
-            <span className="absolute left-3 top-3 rounded-full bg-yellow-500 px-2.5 py-1 text-[0.64rem] font-black text-navy-900 shadow-raise lg:left-4 lg:top-4 lg:text-[0.72rem]">
+            <span className="absolute left-3 top-3 rounded-full bg-yellow-500 px-2.5 py-1 text-[0.64rem] font-black text-ink-900 shadow-raise lg:left-4 lg:top-4 lg:text-[0.72rem]">
               인기 {leader.rank}위
             </span>
           </div>
@@ -167,12 +167,12 @@ export function MenuHeroShowcase({ items }: { items: readonly MenuPagePizza[] })
               sizes="(max-width: 1024px) 40vw, 14vw"
               className="object-cover transition-transform duration-500 group-hover:scale-[1.06]"
             />
-            <span className="absolute right-1.5 top-1.5 rounded-full bg-yellow-500 px-2 py-0.5 text-[0.56rem] font-black text-navy-900 lg:text-[0.64rem]">
+            <span className="absolute right-1.5 top-1.5 rounded-full bg-yellow-500 px-2 py-0.5 text-[0.56rem] font-black text-ink-900 lg:text-[0.64rem]">
               인기 {item.rank}위
             </span>
           </span>
           <span className="block px-3 py-2.5 text-center lg:px-3.5 lg:py-3">
-            <span className="block truncate text-[0.8rem] font-black tracking-[-0.03em] text-navy-900 lg:text-[clamp(0.82rem,0.98vw,1.05rem)]">
+            <span className="block truncate text-[0.8rem] font-black tracking-[-0.03em] text-ink-900 lg:text-[clamp(0.82rem,0.98vw,1.05rem)]">
               {item.title}
             </span>
           </span>

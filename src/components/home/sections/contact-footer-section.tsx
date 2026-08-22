@@ -36,7 +36,7 @@ function MailGlyph() {
 export function ContactFooterSection() {
   return (
     <>
-      <section id="contact-cta" className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[#03060c] text-white">
+      <section id="contact-cta" className="relative isolate scroll-mt-[var(--header-offset)] overflow-hidden bg-[#170503] text-white">
         <Image
           src={data.backgroundImage}
           alt=""
@@ -64,7 +64,7 @@ export function ContactFooterSection() {
           <div className="mx-auto mt-block grid max-w-[62rem] gap-4 md:grid-cols-2 lg:gap-group">
             <a
               href={data.phone.href}
-              className="flex items-center gap-4 rounded-card bg-yellow-500 px-6 py-6 text-navy-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
+              className="flex items-center gap-4 rounded-card bg-yellow-500 px-6 py-6 text-ink-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
             >
               <PhoneGlyph />
               <span className="min-w-0">
@@ -79,7 +79,7 @@ export function ContactFooterSection() {
 
             <a
               href={data.email.href}
-              className="flex items-center gap-4 rounded-card bg-white px-6 py-6 text-navy-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
+              className="flex items-center gap-4 rounded-card bg-white px-6 py-6 text-ink-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
             >
               <MailGlyph />
               <span className="min-w-0">
@@ -95,7 +95,7 @@ export function ContactFooterSection() {
         </div>
       </section>
 
-      <footer className="bg-[#03060c] text-white">
+      <footer className="bg-[#170503] text-white">
         <div className="mx-auto w-full max-w-[93.25rem] px-5 py-8 md:px-8 lg:w-[min(93.25rem,100%-5.4rem)] lg:max-w-none lg:px-0">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
             <div className="space-y-2.5 text-[0.88rem] leading-relaxed text-white/60 lg:text-[clamp(0.82rem,0.98vw,1.02rem)]">

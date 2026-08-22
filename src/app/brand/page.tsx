@@ -5,7 +5,7 @@ import { siteUrl } from "@/lib/site-config";
 const brandTitle = "브랜드 소개";
 const brandDescription =
   "매일 직접 반죽하는 파로 도우, 엄선한 재료, 연출 없는 실제 주방. 최강피자가 한 판을 만드는 방식을 소개합니다.";
-const brandImage = "/assets/user/og/brand-hero-20260821.webp";
+const brandImage = "/assets/user/og/brand-hero-20260822.webp";
 const brandImageAlt = "최강피자 브랜드 소개 — 파로 도우와 대표 피자";
 
 export const metadata: Metadata = {

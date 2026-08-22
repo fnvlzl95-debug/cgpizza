@@ -2,21 +2,16 @@
 name: 최강피자
 description: A franchise page that answers "what is actually left over" with a published number instead of an adjective.
 colors:
-  blue-hero: "#0032f0"
-  blue-band: "#0148e3"
-  blue-video: "#0133dd"
-  navy-900: "#011750"
-  navy-800: "#041342"
-  navy-700: "#051839"
-  navy-600: "#021b3d"
+  red-hero: "#b4170a"
+  red-band: "#a11409"
+  red-video: "#8d1007"
+  ink-900: "#2a0a06"
+  ink-800: "#3a1009"
   yellow-500: "#fdd816"
   gold-400: "#fcd666"
-  gold-300: "#fce374"
   gold-600: "#e5bb53"
-  orange-500: "#f27920"
-  orange-400: "#f8a328"
-  red-500: "#e12110"
-  red-600: "#db1412"
+  red-500: "#b4170a"
+  ivory: "#fbf3e2"
   paper: "#fdfdfd"
   cream-card: "#f9f4ea"
   cream-ground: "#faf6f2"
@@ -204,13 +199,17 @@ An electric print palette: saturated brand blue and gold against near-black navy
 - Two cool mist greys carry photographic grounds where navy would be too heavy: `#eef1f7` behind the review wall and `#eff1f6` for neutral table icon chips.
 
 ### Named Rules
-**The Sampled-Not-Chosen Rule.** Every colour in this system was sampled from the approved comps (ffmpeg palettegen + pixel probes) and the token block says so. To change a colour, re-sample the comp. Never eyeball-adjust a token, and never introduce a hex that has no comp behind it.
+**The Sampled-Or-Derived Rule.** Every colour is either sampled from an approved source, or derived from a sampled one by a transform written into the token's comment. The brand red is sampled from the confirmed store red-concept render; the ink is that red taken to near-black so it reads as this system's black rather than as dark red. Never eyeball-adjust a token, and never introduce a hex with no stated origin.
 
-**The Orange Quarantine Rule.** Orange belongs to the profit-structure section alone and must never appear in the same composition as gold. Gold means "act"; orange means "this is the money math."
+**Orange is retired.** It measured 2.59:1 on its own section's cream ground — already under AA before any red work — and 2.46:1 against the brand red it now sits beside. The profit section's figures take the brand red, at 6.37 on cream.
 
-**The One Red Rule.** Red fires at most once per screen. If a second red wants in, one of them is not important.
+**The Figure-Ground Emphasis Rule.** Red is the ground now, so "one red per screen" is meaningless. Emphasis is the figure, and its colour is decided by what it sits on:
 
-**The Alternating Field Rule.** Sections are full-bleed colour fields in sequence — blue, paper, paper-over-blue-band, cream, blue, mist, footer ink. A new section picks the next field; it does not sit on a neutral page with a coloured card in it.
+- **light field** (paper, cream) → the brand red as type, 6.73:1 on paper.
+- **red or ink field** → **ivory as a filled shape** — a disc, a slab behind a word, a rule. Never ivory type beside gold type: they measure **1.19:1** apart and read as one colour at body size.
+- Gold is never emphasis. Gold is the action.
+
+**The Alternating Field Rule.** Sections are full-bleed colour fields in sequence — red-hero, paper, paper-over-red-band, cream-ground, ivory, red-video, warm mist, footer ink. A new section picks the next field; it does not sit on a neutral page with a coloured card in it. The ivory rest replaced a full screen of `#FDD816`: a gold field landing immediately before a red one was the one place the palette read as fast food, and it was a field, not an accent.
 
 **The Gradient-For-Legibility-Only Rule.** Gradients exist only as navy or black scrims over photography and video, to hold text contrast. No decorative gradient on a flat surface.
 
@@ -270,7 +269,7 @@ Surfaces are flat at rest and separated by colour field first. Where a card must
 - **Subject shadow** (`drop-shadow: 0 30px 58px rgba(1,23,80,0.42)`): cut-out product photography.
 
 ### Named Rules
-**The Navy-Shadow Rule.** Every shadow in this system is navy-tinted, downward, and blurred. No black shadows, no hard offsets, no coloured glow except the gold hover on the gold CTA.
+**The Ink-Shadow Rule.** Every shadow in this system is ink-tinted `rgba(42,10,6,·)`, downward, and blurred. No black shadows, no hard offsets, no coloured glow except the gold hover on the gold CTA.
 
 **The Lift-On-Intent Rule.** Interactive elements answer hover with a 1–4px upward translate over 200ms, and gold CTAs add the gold glow. Nothing changes its colour on hover except nav links (to gold).
 
@@ -317,7 +316,9 @@ One family for the whole page: 24-unit grid, 1.8 stroke, round caps and joins, `
 Right-edge stack of three circular controls (TALK, inquiry, TOP), fading in after 420px of scroll. Two navy, one white with a navy 12% ring; each lifts 2px on hover. Below `md` it stays but shrinks to 3.5rem.
 
 ### Brand Lockup
-Gold crown mark over-scaled inside a smaller box (the mark's artwork has generous padding) with the wordmark set in black-weight type beside it at `-0.05em`. The mark asset carries no lettering, so the wordmark is always type, never an image.
+The wordmark is an image that already contains the type, so the header sets no live 최강피자 beside it — shipping both set the brand name twice. Two cuts: white for red and ink grounds, brand red for light ones. The lion badge is the character mark and carries the mascot slots.
+
+The favicon is its own artwork, not the badge and not the component: the crown at `stroke-width` 4.2 rather than the component's 3.2, because 3.2 scaled to a 16px tab lands at 0.94px and greys out. The badge that was there filled the tab with an unreadable smudge.
 
 ## Menu Page
 
@@ -373,7 +374,6 @@ Placement is measured off the asset, not eyeballed: its solid body covers 69% of
 ### Do:
 - **Do** size display and headline type as `clamp()` on a vw fraction of the comps' 1672px width, and use vw for `lg` padding and gaps.
 - **Do** re-sample the approved comp when a colour needs to change, per the Sampled-Not-Chosen Rule.
-- **Do** keep orange inside the profit section and red to one hit per screen.
 - **Do** write entrance motion as CSS animations (`rise` 0.7s, `swell` 1.1s, `reveal` 1s, all `cubic-bezier(0.16, 1, 0.3, 1)`, delays via `--motion-delay`). framer-motion decides its `initial` state per environment, so the server rendered `opacity:0` while a reduced-motion client rendered `opacity:1` — a hydration mismatch that stranded the hero blank. CSS runs before hydration and honours `prefers-reduced-motion` itself.
 - **Do** put element defaults in `@layer base` so utilities can still override them.
 - **Do** round generated SVG geometry (three decimals) so server and client render identical path data.
@@ -387,7 +387,6 @@ Placement is measured off the asset, not eyeballed: its solid body covers 69% of
 - **Don't** introduce a second typeface for body, labels or data. Pretendard is a client decision and carries all of them. The display face carries **titles** on `/menu` and `/brand` (see Typography → The Display-Face Boundary); widening it past a title needs the same kind of evidence, not a preference.
 - **Don't** use `framer-motion` `initial` for entrance state anywhere on this page.
 - **Don't** add an unlayered global element rule; it will outrank Tailwind utilities.
-- **Don't** mix orange with gold in one composition, or let a second red into a screen.
 - **Don't** use black shadows, hard offset shadows, or coloured glows other than the gold hover on the gold CTA.
 - **Don't** fake physicality in CSS — no glass, no bevel, no fake paper grain. Texture is drawn SVG or a real photograph.
 - **Don't** use stock imagery or a stock icon set; the icon family and the photography are the brand's own.

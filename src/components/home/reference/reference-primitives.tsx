@@ -160,7 +160,7 @@ export function ValueIcon({
 
 export function ValueIconWrap({ children }: { children: ReactNode }) {
   return (
-    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#082e72] text-[#ffd323] shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] sm:h-10 sm:w-10">
+    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#8d1007] text-[#ffd323] shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] sm:h-10 sm:w-10">
       {children}
     </span>
   );
@@ -178,7 +178,7 @@ export function MenuBadge({
       ? "bg-[#f04a42] text-white"
       : tone === "NEW"
         ? "bg-[#ffd12a] text-white"
-        : "bg-[#0b2f79] text-[#ffd12a]";
+        : "bg-[#8d1007] text-[#ffd12a]";
 
   return (
     <span

@@ -112,7 +112,7 @@ function Sparkles({ className = "" }: { className?: string }) {
 }
 
 function StickerBadge({ tone, rank }: { tone: "BEST" | "NEW"; rank?: number }) {
-  const palette = tone === "BEST" ? "bg-red-500 text-white" : "bg-yellow-500 text-navy-900";
+  const palette = tone === "BEST" ? "bg-ivory text-red-hero" : "bg-yellow-500 text-ink-900";
   return (
     <div
       aria-hidden="true"
@@ -207,8 +207,8 @@ function FieldSweep() {
       {/* The comp does not light this field evenly: a pool of lighter blue
           sits behind the card cluster and the corners fall away, which is
           what puts the cards in front of the field rather than on it. */}
-      <div className="absolute inset-0 bg-[radial-gradient(58%_54%_at_72%_44%,rgba(120,158,255,0.5),transparent_70%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_45%,transparent_42%,rgba(1,23,80,0.44))]" />
+      <div className="absolute inset-0 bg-[radial-gradient(58%_54%_at_72%_44%,rgba(255,176,150,0.4),transparent_70%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(120%_100%_at_50%_45%,transparent_42%,rgba(42,10,6,0.44))]" />
       <div className="absolute -left-[20%] top-[34%] h-[44%] w-[150%] -rotate-[8deg] bg-white/[0.045]" />
       <div className="absolute -left-[20%] top-[33.4%] h-[3px] w-[150%] -rotate-[8deg] bg-white/[0.18]" />
       <div className="absolute -left-[20%] top-[82%] h-[22%] w-[150%] -rotate-[8deg] bg-white/[0.03]" />
@@ -324,7 +324,7 @@ function MenuHero() {
   return (
     <section
       id="top"
-      className="relative isolate flex flex-col justify-center overflow-hidden bg-blue-hero pb-[4.5rem] pt-lead text-white lg:min-h-[calc(100svh-3.9rem)] lg:pb-[5.5rem]"
+      className="relative isolate flex flex-col justify-center overflow-hidden bg-red-hero pb-[4.5rem] pt-lead text-white lg:min-h-[calc(100svh-3.9rem)] lg:pb-[5.5rem]"
     >
       <FieldSweep />
       <CrownWatermark />
@@ -443,10 +443,10 @@ function SectionTitle({
           {eyebrow}
         </p>
       ) : null}
-      <h2 className={`text-balance text-[2.1rem] font-black leading-[0.96] tracking-[-0.04em] sm:text-[2.5rem] md:text-[3.15rem] ${isDark ? "text-white" : "text-navy-900"}`}>
+      <h2 className={`text-balance text-[2.1rem] font-black leading-[0.96] tracking-[-0.04em] sm:text-[2.5rem] md:text-[3.15rem] ${isDark ? "text-white" : "text-ink-900"}`}>
         {title}
       </h2>
-      <p className={`mx-auto mt-4 max-w-xl text-[0.96rem] font-medium leading-relaxed ${isDark ? "text-white/62" : "text-navy-900/60"}`}>
+      <p className={`mx-auto mt-4 max-w-xl text-[0.96rem] font-medium leading-relaxed ${isDark ? "text-white/62" : "text-ink-900/60"}`}>
         {description}
       </p>
     </div>
@@ -459,23 +459,23 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
     <article
       className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] text-center transition-[box-shadow,transform] duration-300 hover:-translate-y-1 ${
         isSignature
-          ? "border-2 border-yellow-500 bg-navy-900 text-white shadow-[0_0_34px_rgba(255,207,0,0.22),0_26px_54px_rgba(0,0,0,0.5)]"
-          : "border border-hairline bg-white text-navy-900 shadow-[0_18px_40px_rgba(0,0,0,0.22)] hover:shadow-[0_28px_58px_rgba(0,0,0,0.3)]"
+          ? "border-2 border-yellow-500 bg-ink-900 text-white shadow-[0_0_34px_rgba(255,207,0,0.22),0_26px_54px_rgba(0,0,0,0.5)]"
+          : "border border-hairline bg-white text-ink-900 shadow-[0_18px_40px_rgba(0,0,0,0.22)] hover:shadow-[0_28px_58px_rgba(0,0,0,0.3)]"
       }`}
     >
       {item.badge ? <StickerBadge tone={item.badge} rank={item.rank} /> : null}
       {isSignature ? (
         <div className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2">
           <Image
-            src="/assets/user/logo-mark-gold.png"
+            src="/assets/user/brand/ckp-badge-20260821.webp"
             alt="최강피자 로고"
-            width={96}
-            height={96}
+            width={720}
+            height={720}
             className="h-14 w-14 object-contain drop-shadow-md md:h-16 md:w-16"
           />
         </div>
       ) : null}
-      <div className={`relative overflow-hidden bg-[#f5f7fb] ${featured ? "aspect-[1.38]" : "aspect-[1.48]"}`}>
+      <div className={`relative overflow-hidden bg-[#faf4f2] ${featured ? "aspect-[1.38]" : "aspect-[1.48]"}`}>
         <Image
           src={item.image}
           alt={item.title}
@@ -489,7 +489,7 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
         <h3 className={`${featured ? "text-[1.55rem] md:text-[1.75rem]" : "text-[1.08rem] md:text-[1.38rem]"} flex min-h-[2.4em] items-center justify-center text-balance font-black leading-tight tracking-[-0.02em] [word-break:keep-all] ${isSignature ? "text-yellow-500" : ""}`}>
           {item.title}
         </h3>
-        <p className={`mx-auto mt-1.5 max-w-[18rem] text-balance text-[0.78rem] font-medium leading-snug md:mt-2 md:text-[0.86rem] md:leading-relaxed ${isSignature ? "text-white/60" : "text-navy-900/54"}`}>
+        <p className={`mx-auto mt-1.5 max-w-[18rem] text-balance text-[0.78rem] font-medium leading-snug md:mt-2 md:text-[0.86rem] md:leading-relaxed ${isSignature ? "text-white/60" : "text-ink-900/54"}`}>
           {item.description}
         </p>
       </div>
@@ -499,7 +499,7 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
 
 function BestMenuSection() {
   return (
-    <section data-category="best" className="relative overflow-hidden bg-blue-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
+    <section data-category="best" className="relative overflow-hidden bg-red-video px-4 pt-12 pb-9 md:pt-14 md:pb-14">
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-best"
@@ -545,12 +545,12 @@ function AllMenuSection() {
               data-category={group.category}
               className="scroll-mt-[calc(var(--header-offset)+4.5rem)]"
             >
-              <div className="mb-6 flex items-center justify-between gap-4 border-b-2 border-navy-900 pb-3">
-                <h3 className="flex items-center gap-2.5 text-[1.35rem] font-black leading-tight tracking-[-0.03em] text-navy-900 md:text-[1.7rem]">
-                  <span aria-hidden="true" className="h-[0.6em] w-[0.6em] rotate-45 rounded-[2px] bg-yellow-500 ring-1 ring-navy-900/15" />
+              <div className="mb-6 flex items-center justify-between gap-4 border-b-2 border-ink-900 pb-3">
+                <h3 className="flex items-center gap-2.5 text-[1.35rem] font-black leading-tight tracking-[-0.03em] text-ink-900 md:text-[1.7rem]">
+                  <span aria-hidden="true" className="h-[0.6em] w-[0.6em] rotate-45 rounded-[2px] bg-yellow-500 ring-1 ring-ink-900/15" />
                   {allMenuCategoryTitle[group.category]}
                 </h3>
-                <span className="shrink-0 rounded-full bg-navy-900 px-3 py-1 text-[0.74rem] font-black text-yellow-500 md:text-[0.82rem]">
+                <span className="shrink-0 rounded-full bg-ink-900 px-3 py-1 text-[0.74rem] font-black text-yellow-500 md:text-[0.82rem]">
                   {group.items.length}종
                 </span>
               </div>
@@ -569,7 +569,7 @@ function AllMenuSection() {
 
 function ReasonsBand() {
   return (
-    <section className="relative overflow-hidden border-y-2 border-black/5 bg-yellow-500 px-4 py-10 text-navy-900 md:py-14">
+    <section className="relative overflow-hidden border-y-2 border-black/5 bg-yellow-500 px-4 py-10 text-ink-900 md:py-14">
       <div className="relative mx-auto max-w-6xl">
         <div className="text-center">
           <p className="mb-3 text-[0.74rem] font-black tracking-[0.24em] text-red-500 md:text-[0.82rem]">
@@ -585,15 +585,15 @@ function ReasonsBand() {
               key={reason.title}
               className="group relative flex flex-col items-center rounded-[1rem] bg-white/25 px-3 py-5 text-center md:rounded-none md:bg-transparent md:px-2 md:py-0"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-navy-900 text-yellow-500 shadow-lg transition-transform group-hover:scale-110 md:h-16 md:w-16 [&_svg]:h-6 [&_svg]:w-6 md:[&_svg]:h-9 md:[&_svg]:w-9">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-ink-900 text-yellow-500 shadow-lg transition-transform group-hover:scale-110 md:h-16 md:w-16 [&_svg]:h-6 [&_svg]:w-6 md:[&_svg]:h-9 md:[&_svg]:w-9">
                 <ReasonIcon type={reason.icon} />
               </div>
               <h3 className="mt-3 text-[0.98rem] font-black leading-tight md:mt-4 md:text-[1.2rem]">{reason.title}</h3>
-              <p className="mt-1.5 max-w-[11rem] text-[0.78rem] font-medium leading-snug text-navy-900/62 md:mt-2 md:text-[0.86rem] md:leading-relaxed">
+              <p className="mt-1.5 max-w-[11rem] text-[0.78rem] font-medium leading-snug text-ink-900/62 md:mt-2 md:text-[0.86rem] md:leading-relaxed">
                 {reason.description}
               </p>
               {index < menuPageData.reasons.length - 1 ? (
-                <span className="absolute right-[-0.75rem] top-1/2 hidden h-12 w-px -translate-y-1/2 rotate-12 bg-navy-900/10 md:block" />
+                <span className="absolute right-[-0.75rem] top-1/2 hidden h-12 w-px -translate-y-1/2 rotate-12 bg-ink-900/10 md:block" />
               ) : null}
             </div>
           ))}
@@ -605,7 +605,7 @@ function ReasonsBand() {
 
 function SideIllustration({ item }: { item: MenuPageSideItem }) {
   return (
-    <div className="relative mx-auto aspect-[1.18] w-full max-w-[12rem] overflow-hidden rounded-[1.35rem] bg-[linear-gradient(160deg,#fff7ed_0%,#f8ead9_100%)] shadow-[inset_0_0_0_1px_rgba(1,23,80,0.07)]">
+    <div className="relative mx-auto aspect-[1.18] w-full max-w-[12rem] overflow-hidden rounded-[1.35rem] bg-[linear-gradient(160deg,#fff7ed_0%,#f8ead9_100%)] shadow-[inset_0_0_0_1px_rgba(42,10,6,0.07)]">
       <Image
         src={item.image}
         alt={item.title}
@@ -619,7 +619,7 @@ function SideIllustration({ item }: { item: MenuPageSideItem }) {
 
 function SideMenuSection() {
   return (
-    <section id="menu-side" data-category="side" className="relative scroll-mt-[calc(var(--header-offset)+4.5rem)] overflow-hidden bg-blue-band px-4 py-12 text-white md:py-[4.25rem]">
+    <section id="menu-side" data-category="side" className="relative scroll-mt-[calc(var(--header-offset)+4.5rem)] overflow-hidden bg-red-band px-4 py-12 text-white md:py-[4.25rem]">
       <div className="relative mx-auto max-w-7xl">
         <SectionTitle
           id="menu-side-title"
@@ -632,14 +632,14 @@ function SideMenuSection() {
           {menuPageData.sideItems.map((item) => (
             <article
               key={item.title}
-              className="group relative flex w-[calc(50%-0.375rem)] flex-col overflow-hidden rounded-[1.5rem] border border-hairline bg-white px-3 pb-4 pt-3 text-center text-navy-900 shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.32)] sm:w-[calc(50%-0.5rem)] md:px-4 md:pb-5 md:pt-4 lg:w-[calc(20%-0.8rem)]"
+              className="group relative flex w-[calc(50%-0.375rem)] flex-col overflow-hidden rounded-[1.5rem] border border-hairline bg-white px-3 pb-4 pt-3 text-center text-ink-900 shadow-[0_18px_40px_rgba(0,0,0,0.25)] transition-[transform,box-shadow] duration-300 hover:-translate-y-1 hover:shadow-[0_26px_54px_rgba(0,0,0,0.32)] sm:w-[calc(50%-0.5rem)] md:px-4 md:pb-5 md:pt-4 lg:w-[calc(20%-0.8rem)]"
             >
               <SideIllustration item={item} />
               <h3 className="mt-3 flex min-h-[2.5rem] items-center justify-center text-balance text-[1rem] font-black leading-tight tracking-[-0.02em] md:text-[1.1rem]">
                 {item.title}
               </h3>
               <span className="mx-auto mt-2 h-0.5 w-7 rounded-full bg-yellow-500" />
-              <p className="mt-2.5 text-balance text-[0.74rem] font-medium leading-snug text-navy-900/54 md:text-[0.8rem] md:leading-relaxed">{item.description}</p>
+              <p className="mt-2.5 text-balance text-[0.74rem] font-medium leading-snug text-ink-900/54 md:text-[0.8rem] md:leading-relaxed">{item.description}</p>
             </article>
           ))}
         </div>
@@ -650,7 +650,7 @@ function SideMenuSection() {
 
 function MenuCta() {
   return (
-    <section id="menu-contact" className="relative overflow-hidden bg-navy-900 px-4 py-12 text-white md:py-16">
+    <section id="menu-contact" className="relative overflow-hidden bg-ink-900 px-4 py-12 text-white md:py-16">
       <div className="relative mx-auto grid max-w-7xl md:grid-cols-[0.68fr_0.32fr]">
         <div className="max-w-3xl text-left">
           <Sparkles className="mb-4" />
@@ -663,16 +663,16 @@ function MenuCta() {
           <div className="mt-9 flex flex-col gap-4 sm:flex-row">
             <a
               href="#menu-best"
-              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-yellow-500 px-10 text-[1.18rem] font-black text-navy-900 shadow-[0_18px_36px_rgba(0,0,0,0.28)] transition-all duration-300 hover:bg-[#ffd633] active:translate-y-px"
-              style={{ color: "var(--color-navy-900)" }}
+              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-yellow-500 px-10 text-[1.18rem] font-black text-ink-900 shadow-[0_18px_36px_rgba(0,0,0,0.28)] transition-all duration-300 hover:bg-[#ffd633] active:translate-y-px"
+              style={{ color: "var(--color-ink-900)" }}
             >
               <StarIcon className="h-6 w-6" />
               베스트 메뉴
             </a>
             <Link
               href="/#contact-cta-section"
-              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-white px-10 text-[1.18rem] font-black text-navy-900 shadow-[0_18px_36px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-[#f7f9fd] active:translate-y-px"
-              style={{ color: "var(--color-navy-900)" }}
+              className="inline-flex h-[3.75rem] items-center justify-center gap-3 rounded-full bg-white px-10 text-[1.18rem] font-black text-ink-900 shadow-[0_18px_36px_rgba(0,0,0,0.2)] transition-all duration-300 hover:bg-[#fdf7f5] active:translate-y-px"
+              style={{ color: "var(--color-ink-900)" }}
             >
               <BuildingIcon />
               가맹문의
@@ -689,7 +689,7 @@ export function MenuPage() {
   return (
     <>
       <SiteHeader activeHref="/menu" />
-      <main className="bg-blue-video text-white">
+      <main className="bg-red-video text-white">
         <MenuHero />
         <MenuCatalog>
           <BestMenuSection />

@@ -135,7 +135,7 @@ export function MenuCatalog({ children }: { children: ReactNode }) {
           as a single switch at any width, and every pill takes its padding in
           `em` — that keeps 매콤 and 클래식 the same shape instead of scaling
           the gap with the viewport and leaving the short words as blobs. */}
-      <div className="sticky top-[var(--header-offset)] z-30 border-b border-hairline bg-cream-ground shadow-[0_10px_24px_rgba(1,23,80,0.06)]">
+      <div className="sticky top-[var(--header-offset)] z-30 border-b border-hairline bg-cream-ground shadow-[0_10px_24px_rgba(42,10,6,0.06)]">
         <div
           ref={trackRef}
           className="mx-auto flex max-w-[90rem] justify-start overflow-x-auto px-5 py-2.5 [scrollbar-width:none] md:justify-center md:px-8 md:py-3.5 min-[1800px]:py-4 min-[2200px]:py-5 [&::-webkit-scrollbar]:hidden"
@@ -147,7 +147,7 @@ export function MenuCatalog({ children }: { children: ReactNode }) {
             {pill ? (
               <span
                 aria-hidden="true"
-                className="absolute bottom-1.5 top-1.5 rounded-full bg-navy-900 transition-[left,width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="absolute bottom-1.5 top-1.5 rounded-full bg-ink-900 transition-[left,width] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"
                 style={{ left: pill.left, width: pill.width }}
               />
             ) : null}
@@ -161,7 +161,7 @@ export function MenuCatalog({ children }: { children: ReactNode }) {
                   onClick={() => choose(tab.id)}
                   aria-pressed={tab.id === active}
                   className={`relative shrink-0 rounded-full px-[1.5em] py-[0.62em] text-[0.95rem] font-black tracking-[-0.02em] transition-colors duration-200 md:text-[1.05rem] xl:text-[1.15rem] min-[1800px]:text-[1.3rem] min-[2200px]:text-[1.5rem] ${
-                    isLit ? "text-yellow-500" : "text-navy-900/70 hover:text-navy-900"
+                    isLit ? "text-yellow-500" : "text-ink-900/70 hover:text-ink-900"
                   }`}
                 >
                   {tab.label}

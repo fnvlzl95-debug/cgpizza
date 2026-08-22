@@ -76,7 +76,7 @@ export function ReviewProofSection() {
 
       {/* The panel sits over the moving rows, so it needs its own ground. */}
       <div className="pointer-events-none absolute inset-0 flex items-center justify-center px-5">
-        <div className="motion-reveal pointer-events-auto w-full max-w-[28rem] rounded-card bg-blue-band px-8 py-block text-center text-white shadow-lift lg:max-w-[31vw] lg:px-card">
+        <div className="motion-reveal pointer-events-auto w-full max-w-[28rem] rounded-card bg-red-band px-8 py-block text-center text-white shadow-lift lg:max-w-[31vw] lg:px-card">
           <EyebrowPill label={data.pill} tone="contrast" />
           <p className="mt-label text-[0.85rem] font-black tracking-[0.14em] text-yellow-500 lg:text-[clamp(0.8rem,1vw,1.05rem)]">
             {data.year}
@@ -87,7 +87,13 @@ export function ReviewProofSection() {
           <p className="mt-tight text-[2.9rem] font-black leading-[1.06] tracking-[-0.05em] lg:text-[clamp(3rem,4.6vw,4.85rem)]">
             <span className="block">{data.headlineLead}</span>
             <span className="block">
-              <span className="text-red-500">{data.headlineAccent}</span>
+              <span className="relative isolate inline-flex px-[0.14em] text-red-hero">
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 inset-y-[0.06em] -z-10 -skew-x-[6deg] rounded-[0.12em] bg-ivory"
+                />
+                {data.headlineAccent}
+              </span>
               <span className="ml-[0.16em]">{data.headlineTail}</span>
             </span>
           </p>
@@ -96,7 +102,7 @@ export function ReviewProofSection() {
               <p key={line}>{line}</p>
             ))}
           </div>
-          <p className="mt-block inline-flex items-center gap-3 rounded-full bg-navy-900 px-6 py-3 lg:px-pill lg:py-tight">
+          <p className="mt-block inline-flex items-center gap-3 rounded-full bg-ink-900 px-6 py-3 lg:px-pill lg:py-tight">
             <span aria-hidden="true" className="text-[0.95rem] tracking-[0.14em] text-yellow-500">
               ★★★★★
             </span>

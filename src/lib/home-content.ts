@@ -157,7 +157,7 @@ export const philosophy = {
     alt: "최강피자 매장 인테리어 — 키오스크와 픽업 카운터",
   },
   mascot: {
-    src: "/assets/user/mascot/mascot-thumbsup.webp",
+    src: "/assets/user/brand/ckp-badge-20260821.webp",
     alt: "",
   },
 } as const;
@@ -175,9 +175,9 @@ export const profitStructure = {
   segments: [
     { key: "food", icon: "wheat", label: "식자재", range: "35~38%", share: 36.5, fill: "#FCBF43" },
     { key: "rent", icon: "building", label: "임대료", range: "8~12%", share: 10, fill: "#F7AE30" },
-    { key: "platform", icon: "phone", label: "플랫폼", range: "8~12%", share: 10, fill: "#546E81" },
-    { key: "labor", icon: "people", label: "인건비", range: "12~18%", share: 15, fill: "#021D3E" },
-    { key: "etc", icon: "gear", label: "기타 운영비", range: "8~15%", share: 11.5, fill: "#66879D" },
+    { key: "platform", icon: "phone", label: "플랫폼", range: "8~12%", share: 10, fill: "#8a6a62" },
+    { key: "labor", icon: "people", label: "인건비", range: "12~18%", share: 15, fill: "#2a0a06" },
+    { key: "etc", icon: "gear", label: "기타 운영비", range: "8~15%", share: 11.5, fill: "#a68a80" },
     { key: "profit", icon: "coins", label: "예상 영업이익", range: "12~18%", share: 15, fill: "#F58A0B" },
   ],
   center: {

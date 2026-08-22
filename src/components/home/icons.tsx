@@ -381,13 +381,13 @@ export function TargetArt({ className }: IconProps) {
 export function GrowthArt({ className }: IconProps) {
   return (
     <svg viewBox="0 0 120 120" className={className} aria-hidden="true" focusable="false">
-      <rect x="14" y="74" width="20" height="32" rx="4" fill="#021D3E" />
-      <rect x="46" y="58" width="20" height="48" rx="4" fill="#021D3E" />
+      <rect x="14" y="74" width="20" height="32" rx="4" fill="#2a0a06" />
+      <rect x="46" y="58" width="20" height="48" rx="4" fill="#2a0a06" />
       <rect x="78" y="42" width="20" height="64" rx="4" fill="#FDD816" />
       <path
         d="M16 62 44 40l18 14 32-30"
         fill="none"
-        stroke="#021D3E"
+        stroke="#2a0a06"
         strokeWidth="7"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -395,7 +395,7 @@ export function GrowthArt({ className }: IconProps) {
       <path
         d="M78 22h18v18"
         fill="none"
-        stroke="#021D3E"
+        stroke="#2a0a06"
         strokeWidth="7"
         strokeLinecap="round"
         strokeLinejoin="round"

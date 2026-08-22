@@ -6,37 +6,53 @@
    Do not eyeball-adjust these; re-sample the comp instead.
    --------------------------------------------------------------- */
 @theme {
-  /* Brand blue — hero (11), philosophy band (33), kitchen (99), reviews (88) */
-  --color-blue-hero: #0032f0;
-  --color-blue-band: #0148e3;
-  --color-blue-video: #0133dd;
+  /* ---------------------------------------------------------------
+     Brand red. The store interior was signed off as a red concept long
+     before the site was, and the logo and signage followed it; the blue
+     site was the last thing still arguing. The anchor below is sampled
+     from that approved interior render, not picked by eye.
 
-  /* Navy — body copy, panels, table headers, scrolled header */
-  --color-navy-900: #011750;
-  --color-navy-800: #041342;
-  --color-navy-700: #051839;
-  --color-navy-600: #021b3d;
+     The ramp descends: each field sits darker than the one above it, so
+     gold clears 4.5:1 on all three (4.89 / 5.73 / 6.79). A brighter band
+     was tried first and dropped gold to 4.39 — under the floor.
+     --------------------------------------------------------------- */
+  --color-red-hero: #b4170a;
+  --color-red-band: #a11409;
+  --color-red-video: #8d1007;
 
-  /* Gold / yellow */
+  /* Ink — the dark of the red family, carrying body copy, panels, table
+     headers and the dimensional headline ring. A cool navy in a red world
+     reads as a leftover from the old palette, not as this system's black. */
+  --color-ink-900: #2a0a06;
+  --color-ink-800: #3a1009;
+
+  /* Gold / yellow — values unchanged. They were the one part of the blue
+     system that got stronger on red. */
   --color-yellow-500: #fdd816;
   --color-gold-400: #fcd666;
-  --color-gold-300: #fce374;
   --color-gold-600: #e5bb53;
 
-  /* Orange — S4 profit structure ONLY. Never mix with gold. */
+  /* Ivory — what a mark fills with when it has to out-shout a red ground.
+     The BEST seals were red circles that only read because the field was
+     blue; on red they need a light fill and red type. */
+  --color-ivory: #fbf3e2;
+
+  /* Orange — S4 profit structure ONLY, and now it also has to stay clear
+     of the brand red it sits near. */
   --color-orange-500: #f27920;
-  --color-orange-400: #f8a328;
 
-  /* Red — single-use emphasis (전액 면제 / 집중운영 / 2억) */
-  --color-red-500: #e12110;
-  --color-red-600: #db1412;
+  /* Emphasis on a LIGHT field. Cream cannot do this job — it measures
+     1.06:1 on paper — so the brand red keeps it, at 6.73:1. On a red
+     field the accent word goes gold instead; on a red ground a solid mark
+     goes ivory. Emphasis is field-dependent, not one colour. */
+  --color-red-500: #b4170a;
 
-  /* Neutrals */
+  /* Neutrals. The greys are warm now: #eef1f7 and its relatives were
+     blue-tinted and read cold against red. */
   --color-paper: #fdfdfd;
   --color-cream-card: #f9f4ea;
   --color-cream-ground: #faf6f2;
-  --color-rule: #ebe9e8;
-  --color-mist: #eef1f7;
+  --color-mist: #f7f0ee;
   --color-disc: #fbebc6;
 
   /* ---------------------------------------------------------------
@@ -76,13 +92,13 @@
      than black, and all with a real offset and blur. Fifteen invented
      one-off shadows became these.
      --------------------------------------------------------------- */
-  --shadow-raise: 0 8px 20px rgba(1, 23, 80, 0.2);
-  --shadow-card: 0 18px 44px rgba(1, 23, 80, 0.1);
-  --shadow-lift: 0 30px 72px rgba(1, 23, 80, 0.34);
+  --shadow-raise: 0 8px 20px rgba(42, 10, 6, 0.22);
+  --shadow-card: 0 18px 44px rgba(42, 10, 6, 0.12);
+  --shadow-lift: 0 30px 72px rgba(42, 10, 6, 0.36);
   --shadow-gold: 0 12px 24px rgba(253, 216, 22, 0.35);
 
   /* One hairline, instead of navy at four different alphas. */
-  --color-hairline: rgba(1, 23, 80, 0.12);
+  --color-hairline: rgba(42, 10, 6, 0.14);
 
   /* Card corners. Three steps because the comps genuinely use three:
      the soft system cards, the default card, and the tight navy band. */
@@ -169,7 +185,7 @@
     margin: 0;
     min-height: 100vh;
     background: var(--color-paper);
-    color: var(--color-navy-900);
+    color: var(--color-ink-900);
     overflow-x: hidden;
     font-family:
       "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
@@ -194,18 +210,23 @@
 
   ::selection {
     background: rgba(253, 216, 22, 0.45);
-    color: var(--color-navy-900);
+    color: var(--color-ink-900);
   }
 
   /* Surfaces the browser draws for us still belong to this palette. */
   html {
-    caret-color: var(--color-blue-hero);
-    scrollbar-color: rgba(1, 23, 80, 0.35) transparent;
+    caret-color: var(--color-red-hero);
+    scrollbar-color: rgba(42, 10, 6, 0.35) transparent;
   }
 
+  /* Two-tone. Gold alone measured 1.19-1.40 against paper, cream and ivory —
+     a 1.4.11 failure on every light section, and one that predates the red
+     conversion. The ink halo sits outside the gold, so a light ground reads
+     the ink edge (16:1) and a red ground reads the gold band (4.9-5.9). */
   :focus-visible {
     outline: 3px solid var(--color-yellow-500);
     outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--color-ink-900);
   }
 }
 
@@ -503,21 +524,21 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   font-weight: 900;
   font-synthesis-weight: none;
   text-shadow:
-    -2px 0 0 var(--color-navy-900),
-    2px 0 0 var(--color-navy-900),
-    0 -2px 0 var(--color-navy-900),
-    0 2px 0 var(--color-navy-900),
-    -2px -2px 0 var(--color-navy-900),
-    2px -2px 0 var(--color-navy-900),
-    -2px 2px 0 var(--color-navy-900),
-    2px 2px 0 var(--color-navy-900),
-    3px 3px 0 var(--color-navy-900),
-    4px 4px 0 var(--color-navy-900),
-    5px 5px 0 var(--color-navy-900),
-    6px 6px 0 var(--color-navy-900),
-    7px 7px 0 var(--color-navy-900),
-    8px 8px 0 var(--color-navy-900),
-    0 22px 38px rgba(1, 23, 80, 0.45);
+    -2px 0 0 var(--color-ink-900),
+    2px 0 0 var(--color-ink-900),
+    0 -2px 0 var(--color-ink-900),
+    0 2px 0 var(--color-ink-900),
+    -2px -2px 0 var(--color-ink-900),
+    2px -2px 0 var(--color-ink-900),
+    -2px 2px 0 var(--color-ink-900),
+    2px 2px 0 var(--color-ink-900),
+    3px 3px 0 var(--color-ink-900),
+    4px 4px 0 var(--color-ink-900),
+    5px 5px 0 var(--color-ink-900),
+    6px 6px 0 var(--color-ink-900),
+    7px 7px 0 var(--color-ink-900),
+    8px 8px 0 var(--color-ink-900),
+    0 22px 38px rgba(42, 10, 6, 0.45);
 }
 
 /* The brand sheet borrows the menu hero's staggered, dimensional rhythm on a
@@ -529,7 +550,7 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   text-shadow:
     0.035em 0.035em 0 var(--color-yellow-500),
     0.07em 0.07em 0 var(--color-yellow-500),
-    0.105em 0.105em 0 rgba(1, 23, 80, 0.16);
+    0.105em 0.105em 0 rgba(42, 10, 6, 0.16);
 }
 
 /* The display face ships a single 400 cut. Anything that asks for a heavier
@@ -555,18 +576,18 @@ html[data-in-app-browser="kakao"] .app-screen-panel-40 {
   font-weight: 900;
   font-synthesis-weight: none;
   text-shadow:
-    -0.05em 0 0 var(--color-navy-900),
-    0.05em 0 0 var(--color-navy-900),
-    0 -0.05em 0 var(--color-navy-900),
-    0 0.05em 0 var(--color-navy-900),
-    -0.05em -0.05em 0 var(--color-navy-900),
-    0.05em -0.05em 0 var(--color-navy-900),
-    -0.05em 0.05em 0 var(--color-navy-900),
-    0.05em 0.05em 0 var(--color-navy-900),
-    0.075em 0.075em 0 var(--color-navy-900),
-    0.1em 0.1em 0 var(--color-navy-900),
-    0.125em 0.125em 0 var(--color-navy-900),
-    0 0.28em 0.42em rgba(1, 23, 80, 0.5);
+    -0.05em 0 0 var(--color-ink-900),
+    0.05em 0 0 var(--color-ink-900),
+    0 -0.05em 0 var(--color-ink-900),
+    0 0.05em 0 var(--color-ink-900),
+    -0.05em -0.05em 0 var(--color-ink-900),
+    0.05em -0.05em 0 var(--color-ink-900),
+    -0.05em 0.05em 0 var(--color-ink-900),
+    0.05em 0.05em 0 var(--color-ink-900),
+    0.075em 0.075em 0 var(--color-ink-900),
+    0.1em 0.1em 0 var(--color-ink-900),
+    0.125em 0.125em 0 var(--color-ink-900),
+    0 0.28em 0.42em rgba(42, 10, 6, 0.5);
 }
 
 /* The last line lands after the two above it, and overshoots a little on
