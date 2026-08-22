@@ -456,25 +456,29 @@ function SectionTitle({
 function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?: boolean }) {
   const isSignature = item.rank === 1;
   return (
+    /* The wordmark straddles the card's top edge, so it has to live outside
+       the article — the card clips its own corners with overflow-hidden, and
+       anything hung over the border would be cut in half by it. */
+    <div className="group relative h-full">
+      {isSignature ? (
+        <div className="pointer-events-none absolute left-1/2 top-0 z-30 w-32 -translate-x-1/2 -translate-y-1/2 md:w-40">
+          <Image
+            src="/assets/user/brand/wordmark-white-20260822.webp"
+            alt="최강피자 로고"
+            width={1145}
+            height={484}
+            className="h-auto w-full drop-shadow-[0_6px_14px_rgba(42,10,6,0.55)]"
+          />
+        </div>
+      ) : null}
     <article
-      className={`group relative flex h-full flex-col overflow-hidden rounded-[2rem] text-center transition-[box-shadow,transform] duration-300 hover:-translate-y-1 ${
+      className={`relative flex h-full flex-col overflow-hidden rounded-[2rem] text-center transition-[box-shadow,transform] duration-300 group-hover:-translate-y-1 ${
         isSignature
           ? "border-2 border-yellow-500 bg-ink-900 text-white shadow-[0_0_34px_rgba(255,207,0,0.22),0_26px_54px_rgba(0,0,0,0.5)]"
           : "border border-hairline bg-white text-ink-900 shadow-[0_18px_40px_rgba(0,0,0,0.22)] hover:shadow-[0_28px_58px_rgba(0,0,0,0.3)]"
       }`}
     >
       {item.badge ? <StickerBadge tone={item.badge} rank={item.rank} /> : null}
-      {isSignature ? (
-        <div className="pointer-events-none absolute left-1/2 top-3 z-20 -translate-x-1/2">
-          <Image
-            src="/assets/user/brand/ckp-badge-20260821.webp"
-            alt="최강피자 로고"
-            width={720}
-            height={720}
-            className="h-14 w-14 object-contain drop-shadow-md md:h-16 md:w-16"
-          />
-        </div>
-      ) : null}
       <div className={`relative overflow-hidden bg-[#faf4f2] ${featured ? "aspect-[1.38]" : "aspect-[1.48]"}`}>
         <Image
           src={item.image}
@@ -494,6 +498,7 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
         </p>
       </div>
     </article>
+    </div>
   );
 }
 
