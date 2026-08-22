@@ -44,13 +44,6 @@ export const hero = {
   ],
   subheadLead: "한 판의 기준을 만드는 브랜드, ",
   subheadAccent: "최강피자.",
-  /**
-   * The one line on the first screen aimed at the page's primary reader.
-   * Everything else up here — the headline, the body, the three proofs —
-   * talks about food, while PRODUCT.md puts prospective owners first.
-   * Client's wording, unedited.
-   */
-  startupClaim: "최소 창업비용 보장",
   body: [
     "신선한 재료와 정직한 조리로, 언제나 최고의 한 판을 만듭니다.",
     "맛의 차이가 브랜드의 차이, 최강피자입니다.",
@@ -75,6 +68,13 @@ export const franchiseBenefit = {
   headlineLead: "딱",
   headlineBrush: "30호점까지,",
   headlineSecond: "본사가 먼저 챙기는 실전형 가맹 혜택",
+  /**
+   * The claim the table underneath exists to prove. It sits between the
+   * heading and the table on purpose — claim first, then the four rows that
+   * back it — rather than as a fifth row, which would put the conclusion
+   * inside its own evidence. Client's wording, unedited.
+   */
+  claim: "최소 창업비용 보장",
   subhead: "초기 부담은 낮추고, 오픈 초반 안정화와 운영 부담까지 함께 생각한 실전형 혜택 구성",
   columns: ["구분", "내용", "혜택"],
   rows: [

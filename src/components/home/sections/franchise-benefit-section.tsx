@@ -1,11 +1,5 @@
 import Image from "next/image";
-import {
-  HeadsetIcon,
-  SparkIcon,
-  TagIcon,
-  ToolsIcon,
-  TruckIcon,
-} from "@/components/home/icons";
+import { HeadsetIcon, SealIcon, SparkIcon, TagIcon, ToolsIcon, TruckIcon } from "@/components/home/icons";
 import { BrushHighlight } from "@/components/home/reference/reference-primitives";
 import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { franchiseBenefit as data } from "@/lib/home-content";
@@ -135,6 +129,17 @@ export function FranchiseBenefitSection() {
             </span>
             <span className="mt-1 block text-[1.75rem] lg:mt-[0.3vw] lg:text-[clamp(1.7rem,min(3.5vw,6.2vh),3.8rem)]">{data.headlineSecond}</span>
           </h2>
+          {/* Claim, then evidence. This is deliberately not a fifth table row:
+              the four rows below are what make the claim true, and a row that
+              restates their conclusion would sit inside its own proof — and
+              its 내용 column would have nothing truthful to carry, since the
+              old cost figures are retired. A slab rather than a pill, so it
+              does not read as a second gold button. */}
+          <p className="motion-rise mt-label inline-flex items-center gap-2 rounded-band bg-yellow-500 px-4 py-2 text-[1.05rem] font-black tracking-[-0.03em] text-ink-900 shadow-raise lg:px-[1.1vw] lg:py-[0.5vw] lg:text-[clamp(1rem,1.32vw,1.5rem)]">
+            <SealIcon className="h-5 w-5 shrink-0 lg:h-[1.6vw] lg:w-[1.6vw]" />
+            {data.claim}
+          </p>
+
           <p className="mx-auto mt-group max-w-[46rem] text-[0.95rem] text-ink-900/65 lg:max-w-none lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
             {data.subhead}
           </p>

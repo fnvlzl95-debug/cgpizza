@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { CSSProperties } from "react";
 import { CrownWatermark, CrumbScatter } from "@/components/decor/field-decor";
-import { ChefIcon, LeafIcon, MedalIcon, SealIcon } from "@/components/home/icons";
+import { ChefIcon, LeafIcon, MedalIcon } from "@/components/home/icons";
 import { hero } from "@/lib/home-content";
 
 /**
@@ -111,20 +111,8 @@ export function HeroSection() {
             <span className="text-yellow-500">{hero.subheadAccent}</span>
           </p>
 
-          {/* A slab, not a pill: 8px is this system's banner shape and round
-              is reserved for things you can press, so the claim cannot be
-              mistaken for the header's gold CTA. Ink on gold is 11.9:1, the
-              highest-contrast pairing the palette has. */}
-          <p
-            style={delay(0.2)}
-            className="motion-rise mt-group inline-flex items-center gap-2 rounded-band bg-yellow-500 px-4 py-2 text-[1rem] font-black tracking-[-0.03em] text-ink-900 shadow-raise lg:px-[1.1vw] lg:py-[0.5vw] lg:text-[clamp(0.95rem,1.2vw,1.32rem)]"
-          >
-            <SealIcon className="h-5 w-5 shrink-0 lg:h-[1.5vw] lg:w-[1.5vw]" />
-            {hero.startupClaim}
-          </p>
-
           <div
-            style={delay(0.26)}
+            style={delay(0.22)}
             className="motion-rise mt-group space-y-2 text-[1rem] text-white/80 lg:space-y-tight lg:text-[clamp(0.95rem,1.14vw,1.19rem)]"
           >
             {hero.body.map((line) => (
@@ -133,7 +121,7 @@ export function HeroSection() {
           </div>
 
           <ul
-            style={delay(0.34)}
+            style={delay(0.3)}
             className="motion-rise mt-block flex flex-wrap items-center gap-x-6 gap-y-5 sm:flex-nowrap sm:gap-x-0"
           >
             {hero.proofs.map((proof, index) => {
