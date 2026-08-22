@@ -179,7 +179,7 @@ function IngredientCounter() {
       style={delay(0.56)}
       className="motion-rise relative mt-block rounded-data bg-ink-900 p-card shadow-lift ring-1 ring-white/12 lg:mt-0"
     >
-      <h2 className="display-flat text-center font-headline text-[1.1rem] tracking-[-0.01em] text-white lg:text-left lg:text-[clamp(0.95rem,min(1.21vw,2.15svh),1.6rem)]">
+      <h2 className="display-flat text-center font-headline text-[1.25rem] tracking-[-0.01em] text-white lg:text-left lg:text-[clamp(1.15rem,min(1.5vw,2.65svh),1.95rem)]">
         좋은 재료가 좋은 피자를 <span className="text-yellow-500">만듭니다</span>
       </h2>
       <ul className="mt-group grid grid-cols-3 gap-x-2 gap-y-4 sm:grid-cols-6 lg:gap-x-[1vw]">
@@ -195,7 +195,7 @@ function IngredientCounter() {
                 className={`h-full w-full object-contain object-bottom ${PROP_SHADOW}`}
               />
             </span>
-            <span className="display-flat mt-tight block font-headline text-[0.9rem] tracking-[-0.01em] text-white lg:text-[clamp(0.82rem,min(1.02vw,1.8svh),1.25rem)]">
+            <span className="mt-tight block text-[0.95rem] font-black tracking-[-0.02em] text-white lg:text-[clamp(0.88rem,min(1.08vw,1.9svh),1.3rem)]">
               {item.name}
             </span>
           </li>
