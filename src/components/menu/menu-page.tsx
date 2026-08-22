@@ -461,13 +461,17 @@ function PizzaCard({ item, featured = false }: { item: MenuPagePizza; featured?:
        anything hung over the border would be cut in half by it. */
     <div className="group relative h-full">
       {isSignature ? (
-        <div className="pointer-events-none absolute left-1/2 top-0 z-30 w-32 -translate-x-1/2 -translate-y-1/2 md:w-40">
+        <div className="pointer-events-none absolute left-1/2 top-0 z-30 -translate-x-1/2 -translate-y-1/2 rounded-[0.6rem] bg-paper px-2.5 py-1.5 shadow-[0_6px_16px_rgba(42,10,6,0.5)] md:px-3 md:py-2">
+          {/* The red cut of the wordmark is drawn for light grounds. Straddling
+              this edge puts its top half on the red section, where red-on-red
+              measures 2.01:1, so the mark brings its own plate — which is also
+              what makes it read as a nameplate fixed to the card. */}
           <Image
-            src="/assets/user/brand/wordmark-white-20260822.webp"
+            src="/assets/user/brand/wordmark-red-20260822.webp"
             alt="최강피자 로고"
-            width={1145}
-            height={484}
-            className="h-auto w-full drop-shadow-[0_6px_14px_rgba(42,10,6,0.55)]"
+            width={1159}
+            height={473}
+            className="h-auto w-28 md:w-36"
           />
         </div>
       ) : null}
