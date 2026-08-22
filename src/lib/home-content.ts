@@ -44,6 +44,13 @@ export const hero = {
   ],
   subheadLead: "한 판의 기준을 만드는 브랜드, ",
   subheadAccent: "최강피자.",
+  /**
+   * The one line on the first screen aimed at the page's primary reader.
+   * Everything else up here — the headline, the body, the three proofs —
+   * talks about food, while PRODUCT.md puts prospective owners first.
+   * Client's wording, unedited.
+   */
+  startupClaim: "최소 창업비용 보장",
   body: [
     "신선한 재료와 정직한 조리로, 언제나 최고의 한 판을 만듭니다.",
     "맛의 차이가 브랜드의 차이, 최강피자입니다.",
