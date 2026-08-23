@@ -68,6 +68,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    other: {
+      "naver-site-verification": "241a6ca22d94805f5ff3b4115d1f93a99c24f90b",
+    },
+  },
   openGraph: {
     type: "website",
     url: siteUrl,
