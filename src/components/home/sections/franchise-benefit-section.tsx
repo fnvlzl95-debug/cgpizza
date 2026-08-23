@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { HeadsetIcon, SealIcon, SparkIcon, TagIcon, ToolsIcon, TruckIcon } from "@/components/home/icons";
+import { HeadsetIcon, SparkIcon, TagIcon, ToolsIcon, TruckIcon } from "@/components/home/icons";
 import { BrushHighlight } from "@/components/home/reference/reference-primitives";
 import { EyebrowPill } from "@/components/home/ui/eyebrow-pill";
 import { franchiseBenefit as data } from "@/lib/home-content";
@@ -129,15 +129,24 @@ export function FranchiseBenefitSection() {
             </span>
             <span className="mt-1 block text-[1.75rem] lg:mt-[0.3vw] lg:text-[clamp(1.7rem,min(3.5vw,6.2vh),3.8rem)]">{data.headlineSecond}</span>
           </h2>
-          {/* Claim, then evidence. This is deliberately not a fifth table row:
-              the four rows below are what make the claim true, and a row that
-              restates their conclusion would sit inside its own proof — and
-              its 내용 column would have nothing truthful to carry, since the
-              old cost figures are retired. A slab rather than a pill, so it
-              does not read as a second gold button. */}
-          <p className="motion-rise mx-auto mt-label flex w-full max-w-[46rem] items-center justify-center gap-3 rounded-band bg-yellow-500 px-5 py-3 text-[1.35rem] font-black tracking-[-0.035em] text-ink-900 shadow-raise lg:gap-[0.8vw] lg:px-[1.6vw] lg:py-[0.85vw] lg:text-[clamp(1.3rem,min(2.1vw,3.7vh),2.35rem)]">
-            <SealIcon className="h-7 w-7 shrink-0 lg:h-[2.2vw] lg:w-[2.2vw]" />
-            {data.claim}
+          {/* Claim, then evidence. Deliberately not a fifth table row: the
+              four rows below are what make the claim true, and a row that
+              restated their conclusion would sit inside its own proof — its
+              내용 column had nothing truthful to carry either, since the old
+              cost figures are retired.
+
+              Marked with the same brush the heading uses rather than boxed:
+              a slab with a border and an icon read as a UI chip stuck under
+              the headline, where the mark reads as emphasis the page already
+              speaks in. */}
+          <p className="motion-rise mt-label text-[1.9rem] font-black leading-[1.42] tracking-[-0.05em] text-ink-900 lg:text-[clamp(1.85rem,min(3.35vw,5.95vh),3.5rem)]">
+            {/* Tilted, the way the wordmark and the display lines are. Set
+                upright it read as a caption under the heading; on the angle
+                it reads as the same hand that letters 최강피자. */}
+            <span className="relative isolate inline-flex -rotate-[1.6deg] px-[0.18em]">
+              <BrushHighlight />
+              {data.claim}
+            </span>
           </p>
 
           <p className="mx-auto mt-group max-w-[46rem] text-[0.95rem] text-ink-900/65 lg:max-w-none lg:text-[clamp(0.88rem,1.08vw,1.14rem)]">
