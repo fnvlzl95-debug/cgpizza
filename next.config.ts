@@ -54,7 +54,7 @@ const nextConfig: NextConfig = {
         "/assets/user/%EC%B5%9C%EA%B0%95%ED%94%BC%EC%9E%90SEO.png",
       ].map((source) => ({
         source,
-        destination: "/assets/user/og/share-logo-20260823.webp",
+        destination: "/assets/user/og/share-logo-20260823.jpg",
         statusCode: 301 as const,
       })),
       // The /brand hero has been reshot twice, so its card has two retired
@@ -66,18 +66,18 @@ const nextConfig: NextConfig = {
         "/assets/user/og/brand-hero-20260821.webp",
       ].map((source) => ({
         source,
-        destination: "/assets/user/og/share-logo-20260823.webp",
+        destination: "/assets/user/og/share-logo-20260823.jpg",
         statusCode: 301 as const,
       })),
       // The blue-era home and menu cards, retired by the red conversion.
       {
         source: "/assets/user/og/home-hero-20260819.webp",
-        destination: "/assets/user/og/share-logo-20260823.webp",
+        destination: "/assets/user/og/share-logo-20260823.jpg",
         statusCode: 301 as const,
       },
       {
         source: "/assets/user/og/menu-hero-20260819.webp",
-        destination: "/assets/user/og/share-logo-20260823.webp",
+        destination: "/assets/user/og/share-logo-20260823.jpg",
         statusCode: 301 as const,
       },
       // The hero-render cards, retired when the share image became the mark.
@@ -87,7 +87,7 @@ const nextConfig: NextConfig = {
         "/assets/user/og/brand-hero-20260822.webp",
       ].map((source) => ({
         source,
-        destination: "/assets/user/og/share-logo-20260823.webp",
+        destination: "/assets/user/og/share-logo-20260823.jpg",
         statusCode: 301 as const,
       })),
     ];
