@@ -46,7 +46,7 @@ export function FocusSystemSection() {
   return (
     <section
       id="focus-system"
-      className="app-screen-snap-target section-screen section-lead relative overflow-hidden bg-ivory"
+      className="app-screen-snap-target section-screen section-lead relative overflow-hidden bg-yellow-500"
     >
       {/* Faint grid the comp lays over the yellow field. */}
       <div
@@ -80,7 +80,7 @@ export function FocusSystemSection() {
                 <span aria-hidden="true" className="mt-group block h-0.5 w-14 bg-gold-600" />
 
                 {/* Every card gets the comp's cream disc, vector art included. */}
-                <span className="mt-block flex aspect-square w-[6.6rem] items-center justify-center overflow-hidden rounded-full bg-paper sm:w-[9rem] lg:w-[min(13.4vw,23vh)]">
+                <span className="mt-block flex aspect-square w-[6.6rem] items-center justify-center overflow-hidden rounded-full bg-disc sm:w-[9rem] lg:w-[min(13.4vw,23vh)]">
                   <CardArt art={card.art} />
                 </span>
 

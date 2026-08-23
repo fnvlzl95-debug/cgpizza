@@ -344,7 +344,6 @@ export const realKitchen = {
 /* ── S7 · 리뷰 증명 (88 — 구조 유지, 남색만 밝은 블루로) ────── */
 export const reviewProof = {
   pill: "고객 리뷰",
-  year: "2026년",
   lead: "고객님의 성원에 오픈 3개월",
   headlineLead: "매출",
   headlineAccent: "2억",
@@ -365,10 +364,16 @@ export const contact = {
   description: "브랜드 상담부터 운영 안내까지 빠르게 연결해드립니다.",
   backgroundImage: "/assets/user/franchise/contact-section.jpeg",
   phone: { label: "가맹 상담 전화", display: "1866-1623", href: "tel:18661623" },
-  email: {
-    label: "이메일 문의",
-    display: "ckpizza8879@naver.com",
-    href: "mailto:ckpizza8879@naver.com",
+  /**
+   * KakaoTalk rather than email. PRODUCT.md puts the consultation on the
+   * phone or the Kakao channel; an address that opens a mail client is a
+   * step most visitors on a phone will not take. The email itself stays in
+   * the footer rows below, so nothing is lost.
+   */
+  kakao: {
+    label: "카카오톡 문의",
+    display: "카카오톡으로 상담하기",
+    href: ctaLinks.kakaoHref,
   },
   footerRows: [
     ["회사명 : 최강피자 본점", "대표자 : 김현화 / 대표이사 : 김진호"],

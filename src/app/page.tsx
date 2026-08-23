@@ -32,7 +32,7 @@ const searchPromoCards = [
   },
   {
     name: "전체 메뉴",
-    image: absoluteUrl("/assets/user/og/menu-hero-20260822.webp"),
+    image: absoluteUrl("/assets/user/og/share-logo-20260823.webp"),
     url: absoluteUrl("/menu"),
   },
 ] as const;

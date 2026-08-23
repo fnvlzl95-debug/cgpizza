@@ -135,8 +135,8 @@ export function FranchiseBenefitSection() {
               its 내용 column would have nothing truthful to carry, since the
               old cost figures are retired. A slab rather than a pill, so it
               does not read as a second gold button. */}
-          <p className="motion-rise mt-label inline-flex items-center gap-2 rounded-band bg-yellow-500 px-4 py-2 text-[1.05rem] font-black tracking-[-0.03em] text-ink-900 shadow-raise lg:px-[1.1vw] lg:py-[0.5vw] lg:text-[clamp(1rem,1.32vw,1.5rem)]">
-            <SealIcon className="h-5 w-5 shrink-0 lg:h-[1.6vw] lg:w-[1.6vw]" />
+          <p className="motion-rise mx-auto mt-label flex w-full max-w-[46rem] items-center justify-center gap-3 rounded-band bg-yellow-500 px-5 py-3 text-[1.35rem] font-black tracking-[-0.035em] text-ink-900 shadow-raise lg:gap-[0.8vw] lg:px-[1.6vw] lg:py-[0.85vw] lg:text-[clamp(1.3rem,min(2.1vw,3.7vh),2.35rem)]">
+            <SealIcon className="h-7 w-7 shrink-0 lg:h-[2.2vw] lg:w-[2.2vw]" />
             {data.claim}
           </p>
 

@@ -49,7 +49,7 @@ const googleAnalyticsId = "G-G9ZWHC3L9L";
 const naverAnalyticsId = "1c48f0bc7c4f170";
 const defaultDescription =
   "최강피자 부천본점 메뉴, 방문포장 할인, 파로 도우 피자, 피자창업·샵인샵 가맹 상담을 안내합니다.";
-const defaultImage = "/assets/user/og/home-hero-20260822.webp";
+const defaultImage = "/assets/user/og/share-logo-20260823.webp";
 const defaultImageAlt = "최강피자 — 맛도 최강, 재료도 최강";
 const defaultImageWidth = 1200;
 const defaultImageHeight = 630;

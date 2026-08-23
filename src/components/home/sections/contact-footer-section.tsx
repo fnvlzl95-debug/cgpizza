@@ -18,16 +18,14 @@ function PhoneGlyph() {
   );
 }
 
-function MailGlyph() {
+/** KakaoTalk's speech mark, filled — the tile is the brand's own yellow, so
+ *  a stroked outline would read as a generic chat icon on it. */
+function KakaoGlyph() {
   return (
     <svg viewBox="0 0 24 24" className="h-8 w-8 shrink-0" fill="none" aria-hidden="true">
-      <path d="M4 7h16v10H4z" stroke="currentColor" strokeWidth="1.9" strokeLinejoin="round" />
       <path
-        d="m5 8 7 5 7-5"
-        stroke="currentColor"
-        strokeWidth="1.9"
-        strokeLinecap="round"
-        strokeLinejoin="round"
+        fill="currentColor"
+        d="M12 3.4c-4.9 0-8.9 3.1-8.9 7 0 2.5 1.7 4.7 4.2 5.9l-1 3.7a.4.4 0 0 0 .6.44l4.4-2.9c.24.02.47.03.7.03 4.9 0 8.9-3.1 8.9-7s-4-7.17-8.9-7.17Z"
       />
     </svg>
   );
@@ -64,7 +62,11 @@ export function ContactFooterSection() {
           <div className="mx-auto mt-block grid max-w-[62rem] gap-4 md:grid-cols-2 lg:gap-group">
             <a
               href={data.phone.href}
-              className="flex items-center gap-4 rounded-card bg-yellow-500 px-6 py-6 text-ink-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
+              /* White, not gold. Kakao's yellow is #FEE500 and the brand gold
+                 is #FDD816 — side by side the two tiles read as one block, and
+                 the messenger has to keep its own colour to be recognised, so
+                 the phone tile is the one that yields. */
+              className="flex items-center gap-4 rounded-card bg-white px-6 py-6 text-ink-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
             >
               <PhoneGlyph />
               <span className="min-w-0">
@@ -77,17 +79,22 @@ export function ContactFooterSection() {
               </span>
             </a>
 
+            {/* Kakao's own yellow, not a palette colour — a messenger button
+                that is not the messenger's colour is not recognised as one.
+                Opens in a new tab because the channel is off-site. */}
             <a
-              href={data.email.href}
-              className="flex items-center gap-4 rounded-card bg-white px-6 py-6 text-ink-900 transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
+              href={data.kakao.href}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-4 rounded-card bg-[#FEE500] px-6 py-6 text-[#191600] transition-transform duration-200 hover:-translate-y-1 lg:gap-group lg:px-card lg:py-card"
             >
-              <MailGlyph />
+              <KakaoGlyph />
               <span className="min-w-0">
                 <span className="block text-[0.9rem] font-black tracking-[0.02em] lg:text-[clamp(0.85rem,1.02vw,1.07rem)]">
-                  {data.email.label}
+                  {data.kakao.label}
                 </span>
                 <span className="mt-1.5 block truncate text-[1.15rem] font-black tracking-[-0.02em] lg:text-[clamp(1.05rem,1.4vw,1.48rem)]">
-                  {data.email.display}
+                  {data.kakao.display}
                 </span>
               </span>
             </a>
