@@ -5,8 +5,10 @@ import { siteUrl } from "@/lib/site-config";
 const brandTitle = "브랜드 소개";
 const brandDescription =
   "매일 직접 반죽하는 파로 도우, 엄선한 재료, 연출 없는 실제 주방. 최강피자가 한 판을 만드는 방식을 소개합니다.";
-const brandImage = "/assets/user/og/share-logo-20260823.jpg";
-const brandImageAlt = "최강피자 브랜드 소개 — 파로 도우와 대표 피자";
+const shareImage = "/assets/user/og/share-logo-20260823.jpg";
+const searchImage = "/assets/user/og/search-brand.jpg";
+const shareImageAlt = "최강피자 브랜드 소개 — 파로 도우와 대표 피자";
+const searchImageAlt = "최강피자 실제 반죽과 오븐 조리 과정";
 
 export const metadata: Metadata = {
   title: brandTitle,
@@ -21,10 +23,16 @@ export const metadata: Metadata = {
     description: brandDescription,
     images: [
       {
-        url: brandImage,
+        url: shareImage,
         width: 1200,
         height: 630,
-        alt: brandImageAlt,
+        alt: shareImageAlt,
+      },
+      {
+        url: searchImage,
+        width: 1200,
+        height: 630,
+        alt: searchImageAlt,
       },
     ],
   },
@@ -34,8 +42,8 @@ export const metadata: Metadata = {
     description: brandDescription,
     images: [
       {
-        url: brandImage,
-        alt: brandImageAlt,
+        url: shareImage,
+        alt: shareImageAlt,
       },
     ],
   },
@@ -54,7 +62,7 @@ const brandStructuredData = [
     name: `최강피자 ${brandTitle}`,
     url: `${siteUrl}/brand`,
     description: brandDescription,
-    image: `${siteUrl}${brandImage}`,
+    image: `${siteUrl}/assets/user/brand-videos/posters/2-revised.webp`,
     mainEntityOfPage: `${siteUrl}/brand`,
   },
   {

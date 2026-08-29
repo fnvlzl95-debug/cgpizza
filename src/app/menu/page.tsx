@@ -3,14 +3,12 @@ import { MenuPage } from "@/components/menu/menu-page";
 import { menuPageData } from "@/lib/menu-page-data";
 import { siteUrl } from "@/lib/site-config";
 
-/* A designed 1200×630 card rendered from this page's own hero — not a raw
-   product photo. The 2.6 MB menu PNG this replaces sat past the practical
-   size ceiling for OG scrapers, and a scraper that gives up on og:image
-   falls back to harvesting DOM images, which is how stale pizza photos end
-   up as the search thumbnail. Regenerate with scripts/og-cards.mjs; a new
-   date is a new URL on purpose. */
-const menuImage = "/assets/user/og/share-logo-20260823.jpg";
-const menuImageAlt = "최강피자 메뉴 — 베스트 피자와 전체 메뉴";
+/* Kakao uses the first og:image it finds, so the existing share card stays
+   first. Search crawlers can evaluate the second, page-specific candidate. */
+const shareImage = "/assets/user/og/share-logo-20260823.jpg";
+const searchImage = "/assets/user/og/search-menu.jpg";
+const shareImageAlt = "최강피자 메뉴 — 베스트 피자와 전체 메뉴";
+const searchImageAlt = "최강피자 대표 메뉴 3종";
 const menuDescription = "최강피자의 베스트 메뉴, 전체 피자 메뉴, 사이드 메뉴를 확인하세요.";
 
 export const metadata: Metadata = {
@@ -26,10 +24,16 @@ export const metadata: Metadata = {
     description: menuDescription,
     images: [
       {
-        url: menuImage,
+        url: shareImage,
         width: 1200,
         height: 630,
-        alt: menuImageAlt,
+        alt: shareImageAlt,
+      },
+      {
+        url: searchImage,
+        width: 1200,
+        height: 630,
+        alt: searchImageAlt,
       },
     ],
   },
@@ -39,8 +43,8 @@ export const metadata: Metadata = {
     description: menuDescription,
     images: [
       {
-        url: menuImage,
-        alt: menuImageAlt,
+        url: shareImage,
+        alt: shareImageAlt,
       },
     ],
   },
@@ -55,6 +59,15 @@ const absoluteUrl = (path: string) => `${siteUrl}${path}`;
  * here is one the page actually renders.
  */
 const menuStructuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: "최강피자 메뉴",
+    description: menuDescription,
+    url: `${siteUrl}/menu`,
+    image: absoluteUrl("/assets/user/menu/choigang-master-pizza.png"),
+    mainEntityOfPage: `${siteUrl}/menu`,
+  },
   {
     "@context": "https://schema.org",
     "@type": "ItemList",

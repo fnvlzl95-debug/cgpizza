@@ -5,11 +5,13 @@ import { siteUrl } from "@/lib/site-config";
 
 const absoluteUrl = (path: string) => new URL(path, siteUrl).toString();
 
-const brandImage = absoluteUrl(portedHomepageData.metadata.ogImage);
-const brandImageAlt = "최강피자 — 맛도 최강, 재료도 최강";
-const brandImageWidth = 1200;
-const brandImageHeight = 630;
+const searchImage = absoluteUrl(portedHomepageData.metadata.searchImage);
+const shareImageAlt = "최강피자 — 맛도 최강, 재료도 최강";
+const searchImageAlt = "최강피자 대표 반반피자";
+const imageWidth = 1200;
+const imageHeight = 630;
 const brandLogo = absoluteUrl("/assets/user/brand/ckp-badge-20260821.webp");
+const representativePizza = absoluteUrl("/assets/user/hero-pizza-oriented.webp");
 
 /* Every image here is one the home page actually renders. Advertising
    images the DOM never shows reads as a mismatch to a crawler comparing
@@ -17,7 +19,7 @@ const brandLogo = absoluteUrl("/assets/user/brand/ckp-badge-20260821.webp");
 const searchPromoCards = [
   {
     name: "최강피자 브랜드 소개",
-    image: brandImage,
+    image: absoluteUrl("/assets/user/brand-videos/posters/2-revised.webp"),
     url: `${siteUrl}/brand`,
   },
   {
@@ -32,7 +34,7 @@ const searchPromoCards = [
   },
   {
     name: "전체 메뉴",
-    image: absoluteUrl("/assets/user/og/share-logo-20260823.jpg"),
+    image: absoluteUrl("/assets/user/menu/choigang-master-pizza.png"),
     url: absoluteUrl("/menu"),
   },
 ] as const;
@@ -44,14 +46,14 @@ const homepageStructuredData = [
     name: "최강피자",
     url: siteUrl,
     description: portedHomepageData.metadata.description,
-    image: brandImage,
+    image: representativePizza,
   },
   {
     "@context": "https://schema.org",
     "@type": "Restaurant",
     name: "최강피자",
     url: siteUrl,
-    image: brandImage,
+    image: representativePizza,
     logo: brandLogo,
     telephone: "1866-1623",
     servesCuisine: "피자",
@@ -95,9 +97,15 @@ export const metadata: Metadata = {
     images: [
       {
         url: portedHomepageData.metadata.ogImage,
-        width: brandImageWidth,
-        height: brandImageHeight,
-        alt: brandImageAlt,
+        width: imageWidth,
+        height: imageHeight,
+        alt: shareImageAlt,
+      },
+      {
+        url: searchImage,
+        width: imageWidth,
+        height: imageHeight,
+        alt: searchImageAlt,
       },
     ],
   },
@@ -107,7 +115,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: portedHomepageData.metadata.ogImage,
-        alt: brandImageAlt,
+        alt: shareImageAlt,
       },
     ],
   },
